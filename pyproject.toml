@@ -1,0 +1,8 @@
+[project]
+name = "auto-parts-search"
+version = "0.1.0"
+description = "Domain-specific search embeddings for Indian auto parts"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

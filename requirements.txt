@@ -1,0 +1,7 @@
+requests>=2.31.0
+playwright>=1.40.0
+sentence-transformers>=2.2.0
+jsonlines>=4.0.0
+click>=8.1.0
+tqdm>=4.66.0
+pytest>=7.4.0
