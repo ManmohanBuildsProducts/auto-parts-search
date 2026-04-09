@@ -8,9 +8,10 @@ DATA_DIR = PROJECT_ROOT / "data"
 RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 TRAINING_DIR = DATA_DIR / "training"
+KNOWLEDGE_GRAPH_DIR = DATA_DIR / "knowledge_graph"
 
 # Ensure directories exist
-for d in [RAW_DIR, PROCESSED_DIR, TRAINING_DIR]:
+for d in [RAW_DIR, PROCESSED_DIR, TRAINING_DIR, KNOWLEDGE_GRAPH_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 # Common product schema fields
