@@ -3,7 +3,8 @@ __pycache__/
 .pytest_cache/
 data/raw/
 data/processed/
-data/knowledge_graph/
+data/knowledge_graph/graph.json
+data/knowledge_graph/*.db
 *.egg-info/
 .env
 *.pdf

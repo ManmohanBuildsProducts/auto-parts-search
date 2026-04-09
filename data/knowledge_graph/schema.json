@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Auto Parts Knowledge Graph",
+  "description": "Domain knowledge graph for Indian auto parts search. Stores parts, categories, systems, vehicles, symptoms, aliases, and brands with typed edges.",
+  "type": "object",
+  "required": ["metadata", "nodes", "edges"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "created_date": { "type": "string", "format": "date" },
+        "sources": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Data sources that contributed to this graph"
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    }
+  },
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "required": ["source"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Data source identifier",
+          "enum": ["hsn_cbic", "iti_dgt", "nhtsa", "tecdoc", "vocabulary_research", "catalog_scraped", "manual"]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 1.0
+        },
+        "source_id": {
+          "type": "string",
+          "description": "ID in the source system"
+        },
+        "added_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "node_type", "provenance"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(part|category|system|vehicle|symptom|alias|brand):[a-z0-9_]+$",
+          "description": "Deterministic ID: {node_type}:{slug}"
+        },
+        "node_type": {
+          "type": "string",
+          "enum": ["part", "category", "system", "vehicle", "symptom", "alias", "brand"]
+        },
+        "provenance": { "$ref": "#/$defs/provenance" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "node_type": { "const": "part" } } },
+          "then": {
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "aliases": { "type": "array", "items": { "type": "string" }, "default": [] },
+              "hsn_code": { "type": "string", "default": "" },
+              "part_numbers": { "type": "array", "items": { "type": "string" }, "default": [] }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "node_type": { "const": "category" } } },
+          "then": {
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "hsn_code": { "type": "string", "default": "" },
+              "level": { "type": "integer", "minimum": 0, "description": "Depth in HSN hierarchy: 0=chapter, 1=heading, 2=subheading" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "node_type": { "const": "system" } } },
+          "then": {
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string", "default": "" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "node_type": { "const": "vehicle" } } },
+          "then": {
+            "required": ["make", "model"],
+            "properties": {
+              "make": { "type": "string" },
+              "model": { "type": "string" },
+              "year_start": { "type": ["integer", "null"] },
+              "year_end": { "type": ["integer", "null"] }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "node_type": { "const": "symptom" } } },
+          "then": {
+            "required": ["description"],
+            "properties": {
+              "description": { "type": "string" },
+              "hindi_description": { "type": "string", "default": "" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "node_type": { "const": "alias" } } },
+          "then": {
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "language": { "type": "string", "enum": ["en", "hi", "hinglish"], "default": "en" },
+              "alias_type": {
+                "type": "string",
+                "enum": ["hindi", "hinglish", "misspelling", "brand_generic", "british_english"],
+                "default": ""
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "node_type": { "const": "brand" } } },
+          "then": {
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "country": { "type": "string", "default": "" }
+            }
+          }
+        }
+      ]
+    },
+    "edge": {
+      "type": "object",
+      "required": ["source_id", "target_id", "edge_type", "source", "confidence"],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "description": "ID of the source node"
+        },
+        "target_id": {
+          "type": "string",
+          "description": "ID of the target node"
+        },
+        "edge_type": {
+          "type": "string",
+          "enum": ["is_a", "in_system", "caused_by", "fits", "equivalent_to", "known_as", "made_by", "parent_of"],
+          "description": "is_a: Part→Category, in_system: Part→System, caused_by: Symptom→Part, fits: Part→Vehicle, equivalent_to: Part→Part, known_as: Part→Alias, made_by: Part→Brand, parent_of: Category→Category"
+        },
+        "source": {
+          "type": "string",
+          "description": "Data source that provided this edge"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Edge-specific extra data",
+          "default": {}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,607 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_date": "2026-04-09",
+    "sources": ["vocabulary_research", "hsn_cbic", "iti_dgt", "nhtsa", "tecdoc"]
+  },
+  "nodes": [
+    {
+      "id": "part:brake_pad",
+      "node_type": "part",
+      "name": "Brake Pad",
+      "aliases": ["brake ki patti", "brake cha pad", "break pad"],
+      "hsn_code": "8708.30",
+      "part_numbers": ["16510M68K00"],
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "part:brake_disc",
+      "node_type": "part",
+      "name": "Brake Disc",
+      "aliases": ["rotor", "brake disk"],
+      "hsn_code": "8708.30",
+      "part_numbers": [],
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "part:shock_absorber",
+      "node_type": "part",
+      "name": "Shock Absorber",
+      "aliases": ["shocker", "strut"],
+      "hsn_code": "8708.80",
+      "part_numbers": [],
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "part:oil_filter",
+      "node_type": "part",
+      "name": "Oil Filter",
+      "aliases": ["tel ka filter"],
+      "hsn_code": "8421.23",
+      "part_numbers": ["F002H234FF"],
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "part:spark_plug",
+      "node_type": "part",
+      "name": "Spark Plug",
+      "aliases": ["baati", "sparkplug"],
+      "hsn_code": "8511.10",
+      "part_numbers": [],
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "part:clutch_plate",
+      "node_type": "part",
+      "name": "Clutch Plate",
+      "aliases": ["clutch", "klutch plate", "cluch plate"],
+      "hsn_code": "8708.93",
+      "part_numbers": [],
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "category:8708",
+      "node_type": "category",
+      "name": "Parts and accessories of motor vehicles",
+      "hsn_code": "8708",
+      "level": 0,
+      "provenance": { "source": "hsn_cbic", "confidence": 1.0, "source_id": "8708", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "category:8708_30",
+      "node_type": "category",
+      "name": "Brakes and parts thereof",
+      "hsn_code": "8708.30",
+      "level": 1,
+      "provenance": { "source": "hsn_cbic", "confidence": 1.0, "source_id": "8708.30", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "category:8708_80",
+      "node_type": "category",
+      "name": "Suspension and parts thereof",
+      "hsn_code": "8708.80",
+      "level": 1,
+      "provenance": { "source": "hsn_cbic", "confidence": 1.0, "source_id": "8708.80", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "category:8708_93",
+      "node_type": "category",
+      "name": "Clutches and parts thereof",
+      "hsn_code": "8708.93",
+      "level": 1,
+      "provenance": { "source": "hsn_cbic", "confidence": 1.0, "source_id": "8708.93", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "category:8421_23",
+      "node_type": "category",
+      "name": "Oil or petrol-filters for internal combustion engines",
+      "hsn_code": "8421.23",
+      "level": 1,
+      "provenance": { "source": "hsn_cbic", "confidence": 1.0, "source_id": "8421.23", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "category:8511",
+      "node_type": "category",
+      "name": "Electrical ignition or starting equipment",
+      "hsn_code": "8511",
+      "level": 0,
+      "provenance": { "source": "hsn_cbic", "confidence": 1.0, "source_id": "8511", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "system:braking",
+      "node_type": "system",
+      "name": "Braking System",
+      "description": "Hydraulic and mechanical braking components including pads, discs, calipers, master cylinder, and brake fluid",
+      "provenance": { "source": "iti_dgt", "confidence": 1.0, "source_id": "MMV-M2-U3", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "system:engine_lubrication",
+      "node_type": "system",
+      "name": "Engine Lubrication System",
+      "description": "Oil pump, oil filter, oil galleries, and oil pan — circulates engine oil to reduce friction",
+      "provenance": { "source": "iti_dgt", "confidence": 1.0, "source_id": "MMV-M1-U2", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "system:suspension",
+      "node_type": "system",
+      "name": "Suspension System",
+      "description": "Shock absorbers, springs, control arms, and stabilizer bars — absorbs road impact",
+      "provenance": { "source": "iti_dgt", "confidence": 1.0, "source_id": "MMV-M2-U1", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "system:ignition",
+      "node_type": "system",
+      "name": "Ignition System",
+      "description": "Spark plugs, ignition coils, distributor — generates spark for combustion",
+      "provenance": { "source": "iti_dgt", "confidence": 1.0, "source_id": "MMV-M1-U4", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "system:transmission",
+      "node_type": "system",
+      "name": "Transmission System",
+      "description": "Clutch, gearbox, drive shaft, differential — transfers engine power to wheels",
+      "provenance": { "source": "iti_dgt", "confidence": 1.0, "source_id": "MMV-M2-U2", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "vehicle:maruti_swift_2018",
+      "node_type": "vehicle",
+      "make": "Maruti Suzuki",
+      "model": "Swift",
+      "year_start": 2018,
+      "year_end": 2023,
+      "provenance": { "source": "nhtsa", "confidence": 0.9, "source_id": "maruti_swift_gen3", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "vehicle:honda_city_2020",
+      "node_type": "vehicle",
+      "make": "Honda",
+      "model": "City",
+      "year_start": 2020,
+      "year_end": 2024,
+      "provenance": { "source": "nhtsa", "confidence": 0.9, "source_id": "honda_city_gen5", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "vehicle:hyundai_i20_2020",
+      "node_type": "vehicle",
+      "make": "Hyundai",
+      "model": "i20",
+      "year_start": 2020,
+      "year_end": 2024,
+      "provenance": { "source": "nhtsa", "confidence": 0.9, "source_id": "hyundai_i20_gen3", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "vehicle:royal_enfield_classic_350_2021",
+      "node_type": "vehicle",
+      "make": "Royal Enfield",
+      "model": "Classic 350",
+      "year_start": 2021,
+      "year_end": 2025,
+      "provenance": { "source": "nhtsa", "confidence": 0.8, "source_id": "re_classic350_j", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "vehicle:tata_nexon_2020",
+      "node_type": "vehicle",
+      "make": "Tata",
+      "model": "Nexon",
+      "year_start": 2020,
+      "year_end": 2023,
+      "provenance": { "source": "nhtsa", "confidence": 0.9, "source_id": "tata_nexon_facelift", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "symptom:grinding_noise_braking",
+      "node_type": "symptom",
+      "description": "Grinding noise when braking",
+      "hindi_description": "brake lagane par khar-khar awaaz",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "symptom:engine_overheating",
+      "node_type": "symptom",
+      "description": "Engine overheating, temperature gauge high",
+      "hindi_description": "engine garam ho raha hai",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "symptom:car_pulling_one_side",
+      "node_type": "symptom",
+      "description": "Car pulling to one side while driving",
+      "hindi_description": "gaadi ek taraf kheench rahi hai",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "symptom:clunking_over_bumps",
+      "node_type": "symptom",
+      "description": "Clunking or thud noise over bumps",
+      "hindi_description": "dhakke mein thud awaaz",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "symptom:clutch_slipping",
+      "node_type": "symptom",
+      "description": "Clutch slipping, RPM rises but car doesn't accelerate",
+      "hindi_description": "clutch slip kar raha hai",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "alias:shocker_hinglish",
+      "node_type": "alias",
+      "name": "shocker",
+      "language": "hinglish",
+      "alias_type": "hinglish",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "alias:brake_ki_patti_hindi",
+      "node_type": "alias",
+      "name": "brake ki patti",
+      "language": "hinglish",
+      "alias_type": "hinglish",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "alias:baati_hindi",
+      "node_type": "alias",
+      "name": "baati",
+      "language": "hinglish",
+      "alias_type": "hindi",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "alias:break_pad_misspelling",
+      "node_type": "alias",
+      "name": "break pad",
+      "language": "en",
+      "alias_type": "misspelling",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "alias:mobil_brand_generic",
+      "node_type": "alias",
+      "name": "mobil",
+      "language": "en",
+      "alias_type": "brand_generic",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "alias:bonnet_british",
+      "node_type": "alias",
+      "name": "bonnet",
+      "language": "en",
+      "alias_type": "british_english",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "alias:tel_ka_filter_hindi",
+      "node_type": "alias",
+      "name": "tel ka filter",
+      "language": "hinglish",
+      "alias_type": "hindi",
+      "provenance": { "source": "vocabulary_research", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "brand:bosch",
+      "node_type": "brand",
+      "name": "Bosch",
+      "country": "Germany",
+      "provenance": { "source": "tecdoc", "confidence": 1.0, "source_id": "bosch_gmbh", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "brand:brembo",
+      "node_type": "brand",
+      "name": "Brembo",
+      "country": "Italy",
+      "provenance": { "source": "tecdoc", "confidence": 1.0, "source_id": "brembo_spa", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "brand:ngk",
+      "node_type": "brand",
+      "name": "NGK",
+      "country": "Japan",
+      "provenance": { "source": "tecdoc", "confidence": 1.0, "source_id": "ngk_spark_plug", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "brand:exide",
+      "node_type": "brand",
+      "name": "Exide",
+      "country": "India",
+      "provenance": { "source": "catalog_scraped", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    },
+    {
+      "id": "brand:mrf",
+      "node_type": "brand",
+      "name": "MRF",
+      "country": "India",
+      "provenance": { "source": "catalog_scraped", "confidence": 1.0, "source_id": "", "added_date": "2026-04-09" }
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "part:brake_pad",
+      "target_id": "category:8708_30",
+      "edge_type": "is_a",
+      "source": "hsn_cbic",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:brake_disc",
+      "target_id": "category:8708_30",
+      "edge_type": "is_a",
+      "source": "hsn_cbic",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:shock_absorber",
+      "target_id": "category:8708_80",
+      "edge_type": "is_a",
+      "source": "hsn_cbic",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:oil_filter",
+      "target_id": "category:8421_23",
+      "edge_type": "is_a",
+      "source": "hsn_cbic",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:spark_plug",
+      "target_id": "category:8511",
+      "edge_type": "is_a",
+      "source": "hsn_cbic",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:clutch_plate",
+      "target_id": "category:8708_93",
+      "edge_type": "is_a",
+      "source": "hsn_cbic",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "category:8708_30",
+      "target_id": "category:8708",
+      "edge_type": "parent_of",
+      "source": "hsn_cbic",
+      "confidence": 1.0,
+      "metadata": { "note": "8708 is parent chapter, 8708.30 is heading" }
+    },
+    {
+      "source_id": "category:8708_80",
+      "target_id": "category:8708",
+      "edge_type": "parent_of",
+      "source": "hsn_cbic",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "category:8708_93",
+      "target_id": "category:8708",
+      "edge_type": "parent_of",
+      "source": "hsn_cbic",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:brake_pad",
+      "target_id": "system:braking",
+      "edge_type": "in_system",
+      "source": "iti_dgt",
+      "confidence": 1.0,
+      "metadata": { "syllabus_ref": "MMV Module 2, Unit 3: Braking System" }
+    },
+    {
+      "source_id": "part:brake_disc",
+      "target_id": "system:braking",
+      "edge_type": "in_system",
+      "source": "iti_dgt",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:shock_absorber",
+      "target_id": "system:suspension",
+      "edge_type": "in_system",
+      "source": "iti_dgt",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:oil_filter",
+      "target_id": "system:engine_lubrication",
+      "edge_type": "in_system",
+      "source": "iti_dgt",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:spark_plug",
+      "target_id": "system:ignition",
+      "edge_type": "in_system",
+      "source": "iti_dgt",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:clutch_plate",
+      "target_id": "system:transmission",
+      "edge_type": "in_system",
+      "source": "iti_dgt",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "symptom:grinding_noise_braking",
+      "target_id": "part:brake_pad",
+      "edge_type": "caused_by",
+      "source": "vocabulary_research",
+      "confidence": 0.9,
+      "metadata": { "also_check": ["part:brake_disc"] }
+    },
+    {
+      "source_id": "symptom:grinding_noise_braking",
+      "target_id": "part:brake_disc",
+      "edge_type": "caused_by",
+      "source": "vocabulary_research",
+      "confidence": 0.7,
+      "metadata": {}
+    },
+    {
+      "source_id": "symptom:clunking_over_bumps",
+      "target_id": "part:shock_absorber",
+      "edge_type": "caused_by",
+      "source": "vocabulary_research",
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    {
+      "source_id": "symptom:clutch_slipping",
+      "target_id": "part:clutch_plate",
+      "edge_type": "caused_by",
+      "source": "vocabulary_research",
+      "confidence": 0.95,
+      "metadata": {}
+    },
+    {
+      "source_id": "symptom:car_pulling_one_side",
+      "target_id": "part:brake_pad",
+      "edge_type": "caused_by",
+      "source": "vocabulary_research",
+      "confidence": 0.5,
+      "metadata": { "note": "Could also be wheel alignment or tyre pressure" }
+    },
+    {
+      "source_id": "part:brake_pad",
+      "target_id": "vehicle:maruti_swift_2018",
+      "edge_type": "fits",
+      "source": "tecdoc",
+      "confidence": 0.95,
+      "metadata": { "part_number": "16510M68K00" }
+    },
+    {
+      "source_id": "part:brake_pad",
+      "target_id": "vehicle:honda_city_2020",
+      "edge_type": "fits",
+      "source": "tecdoc",
+      "confidence": 0.95,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:shock_absorber",
+      "target_id": "vehicle:tata_nexon_2020",
+      "edge_type": "fits",
+      "source": "tecdoc",
+      "confidence": 0.9,
+      "metadata": { "position": "front" }
+    },
+    {
+      "source_id": "part:spark_plug",
+      "target_id": "vehicle:hyundai_i20_2020",
+      "edge_type": "fits",
+      "source": "tecdoc",
+      "confidence": 0.95,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:clutch_plate",
+      "target_id": "vehicle:maruti_swift_2018",
+      "edge_type": "fits",
+      "source": "tecdoc",
+      "confidence": 0.95,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:brake_pad",
+      "target_id": "part:brake_pad",
+      "edge_type": "equivalent_to",
+      "source": "tecdoc",
+      "confidence": 0.95,
+      "metadata": { "cross_ref": "Maruti OEM 16510M68K00 = Bosch F002H234FF" }
+    },
+    {
+      "source_id": "part:brake_pad",
+      "target_id": "alias:brake_ki_patti_hindi",
+      "edge_type": "known_as",
+      "source": "vocabulary_research",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:brake_pad",
+      "target_id": "alias:break_pad_misspelling",
+      "edge_type": "known_as",
+      "source": "vocabulary_research",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:shock_absorber",
+      "target_id": "alias:shocker_hinglish",
+      "edge_type": "known_as",
+      "source": "vocabulary_research",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:spark_plug",
+      "target_id": "alias:baati_hindi",
+      "edge_type": "known_as",
+      "source": "vocabulary_research",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:oil_filter",
+      "target_id": "alias:tel_ka_filter_hindi",
+      "edge_type": "known_as",
+      "source": "vocabulary_research",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:brake_pad",
+      "target_id": "brand:brembo",
+      "edge_type": "made_by",
+      "source": "tecdoc",
+      "confidence": 1.0,
+      "metadata": { "part_number": "P 68 033" }
+    },
+    {
+      "source_id": "part:brake_pad",
+      "target_id": "brand:bosch",
+      "edge_type": "made_by",
+      "source": "tecdoc",
+      "confidence": 1.0,
+      "metadata": { "part_number": "F002H234FF" }
+    },
+    {
+      "source_id": "part:spark_plug",
+      "target_id": "brand:ngk",
+      "edge_type": "made_by",
+      "source": "tecdoc",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:spark_plug",
+      "target_id": "brand:bosch",
+      "edge_type": "made_by",
+      "source": "tecdoc",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "source_id": "part:oil_filter",
+      "target_id": "brand:bosch",
+      "edge_type": "made_by",
+      "source": "tecdoc",
+      "confidence": 1.0,
+      "metadata": {}
+    }
+  ]
+}
