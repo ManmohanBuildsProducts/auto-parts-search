@@ -2,6 +2,10 @@
 
 Things we discovered during research and building that weren't obvious upfront.
 
+## Origin Context
+- This project originated from evaluating a friend's food embedding model business. He scraped food delivery app data, built domain-specific embeddings for food search, and sells the API to smaller platforms. We validated the approach works, then identified auto parts as a higher-TAM, more defensible vertical to build independently.
+- The food embedding model serves as a reference implementation — same architecture (fine-tuned sentence-transformers, API endpoint), different domain data.
+
 ## Market
 - **GoMechanic Spares is dead** (April 2026). Cofounders hit with fraud FIR, company fire-sold to Servizzy for Rs.220 Cr. Spares section is abandoned — `/spares/` URL times out, zero links from homepage. Don't target them as customer or competitor.
 - **Boodmo is the market leader** at 13M SKUs, $54M revenue, 11M app downloads. But their Angular SPA + signed API headers make scraping extremely difficult. Sitemap parsing (1.4M URLs) was the breakthrough.
@@ -25,3 +29,13 @@ Things we discovered during research and building that weren't obvious upfront.
 - **HSN codes ARE the official taxonomy** — every auto part in India has a mandatory HSN code for GST. Chapter 8708 hierarchy maps directly to our category structure.
 - **DGT ITI mechanic syllabi are the richest single source** for part-system-symptom relationships. 6 free PDFs covering IC engines, brakes, suspension, electrical, diesel, EV.
 - **NHTSA API is free and gives vehicle-part cross-references** — recall data maps specific parts to specific vehicle models. Even though US-focused, Honda/Hyundai/Toyota/Suzuki models overlap with India.
+
+## Risks & Legal
+- **Scraping ToS risk**: Scraping Boodmo/Autozilla likely violates their ToS. Mitigation: train model on scraped data (more defensible than reselling data), don't use competitor brand names in marketing, build original dataset from government sources (HSN, DGT) over time.
+- **IndiaMART is an untapped data source**: India's largest B2B marketplace with massive auto parts section — hasn't been scraped yet. Could significantly increase training data volume.
+- **Algolia is the incoming threat**: Launched auto parts solution March 2026. Enterprise-priced, requires ACES/PIES data (Indians don't have), no Hindi. Monitor their India moves quarterly.
+
+## Sales Insight
+- **30% of auto parts returns are caused by wrong fitment** — industry stat from platform audit. This is the cost of bad search. Use in every sales pitch.
+- **OEM direct portals are dual-opportunity**: 9 identified (Maruti, Tata, Hero, TVS, RE, Yamaha, Bajaj, Hyundai Mobis, BharatBenz). They are both (a) enterprise sales targets (huge volume, basic search) and (b) data sources (structured product catalogs).
+- **Koovers (Schaeffler-backed) grew 2.5x revenue YoY to Rs.198 Cr** — fastest-growing B2B auto parts platform. Prime target customer.

@@ -60,3 +60,18 @@ Output: Knowledge graph (JSON/SQLite) with relationships:
 - Free search audit tool (analyze customer's search logs)
 - Shopify app for one-click integration
 - Target 3 design partners for pilot
+- OEM portals (Maruti, Tata, Hero, TVS) as enterprise prospects
+
+## Phase 7: Expansion (Future)
+**Goal**: Go global + expand verticals.
+
+- **India → Global**: Same problem worldwide. US/EU auto parts mid-market pays 10-50x more. Reuse model architecture, retrain on English-only data for global vehicle models. Target: 12 months after first Indian customer.
+- **Regional languages**: Add Tamil, Telugu, Malayalam, Bengali, Marathi. Start with South India (different mechanic vocabulary from Hindi belt). Requires new training pairs per language.
+- **Two-wheeler focus**: 260M 2W vs 50M 4W in India — 2W is the volume play. Current training data is 4W-heavy (SparesHub = Skoda). Need dedicated 2W scraping and vocabulary work.
+- **Adjacent verticals**: Building materials / hardware (same problem structure, India digitizing fast), pharma / nutraceuticals (Ayurvedic product search).
+- **EV parts**: Growing segment. DGT has EV mechanic syllabus. 8 nascent EV parts platforms identified. Early mover advantage.
+
+## Known Data Imbalances
+- Training data is 4W-heavy: SparesHub (12.5K, mostly Skoda), Boodmo sitemap (1.4M, no vehicle info). 2W data comes from Bikespares (5.7K) and eAuto (6.6K) — significantly less.
+- Hindi vocabulary is North India-centric. South Indian mechanic terminology (Tamil, Telugu) is undocumented.
+- No used/refurbished parts in training data (10 platforms exist but different search challenge).
