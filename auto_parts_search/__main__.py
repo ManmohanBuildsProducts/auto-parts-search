@@ -7,9 +7,12 @@ Usage:
     python3 -m auto_parts_search all        # Run everything
     python3 -m auto_parts_search stats      # Show stats for existing data
 """
+import logging
 import sys
 import json
 from pathlib import Path
+
+logging.basicConfig(level=logging.INFO, format="%(name)s %(levelname)s %(message)s")
 
 # Ensure project root is on path
 sys.path.insert(0, str(Path(__file__).parent.parent))
