@@ -1,0 +1,1172 @@
+{
+  "metadata": {
+    "description": "Vehicle system to component parts mappings from DGT ITI syllabi",
+    "source": "iti_dgt",
+    "total_systems": 13,
+    "total_parts": 124,
+    "parts_per_system": {
+      "Engine": 16,
+      "Fuel System": 10,
+      "Cooling System": 10,
+      "Lubrication System": 6,
+      "Braking System": 12,
+      "Suspension System": 8,
+      "Steering System": 7,
+      "Transmission System": 10,
+      "Electrical System": 11,
+      "Exhaust and Emission System": 9,
+      "Body Electrical and Accessories": 9,
+      "AC and Climate Control System": 8,
+      "Electric Vehicle System": 8
+    },
+    "pdfs_scanned": 0,
+    "pdf_validation": "no PDFs available"
+  },
+  "systems": [
+    {
+      "system_name": "Engine",
+      "system_id": "system:engine",
+      "description": "Internal combustion engine — converts fuel energy to mechanical motion. Covers cylinder block, valve train, and rotating assembly.",
+      "parts": [
+        {
+          "name": "Piston",
+          "aliases": [
+            "piston assembly"
+          ],
+          "role": "Converts combustion pressure to linear motion"
+        },
+        {
+          "name": "Piston Ring",
+          "aliases": [
+            "compression ring",
+            "oil ring",
+            "piston ring set"
+          ],
+          "role": "Seals combustion chamber, controls oil"
+        },
+        {
+          "name": "Connecting Rod",
+          "aliases": [
+            "con rod"
+          ],
+          "role": "Transfers piston motion to crankshaft"
+        },
+        {
+          "name": "Crankshaft",
+          "aliases": [
+            "crank shaft"
+          ],
+          "role": "Converts reciprocating to rotary motion"
+        },
+        {
+          "name": "Camshaft",
+          "aliases": [
+            "cam shaft"
+          ],
+          "role": "Actuates intake/exhaust valves via lobes"
+        },
+        {
+          "name": "Cylinder Head",
+          "aliases": [
+            "cylinder head assembly"
+          ],
+          "role": "Seals top of cylinder, houses valves"
+        },
+        {
+          "name": "Cylinder Head Gasket",
+          "aliases": [
+            "head gasket"
+          ],
+          "role": "Seals joint between block and head"
+        },
+        {
+          "name": "Valve",
+          "aliases": [
+            "intake valve",
+            "exhaust valve",
+            "engine valve"
+          ],
+          "role": "Controls gas flow in/out of cylinder"
+        },
+        {
+          "name": "Valve Guide",
+          "aliases": [],
+          "role": "Guides valve stem for alignment"
+        },
+        {
+          "name": "Valve Seat",
+          "aliases": [
+            "valve seat insert"
+          ],
+          "role": "Sealing surface for valve face"
+        },
+        {
+          "name": "Valve Spring",
+          "aliases": [],
+          "role": "Returns valve to closed position"
+        },
+        {
+          "name": "Rocker Arm",
+          "aliases": [
+            "rocker"
+          ],
+          "role": "Transfers cam motion to valve"
+        },
+        {
+          "name": "Pushrod",
+          "aliases": [
+            "push rod"
+          ],
+          "role": "Transfers lifter motion to rocker arm (OHV engines)"
+        },
+        {
+          "name": "Timing Chain",
+          "aliases": [
+            "timing belt",
+            "cam chain",
+            "cam belt"
+          ],
+          "role": "Synchronizes crankshaft and camshaft rotation"
+        },
+        {
+          "name": "Tensioner",
+          "aliases": [
+            "chain tensioner",
+            "belt tensioner"
+          ],
+          "role": "Maintains timing chain/belt tension"
+        },
+        {
+          "name": "Flywheel",
+          "aliases": [
+            "fly wheel"
+          ],
+          "role": "Stores rotational energy, smooths power delivery"
+        }
+      ],
+      "source_trade": "Mechanic Motor Vehicle",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "2W",
+        "3W",
+        "tractor"
+      ]
+    },
+    {
+      "system_name": "Fuel System",
+      "system_id": "system:fuel_system",
+      "description": "Stores, delivers, and meters fuel to the engine. Covers carburetion, fuel injection (MPFI/CRDI), and fuel supply.",
+      "parts": [
+        {
+          "name": "Fuel Pump",
+          "aliases": [
+            "fuel delivery pump",
+            "lift pump"
+          ],
+          "role": "Delivers fuel from tank to engine"
+        },
+        {
+          "name": "Fuel Filter",
+          "aliases": [
+            "fuel strainer",
+            "diesel filter"
+          ],
+          "role": "Removes contaminants from fuel"
+        },
+        {
+          "name": "Fuel Injector",
+          "aliases": [
+            "injector",
+            "nozzle",
+            "injection nozzle"
+          ],
+          "role": "Sprays metered fuel into combustion chamber"
+        },
+        {
+          "name": "Carburetor",
+          "aliases": [
+            "carburettor",
+            "carb"
+          ],
+          "role": "Mixes fuel with air (older engines)"
+        },
+        {
+          "name": "Fuel Tank",
+          "aliases": [
+            "petrol tank",
+            "diesel tank"
+          ],
+          "role": "Stores fuel"
+        },
+        {
+          "name": "Fuel Line",
+          "aliases": [
+            "fuel pipe",
+            "fuel hose"
+          ],
+          "role": "Routes fuel between components"
+        },
+        {
+          "name": "Air Filter",
+          "aliases": [
+            "air cleaner",
+            "air filter element"
+          ],
+          "role": "Filters intake air to engine"
+        },
+        {
+          "name": "Throttle Body",
+          "aliases": [
+            "throttle valve"
+          ],
+          "role": "Controls airflow to engine"
+        },
+        {
+          "name": "Fuel Pressure Regulator",
+          "aliases": [
+            "pressure regulator"
+          ],
+          "role": "Maintains constant fuel rail pressure"
+        },
+        {
+          "name": "Injection Pump",
+          "aliases": [
+            "diesel injection pump",
+            "FIP",
+            "fuel injection pump"
+          ],
+          "role": "Pressurizes and times diesel fuel delivery"
+        }
+      ],
+      "source_trade": "Mechanic Diesel",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "2W",
+        "3W",
+        "tractor"
+      ]
+    },
+    {
+      "system_name": "Cooling System",
+      "system_id": "system:cooling_system",
+      "description": "Maintains engine operating temperature by transferring excess heat. Covers liquid cooling and air cooling components.",
+      "parts": [
+        {
+          "name": "Radiator",
+          "aliases": [
+            "radiator assembly",
+            "radiator core"
+          ],
+          "role": "Dissipates heat from coolant to air"
+        },
+        {
+          "name": "Thermostat",
+          "aliases": [
+            "thermostat valve"
+          ],
+          "role": "Regulates coolant flow based on temperature"
+        },
+        {
+          "name": "Water Pump",
+          "aliases": [
+            "coolant pump"
+          ],
+          "role": "Circulates coolant through engine and radiator"
+        },
+        {
+          "name": "Coolant",
+          "aliases": [
+            "antifreeze",
+            "coolant fluid"
+          ],
+          "role": "Heat transfer fluid"
+        },
+        {
+          "name": "Fan Belt",
+          "aliases": [
+            "drive belt",
+            "V-belt",
+            "serpentine belt"
+          ],
+          "role": "Drives water pump and fan from crankshaft"
+        },
+        {
+          "name": "Cooling Fan",
+          "aliases": [
+            "radiator fan",
+            "electric fan"
+          ],
+          "role": "Draws air through radiator"
+        },
+        {
+          "name": "Radiator Cap",
+          "aliases": [
+            "pressure cap"
+          ],
+          "role": "Maintains cooling system pressure"
+        },
+        {
+          "name": "Radiator Hose",
+          "aliases": [
+            "coolant hose",
+            "upper hose",
+            "lower hose"
+          ],
+          "role": "Routes coolant between engine and radiator"
+        },
+        {
+          "name": "Expansion Tank",
+          "aliases": [
+            "overflow tank",
+            "reservoir tank",
+            "coolant reservoir"
+          ],
+          "role": "Stores excess coolant during expansion"
+        },
+        {
+          "name": "Temperature Sensor",
+          "aliases": [
+            "coolant temperature sensor",
+            "CTS"
+          ],
+          "role": "Sends temperature reading to ECU/gauge"
+        }
+      ],
+      "source_trade": "Mechanic Motor Vehicle",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "tractor"
+      ]
+    },
+    {
+      "system_name": "Lubrication System",
+      "system_id": "system:lubrication_system",
+      "description": "Reduces friction and wear between moving parts by supplying pressurized oil. Covers oil pump, filtration, and galleries.",
+      "parts": [
+        {
+          "name": "Oil Pump",
+          "aliases": [
+            "engine oil pump"
+          ],
+          "role": "Pressurizes and circulates engine oil"
+        },
+        {
+          "name": "Oil Filter",
+          "aliases": [
+            "oil filter element"
+          ],
+          "role": "Removes contaminants from engine oil"
+        },
+        {
+          "name": "Oil Pressure Sensor",
+          "aliases": [
+            "oil pressure switch",
+            "oil pressure sending unit"
+          ],
+          "role": "Monitors oil pressure for warning system"
+        },
+        {
+          "name": "Oil Pan",
+          "aliases": [
+            "sump",
+            "oil sump"
+          ],
+          "role": "Stores engine oil at bottom of engine"
+        },
+        {
+          "name": "Oil Cooler",
+          "aliases": [],
+          "role": "Cools engine oil in heavy-duty applications"
+        },
+        {
+          "name": "PCV Valve",
+          "aliases": [
+            "positive crankcase ventilation valve"
+          ],
+          "role": "Vents crankcase gases back to intake"
+        }
+      ],
+      "source_trade": "Mechanic Motor Vehicle",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "tractor"
+      ]
+    },
+    {
+      "system_name": "Braking System",
+      "system_id": "system:braking_system",
+      "description": "Decelerates and stops the vehicle. Covers disc brakes, drum brakes, hydraulic actuation, and ABS.",
+      "parts": [
+        {
+          "name": "Brake Pad",
+          "aliases": [
+            "disc brake pad",
+            "brake pad set"
+          ],
+          "role": "Friction material pressed against disc rotor"
+        },
+        {
+          "name": "Brake Shoe",
+          "aliases": [
+            "drum brake shoe",
+            "brake shoe set"
+          ],
+          "role": "Friction material pressed against drum"
+        },
+        {
+          "name": "Brake Disc",
+          "aliases": [
+            "brake rotor",
+            "disc rotor"
+          ],
+          "role": "Rotating disc gripped by pads to slow wheel"
+        },
+        {
+          "name": "Brake Drum",
+          "aliases": [
+            "drum"
+          ],
+          "role": "Rotating drum pressed by shoes to slow wheel"
+        },
+        {
+          "name": "Master Cylinder",
+          "aliases": [
+            "brake master cylinder",
+            "TMC",
+            "tandem master cylinder"
+          ],
+          "role": "Converts pedal force to hydraulic pressure"
+        },
+        {
+          "name": "Brake Caliper",
+          "aliases": [
+            "caliper",
+            "caliper assembly"
+          ],
+          "role": "Clamps pads against disc via hydraulic piston"
+        },
+        {
+          "name": "Wheel Cylinder",
+          "aliases": [
+            "brake wheel cylinder"
+          ],
+          "role": "Pushes shoes against drum via hydraulic pressure"
+        },
+        {
+          "name": "Brake Line",
+          "aliases": [
+            "brake pipe",
+            "brake hose"
+          ],
+          "role": "Routes hydraulic fluid to wheel brakes"
+        },
+        {
+          "name": "Brake Fluid",
+          "aliases": [
+            "DOT fluid",
+            "hydraulic fluid"
+          ],
+          "role": "Transmits hydraulic force in brake system"
+        },
+        {
+          "name": "Brake Booster",
+          "aliases": [
+            "vacuum booster",
+            "servo unit"
+          ],
+          "role": "Amplifies brake pedal force using vacuum"
+        },
+        {
+          "name": "ABS Module",
+          "aliases": [
+            "ABS unit",
+            "anti-lock braking module"
+          ],
+          "role": "Prevents wheel lock-up during hard braking"
+        },
+        {
+          "name": "ABS Sensor",
+          "aliases": [
+            "wheel speed sensor"
+          ],
+          "role": "Monitors wheel rotation speed for ABS"
+        }
+      ],
+      "source_trade": "Mechanic Motor Vehicle",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "2W",
+        "3W"
+      ]
+    },
+    {
+      "system_name": "Suspension System",
+      "system_id": "system:suspension",
+      "description": "Absorbs road shocks and maintains tire contact with road surface. Covers springs, dampers, and linkages.",
+      "parts": [
+        {
+          "name": "Shock Absorber",
+          "aliases": [
+            "damper",
+            "shocker",
+            "strut"
+          ],
+          "role": "Dampens spring oscillation, controls body motion"
+        },
+        {
+          "name": "Coil Spring",
+          "aliases": [
+            "suspension spring",
+            "spring"
+          ],
+          "role": "Absorbs road impact, supports vehicle weight"
+        },
+        {
+          "name": "Leaf Spring",
+          "aliases": [
+            "leaf spring assembly",
+            "multi-leaf spring"
+          ],
+          "role": "Spring and locating member (trucks/rear axle)"
+        },
+        {
+          "name": "Ball Joint",
+          "aliases": [
+            "ball joint assembly"
+          ],
+          "role": "Pivot point connecting control arm to knuckle"
+        },
+        {
+          "name": "Control Arm",
+          "aliases": [
+            "wishbone",
+            "A-arm",
+            "lower arm",
+            "upper arm"
+          ],
+          "role": "Links wheel assembly to vehicle frame"
+        },
+        {
+          "name": "Stabilizer Bar",
+          "aliases": [
+            "sway bar",
+            "anti-roll bar"
+          ],
+          "role": "Reduces body roll in corners"
+        },
+        {
+          "name": "Bushing",
+          "aliases": [
+            "rubber bush",
+            "suspension bush",
+            "silent block"
+          ],
+          "role": "Isolates vibration at mounting points"
+        },
+        {
+          "name": "Strut Mount",
+          "aliases": [
+            "top mount",
+            "strut bearing"
+          ],
+          "role": "Connects strut to body, allows rotation"
+        }
+      ],
+      "source_trade": "Mechanic Motor Vehicle",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "2W",
+        "3W"
+      ]
+    },
+    {
+      "system_name": "Steering System",
+      "system_id": "system:steering",
+      "description": "Controls vehicle direction. Covers manual steering, power steering (hydraulic and electric), and wheel alignment.",
+      "parts": [
+        {
+          "name": "Steering Rack",
+          "aliases": [
+            "rack and pinion",
+            "steering gear"
+          ],
+          "role": "Converts rotary steering input to linear wheel motion"
+        },
+        {
+          "name": "Tie Rod",
+          "aliases": [
+            "tie rod end",
+            "track rod",
+            "tie rod assembly"
+          ],
+          "role": "Links steering rack to steering knuckle"
+        },
+        {
+          "name": "Power Steering Pump",
+          "aliases": [
+            "PS pump"
+          ],
+          "role": "Provides hydraulic pressure for power assist"
+        },
+        {
+          "name": "Power Steering Fluid",
+          "aliases": [
+            "PS fluid",
+            "ATF"
+          ],
+          "role": "Hydraulic medium for power steering"
+        },
+        {
+          "name": "Steering Column",
+          "aliases": [
+            "steering shaft"
+          ],
+          "role": "Connects steering wheel to steering gear"
+        },
+        {
+          "name": "Steering Knuckle",
+          "aliases": [
+            "stub axle",
+            "upright"
+          ],
+          "role": "Carries wheel hub, pivots for steering"
+        },
+        {
+          "name": "Steering Wheel",
+          "aliases": [],
+          "role": "Driver input device for direction control"
+        }
+      ],
+      "source_trade": "Mechanic Motor Vehicle",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "3W"
+      ]
+    },
+    {
+      "system_name": "Transmission System",
+      "system_id": "system:transmission",
+      "description": "Transmits engine power to wheels with variable speed/torque ratios. Covers clutch, gearbox, propeller shaft, differential, and axles.",
+      "parts": [
+        {
+          "name": "Clutch Plate",
+          "aliases": [
+            "clutch disc",
+            "friction plate",
+            "driven plate"
+          ],
+          "role": "Friction disc that engages/disengages engine from gearbox"
+        },
+        {
+          "name": "Pressure Plate",
+          "aliases": [
+            "clutch cover",
+            "clutch pressure plate"
+          ],
+          "role": "Clamps clutch disc against flywheel"
+        },
+        {
+          "name": "Release Bearing",
+          "aliases": [
+            "throwout bearing",
+            "clutch bearing"
+          ],
+          "role": "Disengages pressure plate when pedal pressed"
+        },
+        {
+          "name": "Gearbox",
+          "aliases": [
+            "transmission",
+            "gear box",
+            "manual transmission"
+          ],
+          "role": "Provides multiple gear ratios"
+        },
+        {
+          "name": "Propeller Shaft",
+          "aliases": [
+            "drive shaft",
+            "prop shaft",
+            "cardan shaft"
+          ],
+          "role": "Transmits power from gearbox to differential"
+        },
+        {
+          "name": "Universal Joint",
+          "aliases": [
+            "U-joint",
+            "UJ",
+            "cross joint"
+          ],
+          "role": "Allows angle changes in propeller shaft"
+        },
+        {
+          "name": "Differential",
+          "aliases": [
+            "diff",
+            "rear axle assembly"
+          ],
+          "role": "Splits power to wheels, allows speed difference in turns"
+        },
+        {
+          "name": "Axle Shaft",
+          "aliases": [
+            "half shaft",
+            "drive axle"
+          ],
+          "role": "Transmits power from differential to wheel"
+        },
+        {
+          "name": "CV Joint",
+          "aliases": [
+            "constant velocity joint",
+            "CV boot"
+          ],
+          "role": "Allows power transmission at variable angles (FWD)"
+        },
+        {
+          "name": "Clutch Cable",
+          "aliases": [
+            "clutch wire"
+          ],
+          "role": "Mechanical linkage for clutch actuation"
+        }
+      ],
+      "source_trade": "Mechanic Motor Vehicle",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "2W",
+        "3W",
+        "tractor"
+      ]
+    },
+    {
+      "system_name": "Electrical System",
+      "system_id": "system:electrical_system",
+      "description": "Generates, stores, and distributes electrical power. Covers battery, charging, starting, ignition, and electronic control systems.",
+      "parts": [
+        {
+          "name": "Battery",
+          "aliases": [
+            "car battery",
+            "vehicle battery",
+            "lead acid battery"
+          ],
+          "role": "Stores electrical energy for starting and accessories"
+        },
+        {
+          "name": "Alternator",
+          "aliases": [
+            "generator",
+            "charging alternator"
+          ],
+          "role": "Generates AC current, charges battery while running"
+        },
+        {
+          "name": "Starter Motor",
+          "aliases": [
+            "starter",
+            "self motor",
+            "cranking motor"
+          ],
+          "role": "Cranks engine for starting"
+        },
+        {
+          "name": "Ignition Coil",
+          "aliases": [
+            "spark coil",
+            "coil pack"
+          ],
+          "role": "Steps up battery voltage for spark plug firing"
+        },
+        {
+          "name": "Spark Plug",
+          "aliases": [
+            "sparking plug"
+          ],
+          "role": "Ignites air-fuel mixture in cylinder"
+        },
+        {
+          "name": "Glow Plug",
+          "aliases": [
+            "heater plug"
+          ],
+          "role": "Pre-heats combustion chamber for diesel cold start"
+        },
+        {
+          "name": "ECU",
+          "aliases": [
+            "ECM",
+            "engine control unit",
+            "engine control module"
+          ],
+          "role": "Central computer managing engine operation"
+        },
+        {
+          "name": "Fuse",
+          "aliases": [
+            "fuse box",
+            "blade fuse"
+          ],
+          "role": "Protects circuits from overcurrent"
+        },
+        {
+          "name": "Relay",
+          "aliases": [
+            "automotive relay"
+          ],
+          "role": "Electrically operated switch for high-current circuits"
+        },
+        {
+          "name": "Wiring Harness",
+          "aliases": [
+            "wire harness",
+            "loom"
+          ],
+          "role": "Bundled wiring connecting all electrical components"
+        },
+        {
+          "name": "Voltage Regulator",
+          "aliases": [
+            "regulator"
+          ],
+          "role": "Maintains stable charging voltage from alternator"
+        }
+      ],
+      "source_trade": "Mechanic Auto Electrical & Electronics",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "2W",
+        "3W",
+        "tractor"
+      ]
+    },
+    {
+      "system_name": "Exhaust and Emission System",
+      "system_id": "system:exhaust_emission",
+      "description": "Routes exhaust gases out and reduces harmful emissions. Covers exhaust manifold, catalytic converter, EGR, and sensors.",
+      "parts": [
+        {
+          "name": "Exhaust Manifold",
+          "aliases": [
+            "exhaust header"
+          ],
+          "role": "Collects exhaust gases from cylinders"
+        },
+        {
+          "name": "Catalytic Converter",
+          "aliases": [
+            "cat converter",
+            "catalytic"
+          ],
+          "role": "Reduces harmful exhaust emissions (CO, HC, NOx)"
+        },
+        {
+          "name": "Silencer",
+          "aliases": [
+            "muffler",
+            "exhaust silencer"
+          ],
+          "role": "Reduces exhaust noise"
+        },
+        {
+          "name": "Exhaust Pipe",
+          "aliases": [
+            "tail pipe",
+            "exhaust tube"
+          ],
+          "role": "Routes exhaust gases from manifold to tailpipe"
+        },
+        {
+          "name": "Oxygen Sensor",
+          "aliases": [
+            "O2 sensor",
+            "lambda sensor"
+          ],
+          "role": "Monitors exhaust oxygen content for ECU fuel control"
+        },
+        {
+          "name": "EGR Valve",
+          "aliases": [
+            "exhaust gas recirculation valve"
+          ],
+          "role": "Recirculates exhaust gas to reduce NOx emissions"
+        },
+        {
+          "name": "DPF",
+          "aliases": [
+            "diesel particulate filter",
+            "soot filter"
+          ],
+          "role": "Traps soot particles from diesel exhaust"
+        },
+        {
+          "name": "Turbocharger",
+          "aliases": [
+            "turbo",
+            "turbo charger"
+          ],
+          "role": "Uses exhaust energy to compress intake air"
+        },
+        {
+          "name": "Intake Manifold",
+          "aliases": [
+            "inlet manifold"
+          ],
+          "role": "Distributes air/fuel mixture to cylinders"
+        }
+      ],
+      "source_trade": "Mechanic Motor Vehicle",
+      "vehicle_types": [
+        "LMV",
+        "HMV"
+      ]
+    },
+    {
+      "system_name": "Body Electrical and Accessories",
+      "system_id": "system:body_electrical",
+      "description": "Vehicle lighting, signaling, comfort, and safety electronics. Covers lamps, wipers, power windows, instruments, and safety systems.",
+      "parts": [
+        {
+          "name": "Headlight",
+          "aliases": [
+            "headlamp",
+            "head light",
+            "headlight assembly"
+          ],
+          "role": "Illuminates road ahead"
+        },
+        {
+          "name": "Tail Light",
+          "aliases": [
+            "tail lamp",
+            "rear light",
+            "rear lamp assembly"
+          ],
+          "role": "Makes vehicle visible from rear"
+        },
+        {
+          "name": "Indicator Light",
+          "aliases": [
+            "turn signal",
+            "blinker",
+            "indicator lamp"
+          ],
+          "role": "Signals turning/lane change intention"
+        },
+        {
+          "name": "Horn",
+          "aliases": [
+            "vehicle horn",
+            "electric horn"
+          ],
+          "role": "Audible warning device"
+        },
+        {
+          "name": "Wiper Motor",
+          "aliases": [
+            "windshield wiper motor"
+          ],
+          "role": "Drives wiper blade across windshield"
+        },
+        {
+          "name": "Wiper Blade",
+          "aliases": [
+            "wiper rubber",
+            "windshield wiper blade"
+          ],
+          "role": "Clears rain/debris from windshield"
+        },
+        {
+          "name": "Speedometer",
+          "aliases": [
+            "speedo",
+            "speedometer cable"
+          ],
+          "role": "Displays vehicle speed"
+        },
+        {
+          "name": "Fuel Gauge",
+          "aliases": [
+            "fuel level sensor",
+            "fuel sender unit"
+          ],
+          "role": "Displays fuel tank level"
+        },
+        {
+          "name": "Temperature Gauge",
+          "aliases": [
+            "temp gauge"
+          ],
+          "role": "Displays engine coolant temperature"
+        }
+      ],
+      "source_trade": "Mechanic Auto Electrical & Electronics",
+      "vehicle_types": [
+        "LMV",
+        "HMV",
+        "2W",
+        "3W"
+      ]
+    },
+    {
+      "system_name": "AC and Climate Control System",
+      "system_id": "system:ac_system",
+      "description": "Vehicle air conditioning and heating. Covers refrigeration cycle components and cabin air management.",
+      "parts": [
+        {
+          "name": "Compressor",
+          "aliases": [
+            "AC compressor",
+            "A/C compressor"
+          ],
+          "role": "Compresses refrigerant gas to high pressure"
+        },
+        {
+          "name": "Condenser",
+          "aliases": [
+            "AC condenser"
+          ],
+          "role": "Cools and liquefies high-pressure refrigerant"
+        },
+        {
+          "name": "Evaporator",
+          "aliases": [
+            "AC evaporator",
+            "cooling coil"
+          ],
+          "role": "Absorbs cabin heat as refrigerant evaporates"
+        },
+        {
+          "name": "Expansion Valve",
+          "aliases": [
+            "TXV",
+            "thermostatic expansion valve"
+          ],
+          "role": "Meters refrigerant flow to evaporator"
+        },
+        {
+          "name": "Blower Motor",
+          "aliases": [
+            "blower fan",
+            "cabin fan"
+          ],
+          "role": "Circulates air through evaporator into cabin"
+        },
+        {
+          "name": "Receiver Drier",
+          "aliases": [
+            "drier",
+            "accumulator"
+          ],
+          "role": "Stores refrigerant and removes moisture"
+        },
+        {
+          "name": "AC Compressor Clutch",
+          "aliases": [
+            "magnetic clutch"
+          ],
+          "role": "Engages/disengages compressor from engine"
+        },
+        {
+          "name": "Cabin Air Filter",
+          "aliases": [
+            "pollen filter",
+            "AC filter"
+          ],
+          "role": "Filters air entering the cabin"
+        }
+      ],
+      "source_trade": "Mechanic Motor Vehicle",
+      "vehicle_types": [
+        "LMV",
+        "HMV"
+      ]
+    },
+    {
+      "system_name": "Electric Vehicle System",
+      "system_id": "system:ev_system",
+      "description": "EV-specific powertrain and energy systems. Covers traction motor, battery pack, power electronics, and charging.",
+      "parts": [
+        {
+          "name": "Traction Motor",
+          "aliases": [
+            "electric motor",
+            "BLDC motor",
+            "hub motor",
+            "drive motor"
+          ],
+          "role": "Converts electrical energy to mechanical motion for propulsion"
+        },
+        {
+          "name": "High Voltage Battery",
+          "aliases": [
+            "battery pack",
+            "lithium battery",
+            "traction battery"
+          ],
+          "role": "Stores electrical energy for driving"
+        },
+        {
+          "name": "Motor Controller",
+          "aliases": [
+            "inverter",
+            "motor driver",
+            "VCU"
+          ],
+          "role": "Controls motor speed and torque via power electronics"
+        },
+        {
+          "name": "BMS",
+          "aliases": [
+            "battery management system"
+          ],
+          "role": "Monitors and balances battery cells, manages charging/discharging"
+        },
+        {
+          "name": "DC-DC Converter",
+          "aliases": [
+            "auxiliary converter"
+          ],
+          "role": "Steps down high voltage to 12V for vehicle accessories"
+        },
+        {
+          "name": "Onboard Charger",
+          "aliases": [
+            "OBC",
+            "AC charger"
+          ],
+          "role": "Converts AC mains power to DC for battery charging"
+        },
+        {
+          "name": "Charging Port",
+          "aliases": [
+            "charge socket",
+            "charging inlet"
+          ],
+          "role": "Physical connector for external charging"
+        },
+        {
+          "name": "Regenerative Braking Module",
+          "aliases": [
+            "regen braking"
+          ],
+          "role": "Recovers kinetic energy during braking"
+        }
+      ],
+      "source_trade": "Mechanic Electric Vehicle",
+      "vehicle_types": [
+        "EV"
+      ]
+    }
+  ]
+}
