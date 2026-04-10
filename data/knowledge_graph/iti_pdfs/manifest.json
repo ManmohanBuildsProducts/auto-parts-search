@@ -1,0 +1,44 @@
+[
+  {
+    "filename": "mechanic_motor_vehicle.pdf",
+    "source_url": "https://dgt.gov.in/sites/default/files/2023-12/Mechanic%20Motor%20Vehicle_CTS2.0_NSQF-4_0.pdf",
+    "title": "Mechanic Motor Vehicle (MMV) \u2014 CTS 2.0, NSQF Level 4",
+    "download_date": "2026-04-10",
+    "file_size_bytes": 989394
+  },
+  {
+    "filename": "mechanic_diesel.pdf",
+    "source_url": "https://dgt.gov.in/sites/default/files/2025-01/Mechanic%20Diesel_CTS2.0_NSQF-3.5.pdf",
+    "title": "Mechanic Diesel \u2014 CTS 2.0, NSQF Level 3.5",
+    "download_date": "2026-04-10",
+    "file_size_bytes": 877399
+  },
+  {
+    "filename": "mechanic_auto_electrical.pdf",
+    "source_url": "https://dgt.gov.in/sites/default/files/2023-12/Mech.%20Auto%20Electrical%20Electronics_CTS2.0_NSQF-3.pdf",
+    "title": "Mechanic Auto Electrical & Electronics \u2014 CTS 2.0, NSQF Level 3",
+    "download_date": "2026-04-10",
+    "file_size_bytes": 1724663
+  },
+  {
+    "filename": "mechanic_two_three_wheeler.pdf",
+    "source_url": "https://dgt.gov.in/sites/default/files/Mech%20Two%20_%20Three%20Wheeler_CTS2.0_NSQF-3.pdf",
+    "title": "Mechanic Two & Three Wheeler \u2014 CTS 2.0, NSQF Level 3",
+    "download_date": "2026-04-10",
+    "file_size_bytes": 1640446
+  },
+  {
+    "filename": "mechanic_tractor.pdf",
+    "source_url": "https://dgt.gov.in/sites/default/files/Mechanic%20Tractor_CTS2.0_NSQF-3.pdf",
+    "title": "Mechanic Tractor \u2014 CTS 2.0, NSQF Level 3 (fallback for Auto Body Repair)",
+    "download_date": "2026-04-10",
+    "file_size_bytes": 1910325
+  },
+  {
+    "filename": "mechanic_electric_vehicle.pdf",
+    "source_url": "https://dgt.gov.in/sites/default/files/2024-01/Mechanic%20Electric%20Vehicle_CTS2.0_NSQF-4.pdf",
+    "title": "Mechanic Electric Vehicle \u2014 CTS 2.0, NSQF Level 4",
+    "download_date": "2026-04-10",
+    "file_size_bytes": 1556326
+  }
+]
