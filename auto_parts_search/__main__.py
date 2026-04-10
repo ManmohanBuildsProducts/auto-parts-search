@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO, format="%(name)s %(levelname)s %(message
 # Ensure project root is on path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from auto_parts_search.config import RAW_DIR, TRAINING_DIR
+from auto_parts_search.config import RAW_DIR, TRAINING_DIR, KNOWLEDGE_GRAPH_DIR
 
 
 def cmd_scrape():
@@ -124,6 +124,22 @@ def cmd_benchmark():
         traceback.print_exc()
 
 
+def cmd_graph():
+    """Build knowledge graph from Phase 2 data sources."""
+    print("=" * 60)
+    print("GRAPH: Building knowledge graph")
+    print("=" * 60)
+    try:
+        from auto_parts_search.build_graph import build_knowledge_graph, save_graph
+        graph = build_knowledge_graph()
+        output = KNOWLEDGE_GRAPH_DIR / "graph.json"
+        save_graph(graph, output)
+    except Exception as e:
+        print(f"Knowledge graph build failed: {e}")
+        import traceback
+        traceback.print_exc()
+
+
 def cmd_stats():
     """Show stats for existing data."""
     print("=" * 60)
@@ -174,6 +190,8 @@ def main():
         cmd_pairs()
     elif command == "benchmark":
         cmd_benchmark()
+    elif command == "graph":
+        cmd_graph()
     elif command == "stats":
         cmd_stats()
     elif command == "all":
