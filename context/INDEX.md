@@ -1,8 +1,20 @@
 # Context Index
 
-Master navigation for everything under `context/` and related project knowledge.
+Master navigation for everything under `context/`, `memory/`, and related project knowledge.
 
-**When in doubt:** start here, read the section headings, drill down.
+**When in doubt:** start here, read the section headings, drill down. Or open `SESSION_STATE.md` at the repo root for the 1-page "where are we now" dashboard.
+
+---
+
+## Dashboard + skills (at project root / `.claude/`)
+
+| File | Purpose |
+|------|---------|
+| [../SESSION_STATE.md](../SESSION_STATE.md) | **Rolling 1-page dashboard.** Always current. Updated by `/wrap`. Auto-injected by the global `SessionStart` hook. |
+| [../CLAUDE.md](../CLAUDE.md) | Short pointer file. Canonical load order + conventions. <100 lines. |
+| [../.claude/skills/architecture/SKILL.md](../.claude/skills/architecture/SKILL.md) | On-demand architectural knowledge — modules, data flow, design decisions, known gotchas. Loaded when editing scrapers / KG / training / graph DB. |
+
+Global (not per-project, but governs this project's behavior): `~/.claude/commands/{start,status,wrap}.md` slash commands; `~/.claude/hooks/session-state.sh` hook; `~/.claude/rules/session-hygiene.md` convention.
 
 ---
 
@@ -101,8 +113,9 @@ Durable learnings and regression log, surfaced to every session start.
 
 ## How to use this index
 
-- **New session starting?** Read: `PRODUCT.md` → `TASKS.md` → latest session retrospective → `memory/regressions.md` + `memory/learnings.md`.
+- **New session starting?** The global `SessionStart` hook auto-loads `SESSION_STATE.md` + recent commits + regressions. Then read `TASKS.md` + latest session retrospective if depth is needed.
+- **Mid-session check-in?** Run `/status`.
 - **Making a decision?** Check if an ADR already covers it. If yes, read + cite. If no, draft a new ADR before coding.
 - **Planning a phase?** Write it in `plans/phaseN-<name>.md`. Reference it from `TASKS.md`.
-- **Finishing a session?** Create `sessions/<date>-<slug>/{learnings,missed-vs-corrections,tasks-vs-direction}.md`. Update this index.
-- **Changing direction?** Supersede an ADR with a new higher-numbered ADR that links back. Never silently edit.
+- **Finishing a session?** Run `/wrap`. It updates `SESSION_STATE.md`, creates `sessions/<date>-<slug>/{learnings,missed-vs-corrections,tasks-vs-direction}.md` when warranted, and proposes commits.
+- **Changing direction?** Supersede an ADR with a new higher-numbered ADR that links back. Never silently edit a Decided ADR.

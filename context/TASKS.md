@@ -86,11 +86,22 @@ All P0. Four independent tracks.
 | T603e | Golden dir convention (move `*.jsonl` to `data/training/golden/`) | S |
 
 **Track D — Housekeeping**
-| ID | Task | Size |
-|----|------|------|
-| T604 | Delete `cline-kanban-board.json` | S |
-| T605 | Reconcile TASKS.md with git reality | S (this file) |
-| T112 | Boodmo → HSN category mapping (top 1K part names) | M |
+| ID | Task | Size | Status |
+|----|------|------|--------|
+| T604 | Delete `cline-kanban-board.json` | S | ✅ 3f2b187 |
+| T605 | Reconcile TASKS.md with git reality | S | ✅ c92c94b |
+| T112 | Boodmo → HSN category mapping (top 1K part names) | M | Backlog |
+
+**Track E — Session dashboard (shipped this session 2026-04-12)**
+| ID | Task | Size | Status |
+|----|------|------|--------|
+| T700 | `SESSION_STATE.md` dashboard at repo root | S | ✅ 35ce0e9 |
+| T701 | `/start` `/status` `/wrap` slash commands (global at `~/.claude/commands/`) | S | ✅ ae19f95 |
+| T702 | Global SessionStart hook (`~/.claude/hooks/session-state.sh`) — smoke-tested | S | ✅ (global install) |
+| T703 | `~/.claude/rules/session-hygiene.md` + global CLAUDE.md reference | S | ✅ (global install) |
+| T704 | `architecture` skill at `.claude/skills/architecture/SKILL.md` | S | ✅ 35ce0e9 |
+| T705 | Trim CLAUDE.md to <100 lines; point at `SESSION_STATE.md` + `INDEX.md` | S | ✅ 35ce0e9 |
+| T706 | Live-verify hook fires in a fresh session | S | Blocked (user action) |
 
 ### Phase 3: Training loop (plan: `context/plans/phase3-training-loop.md`)
 
