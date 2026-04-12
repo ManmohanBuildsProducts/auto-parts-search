@@ -61,29 +61,32 @@ Single source of truth. `context/cline-kanban-board.json` is deprecated (ADR 005
 All P0. Four independent tracks.
 
 **Track A — SQLite migration** (ADR 007)
-| ID | Task | Size |
-|----|------|------|
-| T113a | `auto_parts_search/graph_db.py` — schema + queries | S |
-| T113b | `scripts/build_graph_db.py` — build .db from JSON | S |
-| T113c | `tests/test_graph_db.py` | S |
-| T113d | CLI: `python3 -m auto_parts_search build-graph-db` | S |
+| ID | Task | Size | Status |
+|----|------|------|--------|
+| T113a | `auto_parts_search/graph_db.py` — schema + queries | S | ✅ c958134 |
+| T113b | `scripts/build_graph_db.py` — build .db from JSON | S | ✅ c958134 |
+| T113c | `tests/test_graph_db.py` | S | ✅ c958134 |
+| T113d | CLI: `python3 -m auto_parts_search build-graph-db` | S | ✅ c958134 |
+| T113-verify | Run end-to-end against real 2,627-node graph | S | ✅ 775e446 (3.3MB graph.db) |
 
 **Track B — ITI re-extraction** (ADR 008)
-| ID | Task | Size |
-|----|------|------|
-| T101b | Commit 6 DGT PDFs, update .gitignore | S |
-| T102b | LLM-extract systems+parts from each PDF (with provenance) | M |
-| T103b | LLM-extract diagnostic chains from each PDF | M |
-| T102c | Public framing update — disclose v1 hand-curation | S |
+| ID | Task | Size | Status |
+|----|------|------|--------|
+| T101b | Commit 6 DGT PDFs, update .gitignore | S | ✅ 775e446 (~8.7MB) |
+| T102b | LLM-extract systems+parts from each PDF (with provenance) | M | Backlog |
+| T103b | LLM-extract diagnostic chains from each PDF | M | Backlog |
+| T102c | Public framing update — disclose v1 hand-curation | S | ✅ 775e446 (decisions/003 + PRODUCT.md) |
+| T113-audit | Audit ASDC/HSN/NHTSA for same hand-curation pattern | S | ✅ 775e446 (clean; only ITI affected) |
 
 **Track C — Reproducibility** (ADR 009)
-| ID | Task | Size |
-|----|------|------|
-| T603a | `random.seed(42)` in `training/*.py` | S |
-| T603b | `data/raw/MANIFEST.md` + first entry | S |
-| T603c | Snapshot to Backblaze B2 | S |
-| T603d | `scripts/fetch_raw.py` | S |
-| T603e | Golden dir convention (move `*.jsonl` to `data/training/golden/`) | S |
+| ID | Task | Size | Status |
+|----|------|------|--------|
+| T603a | Per-function `Random(seed)` in `training/*.py` | S | ✅ 775e446 |
+| T603a-verify | Two consecutive runs byte-identical | S | ✅ 775e446 |
+| T603b | `data/raw/MANIFEST.md` + first entry | S | 🟡 c958134 (template with TBD SHA256) |
+| T603c | Snapshot to Backblaze B2 | S | Blocked (B2 credentials) |
+| T603d | `scripts/fetch_raw.py` | S | Backlog |
+| T603e | Promote `*.jsonl` + benchmark to `data/training/golden/` | S | ✅ 775e446 (golden-v1) |
 
 **Track D — Housekeeping**
 | ID | Task | Size | Status |
