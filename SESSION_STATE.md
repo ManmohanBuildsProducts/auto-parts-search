@@ -2,73 +2,65 @@
 
 **Rolling dashboard. Open this first.** One page, always current. Claude updates via `/wrap` at session end.
 
-Last updated: 2026-04-12 (Phase 2b execution complete — PDFs, golden-v1, determinism, notebook skeleton)
+Last updated: 2026-04-12 (Phase 2b substantively complete — ITI v2, prospects, golden-v1)
 
 ---
 
 ## 🟢 Current focus
 
-Phase 2b mechanically complete except LLM ITI re-extraction. Next sprint = T506a-real (deliver first audit to a live prospect) + T102b/T103b (ITI re-extract). Everything else in the repo is now honest, reproducible, and shippable.
+Phase 2b fully shipped except one follow-up (T110b: integrate ITI v2 into `build_graph.py`). GTM is now materially unblocked — first prospect list + audit notebook are ready. Next session = T110b integration + deliver first audit to one of the 3 top prospects.
 
-## ✅ Done (recent — last 2 sessions)
+## ✅ Done (recent — this session 2026-04-12, 11 commits)
 
-- **183/183 tests passing** — full suite green, no xfails needed.
-- **Phase 2b execution batch (commit 775e446):**
-  - T113-verify: `build-graph-db` ran end-to-end against real data — 2,627 nodes, 3,375 edges, 3.3MB graph.db.
-  - T101b: 6 DGT ITI PDFs downloaded + committed (~8.7MB).
-  - Parser audit: HSN/ASDC/NHTSA confirmed clean (real scraping, output-to-source ratio >100x). Only ITI has hand-curation.
-  - T603a upgrade: per-function `rng = Random(seed)` pattern in `catalog_pairs.py`.
-  - T603-verify: 2 consecutive runs byte-identical — determinism claim closed.
-  - T603e: `data/training/golden/` promoted to golden-v1 with SHA256s in METADATA.md.
-  - T102c: provenance disclosure added to decisions/003 + PRODUCT.md moat claims honestly framed.
-  - T506a: `notebooks/search_audit.ipynb` skeleton — OpenAI embeddings + zero-result rescue + revenue-leak estimate + markdown report.
-- **Session dashboard + global install (earlier in session):**
-  - `SESSION_STATE.md`, `/start` `/status` `/wrap` commands globally at `~/.claude/commands/`.
-  - SessionStart hook globally at `~/.claude/hooks/session-state.sh` (smoke-tested).
-  - `~/.claude/rules/session-hygiene.md` makes the scaffold auto-bootstrap in every future project.
-  - `architecture` skill, CLAUDE.md trimmed to <100 lines.
-- **Phase 2b scaffolding (earlier):**
-  - ADRs 005–011, plans, TASKS.md reconciled, memory/regressions.md, market + workflow research reports, session retrospective.
-  - SQLite KG (graph_db.py + 7 passing tests + CLI).
-  - Cline Kanban deleted.
+- **ITI v2 LLM extraction (a4eb69d)** — 6 parallel subagents parsed DGT PDFs + `scripts/merge_iti_v2.py` consolidated:
+  - 20 systems / 608 parts (5× v1) / 154 diagnostics / **168 aliases** — all with `source_page` citations.
+  - Alias goldmine: `kicker`, `chain patta`, `brake patti`, `tanki`, `hawa filter`, `shocker`, `kamani`, `chaabi`, `tayar`, `teeli`, `self`, `dynamo`, `hooter`, `dipper`, `silencer`, `dickey`, and more.
+  - Provenance on every leaf: `{method: "llm_extracted", trade, pdf, page}`.
+- **T505 prospects (a4eb69d)** — 5 pilot candidates named, top 3: **Pikpart** (Faridabad 2W, blank-slate search), **AutoDukan** (Pune, $1.36M raised), **Parts Big Boss** (Ghaziabad, GoDaddy+Zoho stack). Full report at `context/research/t505-prospects-2026-04-12.md`.
+- **Phase 2b execution (775e446)** — PDFs committed, T113-verify, T603a/verify/e, T102c framing, notebook skeleton.
+- **Session dashboard + global install (35ce0e9, ae19f95)** — `SESSION_STATE.md`, `/start`/`/status`/`/wrap` global commands, SessionStart hook.
+- **SQLite KG (c958134)** — `graph_db.py` + 7 tests + `build-graph-db` CLI.
+- **Phase 2b scaffolding (c92c94b)** — ADRs 005–011, 2 plans, market + workflow research.
+- **Cline Kanban removed (3f2b187)**.
 
 ## 🟡 In progress / partial
 
-- **Golden-v1 is partial-perfect** — deterministic + hashed, but upstream raw-data snapshot (T603b/c Backblaze URL + SHA) is still TBD. Bit-identical re-run from cold clone blocked only on the B2 upload.
+- **Golden-v1** — deterministic, hashed, SHA256s in METADATA.md. Awaits Backblaze B2 upload for bit-identical cold-clone reproducibility (T603c).
+- **MANIFEST.md** — template with TBD SHA256s (pending T603c).
 
 ## 🔴 Blocked / pending external action
 
-- **T603c Backblaze B2 upload** — needs user credentials.
-- **Cline VS Code extension disable** — user-machine action; JSON is gone from repo.
-- **T706 live-verify SessionStart hook** — open a fresh Claude Code session in this repo; hook script smoke-tested green but not yet observed firing in a real session.
-- **T505 real prospect list** — user to name 5 target mid-market Indian platforms.
+- **T603c B2 upload** — needs user credentials.
+- **Cline VS Code extension disable** — user-machine action (JSON is gone from repo).
+- **T706 live-verify SessionStart hook** — open a fresh Claude Code session in repo; script smoke-tested green.
+- **Outreach to Pikpart / AutoDukan / Parts Big Boss** — user action; pitch copy ready once outreach channel chosen.
 
 ## 🔷 Next up (ranked by leverage)
 
-1. **T506 — deliver first free audit** — use `notebooks/search_audit.ipynb` against a real prospect's catalog+queries. Single highest-EV item. ~4 hr per audit including prep.
-2. **T102b/T103b — LLM re-extract ITI content from PDFs** — 6 LLM passes, merge into existing hand-curated set with provenance fields. Rebalances toward 2W/3W. ~2–3 hr.
-3. **T208 — split benchmark into dev/test** — deterministic seed. ~15 min. Unblocks Phase 3 training loop.
-4. **T603b/c — MANIFEST + B2 upload** — completes the reproducibility chain. ~30 min once B2 account exists.
-5. **T208b — expand benchmark ground-truth top-20 graded labels** — via LLM judge. ~1 hr. Unblocks nDCG@10 measurement.
-6. **T112 — Boodmo → HSN category mapping for top 1K parts** — enriches KG for Phase 3 pair generation. ~2 hr.
-7. **Phase 3 T303a — `training/evaluate.py` harness** — pairs with T208. ~30 min.
+1. **T506 — deliver first free audit** — run `notebooks/search_audit.ipynb` against one prospect's catalog. Requires LinkedIn DM to Ratan Kumar Singh (Pikpart) / Pranay Tagare (AutoDukan) / Vineet Asija (Parts Big Boss) asking for 48 hrs of search logs. **Highest-EV item; retires the single biggest unknown in the project.**
+2. **T110b — integrate ITI v2 into `build_graph.py`** — currently graph.db uses v1 hand-curated. Update to prefer v2, or merge both with provenance-marked nodes. Rebuild graph.db. Expected count: v1 2,627 → v2 ~3,200+ nodes. ~30 min.
+3. **T208 + T208b — benchmark dev/test split + top-20 graded labels** — unblocks Phase 3 nDCG@10 measurement. ~1.5 hr.
+4. **T603b/c — MANIFEST SHA256s + Backblaze upload** — closes reproducibility chain. ~30 min (once B2 account exists).
+5. **T112 — Boodmo → HSN category mapping for top 1K parts** — enriches KG for Phase 3. ~2 hr.
+6. **T303a — `training/evaluate.py` harness** — the `(model, benchmark) → scores` function. ~30 min.
 
 ## 🗝 Key recent decisions
 
-- **Stay vertical (auto parts), reposition as Indian multilingual commerce** — ADR 011.
-- **Collapse Phase 3 + 4 into a training loop** — unit of work is the `(pair_strategy, model, benchmark)` triple — ADR 006.
-- **SQLite for KG** — JSON = committed inputs, `.db` = derived — ADR 007.
-- **ITI v1 is hand-curated** — disclosed in PRODUCT.md + decisions/003 addendum — ADR 008.
-- **Session-hygiene is a global rule** — `~/.claude/rules/session-hygiene.md` — Claude auto-maintains this scaffold without prompting.
-- **Golden-v1 promoted** — `data/training/golden/` with SHA256s in METADATA.md — ADR 009.
+- **ITI v2 is LLM-extracted with page citations** — disclosure obligation from ADR 008 discharged; PRODUCT.md + decisions/003 already reflect honest v1 hand-curated framing.
+- **2W/3W vocabulary is concentrated in the 2W syllabus** — 57 aliases from one PDF. Hindi-belt mechanic terms are extractable from this source; future models should weight 2W/3W highly.
+- **Stay vertical, Indian multilingual commerce search** — ADR 011.
+- **Phase 3 = training loop** — `(pair_strategy, model, benchmark)` triples — ADR 006.
+- **SQLite for KG** — ADR 007. graph.db is 3.3MB; will grow with T110b.
+- **Session-hygiene as global rule** — `~/.claude/rules/session-hygiene.md`.
 
 ## 🚨 Watch-outs (surface every session)
 
 - "Done" ≠ "artifact exists." Done = verified outcome (`memory/regressions.md`).
 - Do NOT generate training pairs without a model to consume them (ADR 006; T200-T206 post-mortem).
-- `TASKS.md` is the single task-board source. Never introduce a parallel tool-state board.
+- `TASKS.md` is the single task-board source.
 - CLAUDE.md stays <100 lines / 2,500 tokens. Architecture → skills. Decisions → ADRs.
-- Experiments live in `data/training/experiments/<date>-<hypothesis>/` — never mutate `golden/` directly. Promotion is a deliberate commit.
+- Experiments live in `data/training/experiments/`; never mutate `golden/` directly.
+- v1 and v2 ITI files both exist; the graph currently reads v1. Integration via T110b is the next gate.
 
 ---
 

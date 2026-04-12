@@ -73,10 +73,11 @@ All P0. Four independent tracks.
 | ID | Task | Size | Status |
 |----|------|------|--------|
 | T101b | Commit 6 DGT PDFs, update .gitignore | S | ✅ 775e446 (~8.7MB) |
-| T102b | LLM-extract systems+parts from each PDF (with provenance) | M | Backlog |
-| T103b | LLM-extract diagnostic chains from each PDF | M | Backlog |
+| T102b | LLM-extract systems+parts from each PDF (with provenance) | M | ✅ a4eb69d (20 systems / 608 parts) |
+| T103b | LLM-extract diagnostic chains from each PDF | M | ✅ a4eb69d (154 chains / 168 aliases) |
 | T102c | Public framing update — disclose v1 hand-curation | S | ✅ 775e446 (decisions/003 + PRODUCT.md) |
 | T113-audit | Audit ASDC/HSN/NHTSA for same hand-curation pattern | S | ✅ 775e446 (clean; only ITI affected) |
+| T110b | Integrate v2 into `build_graph.py`; rebuild graph.db | M | Backlog (next session) |
 
 **Track C — Reproducibility** (ADR 009)
 | ID | Task | Size | Status |
@@ -153,9 +154,9 @@ Replaces old Phase 3 + Phase 4 (ADR 006). Unit of work = `(pair_gen_strategy, mo
 
 | ID | Task | Size | Priority |
 |----|------|------|----------|
-| T505 | Identify 5 target mid-market Indian auto-parts prospects | M | P0 |
-| T506a | Notebook-based search audit (no API needed — `text-embedding-3-large` + prospect CSV + their queries) | S | P0 |
-| T506 | Deliver 3 free audits to prospects | L | P0 |
+| T505 | Identify 5 target mid-market Indian auto-parts prospects | M | P0 | ✅ a4eb69d (Pikpart, AutoDukan, Parts Big Boss top 3; report in context/research/t505-prospects-2026-04-12.md) |
+| T506a | Notebook-based search audit (no API needed — `text-embedding-3-large` + prospect CSV + their queries) | S | P0 | ✅ 775e446 (notebooks/search_audit.ipynb) |
+| T506 | Deliver 3 free audits to prospects | L | P0 | Blocked (user outreach) |
 | T507 | Convert 1 audit to paid pilot | L | P0 |
 | T500 | Demo UI (split-screen comparison) | L | P1 |
 | T501 | Search audit report generator | L | P1 |
