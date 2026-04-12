@@ -9,6 +9,12 @@ RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 TRAINING_DIR = DATA_DIR / "training"
 KNOWLEDGE_GRAPH_DIR = DATA_DIR / "knowledge_graph"
+GRAPH_DB = KNOWLEDGE_GRAPH_DIR / "graph.db"
+TRAINING_GOLDEN_DIR = TRAINING_DIR / "golden"
+TRAINING_EXPERIMENTS_DIR = TRAINING_DIR / "experiments"
+
+# Deterministic generation (ADR 009)
+RANDOM_SEED = 42
 
 # Ensure directories exist
 for d in [RAW_DIR, PROCESSED_DIR, TRAINING_DIR, KNOWLEDGE_GRAPH_DIR]:

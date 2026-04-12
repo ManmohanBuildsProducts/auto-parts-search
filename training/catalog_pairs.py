@@ -12,7 +12,10 @@ from collections import defaultdict
 import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from auto_parts_search.schemas import Product, TrainingPair
-from auto_parts_search.config import TRAINING_DIR, RAW_DIR, NEGATIVE_RATIO
+from auto_parts_search.config import TRAINING_DIR, RAW_DIR, NEGATIVE_RATIO, RANDOM_SEED
+
+# ADR 009: deterministic pair generation. Do not remove.
+random.seed(RANDOM_SEED)
 
 
 def load_products(input_path: Path) -> list[Product]:

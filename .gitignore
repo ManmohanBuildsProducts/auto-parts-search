@@ -8,3 +8,7 @@ data/knowledge_graph/*.db
 *.egg-info/
 .env
 *.pdf
+!data/knowledge_graph/iti_pdfs/*.pdf
+models/
+data/training/experiments/
+.claude/settings.local.json

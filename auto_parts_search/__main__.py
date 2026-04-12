@@ -140,6 +140,32 @@ def cmd_graph():
         traceback.print_exc()
 
 
+def cmd_build_graph_db():
+    """Materialize the knowledge graph to SQLite (ADR 007)."""
+    print("=" * 60)
+    print("GRAPH-DB: Materializing to SQLite")
+    print("=" * 60)
+    from auto_parts_search.build_graph import build_knowledge_graph
+    from auto_parts_search.graph_db import GraphDB
+    from auto_parts_search.config import GRAPH_DB
+
+    graph = build_knowledge_graph()
+    if GRAPH_DB.exists():
+        GRAPH_DB.unlink()
+    with GraphDB(GRAPH_DB) as db:
+        db.init_schema()
+        db.load_from_graph_dict(graph)
+        counts = db.counts()
+
+    print(f"\nNodes: {counts['nodes_total']}")
+    for t, c in sorted(counts["nodes_by_type"].items(), key=lambda x: -x[1]):
+        print(f"  {t}: {c}")
+    print(f"Edges: {counts['edges_total']}")
+    for t, c in sorted(counts["edges_by_type"].items(), key=lambda x: -x[1]):
+        print(f"  {t}: {c}")
+    print(f"\nWrote {GRAPH_DB} ({GRAPH_DB.stat().st_size / 1024:.1f} KB)")
+
+
 def cmd_stats():
     """Show stats for existing data."""
     print("=" * 60)
@@ -192,6 +218,8 @@ def main():
         cmd_benchmark()
     elif command == "graph":
         cmd_graph()
+    elif command in ("build-graph-db", "graph-db"):
+        cmd_build_graph_db()
     elif command == "stats":
         cmd_stats()
     elif command == "all":
