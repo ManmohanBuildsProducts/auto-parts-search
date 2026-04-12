@@ -1,0 +1,4538 @@
+{
+  "metadata": {
+    "description": "Diagnostic chains extracted from DGT ITI syllabi via LLM (T103b)",
+    "source": "iti_dgt_v2",
+    "version": "2.0",
+    "extraction_date": "2026-04-12",
+    "method": "llm_extracted",
+    "total_chains": 154,
+    "supersedes": "iti_diagnostics.json (hand-curated v1 retained as fallback per ADR 008)"
+  },
+  "chains": [
+    {
+      "id": "diag:abnormal_engine_noise",
+      "symptom": "Abnormal engine noise",
+      "system": "system:cylinder_head_valve_train",
+      "diagnosis_steps": [
+        "Use engineer's stethoscope to localize noise",
+        "Check valve clearance adjustment",
+        "Inspect tappets, pushrods, rocker arms",
+        "Check big-end and main bearing wear",
+        "Inspect piston slap / piston-to-liner clearance",
+        "Check timing belt/chain tension",
+        "Isolate source (top-end vs bottom-end)",
+        "Check valve clearances and tappets",
+        "Inspect timing belt/chain and tensioner",
+        "Check bearings for wear",
+        "Listen for knocking vs ticking vs whining"
+      ],
+      "related_parts": [
+        "Tappet",
+        "Push Rod",
+        "Rocker Arm",
+        "Big End Bearing",
+        "Main Bearing",
+        "Piston",
+        "Timing Belt",
+        "Timing Chain",
+        "Chain Tensioner",
+        "valve tappet",
+        "timing belt",
+        "timing chain tensioner",
+        "connecting rod bearing",
+        "main bearing",
+        "camshaft"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel",
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.9
+        },
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 22,
+          "confidence": 0.88
+        }
+      ]
+    },
+    {
+      "id": "diag:abnormal_noise_from_compressor_magnetic_clutch_blower",
+      "symptom": "Abnormal noise from compressor / magnetic clutch / blower",
+      "system": "system:hvac",
+      "diagnosis_steps": [
+        "Inspect compressor bearings",
+        "Check magnetic clutch air gap",
+        "Inspect blower motor bearings"
+      ],
+      "related_parts": [
+        "AC compressor",
+        "Magnetic clutch",
+        "Blower motor"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 29,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:abnormal_tyre_wear_wheel_wobbling_poor_self_centering_hard_steering_vehicle_pulling_to_one_side",
+      "symptom": "Abnormal tyre wear / wheel wobbling / poor self-centering / hard steering / vehicle pulling to one side",
+      "system": "steering_suspension",
+      "diagnosis_steps": [
+        "Inspect chassis frame for bends or cracks",
+        "Check wheel alignment (toe-in, toe-out, camber, caster, king pin inclination)",
+        "Balance wheels",
+        "Check tie rod ends and ball joints",
+        "Top up power steering fluid"
+      ],
+      "related_parts": [
+        "tie rod",
+        "ball joint",
+        "wheel bearing",
+        "steering gearbox",
+        "power steering pump"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 45,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:ac_abnormal_noise_from_compressor_magnetic_clutch_condenser_evaporator_or_blower_motor",
+      "symptom": "AC - abnormal noise from compressor, magnetic clutch, condenser, evaporator or blower motor",
+      "system": "hvac",
+      "diagnosis_steps": [
+        "Isolate noise source by component",
+        "Check compressor bearing",
+        "Check blower motor bearing and cage",
+        "Inspect magnetic clutch air gap"
+      ],
+      "related_parts": [
+        "AC compressor",
+        "magnetic clutch",
+        "blower motor",
+        "condenser fan"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 24,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:ac_high_side_pressure_too_high_low_or_low_side_pressure_too_high_low",
+      "symptom": "AC - high-side pressure too high/low or low-side pressure too high/low",
+      "system": "hvac",
+      "diagnosis_steps": [
+        "Connect manifold gauge set",
+        "Interpret high/low side readings",
+        "Check condenser airflow",
+        "Check expansion valve",
+        "Check refrigerant charge amount"
+      ],
+      "related_parts": [
+        "AC pressure switch",
+        "expansion valve",
+        "condenser",
+        "refrigerant"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 55,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:ac_no_cooling_intermittent_cooling_insufficient_cooling",
+      "symptom": "AC - no cooling / intermittent cooling / insufficient cooling",
+      "system": "hvac",
+      "diagnosis_steps": [
+        "Check refrigerant charge with gauge set",
+        "Inspect drive belt",
+        "Inspect magnetic clutch engagement",
+        "Evacuate and recharge system",
+        "Check expansion valve operation"
+      ],
+      "related_parts": [
+        "refrigerant",
+        "AC compressor",
+        "magnetic clutch",
+        "expansion valve",
+        "condenser",
+        "evaporator",
+        "receiver drier"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 55,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:ac_not_cooling_hvac_insufficient_cooling",
+      "symptom": "AC not cooling / HVAC insufficient cooling",
+      "system": "EV Thermal Management",
+      "diagnosis_steps": [
+        "Check refrigerant charge state (high/low side)",
+        "Inspect electric compressor operation",
+        "Verify condenser fan",
+        "Check TXV"
+      ],
+      "related_parts": [
+        "Electric Compressor",
+        "Condenser",
+        "Thermostatic Expansion Valve",
+        "HVAC Control Panel"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 33,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:accelerator_pedal_problem_no_throttle_response",
+      "symptom": "Accelerator pedal problem / no throttle response",
+      "system": "Low Voltage Accessories",
+      "diagnosis_steps": [
+        "Check APP sensor dual-track signal",
+        "Verify CAN message to motor controller",
+        "Inspect pedal wiring harness"
+      ],
+      "related_parts": [
+        "Accelerator Pedal",
+        "Motor Controller",
+        "CAN Bus"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 33,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:air_in_fuel_lines_hard_starting_stalling",
+      "symptom": "Air in fuel lines (hard starting, stalling)",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Inspect fuel lines for leaks",
+        "Check fuel filter seals",
+        "Use priming/hand pump to bleed air from fuel lines",
+        "Service primary and secondary fuel filters"
+      ],
+      "related_parts": [
+        "Priming Pump",
+        "Diesel Fuel Filter",
+        "Fuel Line",
+        "Fuel Feed Pump"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 26,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:airbag_automatic_seat_belt_system_fault_error_indication",
+      "symptom": "Airbag / automatic seat belt system fault (error indication)",
+      "system": "safety",
+      "diagnosis_steps": [
+        "Read SRS DTCs with scan tool",
+        "Inspect SRS harness connectors",
+        "Inspect crash sensors"
+      ],
+      "related_parts": [
+        "airbag module",
+        "crash sensor",
+        "seat belt pre-tensioner"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 24,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:all_lights_come_on_but_dimly_when_ignition_switch_is_turned_on",
+      "symptom": "all lights come on but dimly when ignition switch is turned ON",
+      "system": "electrical",
+      "diagnosis_steps": [
+        "check battery state of charge",
+        "inspect ground connections",
+        "test regulator rectifier output"
+      ],
+      "related_parts": [
+        "battery",
+        "regulator rectifier"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:all_power_windows_do_not_operate",
+      "symptom": "All power windows do not operate",
+      "system": "system:body_electrical",
+      "diagnosis_steps": [
+        "Check master power window fuse",
+        "Check main switch",
+        "Check power window relay"
+      ],
+      "related_parts": [
+        "Power window switch",
+        "Power window motor",
+        "Fuse",
+        "Relay"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:back_up_reverse_lights_do_not_light",
+      "symptom": "Back-up / reverse lights do not light",
+      "system": "system:lighting",
+      "diagnosis_steps": [
+        "Check reverse switch on gearbox",
+        "Test bulbs",
+        "Check fuse"
+      ],
+      "related_parts": [
+        "Reverse light",
+        "Fuse"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 30,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:battery_drain_parasitic_draw_battery_not_charging",
+      "symptom": "battery drain / parasitic draw / battery not charging",
+      "system": "electrical_charging_starting",
+      "diagnosis_steps": [
+        "Clean and top up lead acid battery",
+        "Test battery with hydrometer",
+        "Measure key-off parasitic draw",
+        "Test alternator output and regulator unit",
+        "Check ignition warning lamp operation",
+        "Inspect charging circuit wiring"
+      ],
+      "related_parts": [
+        "battery",
+        "alternator",
+        "regulator unit",
+        "ignition warning lamp"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 22,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:battery_not_charging_undercharge",
+      "symptom": "Battery not charging / undercharge",
+      "system": "system:charging",
+      "diagnosis_steps": [
+        "Check drive belt tension",
+        "Test alternator output voltage",
+        "Inspect rotor and stator for open/ground",
+        "Test rectifier diodes",
+        "Check voltage regulator",
+        "Inspect slip ring and brushes"
+      ],
+      "related_parts": [
+        "Alternator",
+        "Drive belt",
+        "Voltage regulator",
+        "Rectifier assembly",
+        "Rotor",
+        "Stator",
+        "Slip ring and brush assembly"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 26,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:battery_range_dropped_reduced_range",
+      "symptom": "Battery range dropped / reduced range",
+      "system": "High Voltage Battery Pack",
+      "diagnosis_steps": [
+        "Read BMS for SoH (State of Health)",
+        "Check cell balance / delta voltage across cells",
+        "Verify temperature sensor readings",
+        "Inspect for key-off battery drain",
+        "Map battery SoH against cycle count"
+      ],
+      "related_parts": [
+        "HV Battery Pack",
+        "BMS",
+        "Battery Temperature Sensor",
+        "Cell Balancing Circuit"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 27,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:brake_ineffective_spongy_pedal",
+      "symptom": "brake ineffective / spongy pedal",
+      "system": "brakes",
+      "diagnosis_steps": [
+        "Test brake effectiveness",
+        "Overhaul brakes including cleaning and inspection",
+        "Reline brake shoes, set actuating clearance",
+        "Inspect hydraulic brake cylinder and replace washers/oil seals",
+        "Bleed the brake system",
+        "Skim brake drum or disc plate if warped"
+      ],
+      "related_parts": [
+        "brake shoes",
+        "brake lining",
+        "brake drum",
+        "hydraulic brake cylinder",
+        "master cylinder",
+        "brake lines"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 31,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:brake_lights_do_not_light_up",
+      "symptom": "Brake lights do not light up",
+      "system": "system:lighting",
+      "diagnosis_steps": [
+        "Check brake light switch at pedal",
+        "Test bulbs",
+        "Check fuse",
+        "Check wiring"
+      ],
+      "related_parts": [
+        "Brake light",
+        "Fuse"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 30,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:brake_lights_stay_on",
+      "symptom": "Brake lights stay on",
+      "system": "system:lighting",
+      "diagnosis_steps": [
+        "Check brake pedal switch adjustment",
+        "Check for stuck switch"
+      ],
+      "related_parts": [
+        "Brake light"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 30,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:brake_not_working_brake_failure",
+      "symptom": "Brake not working / brake failure",
+      "system": "Regenerative Braking System",
+      "diagnosis_steps": [
+        "Inspect friction brake hydraulic circuit",
+        "Check brake pedal sensor",
+        "Verify regen blending logic",
+        "Test vacuum/electric brake booster"
+      ],
+      "related_parts": [
+        "Friction Brake",
+        "Brake Pedal Sensor",
+        "Regenerative Braking Controller"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 33,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:brake_parking_brake_warning_light_does_not_illuminate_on_low_fluid_or_parking_brake_pull_or_stays_on",
+      "symptom": "Brake / parking brake warning light - does not illuminate on low fluid or parking brake pull, or stays on",
+      "system": "brakes",
+      "diagnosis_steps": [
+        "Check brake fluid level switch",
+        "Check parking brake switch",
+        "Check bulb and wiring"
+      ],
+      "related_parts": [
+        "brake fluid level switch",
+        "parking brake switch"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 53,
+          "confidence": 0.88
+        }
+      ]
+    },
+    {
+      "id": "diag:brake_warning_light_does_not_light_when_parking_brake_pulled",
+      "symptom": "Brake warning light does not light when parking brake pulled",
+      "system": "system:brakes_electronic",
+      "diagnosis_steps": [
+        "Check parking brake switch",
+        "Check bulb",
+        "Check wiring"
+      ],
+      "related_parts": [
+        "Brake warning light"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 31,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:brake_warning_light_stays_on",
+      "symptom": "Brake warning light stays on",
+      "system": "system:brakes_electronic",
+      "diagnosis_steps": [
+        "Check brake fluid level",
+        "Check parking brake switch",
+        "Check fluid level switch"
+      ],
+      "related_parts": [
+        "Brake warning light"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 32,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:braking_system_trouble_hard_pedal_no_brakes_air_brake_leak",
+      "symptom": "Braking system trouble - hard pedal / no brakes / air brake leak",
+      "system": "brakes",
+      "diagnosis_steps": [
+        "Bleed hydraulic brakes",
+        "Inspect master cylinder and wheel cylinders",
+        "Check brake pads and shoes for wear",
+        "Locate air leaks in air brake lines",
+        "Adjust wheel brake adjuster"
+      ],
+      "related_parts": [
+        "master cylinder",
+        "wheel cylinder",
+        "brake pad",
+        "brake shoe",
+        "brake line",
+        "air compressor",
+        "slack adjuster"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 48,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:cam_chain_noise",
+      "symptom": "cam chain noise",
+      "system": "engine",
+      "diagnosis_steps": [
+        "inspect cam chain tensioner spring and pushrod",
+        "check cam chain slack",
+        "adjust tensioner"
+      ],
+      "related_parts": [
+        "cam chain",
+        "cam chain tensioner"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 23,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:cam_chain_slack_excessively",
+      "symptom": "cam chain slack excessively",
+      "system": "engine",
+      "diagnosis_steps": [
+        "inspect tensioner",
+        "check cam chain wear",
+        "replace chain if elongated"
+      ],
+      "related_parts": [
+        "cam chain",
+        "cam chain tensioner"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 23,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:chain_slipping_slack",
+      "symptom": "chain slipping / slack",
+      "system": "transmission",
+      "diagnosis_steps": [
+        "inspect chain slack against manual",
+        "check sprocket wear",
+        "adjust chain tension",
+        "lubricate chain"
+      ],
+      "related_parts": [
+        "drive chain",
+        "drive sprocket",
+        "driven sprocket"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 22,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:charger_not_delivering_current_not_charging",
+      "symptom": "Charger not delivering current / not charging",
+      "system": "Charging System (Onboard)",
+      "diagnosis_steps": [
+        "Check charger type and voltage level compatibility",
+        "Verify contactor closing on charge request",
+        "Test OBC output with DC meter",
+        "Check BMS SoC; may be at limit"
+      ],
+      "related_parts": [
+        "Onboard Charger",
+        "HV Contactor",
+        "BMS"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 35,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:charger_not_responding",
+      "symptom": "Charger not responding",
+      "system": "Charging System (Onboard)",
+      "diagnosis_steps": [
+        "Verify AC input voltage at charging station",
+        "Check charging port integrity and pin continuity",
+        "Verify HVIL loop closed",
+        "Scan OBC and BMS DTCs",
+        "Check CAN communication between OBC and BMS"
+      ],
+      "related_parts": [
+        "Onboard Charger",
+        "Charging Port",
+        "HVIL Loop",
+        "BMS",
+        "CAN Bus"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 35,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:charging_system_fault_battery_not_charging",
+      "symptom": "Charging system fault (battery not charging)",
+      "system": "system:starting_charging",
+      "diagnosis_steps": [
+        "Check ignition warning lamp behavior",
+        "Trace circuit from alternator to battery",
+        "Test alternator output / motoring action",
+        "Inspect regulator unit",
+        "Check drive belt condition and tension"
+      ],
+      "related_parts": [
+        "Alternator",
+        "Regulator Unit",
+        "Drive Belt",
+        "Battery",
+        "Ignition Warning Lamp"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:charging_system_undercharge_no_charge_overcharge",
+      "symptom": "Charging system - undercharge / no charge / overcharge",
+      "system": "charging",
+      "diagnosis_steps": [
+        "Check warning lamp behaviour with ignition on and running",
+        "Inspect drive belt tension and condition",
+        "Inspect rotor for ground/open circuit",
+        "Test stator for ground/open",
+        "Inspect rectifier diodes",
+        "Check slip ring surface and brush length"
+      ],
+      "related_parts": [
+        "alternator",
+        "rotor",
+        "stator",
+        "rectifier",
+        "voltage regulator",
+        "drive belt",
+        "alternator brush"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 50,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:charging_warning_lamp_does_not_glow_when_ignition_on",
+      "symptom": "Charging warning lamp does not glow when ignition on",
+      "system": "system:charging",
+      "diagnosis_steps": [
+        "Check warning bulb",
+        "Check wiring to alternator L terminal",
+        "Test voltage regulator"
+      ],
+      "related_parts": [
+        "Charging warning lamp",
+        "Voltage regulator",
+        "Alternator"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 26,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:charging_warning_lamp_stays_on_while_alternator_running",
+      "symptom": "Charging warning lamp stays on while alternator running",
+      "system": "system:charging",
+      "diagnosis_steps": [
+        "Test alternator output",
+        "Check drive belt",
+        "Test rectifier",
+        "Test voltage regulator"
+      ],
+      "related_parts": [
+        "Alternator",
+        "Drive belt",
+        "Rectifier assembly",
+        "Voltage regulator"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 27,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:clearance_tail_license_plate_lights_all_or_some_lights_do_not_light_up",
+      "symptom": "Clearance, tail & license plate lights - all or some lights do not light up",
+      "system": "lighting",
+      "diagnosis_steps": [
+        "Check fuses",
+        "Check bulbs individually",
+        "Check ground connection",
+        "Trace wiring circuit"
+      ],
+      "related_parts": [
+        "tail light bulb",
+        "fuse",
+        "wiring harness"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 52,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:clutch_slip_clutch_noise_clutch_binding_hard_clutch",
+      "symptom": "Clutch slip / clutch noise / clutch binding / hard clutch",
+      "system": "transmission",
+      "diagnosis_steps": [
+        "Adjust clutch pedal play",
+        "Inspect clutch lining for wear",
+        "Check pressure plate diaphragm and fingers",
+        "Check pilot bearing and throw-out bearing",
+        "Inspect flywheel surface"
+      ],
+      "related_parts": [
+        "clutch disc",
+        "clutch pressure plate",
+        "throw-out bearing",
+        "pilot bearing",
+        "flywheel"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 45,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:clutch_slip_when_accelerating",
+      "symptom": "clutch slip when accelerating",
+      "system": "clutch",
+      "diagnosis_steps": [
+        "check clutch cable free play",
+        "inspect clutch plates for wear",
+        "check clutch springs"
+      ],
+      "related_parts": [
+        "clutch plate",
+        "clutch cable",
+        "clutch assembly"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 27,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:clutch_slipping_or_clutch_pedal_free_play_incorrect",
+      "symptom": "clutch slipping or clutch pedal free play incorrect",
+      "system": "clutch",
+      "diagnosis_steps": [
+        "Adjust clutch pedal free play",
+        "Dismantle and inspect clutch plate for wear",
+        "Reline clutch plate if worn",
+        "Inspect pressure plate and release bearing",
+        "Check slave cylinder and oil seal"
+      ],
+      "related_parts": [
+        "clutch plate",
+        "pressure plate",
+        "clutch release bearing",
+        "slave cylinder",
+        "clutch pedal"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 15,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:clutch_will_not_disengage",
+      "symptom": "clutch will not disengage",
+      "system": "clutch",
+      "diagnosis_steps": [
+        "check clutch cable adjustment",
+        "inspect warped clutch plates",
+        "bleed hydraulic clutch if applicable"
+      ],
+      "related_parts": [
+        "clutch cable",
+        "clutch plate"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 27,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:coolant_temperature_meter_shows_no_operation",
+      "symptom": "Coolant temperature meter shows no operation",
+      "system": "system:dashboard",
+      "diagnosis_steps": [
+        "Check ECT sensor",
+        "Check wiring continuity",
+        "Check gauge / cluster"
+      ],
+      "related_parts": [
+        "Coolant temperature meter",
+        "Coolant temperature sensor"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 14,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:cylinder_head_warped_head_gasket_leak",
+      "symptom": "Cylinder head warped / head gasket leak",
+      "system": "system:cylinder_head_valve_train",
+      "diagnosis_steps": [
+        "Check cylinder head flatness with straightedge + feeler gauge",
+        "Inspect head and manifold surfaces for warping/cracks",
+        "Check valve seat sealing (leakage test)",
+        "Replace head gasket"
+      ],
+      "related_parts": [
+        "Cylinder Head",
+        "Head Gasket",
+        "Engine Valve",
+        "Valve Seat"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 21,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:dashboard_gauge_showing_incorrect_reading",
+      "symptom": "dashboard gauge showing incorrect reading",
+      "system": "dashboard",
+      "diagnosis_steps": [
+        "Identify different gauges fitted on dashboard",
+        "Perform daily checks before starting engine",
+        "Record reading and compare with standard",
+        "Repair or replace defective gauges"
+      ],
+      "related_parts": [
+        "dashboard gauges",
+        "oil pressure gauge",
+        "temperature gauge",
+        "tachometer",
+        "fuel gauge"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 13,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:dc_dc_converter_fault_12v_battery_not_charging_while_driving",
+      "symptom": "DC-DC converter fault / 12V battery not charging while driving",
+      "system": "DC-DC Converter & Auxiliary Power",
+      "diagnosis_steps": [
+        "Measure 12V battery voltage with vehicle in Ready state",
+        "Scan DC-DC converter DTCs",
+        "Check HV input to DC-DC",
+        "Verify enable signal from VCU"
+      ],
+      "related_parts": [
+        "DC-DC Converter",
+        "12V Auxiliary Battery"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:defective_battery_module_module_replacement_needed",
+      "symptom": "Defective battery module / module replacement needed",
+      "system": "High Voltage Battery Pack",
+      "diagnosis_steps": [
+        "Identify failing module via BMS cell voltage logs",
+        "Safely de-energize pack",
+        "Replace 48V module",
+        "Rebalance pack",
+        "Verify SoC/SoH after replacement"
+      ],
+      "related_parts": [
+        "Battery Module",
+        "BMS",
+        "HV Contactor"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 27,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:diesel_engine_hard_to_start_or_air_lock_in_fuel_system",
+      "symptom": "diesel engine hard to start or air lock in fuel system",
+      "system": "fuel_feed_diesel",
+      "diagnosis_steps": [
+        "Check for leakages in diesel fuel line",
+        "Bleed the fuel system to vent trapped air",
+        "Service fuel feed pump",
+        "Service fuel filter",
+        "Check injection pump timing",
+        "Test injectors for spray pattern and pressure",
+        "Check glow plug operation (cold start)"
+      ],
+      "related_parts": [
+        "fuel feed pump",
+        "fuel filter",
+        "fuel injection pump",
+        "fuel injector",
+        "fuel lines",
+        "glow plug"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 15,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:differential_or_final_drive_noise_wheel_traction_loss",
+      "symptom": "differential or final drive noise / wheel traction loss",
+      "system": "differential",
+      "diagnosis_steps": [
+        "Overhaul differential unit",
+        "Adjust crown wheel and pinion backlash",
+        "Service reduction gear and rear axle wheel hub",
+        "Check differential lock engagement"
+      ],
+      "related_parts": [
+        "differential",
+        "crown wheel and pinion",
+        "reduction gear",
+        "rear axle wheel hub",
+        "differential lock"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 29,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_compression_low_unusual_noise_and_knocks",
+      "symptom": "engine compression low / unusual noise and knocks",
+      "system": "tractor_diesel_engine",
+      "diagnosis_steps": [
+        "Test cylinder compression",
+        "Check valve clearances and adjust",
+        "Inspect piston rings, ring gap, piston skirt",
+        "Measure cylinder liner ovality and taper",
+        "Check crankshaft ovality and taperness",
+        "Check connecting rod bend and twist"
+      ],
+      "related_parts": [
+        "piston rings",
+        "cylinder liner",
+        "crankshaft",
+        "connecting rod",
+        "engine valves",
+        "valve seats and inserts"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 25,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_coolant_temperature_meter_shows_no_operation_or_incorrect_operation",
+      "symptom": "Engine coolant temperature meter shows no operation or incorrect operation",
+      "system": "instrumentation",
+      "diagnosis_steps": [
+        "Test ECT sensor resistance at known temperature",
+        "Check gauge and wiring continuity"
+      ],
+      "related_parts": [
+        "ECT sensor",
+        "temperature gauge"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 53,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_cranks_but_will_not_start",
+      "symptom": "Engine cranks but will not start",
+      "system": "engine",
+      "diagnosis_steps": [
+        "Check ignition timing",
+        "Check MIL (Mal Indication Lamp) status",
+        "Test sensors with multimeter/scan tool",
+        "Check fuel pressure and spark"
+      ],
+      "related_parts": [
+        "ignition coil",
+        "spark plug",
+        "crank angle sensor",
+        "cam sensor",
+        "fuel pump",
+        "ECU"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 23,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_cranks_but_will_not_start_or_hard_to_start",
+      "symptom": "Engine cranks but will not start or hard to start",
+      "system": "system:ignition",
+      "diagnosis_steps": [
+        "Check ignition coil",
+        "Check spark plug condition and gap",
+        "Check ignition timing",
+        "Check Hall effect / crank position sensor",
+        "Check fuel supply"
+      ],
+      "related_parts": [
+        "Ignition coil",
+        "Spark plug",
+        "Hall effect sensor",
+        "Fuel pump",
+        "Fuel filter"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 24,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_cranks_but_would_not_start",
+      "symptom": "engine cranks but would not start",
+      "system": "fuel",
+      "diagnosis_steps": [
+        "check fuel flow at petrol tap",
+        "check carburetor float level",
+        "check spark at plug",
+        "check fuel filter"
+      ],
+      "related_parts": [
+        "petrol tap",
+        "carburetor",
+        "spark plug",
+        "fuel strainer"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 24,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_idles_roughly_stalls",
+      "symptom": "engine idles roughly / stalls",
+      "system": "fuel",
+      "diagnosis_steps": [
+        "adjust idle speed screw",
+        "clean pilot jet",
+        "check spark plug"
+      ],
+      "related_parts": [
+        "carburetor",
+        "metering jet",
+        "spark plug"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 24,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_not_starting_cold_diesel",
+      "symptom": "Engine not starting (cold/diesel)",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Check mechanical causes: fuel delivery, FIP operation, injector condition, injection timing",
+        "Check electrical causes: battery, starter motor, solenoid, glow plug circuit",
+        "Bleed air from fuel lines if air entered system",
+        "Test glow plugs with glow plug tester (especially in cold conditions)",
+        "Test injectors for spray pattern on injector testing set",
+        "Verify injection timing via spill cut-off method"
+      ],
+      "related_parts": [
+        "Glow Plug",
+        "Fuel Injection Pump (FIP)",
+        "Diesel Injector",
+        "Starter Motor",
+        "Starter Solenoid",
+        "Battery",
+        "Fuel Filter",
+        "Priming Pump"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_overheating",
+      "symptom": "Engine overheating",
+      "system": "system:cooling",
+      "diagnosis_steps": [
+        "Check & top up coolant level",
+        "Test thermostat operation",
+        "Pressure test cooling system for leaks",
+        "Check radiator pressure cap",
+        "Inspect radiator fan (mechanical/electric/viscous) operation",
+        "Reverse-flush radiator if clogged",
+        "Inspect water pump",
+        "Check coolant level and top up if required",
+        "Test cooling system pressure",
+        "Inspect radiator pressure cap",
+        "Check water pump operation",
+        "Check radiator fan (mechanical/electric/viscous)",
+        "Reverse flush cooling system if blocked",
+        "check cooling system/fins",
+        "check engine oil level and grade",
+        "check ignition timing",
+        "check lean fuel mixture"
+      ],
+      "related_parts": [
+        "Radiator",
+        "Thermostat",
+        "Water Pump",
+        "Radiator Pressure Cap",
+        "Radiator Fan",
+        "Coolant Hose",
+        "Thermo-Switch",
+        "coolant",
+        "thermostat",
+        "radiator",
+        "radiator cap",
+        "water pump",
+        "cooling fan",
+        "coolant hose",
+        "engine oil",
+        "carburetor",
+        "ignition coil"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel",
+        "LMV/HMV",
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.95
+        },
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 22,
+          "confidence": 0.98
+        },
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 23,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_overheating_or_undercooling",
+      "symptom": "engine overheating or undercooling",
+      "system": "cooling",
+      "diagnosis_steps": [
+        "Check coolant level and quality",
+        "Reverse-flush cooling system with flushing solution",
+        "Test thermostat valve for proper opening temperature",
+        "Check radiator cap for pressure holding",
+        "Inspect radiator hoses for cracks",
+        "Check water pump for leaks and impeller wear",
+        "Check fan/alternator belt tension"
+      ],
+      "related_parts": [
+        "radiator",
+        "thermostat",
+        "water pump",
+        "radiator cap",
+        "radiator hoses",
+        "fan belt",
+        "coolant"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 26,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_poor_performance_poor_fuel_economy",
+      "symptom": "Engine poor performance / poor fuel economy",
+      "system": "engine_management",
+      "diagnosis_steps": [
+        "Connect scan tool and read DTCs via DLC",
+        "Test reference voltage and continuity of sensor circuits",
+        "Test sensors (MAP, MAF, O2, TPS, CKP, CMP) with multimeter/scan tool",
+        "Erase error memory after repair and retest"
+      ],
+      "related_parts": [
+        "ECU",
+        "MAP sensor",
+        "MAF sensor",
+        "O2 sensor",
+        "TPS",
+        "CKP sensor",
+        "CMP sensor"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 52,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_starts_but_runs_poorly_ignition",
+      "symptom": "engine starts but runs poorly (ignition)",
+      "system": "ignition",
+      "diagnosis_steps": [
+        "check ignition timing",
+        "inspect spark plug fouling",
+        "check HT lead resistance"
+      ],
+      "related_parts": [
+        "spark plug",
+        "ignition coil",
+        "high-tension lead"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:engine_will_not_start",
+      "symptom": "Engine will not start",
+      "system": "engine",
+      "diagnosis_steps": [
+        "Investigate mechanical causes (compression, timing, fuel delivery)",
+        "Investigate electrical causes (battery, starter, ignition, wiring)",
+        "Use scan tool via DLC to read DTCs",
+        "Check reference voltage and continuity of circuits"
+      ],
+      "related_parts": [
+        "battery",
+        "starter motor",
+        "spark plug",
+        "ignition coil",
+        "fuel injector",
+        "fuel pump",
+        "ECU",
+        "crankshaft position sensor"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 40,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:evap_system_fault",
+      "symptom": "EVAP system fault",
+      "system": "emission",
+      "diagnosis_steps": [
+        "Inspect EVAP canister purge with scan tool",
+        "Check purge valve operation",
+        "Inspect charcoal canister for damage"
+      ],
+      "related_parts": [
+        "EVAP canister",
+        "purge valve"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 19,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:excessive_engine_oil_consumption",
+      "symptom": "Excessive engine oil consumption",
+      "system": "system:piston_conrod",
+      "diagnosis_steps": [
+        "Check piston rings end-gap and piston-to-liner clearance",
+        "Inspect valve stem oil seals",
+        "Check for turbocharger seal leak (oil in intake)",
+        "Inspect cylinder liner for wear / taper / ovality"
+      ],
+      "related_parts": [
+        "Piston Ring",
+        "Valve Stem Oil Seal",
+        "Cylinder Liner",
+        "Turbocharger"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:excessive_key_off_battery_drain_parasitic_draw",
+      "symptom": "Excessive key-off battery drain (parasitic draw)",
+      "system": "system:battery",
+      "diagnosis_steps": [
+        "Measure parasitic current with ammeter",
+        "Pull fuses one by one to isolate circuit",
+        "Inspect accessory wiring",
+        "Isolate circuits by pulling fuses one at a time",
+        "Test relays and solenoids for stuck-on condition"
+      ],
+      "related_parts": [
+        "Battery",
+        "Fuse",
+        "Wiring harness",
+        "battery",
+        "relay",
+        "fuse"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 21,
+          "confidence": 0.9
+        },
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:excessive_oil_consumption",
+      "symptom": "Excessive oil consumption",
+      "system": "engine",
+      "diagnosis_steps": [
+        "Check for external oil leaks",
+        "Test cylinder compression",
+        "Inspect piston rings and cylinder liner wear",
+        "Check valve stem oil seals",
+        "Check PCV valve"
+      ],
+      "related_parts": [
+        "piston ring",
+        "cylinder liner",
+        "valve stem oil seal",
+        "PCV valve",
+        "head gasket"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 22,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:excessive_smoke",
+      "symptom": "excessive smoke",
+      "system": "engine",
+      "diagnosis_steps": [
+        "check piston rings for wear",
+        "check valve guide/seal condition",
+        "check oil level and grade",
+        "check air filter clogging"
+      ],
+      "related_parts": [
+        "piston ring",
+        "valve guide",
+        "oil seal",
+        "air cleaner"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 23,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:exhaust_leakage_or_noise",
+      "symptom": "exhaust leakage or noise",
+      "system": "intake_exhaust",
+      "diagnosis_steps": [
+        "Check exhaust leakages and rubber mounting",
+        "Service exhaust manifold",
+        "Check and replace catalytic converter",
+        "Check and replace muffler/resonator"
+      ],
+      "related_parts": [
+        "exhaust manifold",
+        "muffler",
+        "catalytic converter"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 15,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:front_suspension_noise",
+      "symptom": "front suspension noise",
+      "system": "suspension",
+      "diagnosis_steps": [
+        "check fork oil level",
+        "inspect oil seal leakage",
+        "check fork bushing wear"
+      ],
+      "related_parts": [
+        "telescopic front fork",
+        "suspension oil",
+        "oil seal"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 25,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:front_wheel_wobbling",
+      "symptom": "front wheel wobbling",
+      "system": "steering",
+      "diagnosis_steps": [
+        "check wheel axle run-out",
+        "check wheel bearing",
+        "check spoke tension",
+        "check tyre balance"
+      ],
+      "related_parts": [
+        "wheel axle",
+        "wheel bearing",
+        "spoke"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 25,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:fuel_level_meter_shows_no_operation",
+      "symptom": "Fuel level meter shows no operation",
+      "system": "system:dashboard",
+      "diagnosis_steps": [
+        "Check fuel gauge fuse",
+        "Test fuel sender unit resistance",
+        "Check wiring to sender",
+        "Replace fuel gauge if faulty"
+      ],
+      "related_parts": [
+        "Fuel level meter",
+        "Fuel gauge sender unit",
+        "Fuse"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 14,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:fuel_meter_shows_incorrect_operation",
+      "symptom": "Fuel meter shows incorrect operation",
+      "system": "system:dashboard",
+      "diagnosis_steps": [
+        "Check fuel sender",
+        "Check wiring",
+        "Check instrument cluster"
+      ],
+      "related_parts": [
+        "Fuel level meter",
+        "Fuel gauge sender unit"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 31,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:fuel_meter_shows_no_operation_or_incorrect_operation",
+      "symptom": "Fuel meter shows no operation or incorrect operation",
+      "system": "instrumentation",
+      "diagnosis_steps": [
+        "Test fuel gauge sender unit resistance",
+        "Check fuel gauge instrument",
+        "Check wiring continuity between sender and gauge"
+      ],
+      "related_parts": [
+        "fuel gauge",
+        "fuel level sensor"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 52,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:gearbox_noise_gear_slip_rear_axle_noise_propeller_shaft_noise_universal_joint_noise_differential_noise",
+      "symptom": "Gearbox noise / gear slip / rear axle noise / propeller shaft noise / universal joint noise / differential noise",
+      "system": "transmission_driveline",
+      "diagnosis_steps": [
+        "Identify noise source by driving conditions (coast/drive/turn)",
+        "Inspect gear teeth and bearings in gearbox",
+        "Check propeller shaft balance and U-joints",
+        "Inspect differential crown-pinion backlash"
+      ],
+      "related_parts": [
+        "gearbox bearing",
+        "synchromesh unit",
+        "universal joint",
+        "propeller shaft",
+        "differential",
+        "rear axle"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 45,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:gearshift_pedal_does_not_return",
+      "symptom": "gearshift pedal does not return",
+      "system": "transmission",
+      "diagnosis_steps": [
+        "inspect return spring",
+        "check gearshift linkage binding"
+      ],
+      "related_parts": [
+        "gear shift lever",
+        "gearshift linkage"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 27,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:hard_steering",
+      "symptom": "hard steering",
+      "system": "steering",
+      "diagnosis_steps": [
+        "check steering stem bearing adjustment",
+        "inspect fork race for wear",
+        "check tyre pressure"
+      ],
+      "related_parts": [
+        "steering stem",
+        "fork mounted race",
+        "tyre"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 24,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:hard_steering_or_excessive_steering_play",
+      "symptom": "hard steering or excessive steering play",
+      "system": "steering",
+      "diagnosis_steps": [
+        "Inspect steering linkages for excessive play",
+        "Check and adjust tie-rod and ball joints",
+        "Service steering gear box",
+        "Remove and repair front axle assembly",
+        "For hydraulic steering: check pump pressure, distributor valves, hoses"
+      ],
+      "related_parts": [
+        "steering linkages",
+        "tie-rod",
+        "ball and socket joint",
+        "steering gear box",
+        "front axle",
+        "hydraulic steering pump",
+        "distributor valve"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 29,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:hard_suspension",
+      "symptom": "hard suspension",
+      "system": "suspension",
+      "diagnosis_steps": [
+        "check fork oil overfill",
+        "inspect shock pre-load",
+        "check swingarm binding"
+      ],
+      "related_parts": [
+        "suspension oil",
+        "shock absorber",
+        "swing arm"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 24,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:hard_to_shift",
+      "symptom": "hard to shift",
+      "system": "transmission",
+      "diagnosis_steps": [
+        "check clutch fully disengaging",
+        "inspect shift fork wear",
+        "check gearshift drum"
+      ],
+      "related_parts": [
+        "shift fork",
+        "gearshift drum",
+        "clutch"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 27,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:headlight_beams_do_not_shift_when_hi_lo_switch_operated",
+      "symptom": "headlight beams do not shift when HI-LO switch operated",
+      "system": "electrical",
+      "diagnosis_steps": [
+        "inspect handlebar dip switch",
+        "check bulb hi-lo filament",
+        "check wiring"
+      ],
+      "related_parts": [
+        "handlebar switch",
+        "headlight bulb",
+        "wiring harness"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:headlights_do_not_light_up",
+      "symptom": "Headlights do not light up",
+      "system": "system:lighting",
+      "diagnosis_steps": [
+        "Check headlight fuse",
+        "Test headlight relay",
+        "Check combination switch",
+        "Check ground connection",
+        "Test bulbs"
+      ],
+      "related_parts": [
+        "Headlight bulb",
+        "Fuse",
+        "Relay",
+        "Combination switch",
+        "Dimmer switch"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 30,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:high_engine_oil_pressure",
+      "symptom": "High engine oil pressure",
+      "system": "system:lubrication",
+      "diagnosis_steps": [
+        "Check oil pressure relief valve (stuck closed)",
+        "Check oil grade / viscosity",
+        "Inspect oil galleries for blockage"
+      ],
+      "related_parts": [
+        "Oil Pressure Relief Valve",
+        "Oil Filter"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:high_exhaust_smoke_failed_emission_test",
+      "symptom": "High exhaust smoke / failed emission test",
+      "system": "system:emission_control",
+      "diagnosis_steps": [
+        "Measure smoke opacity with diesel smoke meter",
+        "Inspect/clean EGR valve",
+        "Check DPF condition (clogged / needs regen)",
+        "Inspect SCR/urea dosing system",
+        "Check injector spray and FIP"
+      ],
+      "related_parts": [
+        "EGR Valve",
+        "Diesel Particulate Filter (DPF)",
+        "SCR (Selective Catalytic Reduction)",
+        "Diesel Injector",
+        "Diesel Smoke Meter"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel (BS-IV/V/VI)"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:high_fuel_consumption",
+      "symptom": "High fuel consumption",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Inspect air filter (clogged filter richens mixture)",
+        "Test injectors for leakage / bad spray pattern",
+        "Check FIP calibration on test bench",
+        "Verify injection timing",
+        "Check for exhaust smoke (black smoke = over-fuelling)",
+        "Check ignition timing",
+        "Inspect air filter",
+        "Check O2 sensor and fuel trims via scan tool",
+        "Check injector condition",
+        "Inspect for vacuum leaks",
+        "check rich mixture at carburetor",
+        "check air filter clogging",
+        "check tyre pressure",
+        "check brake drag"
+      ],
+      "related_parts": [
+        "Diesel Injector",
+        "Fuel Injection Pump (FIP)",
+        "Air Filter",
+        "Diesel Fuel Filter",
+        "air filter",
+        "O2 sensor",
+        "fuel injector",
+        "spark plug",
+        "MAP sensor",
+        "throttle position sensor",
+        "carburetor",
+        "air cleaner",
+        "tyre"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel",
+        "LMV/HMV",
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.9
+        },
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 22,
+          "confidence": 0.9
+        },
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 24,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:high_oil_consumption",
+      "symptom": "high oil consumption",
+      "system": "lubrication",
+      "diagnosis_steps": [
+        "Check piston rings for wear and ring gap",
+        "Check valve stem oil seals",
+        "Inspect cylinder liner for ovality and taper"
+      ],
+      "related_parts": [
+        "piston rings",
+        "valve stem oil seals",
+        "cylinder liner"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 27,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:horn_no_operation_poor_sound_quality_or_sounds_continuously",
+      "symptom": "Horn - no operation, poor sound quality, or sounds continuously",
+      "system": "electrical_accessories",
+      "diagnosis_steps": [
+        "Check horn fuse",
+        "Check horn relay",
+        "Check horn switch in steering wheel",
+        "Replace horn if faulty"
+      ],
+      "related_parts": [
+        "horn",
+        "horn relay",
+        "fuse",
+        "horn switch"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 54,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:hv_battery_overheating_thermal_warning",
+      "symptom": "HV battery overheating / thermal warning",
+      "system": "EV Thermal Management",
+      "diagnosis_steps": [
+        "Check battery cooling fan operation",
+        "Verify coolant level and pump",
+        "Inspect temperature sensor readings in BMS",
+        "Check for blocked cooling passages"
+      ],
+      "related_parts": [
+        "Battery Cooling Fan",
+        "Battery Cooling System",
+        "Battery Temperature Sensor",
+        "BMS"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:hv_isolation_fault_hv_leakage_warning",
+      "symptom": "HV isolation fault / HV leakage warning",
+      "system": "High Voltage Distribution & Safety",
+      "diagnosis_steps": [
+        "Perform megger insulation test on HV cables",
+        "Inspect HV connectors for moisture/damage",
+        "Check isolation monitor DTCs",
+        "Isolate pack, OBC, DC-DC one by one"
+      ],
+      "related_parts": [
+        "Isolation Monitor",
+        "HV Cabling",
+        "HV Contactor",
+        "HVIL Loop"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:hydraulic_lift_not_working_3_point_hitch_won_t_raise",
+      "symptom": "hydraulic lift not working / 3-point hitch won't raise",
+      "system": "hydraulic_lift",
+      "diagnosis_steps": [
+        "Check hydraulic fluid level and quality",
+        "Trace hydraulic circuit to hydraulic lift",
+        "Test gear pump output pressure",
+        "Check directional control valve operation",
+        "Test pressure relief valve setting",
+        "Inspect hydraulic cylinder and seals"
+      ],
+      "related_parts": [
+        "hydraulic lift",
+        "gear pump",
+        "directional control valve",
+        "pressure relief valve",
+        "double acting cylinder"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 23,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:implement_not_hitching_or_operating_correctly",
+      "symptom": "implement not hitching or operating correctly",
+      "system": "implements",
+      "diagnosis_steps": [
+        "Check plough, harrow, cultivator, seed drill, trailer for serviceability",
+        "Lubricate implements",
+        "Perform hitching practice (single and three point)",
+        "Set drawbar to correct height",
+        "Adjust implements for correct field operation"
+      ],
+      "related_parts": [
+        "plough",
+        "harrow",
+        "cultivator",
+        "seed drill",
+        "tractor trailer",
+        "draw bar",
+        "top link",
+        "three-point hitch"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:insufficient_cooling_from_ac",
+      "symptom": "Insufficient cooling from AC",
+      "system": "system:hvac",
+      "diagnosis_steps": [
+        "Check refrigerant level",
+        "Clean condenser fins",
+        "Check condenser fan",
+        "Check compressor output"
+      ],
+      "related_parts": [
+        "Refrigerant",
+        "Condenser",
+        "AC compressor"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 29,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:interior_light_does_not_light_up",
+      "symptom": "Interior light does not light up",
+      "system": "system:lighting",
+      "diagnosis_steps": [
+        "Check bulb",
+        "Check door jamb switch",
+        "Check fuse"
+      ],
+      "related_parts": [
+        "Interior light",
+        "Fuse"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:intermittent_cooling_from_ac",
+      "symptom": "Intermittent cooling from AC",
+      "system": "system:hvac",
+      "diagnosis_steps": [
+        "Test pressure switches",
+        "Check blower motor",
+        "Check expansion valve for icing",
+        "Check evaporator temp sensor"
+      ],
+      "related_parts": [
+        "Pressure switch",
+        "Blower motor",
+        "Thermostatic expansion valve",
+        "Evaporator temperature sensor"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 29,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:inverter_fault_inverter_warning_lamp",
+      "symptom": "Inverter fault / inverter warning lamp",
+      "system": "Motor Controller / Power Electronics",
+      "diagnosis_steps": [
+        "Scan inverter DTCs with scan tool",
+        "Check inverter coolant level and temperature",
+        "Inspect IGBT/MOSFET module for short",
+        "Verify HV bus voltage into inverter"
+      ],
+      "related_parts": [
+        "Motor Controller",
+        "IGBT Module",
+        "Inverter Cooling",
+        "Scan Tool"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:inverter_motor_overheating",
+      "symptom": "Inverter/motor overheating",
+      "system": "EV Thermal Management",
+      "diagnosis_steps": [
+        "Check inverter coolant loop",
+        "Inspect pump operation",
+        "Verify motor temperature sensor",
+        "Check coolant flow and air lock"
+      ],
+      "related_parts": [
+        "Inverter Cooling",
+        "Motor Cooling System"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:key_off_battery_drain",
+      "symptom": "Key-off battery drain",
+      "system": "Low Voltage Accessories",
+      "diagnosis_steps": [
+        "Measure parasitic current on 12V battery",
+        "Isolate modules via fuse pull",
+        "Check telematics unit sleep state"
+      ],
+      "related_parts": [
+        "12V Auxiliary Battery",
+        "DC-DC Converter",
+        "Telematics Unit"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 27,
+          "confidence": 0.8
+        }
+      ]
+    },
+    {
+      "id": "diag:key_off_battery_drain_parasitic_draw",
+      "symptom": "key-off battery drain (parasitic draw)",
+      "system": "electrical",
+      "diagnosis_steps": [
+        "disconnect circuits one by one",
+        "measure parasitic current",
+        "test relay for stuck contacts"
+      ],
+      "related_parts": [
+        "battery",
+        "power relay"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 20,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:kick_start_not_working",
+      "symptom": "kick start not working",
+      "system": "starting",
+      "diagnosis_steps": [
+        "inspect kick starter pawl/ratchet wear",
+        "check return spring",
+        "check kick gear engagement"
+      ],
+      "related_parts": [
+        "kick starter",
+        "kick start assembly"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 14,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:knocking_or_abnormal_noise",
+      "symptom": "knocking or abnormal noise",
+      "system": "engine",
+      "diagnosis_steps": [
+        "check piston-to-bore clearance",
+        "check connecting rod big end play",
+        "check tappet clearance",
+        "check ignition timing"
+      ],
+      "related_parts": [
+        "piston",
+        "connecting rod",
+        "tappet",
+        "engine bearing"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 23,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:lean_mixture",
+      "symptom": "lean mixture",
+      "system": "fuel",
+      "diagnosis_steps": [
+        "check jet clog",
+        "check air leak at inlet manifold",
+        "check float level too low"
+      ],
+      "related_parts": [
+        "metering jet",
+        "carburetor float",
+        "carburetor"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 24,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:low_compression",
+      "symptom": "low compression",
+      "system": "engine",
+      "diagnosis_steps": [
+        "compression test",
+        "inspect piston rings",
+        "inspect valve seating",
+        "inspect head gasket"
+      ],
+      "related_parts": [
+        "piston ring",
+        "valve",
+        "gasket"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 22,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:low_engine_oil_pressure",
+      "symptom": "Low engine oil pressure",
+      "system": "system:lubrication",
+      "diagnosis_steps": [
+        "Check engine oil level and grade",
+        "Overhaul oil pump",
+        "Adjust oil pressure relief valve",
+        "Inspect main and big-end bearings for wear",
+        "Inspect oil filter and pickup tube for blockage"
+      ],
+      "related_parts": [
+        "Oil Pump",
+        "Oil Pressure Relief Valve",
+        "Oil Filter",
+        "Main Bearing",
+        "Big End Bearing",
+        "Pickup Tube"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:low_high_engine_oil_pressure",
+      "symptom": "Low / high engine oil pressure",
+      "system": "lubrication",
+      "diagnosis_steps": [
+        "Check engine oil level and grade",
+        "Measure oil pressure at various RPMs",
+        "Inspect oil pump",
+        "Inspect oil pressure relief valve",
+        "Check main and big end bearing clearance"
+      ],
+      "related_parts": [
+        "oil pump",
+        "oil pressure relief valve",
+        "main bearing",
+        "big end bearing",
+        "oil filter"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 22,
+          "confidence": 0.92
+        }
+      ]
+    },
+    {
+      "id": "diag:low_or_high_engine_oil_pressure",
+      "symptom": "low or high engine oil pressure",
+      "system": "lubrication",
+      "diagnosis_steps": [
+        "Test oil pressure with gauge",
+        "Check engine oil level and grade (SAE spec)",
+        "Inspect oil pump for wear",
+        "Check oil filter and replace",
+        "Test pressure relief valve",
+        "Check for worn bearings causing low pressure"
+      ],
+      "related_parts": [
+        "oil pump",
+        "oil filter",
+        "pressure relief valve",
+        "main bearings",
+        "big end bearing"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 27,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:low_power_generation",
+      "symptom": "Low power generation",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Test cylinder compression",
+        "Check injectors and FIP",
+        "Inspect turbocharger for axial clearance / leaks",
+        "Check air filter and intercooler",
+        "Check EGR valve for stuck open",
+        "Check injection timing",
+        "Check compression",
+        "Inspect fuel injection timing",
+        "Inspect turbocharger",
+        "Check air intake and exhaust for restriction",
+        "Check for injector leakage"
+      ],
+      "related_parts": [
+        "Diesel Injector",
+        "Fuel Injection Pump (FIP)",
+        "Turbocharger",
+        "Air Filter",
+        "Intercooler",
+        "EGR Valve",
+        "fuel injector",
+        "turbocharger",
+        "air filter",
+        "catalytic converter",
+        "piston ring"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel",
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.9
+        },
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 22,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:misfiring",
+      "symptom": "misfiring",
+      "system": "ignition",
+      "diagnosis_steps": [
+        "check spark plug fouling",
+        "check HT lead",
+        "check CDI/coil",
+        "check fuel quality"
+      ],
+      "related_parts": [
+        "spark plug",
+        "ignition coil",
+        "CDI unit"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:missing_cylinder_rough_running",
+      "symptom": "Missing cylinder / rough running",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Isolate each injector one by one to find defective cylinder",
+        "Test suspect injector on bench",
+        "Replace defective injector and reassemble",
+        "Check cylinder compression on suspect cylinder"
+      ],
+      "related_parts": [
+        "Diesel Injector",
+        "Fuel Injection Pump (FIP)"
+      ],
+      "vehicle_types": [
+        "stationary/LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 27,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:motor_not_spinning_inoperative_drive_motor",
+      "symptom": "Motor not spinning / inoperative drive motor",
+      "system": "Traction Motor System",
+      "diagnosis_steps": [
+        "Check HV contactor closing",
+        "Scan motor controller DTCs",
+        "Verify rotor position sensor signal",
+        "Inspect motor phase cables",
+        "Check accelerator pedal input on CAN"
+      ],
+      "related_parts": [
+        "Traction Motor",
+        "Motor Controller",
+        "Motor Rotor Position Sensor",
+        "HV Contactor",
+        "Accelerator Pedal"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 29,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:motorcycle_creeps_with_clutch_disengaged",
+      "symptom": "motorcycle creeps with clutch disengaged",
+      "system": "clutch",
+      "diagnosis_steps": [
+        "adjust clutch free play",
+        "inspect clutch plates sticking"
+      ],
+      "related_parts": [
+        "clutch lever",
+        "clutch plate"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 27,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:no_cooling_from_ac",
+      "symptom": "No cooling from AC",
+      "system": "system:hvac",
+      "diagnosis_steps": [
+        "Check refrigerant charge via pressure gauges",
+        "Check compressor clutch engagement",
+        "Check AC fuse and relay",
+        "Test pressure switches",
+        "Inspect compressor belt"
+      ],
+      "related_parts": [
+        "AC compressor",
+        "Magnetic clutch",
+        "Refrigerant",
+        "Pressure switch",
+        "Compressor belt"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 29,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:no_horn_operation_poor_sound_horn_sounds_continuously",
+      "symptom": "No horn operation / poor sound / horn sounds continuously",
+      "system": "system:body_electrical",
+      "diagnosis_steps": [
+        "Check horn fuse",
+        "Test horn relay",
+        "Check horn button / steering contact",
+        "Replace horn if faulty"
+      ],
+      "related_parts": [
+        "Horn",
+        "Fuse",
+        "Relay"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 32,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:no_horn_poor_horn_continuous_horn",
+      "symptom": "No horn / poor horn / continuous horn",
+      "system": "Low Voltage Accessories",
+      "diagnosis_steps": [
+        "Test horn relay and fuse",
+        "Check horn button/switch",
+        "Measure horn coil resistance"
+      ],
+      "related_parts": [
+        "Horn"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 13,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:no_lights_come_on_when_ignition_switch_is_turned_on",
+      "symptom": "no lights come on when ignition switch is turned ON",
+      "system": "electrical",
+      "diagnosis_steps": [
+        "check battery voltage",
+        "inspect fuse",
+        "check ignition switch continuity",
+        "check wiring harness"
+      ],
+      "related_parts": [
+        "battery",
+        "fuse",
+        "ignition switch",
+        "wiring harness"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 28,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:no_sparks_at_plugs",
+      "symptom": "no sparks at plugs",
+      "system": "ignition",
+      "diagnosis_steps": [
+        "check spark plug gap",
+        "measure ignition coil primary/secondary resistance",
+        "inspect CDI unit",
+        "check pulse generator"
+      ],
+      "related_parts": [
+        "spark plug",
+        "ignition coil",
+        "CDI unit",
+        "pulse generator"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 28,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:no_turn_signal_flashing",
+      "symptom": "No turn signal flashing",
+      "system": "system:lighting",
+      "diagnosis_steps": [
+        "Check flasher unit",
+        "Check turn signal fuse",
+        "Check combination switch"
+      ],
+      "related_parts": [
+        "Flasher unit",
+        "Fuse",
+        "Combination switch"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 30,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:oil_contamination",
+      "symptom": "oil contamination",
+      "system": "lubrication",
+      "diagnosis_steps": [
+        "check head gasket for coolant/fuel ingress",
+        "change engine oil and filter"
+      ],
+      "related_parts": [
+        "gasket",
+        "oil filter"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 23,
+          "confidence": 0.8
+        }
+      ]
+    },
+    {
+      "id": "diag:oil_level_too_low",
+      "symptom": "oil level too low",
+      "system": "lubrication",
+      "diagnosis_steps": [
+        "check for leakage at oil seals",
+        "check oil consumption at rings",
+        "top up oil"
+      ],
+      "related_parts": [
+        "oil seal",
+        "piston ring"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 23,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:oil_pressure_warning_light_does_not_glow",
+      "symptom": "Oil pressure warning light does not glow",
+      "system": "system:dashboard",
+      "diagnosis_steps": [
+        "Check oil pressure switch",
+        "Check bulb",
+        "Check wiring"
+      ],
+      "related_parts": [
+        "Oil pressure light",
+        "Oil pressure switch"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 14,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:oil_pressure_warning_light_does_not_light_up_when_ignition_on_at_engine_off",
+      "symptom": "Oil pressure warning light does not light up when ignition on at engine off",
+      "system": "instrumentation",
+      "diagnosis_steps": [
+        "Check bulb",
+        "Check oil pressure switch",
+        "Check wiring"
+      ],
+      "related_parts": [
+        "oil pressure switch",
+        "oil pressure warning light"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 53,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:only_one_beam_high_or_low_does_not_light",
+      "symptom": "Only one beam (High or Low) does not light",
+      "system": "system:lighting",
+      "diagnosis_steps": [
+        "Check dimmer switch",
+        "Test bulb filament",
+        "Check high/low circuit wiring"
+      ],
+      "related_parts": [
+        "Dimmer switch",
+        "Headlight bulb",
+        "Combination switch"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 30,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:only_one_headlight_does_not_light_up",
+      "symptom": "Only one headlight does not light up",
+      "system": "system:lighting",
+      "diagnosis_steps": [
+        "Replace bulb",
+        "Check wiring to that headlight",
+        "Check ground at that lamp"
+      ],
+      "related_parts": [
+        "Headlight bulb",
+        "Wiring harness"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 30,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:overcharge_condition",
+      "symptom": "Overcharge condition",
+      "system": "system:charging",
+      "diagnosis_steps": [
+        "Test voltage regulator",
+        "Check alternator output",
+        "Check ECU charging control"
+      ],
+      "related_parts": [
+        "Voltage regulator",
+        "Alternator"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 26,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:parking_brake_not_holding",
+      "symptom": "parking brake not holding",
+      "system": "brakes",
+      "diagnosis_steps": [
+        "Inspect parking brake mechanism",
+        "Set parking brake cable/linkage adjustment",
+        "Inspect spring of shoe and lever"
+      ],
+      "related_parts": [
+        "parking brake",
+        "brake shoes"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 31,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:poor_fuel_economy_or_engine_performance",
+      "symptom": "poor fuel economy or engine performance",
+      "system": "fuel_feed_diesel",
+      "diagnosis_steps": [
+        "Perform engine tune-up",
+        "Test vacuum and compression",
+        "Set fuel injection pump timing",
+        "Overhaul and test injectors",
+        "Check idle speed",
+        "Obtain and interpret scan tool data (if electronic control)"
+      ],
+      "related_parts": [
+        "fuel injection pump",
+        "fuel injector",
+        "common rail",
+        "governor"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 28,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:poor_fuel_economy_or_poor_engine_performance",
+      "symptom": "Poor fuel economy or poor engine performance",
+      "system": "system:edc_mpfi",
+      "diagnosis_steps": [
+        "Scan for DTCs using scan tool",
+        "Test O2 sensor",
+        "Test MAF / MAP sensor",
+        "Check spark plugs",
+        "Check fuel filter and pressure"
+      ],
+      "related_parts": [
+        "Exhaust gas oxygen sensor",
+        "Mass airflow sensor",
+        "Spark plug",
+        "Fuel filter"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 24,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:poor_idling",
+      "symptom": "poor idling",
+      "system": "engine",
+      "diagnosis_steps": [
+        "check carburetor idle setting",
+        "check air leak at intake",
+        "check spark plug",
+        "check valve clearance"
+      ],
+      "related_parts": [
+        "carburetor",
+        "spark plug",
+        "tappet"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 22,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:power_tiller_will_not_steer_field_operation_issues",
+      "symptom": "power tiller will not steer / field operation issues",
+      "system": "power_tiller",
+      "diagnosis_steps": [
+        "Overhaul power tiller transmission",
+        "Inspect main clutch",
+        "Inspect steering clutch/brake mechanism",
+        "Test wheel hub",
+        "Carry out field operation check without and with implements"
+      ],
+      "related_parts": [
+        "power tiller main clutch",
+        "steering clutch",
+        "steering brake",
+        "power tiller transmission",
+        "power tiller wheel hub"
+      ],
+      "vehicle_types": [
+        "power_tiller"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 32,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:power_window_or_power_door_lock_no_operation",
+      "symptom": "Power window or power door lock - no operation",
+      "system": "electrical_accessories",
+      "diagnosis_steps": [
+        "Check individual motor operation",
+        "Check master switch",
+        "Check fuse and relay",
+        "Trace wiring"
+      ],
+      "related_parts": [
+        "power window motor",
+        "power door lock actuator",
+        "master switch",
+        "fuse"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 54,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:pto_not_engaging_or_pto_shaft_rpm_incorrect",
+      "symptom": "PTO not engaging or PTO shaft rpm incorrect",
+      "system": "pto",
+      "diagnosis_steps": [
+        "Service PTO unit of tractor",
+        "Measure rpm of PTO shaft against standard",
+        "Measure speed of belt pulley",
+        "Inspect PTO clutch engagement"
+      ],
+      "related_parts": [
+        "PTO shaft",
+        "PTO unit",
+        "PTO clutch",
+        "belt pulley"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 29,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:regen_braking_not_working",
+      "symptom": "Regen braking not working",
+      "system": "Regenerative Braking System",
+      "diagnosis_steps": [
+        "Check brake pedal sensor signal",
+        "Verify BMS is accepting regen current (SoC not at 100%)",
+        "Check battery temperature (regen disabled when cold)",
+        "Scan controller for regen inhibit flags"
+      ],
+      "related_parts": [
+        "Regenerative Braking Controller",
+        "Brake Pedal Sensor",
+        "BMS",
+        "Motor Controller"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 33,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:remote_keyless_entry_immobilizer_no_operation",
+      "symptom": "Remote keyless entry / immobilizer no operation",
+      "system": "electrical_accessories",
+      "diagnosis_steps": [
+        "Check key fob battery",
+        "Reprogram key to immobiliser",
+        "Check body control module",
+        "Check antenna coil around ignition lock"
+      ],
+      "related_parts": [
+        "immobilizer",
+        "key fob",
+        "body control module"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 54,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:rich_mixture",
+      "symptom": "rich mixture",
+      "system": "fuel",
+      "diagnosis_steps": [
+        "check choke stuck",
+        "check float level too high",
+        "check air filter dirty"
+      ],
+      "related_parts": [
+        "carburetor",
+        "carburetor float",
+        "air cleaner"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 24,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:self_start_not_cranking",
+      "symptom": "self start not cranking",
+      "system": "starting",
+      "diagnosis_steps": [
+        "check battery voltage",
+        "test starter relay",
+        "check starter motor brushes",
+        "inspect wiring"
+      ],
+      "related_parts": [
+        "self starter motor",
+        "power relay",
+        "battery"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 27,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:soft_suspension",
+      "symptom": "soft suspension",
+      "system": "suspension",
+      "diagnosis_steps": [
+        "check fork oil level/grade",
+        "check spring sag",
+        "check shock absorber damping"
+      ],
+      "related_parts": [
+        "fork spring",
+        "suspension oil",
+        "shock absorber"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 24,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:some_power_window_switches_do_not_operate",
+      "symptom": "Some power window switches do not operate",
+      "system": "system:body_electrical",
+      "diagnosis_steps": [
+        "Test individual door switch",
+        "Check wiring to motor",
+        "Test window motor"
+      ],
+      "related_parts": [
+        "Power window switch",
+        "Power window motor"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:speedometer_shows_no_operation",
+      "symptom": "Speedometer shows no operation",
+      "system": "system:dashboard",
+      "diagnosis_steps": [
+        "Check speedometer fuse",
+        "Check VSS / speed sensor",
+        "Check wiring harness and connectors",
+        "Replace instrument cluster if faulty"
+      ],
+      "related_parts": [
+        "Speedometer",
+        "Vehicle speed sensor",
+        "Fuse",
+        "Wiring harness"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 14,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:starter_motor_does_not_run",
+      "symptom": "Starter motor does not run",
+      "system": "system:starting",
+      "diagnosis_steps": [
+        "Check battery voltage and terminals",
+        "Test ignition switch",
+        "Test solenoid pull-in and hold-in coils",
+        "Test starter brushes and armature",
+        "Check starter ground"
+      ],
+      "related_parts": [
+        "Starter motor",
+        "Solenoid",
+        "Battery",
+        "Ignition switch"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 26,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:starter_motor_does_not_stop_running_after_key_release",
+      "symptom": "Starter motor does not stop running after key release",
+      "system": "system:starting",
+      "diagnosis_steps": [
+        "Check ignition switch",
+        "Check stuck solenoid contacts",
+        "Check starter relay"
+      ],
+      "related_parts": [
+        "Starter motor",
+        "Solenoid",
+        "Ignition switch",
+        "Relay"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 26,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:starter_motor_fails_to_crank",
+      "symptom": "Starter motor fails to crank",
+      "system": "system:starting_charging",
+      "diagnosis_steps": [
+        "Check battery charge and terminals",
+        "Test starter solenoid switch",
+        "Overhaul starter motor: brushes, armature, bearings",
+        "Test starter motor on bench"
+      ],
+      "related_parts": [
+        "Starter Motor",
+        "Starter Solenoid",
+        "Battery"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 28,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:starter_motor_not_cranking",
+      "symptom": "starter motor not cranking",
+      "system": "electrical_charging_starting",
+      "diagnosis_steps": [
+        "Test battery voltage",
+        "Test starter solenoid",
+        "Remove and overhaul starter motor",
+        "Test starter motor on bench"
+      ],
+      "related_parts": [
+        "starter motor",
+        "solenoid",
+        "battery"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:starter_motor_not_running_too_slow_runs_but_not_cranking_noise_does_not_stop_running",
+      "symptom": "Starter motor not running / too slow / runs but not cranking / noise / does not stop running",
+      "system": "starting",
+      "diagnosis_steps": [
+        "Perform pull-in test, hold-in test, pinion return test, no-load test on starter",
+        "Perform growler test on rotor/armature",
+        "Check battery state of charge",
+        "Check solenoid switch operation",
+        "Jump-start to isolate battery vs starter"
+      ],
+      "related_parts": [
+        "starter motor",
+        "solenoid switch",
+        "battery",
+        "starter pinion",
+        "flywheel ring gear"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 51,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:starter_motor_runs_but_too_slow_low_torque",
+      "symptom": "Starter motor runs but too slow (low torque)",
+      "system": "system:starting",
+      "diagnosis_steps": [
+        "Test battery under load",
+        "Check cable voltage drop",
+        "Inspect brushes",
+        "Test armature for shorts using growler"
+      ],
+      "related_parts": [
+        "Starter motor",
+        "Battery",
+        "Starter brushes",
+        "Armature"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 26,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:starter_runs_but_does_not_crank_engine",
+      "symptom": "Starter runs but does not crank engine",
+      "system": "system:starting",
+      "diagnosis_steps": [
+        "Inspect starter pinion / bendix",
+        "Inspect flywheel ring gear teeth",
+        "Check solenoid plunger return"
+      ],
+      "related_parts": [
+        "Starter motor",
+        "Pinion (plunger)",
+        "Solenoid"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 26,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:steering_wheel_feels_heavy_at_low_speed",
+      "symptom": "Steering wheel feels heavy at low speed",
+      "system": "system:power_steering",
+      "diagnosis_steps": [
+        "Check EPS warning on dash",
+        "Scan EPS ECU for DTC",
+        "Check EPS motor and torque sensor",
+        "Check wiring to EPS module"
+      ],
+      "related_parts": [
+        "Electric power assisted steering module"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 28,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:steers_to_one_side_does_not_track_straight",
+      "symptom": "steers to one side / does not track straight",
+      "system": "steering",
+      "diagnosis_steps": [
+        "check wheel alignment",
+        "inspect front fork for bend",
+        "check frame alignment"
+      ],
+      "related_parts": [
+        "telescopic front fork",
+        "wheel rim"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 24,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:suspension_defects_wheel_hop_unequal_ride_height_noises_fluid_leakage_excessive_travel_bounce_vehicle_crabbing",
+      "symptom": "Suspension defects - wheel hop / unequal ride height / noises / fluid leakage / excessive travel / bounce / vehicle crabbing",
+      "system": "suspension",
+      "diagnosis_steps": [
+        "Visual inspection for worn dampers",
+        "Check for worn joints and damaged linkages",
+        "Inspect shock absorber for fluid leakage",
+        "Measure ride height left vs right",
+        "Lubricate suspension pivots"
+      ],
+      "related_parts": [
+        "shock absorber",
+        "coil spring",
+        "leaf spring",
+        "suspension bush",
+        "ball joint"
+      ],
+      "vehicle_types": [
+        "LMV/HMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 47,
+          "confidence": 0.92
+        }
+      ]
+    },
+    {
+      "id": "diag:transmission_jumps_out_of_gear",
+      "symptom": "transmission jumps out of gear",
+      "system": "transmission",
+      "diagnosis_steps": [
+        "inspect shift fork wear",
+        "check dog clutch wear on gears",
+        "check detent mechanism"
+      ],
+      "related_parts": [
+        "shift fork",
+        "gearshift drum"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 27,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:turbocharger_malfunction_boost_loss_oil_leak_whine",
+      "symptom": "Turbocharger malfunction (boost loss / oil leak / whine)",
+      "system": "system:intake_exhaust",
+      "diagnosis_steps": [
+        "Dismantle turbocharger",
+        "Check axial clearance per service manual",
+        "Inspect for oil leak at seals",
+        "Check intercooler for leaks"
+      ],
+      "related_parts": [
+        "Turbocharger",
+        "Intercooler",
+        "Exhaust Manifold"
+      ],
+      "vehicle_types": [
+        "LMV/HMV diesel"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_diesel",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+          "page": 25,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:turbocharger_underperformance_or_axial_play",
+      "symptom": "turbocharger underperformance or axial play",
+      "system": "intake_exhaust",
+      "diagnosis_steps": [
+        "Dismantle and assemble turbocharger",
+        "Check axial clearance per service manual",
+        "Inspect intercooler",
+        "Check intake for leaks"
+      ],
+      "related_parts": [
+        "turbocharger",
+        "intercooler",
+        "intake manifold"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 27,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:turn_signal_flash_rate_high_or_one_side_flashes_only",
+      "symptom": "Turn signal flash rate high or one side flashes only",
+      "system": "system:lighting",
+      "diagnosis_steps": [
+        "Replace burnt turn bulb on affected side",
+        "Check flasher unit",
+        "Check wiring"
+      ],
+      "related_parts": [
+        "Turn signal lamp",
+        "Flasher unit"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 30,
+          "confidence": 0.95
+        }
+      ]
+    },
+    {
+      "id": "diag:turn_signal_hazard_warning_flash_rate_high_one_side_only_no_flashing_flash_rate_low",
+      "symptom": "Turn signal / hazard warning - flash rate high, one-side only, no flashing, flash rate low",
+      "system": "lighting",
+      "diagnosis_steps": [
+        "Check bulbs for correct wattage",
+        "Check ground connections",
+        "Check flasher relay",
+        "Check wiring continuity"
+      ],
+      "related_parts": [
+        "turn signal bulb",
+        "flasher relay",
+        "fuse"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 52,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:tyre_wear_abnormal_or_incorrect_inflation",
+      "symptom": "tyre wear abnormal or incorrect inflation",
+      "system": "wheels_tyres",
+      "diagnosis_steps": [
+        "Check tyre pressure against manufacturer recommendation",
+        "Inspect tread for wear patterns",
+        "Check rim for damage",
+        "Balance tractor wheels, practice tyre rotation",
+        "Tighten wheel nuts in correct sequence"
+      ],
+      "related_parts": [
+        "tyre",
+        "rim",
+        "tube",
+        "wheel lug nuts"
+      ],
+      "vehicle_types": [
+        "tractor"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_tractor",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+          "page": 30,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:tyre_wear_patterns_abnormal",
+      "symptom": "tyre wear patterns abnormal",
+      "system": "wheels",
+      "diagnosis_steps": [
+        "check tyre pressure",
+        "inspect wheel alignment",
+        "check suspension condition"
+      ],
+      "related_parts": [
+        "tyre",
+        "wheel rim",
+        "shock absorber"
+      ],
+      "vehicle_types": [
+        "2W"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_two_three_wheeler",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+          "page": 26,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:vehicle_pulls_to_one_side_during_straight_driving",
+      "symptom": "Vehicle pulls to one side during straight driving",
+      "system": "system:power_steering",
+      "diagnosis_steps": [
+        "Check tyre pressure",
+        "Inspect alignment",
+        "Check EPS module calibration"
+      ],
+      "related_parts": [
+        "Electric power assisted steering module"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 28,
+          "confidence": 0.7
+        }
+      ]
+    },
+    {
+      "id": "diag:vehicle_will_not_go_into_ready_no_power",
+      "symptom": "Vehicle will not go into Ready / no power",
+      "system": "High Voltage Distribution & Safety",
+      "diagnosis_steps": [
+        "Verify HVIL loop closed",
+        "Check 12V auxiliary battery voltage",
+        "Scan VCU/BMS for contactor fault",
+        "Inspect HV fuse"
+      ],
+      "related_parts": [
+        "HVIL Loop",
+        "HV Contactor",
+        "12V Auxiliary Battery",
+        "HV Fuse",
+        "BMS"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 28,
+          "confidence": 0.85
+        }
+      ]
+    },
+    {
+      "id": "diag:windshield_washer_does_not_spray",
+      "symptom": "Windshield washer does not spray",
+      "system": "system:body_electrical",
+      "diagnosis_steps": [
+        "Check washer fluid level",
+        "Test washer pump",
+        "Check nozzles for clogging",
+        "Check wiring"
+      ],
+      "related_parts": [
+        "Windshield washer pump"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:windshield_wiper_no_operation_intermittent_continuous_will_not_park",
+      "symptom": "Windshield wiper no operation / intermittent / continuous / will not park",
+      "system": "system:body_electrical",
+      "diagnosis_steps": [
+        "Check wiper fuse",
+        "Test wiper switch",
+        "Test wiper motor park contacts",
+        "Check wiring"
+      ],
+      "related_parts": [
+        "Windshield wiper motor",
+        "Wiper switch",
+        "Fuse"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_auto_electrical",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+          "page": 32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:windshield_wiper_washer_no_operation_intermittent_continuous_or_wipers_will_not_park",
+      "symptom": "Windshield wiper/washer - no operation, intermittent, continuous, or wipers will not park",
+      "system": "electrical_accessories",
+      "diagnosis_steps": [
+        "Check wiper motor operation",
+        "Check wiper switch",
+        "Check washer pump",
+        "Replace wiper blades if streaking"
+      ],
+      "related_parts": [
+        "wiper motor",
+        "wiper blade",
+        "washer pump",
+        "wiper switch"
+      ],
+      "vehicle_types": [
+        "LMV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_motor_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+          "page": 54,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "diag:wiper_no_operation_continuous_intermittent_fault",
+      "symptom": "Wiper no operation / continuous / intermittent fault",
+      "system": "Low Voltage Accessories",
+      "diagnosis_steps": [
+        "Check wiper relay and fuse",
+        "Inspect wiper switch/stalk",
+        "Measure wiper motor current",
+        "Check intermittent-wiper module"
+      ],
+      "related_parts": [
+        "Wiper Motor"
+      ],
+      "vehicle_types": [
+        "EV"
+      ],
+      "provenance": [
+        {
+          "method": "llm_extracted",
+          "trade": "mechanic_electric_vehicle",
+          "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+          "page": 13,
+          "confidence": 0.9
+        }
+      ]
+    }
+  ]
+}

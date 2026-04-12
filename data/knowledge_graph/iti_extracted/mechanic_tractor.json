@@ -1,0 +1,636 @@
+{
+  "trade": "Mechanic Tractor",
+  "trade_key": "mechanic_tractor",
+  "pdf_path": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+  "pages_total": 53,
+  "vehicle_types": ["tractor", "power_tiller"],
+  "systems": [
+    {
+      "system_name": "Diesel Engine (Tractor)",
+      "system_id": "system:tractor_diesel_engine",
+      "parts": [
+        {"name": "cylinder head", "aliases": ["head assembly"], "role": "houses valves, combustion chamber top", "source_page": 24},
+        {"name": "cylinder block", "aliases": ["engine block"], "role": "main engine structure housing cylinders", "source_page": 25},
+        {"name": "cylinder liner", "aliases": ["sleeve"], "role": "wear surface for piston travel", "source_page": 25},
+        {"name": "piston", "aliases": [], "role": "reciprocates in cylinder", "source_page": 25},
+        {"name": "piston rings", "aliases": ["compression rings", "oil rings"], "role": "seal combustion, control oil", "source_page": 25},
+        {"name": "piston pin", "aliases": ["gudgeon pin", "wrist pin"], "role": "connects piston to connecting rod", "source_page": 25},
+        {"name": "connecting rod", "aliases": ["con rod"], "role": "links piston to crankshaft", "source_page": 25},
+        {"name": "crankshaft", "aliases": ["crank"], "role": "converts reciprocating motion to rotary", "source_page": 25},
+        {"name": "camshaft", "aliases": [], "role": "operates valves via cam lobes", "source_page": 26},
+        {"name": "flywheel", "aliases": [], "role": "stores rotational energy, clutch mounting", "source_page": 26},
+        {"name": "vibration damper", "aliases": ["harmonic balancer"], "role": "damps crankshaft vibration", "source_page": 26},
+        {"name": "engine valves", "aliases": ["intake valve", "exhaust valve"], "role": "control gas flow in/out of cylinder", "source_page": 24},
+        {"name": "valve seats and inserts", "aliases": [], "role": "sealing surface for valves", "source_page": 24},
+        {"name": "rocker arm assembly", "aliases": [], "role": "transfers cam motion to valves", "source_page": 24},
+        {"name": "valve guide", "aliases": [], "role": "guides valve stem", "source_page": 24},
+        {"name": "main bearings", "aliases": ["shells"], "role": "support crankshaft", "source_page": 25},
+        {"name": "big end bearing", "aliases": [], "role": "connecting rod to crank journal", "source_page": 25},
+        {"name": "oil sump", "aliases": ["oil pan"], "role": "engine oil reservoir", "source_page": 25}
+      ],
+      "source_pages": [14, 24, 25, 26]
+    },
+    {
+      "system_name": "Cooling System",
+      "system_id": "system:cooling",
+      "parts": [
+        {"name": "radiator", "aliases": [], "role": "dissipates engine heat", "source_page": 14},
+        {"name": "radiator cap", "aliases": ["pressure cap"], "role": "maintains cooling system pressure", "source_page": 14},
+        {"name": "radiator hoses", "aliases": ["coolant hoses"], "role": "carry coolant", "source_page": 14},
+        {"name": "thermostat", "aliases": ["thermostat valve"], "role": "regulates coolant flow by temperature", "source_page": 14},
+        {"name": "water pump", "aliases": [], "role": "circulates coolant", "source_page": 14},
+        {"name": "fan belt", "aliases": ["alternator belt"], "role": "drives fan and alternator", "source_page": 14},
+        {"name": "coolant", "aliases": ["anti-freeze"], "role": "heat transfer fluid", "source_page": 26},
+        {"name": "thermo-switch", "aliases": [], "role": "triggers cooling fan", "source_page": 27},
+        {"name": "recovery system", "aliases": ["coolant reservoir"], "role": "catches overflow coolant", "source_page": 27}
+      ],
+      "source_pages": [14, 26, 27]
+    },
+    {
+      "system_name": "Lubrication System",
+      "system_id": "system:lubrication",
+      "parts": [
+        {"name": "oil pump", "aliases": [], "role": "circulates engine oil", "source_page": 14},
+        {"name": "oil filter", "aliases": [], "role": "filters engine oil", "source_page": 14},
+        {"name": "oil cooler", "aliases": [], "role": "cools engine oil", "source_page": 14},
+        {"name": "centrifugal oil filter", "aliases": [], "role": "secondary oil filtration", "source_page": 27},
+        {"name": "pressure relief valve", "aliases": [], "role": "limits oil pressure", "source_page": 14}
+      ],
+      "source_pages": [14, 27]
+    },
+    {
+      "system_name": "Intake and Exhaust System",
+      "system_id": "system:intake_exhaust",
+      "parts": [
+        {"name": "air cleaner", "aliases": ["air filter", "oil bath air cleaner"], "role": "filters intake air (oil bath common on tractors)", "source_page": 15},
+        {"name": "air compressor", "aliases": [], "role": "compressed air for brakes/accessories", "source_page": 15},
+        {"name": "turbocharger", "aliases": ["turbo"], "role": "boosts intake pressure using exhaust", "source_page": 15},
+        {"name": "supercharger", "aliases": [], "role": "mechanically driven intake boost", "source_page": 15},
+        {"name": "intercooler", "aliases": [], "role": "cools charged intake air", "source_page": 15},
+        {"name": "intake manifold", "aliases": [], "role": "distributes intake air to cylinders", "source_page": 27},
+        {"name": "exhaust manifold", "aliases": [], "role": "collects exhaust gases", "source_page": 15},
+        {"name": "muffler", "aliases": ["silencer", "resonator"], "role": "reduces exhaust noise", "source_page": 15},
+        {"name": "catalytic converter", "aliases": [], "role": "reduces emissions", "source_page": 15},
+        {"name": "diesel particulate filter", "aliases": ["DPF"], "role": "traps soot from diesel exhaust", "source_page": 28},
+        {"name": "exhaust gas recirculation valve", "aliases": ["EGR valve"], "role": "recirculates exhaust to reduce NOx", "source_page": 28},
+        {"name": "exhauster assembly", "aliases": [], "role": "creates vacuum for diesel accessories", "source_page": 15}
+      ],
+      "source_pages": [15, 27, 28]
+    },
+    {
+      "system_name": "Fuel Feed System (Diesel)",
+      "system_id": "system:fuel_feed_diesel",
+      "parts": [
+        {"name": "fuel tank", "aliases": ["diesel tank"], "role": "stores diesel fuel", "source_page": 15},
+        {"name": "fuel filter", "aliases": ["diesel filter"], "role": "filters diesel fuel", "source_page": 15},
+        {"name": "fuel feed pump", "aliases": ["lift pump"], "role": "delivers fuel from tank to injection pump", "source_page": 15},
+        {"name": "diesel fuel injection pump", "aliases": ["FIP", "injection pump"], "role": "meters and pressurizes fuel for injectors", "source_page": 15},
+        {"name": "fuel injector", "aliases": ["injector nozzle"], "role": "atomizes fuel into combustion chamber", "source_page": 28},
+        {"name": "governor", "aliases": [], "role": "regulates engine speed", "source_page": 28},
+        {"name": "glow plug", "aliases": [], "role": "aids cold diesel starting", "source_page": 28},
+        {"name": "common rail pressure pump", "aliases": ["CRDI pump", "high pressure pump"], "role": "generates rail pressure for CRDI", "source_page": 28},
+        {"name": "common rail", "aliases": ["CRDI rail"], "role": "stores high-pressure fuel for injectors", "source_page": 28},
+        {"name": "fuel lines", "aliases": ["fuel pipes"], "role": "carry fuel between components", "source_page": 15}
+      ],
+      "source_pages": [15, 28]
+    },
+    {
+      "system_name": "Clutch",
+      "system_id": "system:clutch",
+      "parts": [
+        {"name": "clutch plate", "aliases": ["driven plate", "friction disc"], "role": "transmits engine torque to gearbox", "source_page": 28},
+        {"name": "pressure plate", "aliases": ["driver plate"], "role": "clamps clutch plate to flywheel", "source_page": 28},
+        {"name": "torsion spring", "aliases": [], "role": "absorbs drivetrain shock", "source_page": 28},
+        {"name": "cushion spring", "aliases": [], "role": "smooths clutch engagement", "source_page": 28},
+        {"name": "clutch release bearing", "aliases": ["throwout bearing"], "role": "disengages clutch when pedal pressed", "source_page": 28},
+        {"name": "clutch shaft", "aliases": [], "role": "input shaft from clutch to gearbox", "source_page": 28},
+        {"name": "slave cylinder", "aliases": [], "role": "hydraulic actuator for clutch", "source_page": 28},
+        {"name": "clutch pedal", "aliases": [], "role": "driver operates clutch", "source_page": 15},
+        {"name": "operating fingers", "aliases": ["release fingers"], "role": "pressure plate levers", "source_page": 28}
+      ],
+      "source_pages": [15, 28]
+    },
+    {
+      "system_name": "Transmission / Gearbox",
+      "system_id": "system:transmission",
+      "parts": [
+        {"name": "gearbox", "aliases": ["manual transmission"], "role": "provides multiple gear ratios", "source_page": 15},
+        {"name": "auxiliary gearbox", "aliases": ["range gearbox", "high-low range"], "role": "adds extra ratios (tractor high/low range)", "source_page": 28},
+        {"name": "transfer case", "aliases": [], "role": "splits drive to front and rear axles (4WD)", "source_page": 28},
+        {"name": "epicyclic gear set", "aliases": ["planetary gear"], "role": "compact reduction gearing", "source_page": 28},
+        {"name": "torque converter", "aliases": [], "role": "fluid coupling", "source_page": 28},
+        {"name": "universal joint", "aliases": ["U-joint"], "role": "allows angled drive", "source_page": 28},
+        {"name": "propeller shaft", "aliases": ["prop shaft", "drive shaft"], "role": "transmits drive between gearbox and axle", "source_page": 28},
+        {"name": "driveline", "aliases": [], "role": "complete drive assembly", "source_page": 14}
+      ],
+      "source_pages": [15, 28]
+    },
+    {
+      "system_name": "Differential and Final Drive",
+      "system_id": "system:differential",
+      "parts": [
+        {"name": "differential", "aliases": ["diff"], "role": "allows wheels to rotate at different speeds", "source_page": 15},
+        {"name": "differential lock", "aliases": ["diff lock"], "role": "locks both wheels to rotate together for traction (key tractor feature)", "source_page": 28},
+        {"name": "crown wheel and pinion", "aliases": ["ring and pinion", "CWP"], "role": "final drive gearing", "source_page": 29},
+        {"name": "reduction gear", "aliases": ["final reduction"], "role": "additional speed reduction to wheels", "source_page": 28},
+        {"name": "rear axle wheel hub", "aliases": ["wheel hub"], "role": "mounts rear wheel, houses bearings", "source_page": 28},
+        {"name": "double reduction gearing", "aliases": [], "role": "two-stage reduction common on tractors", "source_page": 29}
+      ],
+      "source_pages": [15, 28, 29]
+    },
+    {
+      "system_name": "Power Take-Off (PTO)",
+      "system_id": "system:pto",
+      "parts": [
+        {"name": "PTO shaft", "aliases": ["power take-off shaft"], "role": "delivers engine power to implements", "source_page": 29},
+        {"name": "PTO unit", "aliases": ["PTO gearbox"], "role": "drives PTO shaft at standard rpm", "source_page": 15},
+        {"name": "belt pulley", "aliases": ["belly pulley"], "role": "alternative power takeoff via belt", "source_page": 29},
+        {"name": "PTO clutch", "aliases": [], "role": "engages/disengages PTO drive", "source_page": 29}
+      ],
+      "source_pages": [15, 29]
+    },
+    {
+      "system_name": "Steering System",
+      "system_id": "system:steering",
+      "parts": [
+        {"name": "steering wheel", "aliases": [], "role": "driver input", "source_page": 29},
+        {"name": "steering gear box", "aliases": [], "role": "converts steering rotation to linkage motion", "source_page": 15},
+        {"name": "tie-rod", "aliases": [], "role": "links steering to wheels", "source_page": 29},
+        {"name": "steering arm", "aliases": ["pitman arm"], "role": "transfers motion from gearbox to linkage", "source_page": 29},
+        {"name": "ball and socket joint", "aliases": ["ball joint"], "role": "articulating steering linkage joint", "source_page": 29},
+        {"name": "steering linkages", "aliases": [], "role": "connect steering components", "source_page": 15},
+        {"name": "front axle", "aliases": [], "role": "supports front wheels, pivots for steering", "source_page": 15},
+        {"name": "spindle hub", "aliases": ["steering knuckle"], "role": "wheel mounting and pivot", "source_page": 29},
+        {"name": "hydraulic steering pump", "aliases": ["power steering pump"], "role": "pressurizes fluid for power steering", "source_page": 29},
+        {"name": "distributor valve", "aliases": ["steering control valve"], "role": "directs hydraulic fluid in power steering", "source_page": 29},
+        {"name": "foot steerage pedal", "aliases": ["steering brake pedal"], "role": "tractor-specific: differential brake steering", "source_page": 29}
+      ],
+      "source_pages": [15, 29]
+    },
+    {
+      "system_name": "Suspension",
+      "system_id": "system:suspension",
+      "parts": [
+        {"name": "shackle", "aliases": [], "role": "leaf-spring pivot link", "source_page": 29},
+        {"name": "front suspension", "aliases": [], "role": "damps front axle motion", "source_page": 29},
+        {"name": "rear suspension", "aliases": [], "role": "damps rear axle motion", "source_page": 29},
+        {"name": "chassis frame", "aliases": ["tractor frame"], "role": "main structural frame", "source_page": 30}
+      ],
+      "source_pages": [15, 29, 30]
+    },
+    {
+      "system_name": "Wheels and Tyres",
+      "system_id": "system:wheels_tyres",
+      "parts": [
+        {"name": "rim", "aliases": ["wheel rim"], "role": "mounts tyre", "source_page": 30},
+        {"name": "tyre", "aliases": ["tire", "agricultural tyre", "radial tyre", "pneumatic tyre"], "role": "ground contact (tractors use large-lug agri tyres)", "source_page": 30},
+        {"name": "tube", "aliases": ["inner tube"], "role": "holds air inside tyre", "source_page": 30},
+        {"name": "wheel lug nuts", "aliases": [], "role": "secure wheel to hub", "source_page": 19}
+      ],
+      "source_pages": [30]
+    },
+    {
+      "system_name": "Brake System",
+      "system_id": "system:brakes",
+      "parts": [
+        {"name": "brake shoes", "aliases": [], "role": "drum brake friction elements", "source_page": 30},
+        {"name": "brake lining", "aliases": [], "role": "friction material on shoes", "source_page": 31},
+        {"name": "brake drum", "aliases": [], "role": "rotating drum for shoe contact", "source_page": 31},
+        {"name": "brake disc", "aliases": ["disc rotor"], "role": "rotating disc for pad contact", "source_page": 31},
+        {"name": "brake pads", "aliases": ["disc pads"], "role": "friction elements in disc brakes", "source_page": 31},
+        {"name": "brake caliper", "aliases": [], "role": "clamps pads onto disc", "source_page": 31},
+        {"name": "hydraulic brake cylinder", "aliases": ["wheel cylinder"], "role": "actuates brake shoes via hydraulic pressure", "source_page": 15},
+        {"name": "master cylinder", "aliases": ["tandem master cylinder"], "role": "generates brake hydraulic pressure", "source_page": 31},
+        {"name": "brake pedal", "aliases": [], "role": "driver input", "source_page": 31},
+        {"name": "brake lines", "aliases": ["brake pipes"], "role": "carry brake fluid", "source_page": 31},
+        {"name": "brake booster", "aliases": ["hydraulic brake booster", "power booster"], "role": "assists brake pedal effort", "source_page": 31},
+        {"name": "proportioning valve", "aliases": [], "role": "balances front/rear brake pressure", "source_page": 31},
+        {"name": "parking brake", "aliases": ["park brake", "handbrake"], "role": "holds tractor stationary", "source_page": 30},
+        {"name": "brake light switch", "aliases": [], "role": "activates brake lamps", "source_page": 31},
+        {"name": "backing plate", "aliases": [], "role": "mounts drum brake components", "source_page": 31}
+      ],
+      "source_pages": [15, 30, 31]
+    },
+    {
+      "system_name": "Charging and Starting System",
+      "system_id": "system:electrical_charging_starting",
+      "parts": [
+        {"name": "alternator", "aliases": [], "role": "generates electricity, charges battery", "source_page": 32},
+        {"name": "starter motor", "aliases": ["starter", "self starter"], "role": "cranks engine", "source_page": 32},
+        {"name": "battery", "aliases": ["lead acid battery", "SMF battery", "storage battery"], "role": "stores electrical energy", "source_page": 22},
+        {"name": "regulator unit", "aliases": ["voltage regulator"], "role": "regulates alternator output", "source_page": 32},
+        {"name": "ignition warning lamp", "aliases": ["charging warning light"], "role": "warns of charging fault", "source_page": 32},
+        {"name": "solenoid", "aliases": ["starter solenoid"], "role": "engages starter motor", "source_page": 22},
+        {"name": "relay", "aliases": [], "role": "switches electrical circuits", "source_page": 22}
+      ],
+      "source_pages": [22, 32]
+    },
+    {
+      "system_name": "Lighting System",
+      "system_id": "system:lighting",
+      "parts": [
+        {"name": "headlamp", "aliases": ["headlight"], "role": "forward illumination", "source_page": 32},
+        {"name": "lighting circuit", "aliases": ["wiring harness"], "role": "distributes power to lamps", "source_page": 32},
+        {"name": "fuses", "aliases": ["fusible links"], "role": "circuit overload protection", "source_page": 21},
+        {"name": "circuit breakers", "aliases": [], "role": "resettable overload protection", "source_page": 21}
+      ],
+      "source_pages": [21, 32]
+    },
+    {
+      "system_name": "Hydraulic System (Tractor Lift)",
+      "system_id": "system:hydraulic_lift",
+      "parts": [
+        {"name": "hydraulic lift", "aliases": ["3-point hitch lift", "implement lift"], "role": "raises/lowers implements (tractor-specific)", "source_page": 32},
+        {"name": "hydraulic jack", "aliases": [], "role": "lifting device", "source_page": 23},
+        {"name": "gear pump", "aliases": ["hydraulic pump"], "role": "generates hydraulic pressure", "source_page": 23},
+        {"name": "directional control valve", "aliases": ["2/2 valve", "3/2 valve", "4/2 valve", "4/3 valve"], "role": "directs hydraulic flow", "source_page": 23},
+        {"name": "pressure relief valve", "aliases": [], "role": "limits hydraulic pressure", "source_page": 23},
+        {"name": "non-return valve", "aliases": ["check valve"], "role": "allows one-way flow", "source_page": 23},
+        {"name": "flow control valve", "aliases": [], "role": "regulates hydraulic flow rate", "source_page": 23},
+        {"name": "single acting cylinder", "aliases": [], "role": "hydraulic actuator, one direction", "source_page": 23},
+        {"name": "double acting cylinder", "aliases": [], "role": "hydraulic actuator, both directions", "source_page": 23}
+      ],
+      "source_pages": [23, 32]
+    },
+    {
+      "system_name": "Tractor Implements and Attachments",
+      "system_id": "system:implements",
+      "parts": [
+        {"name": "plough", "aliases": ["plow", "MB plough", "mouldboard plough", "hal"], "role": "primary tillage implement", "source_page": 32},
+        {"name": "harrow", "aliases": ["disc harrow"], "role": "secondary tillage, breaks clods", "source_page": 32},
+        {"name": "cultivator", "aliases": ["tiller"], "role": "loosens soil between crop rows", "source_page": 32},
+        {"name": "seed drill", "aliases": [], "role": "sows seeds in rows", "source_page": 32},
+        {"name": "tractor trailer", "aliases": ["trolley", "trailer"], "role": "cargo hauling", "source_page": 32},
+        {"name": "draw bar", "aliases": ["drawbar"], "role": "towing attachment point", "source_page": 32},
+        {"name": "top link", "aliases": ["three-point top link"], "role": "upper link of 3-point hitch", "source_page": 32},
+        {"name": "three-point hitch", "aliases": ["3-point linkage", "teen-point hitch"], "role": "standard implement attachment", "source_page": 32},
+        {"name": "single point hitch", "aliases": [], "role": "simple towing hitch", "source_page": 32},
+        {"name": "belly pulley", "aliases": ["belt pulley"], "role": "stationary belt-drive power output", "source_page": 32}
+      ],
+      "source_pages": [16, 32]
+    },
+    {
+      "system_name": "Power Tiller (Two-Wheel Tractor)",
+      "system_id": "system:power_tiller",
+      "parts": [
+        {"name": "power tiller main clutch", "aliases": [], "role": "engine-to-transmission clutch", "source_page": 32},
+        {"name": "steering clutch", "aliases": ["side clutch"], "role": "steers power tiller by disengaging one side", "source_page": 32},
+        {"name": "steering brake", "aliases": [], "role": "paired with steering clutch for turns", "source_page": 32},
+        {"name": "power tiller transmission", "aliases": [], "role": "gear reduction for two-wheel tractor", "source_page": 32},
+        {"name": "power tiller wheel hub", "aliases": [], "role": "wheel mount", "source_page": 32}
+      ],
+      "source_pages": [32]
+    },
+    {
+      "system_name": "Dashboard and Gauges",
+      "system_id": "system:dashboard",
+      "parts": [
+        {"name": "dashboard gauges", "aliases": ["instrument cluster"], "role": "driver information display", "source_page": 13},
+        {"name": "oil pressure gauge", "aliases": [], "role": "displays engine oil pressure", "source_page": 20},
+        {"name": "temperature gauge", "aliases": [], "role": "displays coolant temperature", "source_page": 13},
+        {"name": "tachometer", "aliases": ["RPM meter"], "role": "engine speed", "source_page": 13},
+        {"name": "fuel gauge", "aliases": [], "role": "fuel level", "source_page": 13}
+      ],
+      "source_pages": [13, 20]
+    }
+  ],
+  "diagnostics": [
+    {
+      "symptom": "engine overheating or undercooling",
+      "system": "cooling",
+      "diagnosis_steps": [
+        "Check coolant level and quality",
+        "Reverse-flush cooling system with flushing solution",
+        "Test thermostat valve for proper opening temperature",
+        "Check radiator cap for pressure holding",
+        "Inspect radiator hoses for cracks",
+        "Check water pump for leaks and impeller wear",
+        "Check fan/alternator belt tension"
+      ],
+      "related_parts": ["radiator", "thermostat", "water pump", "radiator cap", "radiator hoses", "fan belt", "coolant"],
+      "vehicle_type": "tractor",
+      "source_page": 26,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "low or high engine oil pressure",
+      "system": "lubrication",
+      "diagnosis_steps": [
+        "Test oil pressure with gauge",
+        "Check engine oil level and grade (SAE spec)",
+        "Inspect oil pump for wear",
+        "Check oil filter and replace",
+        "Test pressure relief valve",
+        "Check for worn bearings causing low pressure"
+      ],
+      "related_parts": ["oil pump", "oil filter", "pressure relief valve", "main bearings", "big end bearing"],
+      "vehicle_type": "tractor",
+      "source_page": 27,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "high oil consumption",
+      "system": "lubrication",
+      "diagnosis_steps": [
+        "Check piston rings for wear and ring gap",
+        "Check valve stem oil seals",
+        "Inspect cylinder liner for ovality and taper"
+      ],
+      "related_parts": ["piston rings", "valve stem oil seals", "cylinder liner"],
+      "vehicle_type": "tractor",
+      "source_page": 27,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "diesel engine hard to start or air lock in fuel system",
+      "system": "fuel_feed_diesel",
+      "diagnosis_steps": [
+        "Check for leakages in diesel fuel line",
+        "Bleed the fuel system to vent trapped air",
+        "Service fuel feed pump",
+        "Service fuel filter",
+        "Check injection pump timing",
+        "Test injectors for spray pattern and pressure",
+        "Check glow plug operation (cold start)"
+      ],
+      "related_parts": ["fuel feed pump", "fuel filter", "fuel injection pump", "fuel injector", "fuel lines", "glow plug"],
+      "vehicle_type": "tractor",
+      "source_page": 15,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "poor fuel economy or engine performance",
+      "system": "fuel_feed_diesel",
+      "diagnosis_steps": [
+        "Perform engine tune-up",
+        "Test vacuum and compression",
+        "Set fuel injection pump timing",
+        "Overhaul and test injectors",
+        "Check idle speed",
+        "Obtain and interpret scan tool data (if electronic control)"
+      ],
+      "related_parts": ["fuel injection pump", "fuel injector", "common rail", "governor"],
+      "vehicle_type": "tractor",
+      "source_page": 28,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "clutch slipping or clutch pedal free play incorrect",
+      "system": "clutch",
+      "diagnosis_steps": [
+        "Adjust clutch pedal free play",
+        "Dismantle and inspect clutch plate for wear",
+        "Reline clutch plate if worn",
+        "Inspect pressure plate and release bearing",
+        "Check slave cylinder and oil seal"
+      ],
+      "related_parts": ["clutch plate", "pressure plate", "clutch release bearing", "slave cylinder", "clutch pedal"],
+      "vehicle_type": "tractor",
+      "source_page": 15,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "PTO not engaging or PTO shaft rpm incorrect",
+      "system": "pto",
+      "diagnosis_steps": [
+        "Service PTO unit of tractor",
+        "Measure rpm of PTO shaft against standard",
+        "Measure speed of belt pulley",
+        "Inspect PTO clutch engagement"
+      ],
+      "related_parts": ["PTO shaft", "PTO unit", "PTO clutch", "belt pulley"],
+      "vehicle_type": "tractor",
+      "source_page": 29,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "differential or final drive noise / wheel traction loss",
+      "system": "differential",
+      "diagnosis_steps": [
+        "Overhaul differential unit",
+        "Adjust crown wheel and pinion backlash",
+        "Service reduction gear and rear axle wheel hub",
+        "Check differential lock engagement"
+      ],
+      "related_parts": ["differential", "crown wheel and pinion", "reduction gear", "rear axle wheel hub", "differential lock"],
+      "vehicle_type": "tractor",
+      "source_page": 29,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "hard steering or excessive steering play",
+      "system": "steering",
+      "diagnosis_steps": [
+        "Inspect steering linkages for excessive play",
+        "Check and adjust tie-rod and ball joints",
+        "Service steering gear box",
+        "Remove and repair front axle assembly",
+        "For hydraulic steering: check pump pressure, distributor valves, hoses"
+      ],
+      "related_parts": ["steering linkages", "tie-rod", "ball and socket joint", "steering gear box", "front axle", "hydraulic steering pump", "distributor valve"],
+      "vehicle_type": "tractor",
+      "source_page": 29,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "brake ineffective / spongy pedal",
+      "system": "brakes",
+      "diagnosis_steps": [
+        "Test brake effectiveness",
+        "Overhaul brakes including cleaning and inspection",
+        "Reline brake shoes, set actuating clearance",
+        "Inspect hydraulic brake cylinder and replace washers/oil seals",
+        "Bleed the brake system",
+        "Skim brake drum or disc plate if warped"
+      ],
+      "related_parts": ["brake shoes", "brake lining", "brake drum", "hydraulic brake cylinder", "master cylinder", "brake lines"],
+      "vehicle_type": "tractor",
+      "source_page": 31,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "parking brake not holding",
+      "system": "brakes",
+      "diagnosis_steps": [
+        "Inspect parking brake mechanism",
+        "Set parking brake cable/linkage adjustment",
+        "Inspect spring of shoe and lever"
+      ],
+      "related_parts": ["parking brake", "brake shoes"],
+      "vehicle_type": "tractor",
+      "source_page": 31,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "tyre wear abnormal or incorrect inflation",
+      "system": "wheels_tyres",
+      "diagnosis_steps": [
+        "Check tyre pressure against manufacturer recommendation",
+        "Inspect tread for wear patterns",
+        "Check rim for damage",
+        "Balance tractor wheels, practice tyre rotation",
+        "Tighten wheel nuts in correct sequence"
+      ],
+      "related_parts": ["tyre", "rim", "tube", "wheel lug nuts"],
+      "vehicle_type": "tractor",
+      "source_page": 30,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "battery drain / parasitic draw / battery not charging",
+      "system": "electrical_charging_starting",
+      "diagnosis_steps": [
+        "Clean and top up lead acid battery",
+        "Test battery with hydrometer",
+        "Measure key-off parasitic draw",
+        "Test alternator output and regulator unit",
+        "Check ignition warning lamp operation",
+        "Inspect charging circuit wiring"
+      ],
+      "related_parts": ["battery", "alternator", "regulator unit", "ignition warning lamp"],
+      "vehicle_type": "tractor",
+      "source_page": 22,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "starter motor not cranking",
+      "system": "electrical_charging_starting",
+      "diagnosis_steps": [
+        "Test battery voltage",
+        "Test starter solenoid",
+        "Remove and overhaul starter motor",
+        "Test starter motor on bench"
+      ],
+      "related_parts": ["starter motor", "solenoid", "battery"],
+      "vehicle_type": "tractor",
+      "source_page": 32,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "hydraulic lift not working / 3-point hitch won't raise",
+      "system": "hydraulic_lift",
+      "diagnosis_steps": [
+        "Check hydraulic fluid level and quality",
+        "Trace hydraulic circuit to hydraulic lift",
+        "Test gear pump output pressure",
+        "Check directional control valve operation",
+        "Test pressure relief valve setting",
+        "Inspect hydraulic cylinder and seals"
+      ],
+      "related_parts": ["hydraulic lift", "gear pump", "directional control valve", "pressure relief valve", "double acting cylinder"],
+      "vehicle_type": "tractor",
+      "source_page": 23,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "turbocharger underperformance or axial play",
+      "system": "intake_exhaust",
+      "diagnosis_steps": [
+        "Dismantle and assemble turbocharger",
+        "Check axial clearance per service manual",
+        "Inspect intercooler",
+        "Check intake for leaks"
+      ],
+      "related_parts": ["turbocharger", "intercooler", "intake manifold"],
+      "vehicle_type": "tractor",
+      "source_page": 27,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "exhaust leakage or noise",
+      "system": "intake_exhaust",
+      "diagnosis_steps": [
+        "Check exhaust leakages and rubber mounting",
+        "Service exhaust manifold",
+        "Check and replace catalytic converter",
+        "Check and replace muffler/resonator"
+      ],
+      "related_parts": ["exhaust manifold", "muffler", "catalytic converter"],
+      "vehicle_type": "tractor",
+      "source_page": 15,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "power tiller will not steer / field operation issues",
+      "system": "power_tiller",
+      "diagnosis_steps": [
+        "Overhaul power tiller transmission",
+        "Inspect main clutch",
+        "Inspect steering clutch/brake mechanism",
+        "Test wheel hub",
+        "Carry out field operation check without and with implements"
+      ],
+      "related_parts": ["power tiller main clutch", "steering clutch", "steering brake", "power tiller transmission", "power tiller wheel hub"],
+      "vehicle_type": "power_tiller",
+      "source_page": 32,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "implement not hitching or operating correctly",
+      "system": "implements",
+      "diagnosis_steps": [
+        "Check plough, harrow, cultivator, seed drill, trailer for serviceability",
+        "Lubricate implements",
+        "Perform hitching practice (single and three point)",
+        "Set drawbar to correct height",
+        "Adjust implements for correct field operation"
+      ],
+      "related_parts": ["plough", "harrow", "cultivator", "seed drill", "tractor trailer", "draw bar", "top link", "three-point hitch"],
+      "vehicle_type": "tractor",
+      "source_page": 32,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "dashboard gauge showing incorrect reading",
+      "system": "dashboard",
+      "diagnosis_steps": [
+        "Identify different gauges fitted on dashboard",
+        "Perform daily checks before starting engine",
+        "Record reading and compare with standard",
+        "Repair or replace defective gauges"
+      ],
+      "related_parts": ["dashboard gauges", "oil pressure gauge", "temperature gauge", "tachometer", "fuel gauge"],
+      "vehicle_type": "tractor",
+      "source_page": 13,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "engine compression low / unusual noise and knocks",
+      "system": "tractor_diesel_engine",
+      "diagnosis_steps": [
+        "Test cylinder compression",
+        "Check valve clearances and adjust",
+        "Inspect piston rings, ring gap, piston skirt",
+        "Measure cylinder liner ovality and taper",
+        "Check crankshaft ovality and taperness",
+        "Check connecting rod bend and twist"
+      ],
+      "related_parts": ["piston rings", "cylinder liner", "crankshaft", "connecting rod", "engine valves", "valve seats and inserts"],
+      "vehicle_type": "tractor",
+      "source_page": 25,
+      "confidence": 0.9
+    }
+  ],
+  "aliases": [
+    {"canonical": "power take-off", "alias": "PTO", "source_page": 29},
+    {"canonical": "power tiller", "alias": "two-wheel tractor", "source_page": 32},
+    {"canonical": "belt pulley", "alias": "belly pulley", "source_page": 32},
+    {"canonical": "mouldboard plough", "alias": "MB plough", "source_page": 32},
+    {"canonical": "three-point hitch", "alias": "three-point linkage", "source_page": 32},
+    {"canonical": "differential lock", "alias": "diff lock", "source_page": 28},
+    {"canonical": "crown wheel and pinion", "alias": "CWP", "source_page": 29},
+    {"canonical": "common rail diesel injection", "alias": "CRDI", "source_page": 28},
+    {"canonical": "fuel injection pump", "alias": "FIP", "source_page": 15},
+    {"canonical": "exhaust gas recirculation", "alias": "EGR", "source_page": 28},
+    {"canonical": "diesel particulate filter", "alias": "DPF", "source_page": 28},
+    {"canonical": "compression ignition engine", "alias": "C.I. engine", "source_page": 24},
+    {"canonical": "spark ignition engine", "alias": "S.I. engine", "source_page": 24},
+    {"canonical": "stay maintenance free battery", "alias": "SMF battery", "source_page": 22},
+    {"canonical": "4-wheel drive", "alias": "4x4", "source_page": 28},
+    {"canonical": "tractor trailer", "alias": "trolley", "source_page": 32},
+    {"canonical": "auxiliary gearbox", "alias": "range gearbox", "source_page": 28},
+    {"canonical": "turbocharger", "alias": "turbo", "source_page": 15},
+    {"canonical": "starter motor", "alias": "self starter", "source_page": 32},
+    {"canonical": "muffler", "alias": "silencer", "source_page": 15}
+  ]
+}

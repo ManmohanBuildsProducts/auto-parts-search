@@ -1,0 +1,320 @@
+{
+  "trade": "Mechanic Auto Electrical & Electronics",
+  "trade_key": "mechanic_auto_electrical",
+  "pdf_path": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+  "pages_total": 48,
+  "vehicle_types": ["LMV", "HMV"],
+  "systems": [
+    {
+      "system_name": "Battery System",
+      "system_id": "system:battery",
+      "parts": [
+        {"name": "Lead acid battery", "aliases": ["battery", "lead-acid battery"], "role": "primary 12V energy storage", "source_page": 21},
+        {"name": "Stay Maintenance Free battery", "aliases": ["SMF battery", "maintenance free battery"], "role": "sealed battery variant", "source_page": 21},
+        {"name": "Hydrometer", "aliases": [], "role": "specific gravity tester", "source_page": 6},
+        {"name": "Heavy discharge tester", "aliases": [], "role": "battery load tester", "source_page": 6},
+        {"name": "Battery charger", "aliases": ["charger"], "role": "recharges battery", "source_page": 21}
+      ],
+      "source_pages": [6, 21]
+    },
+    {
+      "system_name": "Charging System",
+      "system_id": "system:charging",
+      "parts": [
+        {"name": "Alternator", "aliases": ["dynamo", "generator"], "role": "converts mechanical to electrical energy, charges battery", "source_page": 26},
+        {"name": "Rotor", "aliases": [], "role": "rotating field winding of alternator", "source_page": 26},
+        {"name": "Stator", "aliases": [], "role": "stationary winding of alternator", "source_page": 26},
+        {"name": "Rectifier assembly", "aliases": ["rectifier"], "role": "converts AC to DC in alternator", "source_page": 26},
+        {"name": "Slip ring and brush assembly", "aliases": ["slip ring", "brushes"], "role": "transfers current to rotor", "source_page": 26},
+        {"name": "Voltage regulator", "aliases": ["cut out"], "role": "regulates alternator output voltage", "source_page": 6},
+        {"name": "Alternator cooling fan", "aliases": ["fan"], "role": "cools alternator", "source_page": 26},
+        {"name": "Drive belt", "aliases": ["engine drive belt", "fan belt", "alternator belt"], "role": "drives alternator from crankshaft", "source_page": 26},
+        {"name": "Belt tensioner", "aliases": ["tensioner", "pulley tensioner"], "role": "maintains belt tension", "source_page": 26},
+        {"name": "Charging warning lamp", "aliases": ["battery warning light", "charge indicator"], "role": "indicates charging fault", "source_page": 26}
+      ],
+      "source_pages": [6, 21, 26]
+    },
+    {
+      "system_name": "Starting System",
+      "system_id": "system:starting",
+      "parts": [
+        {"name": "Starter motor", "aliases": ["self", "self starter", "starter"], "role": "cranks engine for starting", "source_page": 25},
+        {"name": "Solenoid", "aliases": ["starter solenoid"], "role": "engages starter pinion and switches heavy current", "source_page": 21},
+        {"name": "Pinion (plunger)", "aliases": ["starter pinion", "bendix"], "role": "engages flywheel ring gear", "source_page": 25},
+        {"name": "Armature", "aliases": [], "role": "rotating part of starter motor", "source_page": 25},
+        {"name": "Field coil", "aliases": [], "role": "provides magnetic field in starter", "source_page": 25},
+        {"name": "Commutator", "aliases": [], "role": "commutation in starter motor", "source_page": 25},
+        {"name": "Starter brushes", "aliases": ["brushes"], "role": "conducts current to armature", "source_page": 25},
+        {"name": "Ignition switch", "aliases": ["start switch", "key switch"], "role": "energizes starter circuit", "source_page": 27}
+      ],
+      "source_pages": [6, 21, 25]
+    },
+    {
+      "system_name": "Ignition System",
+      "system_id": "system:ignition",
+      "parts": [
+        {"name": "Ignition coil", "aliases": ["coil"], "role": "steps up voltage for spark", "source_page": 24},
+        {"name": "Spark plug", "aliases": ["plug"], "role": "ignites air-fuel mixture", "source_page": 24},
+        {"name": "Distributor", "aliases": [], "role": "distributes high voltage to plugs", "source_page": 6},
+        {"name": "Condenser", "aliases": ["capacitor"], "role": "prevents contact point arcing", "source_page": 6},
+        {"name": "Ballast resistor", "aliases": [], "role": "limits primary current", "source_page": 24},
+        {"name": "High-tension leads", "aliases": ["HT leads", "plug wires", "spark plug wires"], "role": "carry high voltage to plugs", "source_page": 24},
+        {"name": "Hall effect sensor", "aliases": ["hall sensor"], "role": "crank/cam position sensing for ignition", "source_page": 24},
+        {"name": "Optical sensor", "aliases": [], "role": "ignition triggering", "source_page": 24},
+        {"name": "Distributorless ignition system", "aliases": ["DIS"], "role": "coil-on-plug ignition without distributor", "source_page": 24}
+      ],
+      "source_pages": [14, 24]
+    },
+    {
+      "system_name": "EDC / Fuel Injection System",
+      "system_id": "system:edc_mpfi",
+      "parts": [
+        {"name": "Electronic Control Unit", "aliases": ["ECU", "ECM"], "role": "controls fuel and ignition", "source_page": 27},
+        {"name": "Fuel pump", "aliases": ["petrol pump", "EFI fuel pump"], "role": "delivers fuel to injectors", "source_page": 27},
+        {"name": "Fuel filter", "aliases": [], "role": "filters fuel contaminants", "source_page": 27},
+        {"name": "Fuel injector", "aliases": ["injector"], "role": "sprays fuel into manifold/cylinder", "source_page": 27},
+        {"name": "Common Rail Diesel Injection system", "aliases": ["CRDI", "CRDe"], "role": "high pressure diesel fuel injection", "source_page": 27},
+        {"name": "HEUI injector", "aliases": [], "role": "hydraulically actuated electronically controlled unit injector", "source_page": 27},
+        {"name": "Intake air temperature sensor", "aliases": ["IAT sensor"], "role": "measures intake air temperature", "source_page": 28},
+        {"name": "Mass airflow sensor", "aliases": ["MAF sensor"], "role": "measures air mass flow", "source_page": 28},
+        {"name": "Manifold absolute pressure sensor", "aliases": ["MAP sensor"], "role": "measures intake manifold pressure", "source_page": 28},
+        {"name": "Throttle position sensor", "aliases": ["TPS"], "role": "measures throttle opening", "source_page": 28},
+        {"name": "Exhaust gas oxygen sensor", "aliases": ["O2 sensor", "lambda sensor", "oxygen sensor"], "role": "measures exhaust oxygen", "source_page": 28},
+        {"name": "Crankshaft position sensor", "aliases": ["crank sensor", "CKP sensor"], "role": "engine position/speed", "source_page": 27},
+        {"name": "Camshaft position sensor", "aliases": ["cam sensor", "CMP sensor"], "role": "cam phase detection", "source_page": 27},
+        {"name": "Coolant temperature sensor", "aliases": ["ECT sensor", "CTS"], "role": "measures coolant temperature", "source_page": 27},
+        {"name": "Pressure sensor", "aliases": [], "role": "measures system pressure", "source_page": 27},
+        {"name": "Potentiometer", "aliases": [], "role": "position measurement", "source_page": 27},
+        {"name": "Auxiliary air valve", "aliases": ["idle air control valve"], "role": "idle air bypass", "source_page": 27},
+        {"name": "Idle speed control device", "aliases": ["IAC", "ISC"], "role": "controls idle RPM", "source_page": 27},
+        {"name": "Inertia sensor", "aliases": [], "role": "fuel cutoff on impact", "source_page": 27},
+        {"name": "Malfunction indicator lamp", "aliases": ["MIL", "check engine light", "engine warning light"], "role": "indicates DTC set", "source_page": 27},
+        {"name": "Scan tool", "aliases": ["OBD scanner", "diagnostic scan tool"], "role": "retrieves DTCs and live data", "source_page": 27}
+      ],
+      "source_pages": [15, 27, 28]
+    },
+    {
+      "system_name": "Power Steering (Electric)",
+      "system_id": "system:power_steering",
+      "parts": [
+        {"name": "Electric power assisted steering module", "aliases": ["EPS", "EPAS", "power steering control module"], "role": "electrically assists steering", "source_page": 28},
+        {"name": "Steering wheel", "aliases": [], "role": "driver input", "source_page": 28}
+      ],
+      "source_pages": [15, 28]
+    },
+    {
+      "system_name": "Braking System (Electronic)",
+      "system_id": "system:brakes_electronic",
+      "parts": [
+        {"name": "ABS control unit", "aliases": ["ABS module", "ABS ECU"], "role": "antilock brake controller", "source_page": 28},
+        {"name": "ABS master cylinder", "aliases": [], "role": "hydraulic master cylinder for ABS", "source_page": 28},
+        {"name": "Hydraulic control unit", "aliases": ["HCU", "ABS pump"], "role": "modulates brake pressure", "source_page": 28},
+        {"name": "Wheel speed sensor", "aliases": ["ABS sensor"], "role": "measures wheel rotation for ABS", "source_page": 28},
+        {"name": "ABS warning lamp", "aliases": ["ABS light"], "role": "indicates ABS fault", "source_page": 28},
+        {"name": "EBD control unit", "aliases": ["EBD"], "role": "electronic brake force distribution", "source_page": 29},
+        {"name": "Electro hydraulic braking unit", "aliases": ["EHB"], "role": "electro-hydraulic brake actuation", "source_page": 28},
+        {"name": "Electric brake", "aliases": [], "role": "electric actuated brake", "source_page": 28},
+        {"name": "Brake warning light", "aliases": [], "role": "indicates low fluid or parking brake", "source_page": 31}
+      ],
+      "source_pages": [28, 29, 31]
+    },
+    {
+      "system_name": "Transmission (Electronic)",
+      "system_id": "system:transmission_electronic",
+      "parts": [
+        {"name": "Automatic transmission ECU", "aliases": ["TCU", "TCM"], "role": "controls auto transmission shifts", "source_page": 29},
+        {"name": "Shift lever switch", "aliases": ["gear position switch", "neutral safety switch"], "role": "detects gear selector position", "source_page": 28},
+        {"name": "Vehicle speed sensor", "aliases": ["VSS"], "role": "measures vehicle speed", "source_page": 28},
+        {"name": "Transmission wiring harness coupler", "aliases": [], "role": "transmission electrical connector", "source_page": 28}
+      ],
+      "source_pages": [28, 29]
+    },
+    {
+      "system_name": "HVAC / Air Conditioning",
+      "system_id": "system:hvac",
+      "parts": [
+        {"name": "AC compressor", "aliases": ["compressor"], "role": "compresses refrigerant", "source_page": 29},
+        {"name": "Condenser", "aliases": ["AC condenser"], "role": "rejects heat from refrigerant", "source_page": 29},
+        {"name": "Evaporator", "aliases": ["cooling coil"], "role": "cools cabin air", "source_page": 29},
+        {"name": "Receiver drier", "aliases": ["drier", "dryer"], "role": "removes moisture from refrigerant", "source_page": 29},
+        {"name": "Thermostatic expansion valve", "aliases": ["TX valve", "expansion valve"], "role": "meters refrigerant flow", "source_page": 29},
+        {"name": "Magnetic clutch", "aliases": ["AC clutch", "compressor clutch"], "role": "engages compressor", "source_page": 29},
+        {"name": "Blower motor", "aliases": ["blower", "AC blower"], "role": "circulates cabin air", "source_page": 29},
+        {"name": "Compressor belt", "aliases": ["AC belt"], "role": "drives AC compressor", "source_page": 29},
+        {"name": "Refrigerant", "aliases": ["AC gas", "gas"], "role": "working fluid of AC", "source_page": 29},
+        {"name": "Pressure switch", "aliases": ["high/low pressure switch", "AC pressure switch"], "role": "protects AC system from over/under pressure", "source_page": 29},
+        {"name": "Ambient air temperature sensor", "aliases": [], "role": "measures outside air temp", "source_page": 29},
+        {"name": "Evaporator temperature sensor", "aliases": [], "role": "measures evaporator temp", "source_page": 29},
+        {"name": "Servomotor", "aliases": [], "role": "actuates HVAC doors/flaps", "source_page": 29},
+        {"name": "Heating element", "aliases": ["heater core"], "role": "cabin heating", "source_page": 29},
+        {"name": "AC ECU", "aliases": ["climate control module"], "role": "controls automatic climate", "source_page": 29}
+      ],
+      "source_pages": [15, 29]
+    },
+    {
+      "system_name": "Lighting System",
+      "system_id": "system:lighting",
+      "parts": [
+        {"name": "Headlight bulb", "aliases": ["head lamp", "head light"], "role": "forward illumination", "source_page": 30},
+        {"name": "Sealed beam headlamp", "aliases": [], "role": "integrated bulb-reflector headlight", "source_page": 31},
+        {"name": "Halogen sealed beam", "aliases": ["halogen headlight"], "role": "halogen headlamp", "source_page": 31},
+        {"name": "Composite headlamp", "aliases": [], "role": "composite housing headlight", "source_page": 31},
+        {"name": "High intensity discharge headlight", "aliases": ["HID", "xenon headlight"], "role": "HID headlamp", "source_page": 31},
+        {"name": "LED light", "aliases": ["LED"], "role": "solid state lighting", "source_page": 31},
+        {"name": "Dimmer switch", "aliases": ["high beam switch", "dipper"], "role": "toggles hi/lo beam", "source_page": 31},
+        {"name": "Combination switch", "aliases": ["multi-function switch"], "role": "stalk switch for lights/wipers/turn", "source_page": 15},
+        {"name": "Park light", "aliases": ["parking light"], "role": "front parking indicator", "source_page": 31},
+        {"name": "Tail light", "aliases": ["tail lamp"], "role": "rear position light", "source_page": 31},
+        {"name": "Brake light", "aliases": ["stop lamp", "stop light"], "role": "indicates braking", "source_page": 31},
+        {"name": "Turn signal lamp", "aliases": ["indicator", "blinker"], "role": "directional signaling", "source_page": 31},
+        {"name": "Hazard warning light", "aliases": ["hazard light"], "role": "emergency flashers", "source_page": 30},
+        {"name": "Cornering light", "aliases": [], "role": "side illumination while turning", "source_page": 31},
+        {"name": "Fog light", "aliases": ["fog lamp"], "role": "low-visibility illumination", "source_page": 31},
+        {"name": "Reverse light", "aliases": ["back-up light", "reverse lamp"], "role": "rear illumination in reverse", "source_page": 30},
+        {"name": "Interior light", "aliases": ["courtesy light", "cabin light", "dome light"], "role": "cabin illumination", "source_page": 31},
+        {"name": "License plate light", "aliases": ["number plate light"], "role": "illuminates number plate", "source_page": 30},
+        {"name": "Flasher unit", "aliases": ["flasher relay", "indicator relay"], "role": "pulses turn signal lamps", "source_page": 32},
+        {"name": "Bulb", "aliases": [], "role": "light source", "source_page": 15},
+        {"name": "Fuse", "aliases": [], "role": "overcurrent protection", "source_page": 15}
+      ],
+      "source_pages": [15, 16, 30, 31, 32]
+    },
+    {
+      "system_name": "Dashboard / Instrumentation",
+      "system_id": "system:dashboard",
+      "parts": [
+        {"name": "Speedometer", "aliases": [], "role": "displays vehicle speed", "source_page": 13},
+        {"name": "Fuel level meter", "aliases": ["fuel gauge", "fuel meter"], "role": "displays fuel quantity", "source_page": 13},
+        {"name": "Fuel gauge sender unit", "aliases": ["fuel sender", "fuel level sensor"], "role": "sends tank level to gauge", "source_page": 31},
+        {"name": "Coolant temperature meter", "aliases": ["ECT meter", "temp gauge"], "role": "displays coolant temperature", "source_page": 13},
+        {"name": "Oil pressure light", "aliases": ["oil warning light"], "role": "warns of low oil pressure", "source_page": 13},
+        {"name": "Fluid level light", "aliases": [], "role": "low fluid warning", "source_page": 15},
+        {"name": "Instrument panel light", "aliases": ["dashboard light"], "role": "illuminates gauges", "source_page": 31}
+      ],
+      "source_pages": [13, 15, 31]
+    },
+    {
+      "system_name": "Wiring & Electrical Distribution",
+      "system_id": "system:wiring",
+      "parts": [
+        {"name": "Wiring harness", "aliases": ["wire loom", "harness"], "role": "bundled electrical wires", "source_page": 24},
+        {"name": "Primary wire", "aliases": ["automotive wire"], "role": "low voltage wiring", "source_page": 24},
+        {"name": "Ground strap", "aliases": ["earth strap"], "role": "chassis ground connection", "source_page": 24},
+        {"name": "Connector (weather-pack)", "aliases": ["weatherpack"], "role": "sealed electrical connector", "source_page": 24},
+        {"name": "Connector (metri-pack)", "aliases": ["metripack"], "role": "sealed electrical connector", "source_page": 24},
+        {"name": "Bulkhead connector", "aliases": [], "role": "firewall pass-through connector", "source_page": 24},
+        {"name": "Heat-shrink butt connector", "aliases": ["butt connector"], "role": "inline wire splice", "source_page": 24},
+        {"name": "Printed circuit board", "aliases": ["PCB"], "role": "populated electronic board", "source_page": 24},
+        {"name": "Fusible link", "aliases": [], "role": "inline fuse wire", "source_page": 21},
+        {"name": "Circuit breaker", "aliases": [], "role": "resettable overcurrent protection", "source_page": 21},
+        {"name": "Jumper wire", "aliases": [], "role": "temporary test/bypass wire", "source_page": 21},
+        {"name": "Relay", "aliases": [], "role": "switches high current via low current coil", "source_page": 21},
+        {"name": "Resistor", "aliases": [], "role": "limits current", "source_page": 21}
+      ],
+      "source_pages": [21, 24]
+    },
+    {
+      "system_name": "Body Electrical / Accessories",
+      "system_id": "system:body_electrical",
+      "parts": [
+        {"name": "Horn", "aliases": ["hooter"], "role": "audible warning", "source_page": 32},
+        {"name": "Windshield wiper motor", "aliases": ["wiper motor"], "role": "drives wiper blades", "source_page": 32},
+        {"name": "Wiper blade", "aliases": ["wiper"], "role": "clears windshield", "source_page": 32},
+        {"name": "Wiper switch", "aliases": [], "role": "controls wiper operation", "source_page": 32},
+        {"name": "Windshield washer pump", "aliases": ["washer pump"], "role": "pumps washer fluid", "source_page": 32},
+        {"name": "Power window motor", "aliases": ["window motor"], "role": "raises/lowers window", "source_page": 32},
+        {"name": "Power window switch", "aliases": [], "role": "controls power windows", "source_page": 32},
+        {"name": "Power door lock actuator", "aliases": ["central locking actuator"], "role": "locks/unlocks door", "source_page": 32},
+        {"name": "Remote keyless entry module", "aliases": ["RKE", "remote lock"], "role": "remote door unlock", "source_page": 32},
+        {"name": "Immobilizer", "aliases": ["anti-theft immobilizer"], "role": "prevents unauthorized engine start", "source_page": 16},
+        {"name": "Antitheft system", "aliases": ["car alarm"], "role": "vehicle intrusion alarm", "source_page": 32},
+        {"name": "Airbag", "aliases": ["SRS airbag"], "role": "occupant impact protection", "source_page": 32},
+        {"name": "Crash sensor", "aliases": ["impact sensor"], "role": "detects collision for airbag", "source_page": 32},
+        {"name": "Seat belt", "aliases": [], "role": "occupant restraint", "source_page": 32},
+        {"name": "Seat belt pre-tensioner", "aliases": ["pretensioner"], "role": "tightens belt on impact", "source_page": 32},
+        {"name": "Tire pressure monitoring sensor", "aliases": ["TPMS", "TPMS sensor"], "role": "monitors tyre pressure", "source_page": 32},
+        {"name": "Proximity sensor", "aliases": ["parking sensor"], "role": "detects obstacles", "source_page": 32},
+        {"name": "Car radio", "aliases": ["head unit", "stereo"], "role": "audio entertainment", "source_page": 32},
+        {"name": "Navigation system", "aliases": ["GPS unit"], "role": "turn-by-turn navigation", "source_page": 32}
+      ],
+      "source_pages": [16, 32]
+    },
+    {
+      "system_name": "Vehicle Networks",
+      "system_id": "system:vehicle_networks",
+      "parts": [
+        {"name": "CAN bus", "aliases": ["Controller Area Network"], "role": "in-vehicle communication bus", "source_page": 33},
+        {"name": "LIN bus", "aliases": ["Local Interconnect Network"], "role": "low-speed sub-bus", "source_page": 33},
+        {"name": "FlexRay bus", "aliases": ["FlexRay"], "role": "high-speed deterministic bus", "source_page": 33},
+        {"name": "MOST bus", "aliases": ["Media Oriented Systems Transport"], "role": "multimedia bus", "source_page": 33}
+      ],
+      "source_pages": [33]
+    }
+  ],
+  "diagnostics": [
+    {"symptom": "Speedometer shows no operation", "system": "system:dashboard", "diagnosis_steps": ["Check speedometer fuse", "Check VSS / speed sensor", "Check wiring harness and connectors", "Replace instrument cluster if faulty"], "related_parts": ["Speedometer", "Vehicle speed sensor", "Fuse", "Wiring harness"], "vehicle_type": "LMV", "source_page": 14, "confidence": 0.9},
+    {"symptom": "Fuel level meter shows no operation", "system": "system:dashboard", "diagnosis_steps": ["Check fuel gauge fuse", "Test fuel sender unit resistance", "Check wiring to sender", "Replace fuel gauge if faulty"], "related_parts": ["Fuel level meter", "Fuel gauge sender unit", "Fuse"], "vehicle_type": "LMV", "source_page": 14, "confidence": 0.9},
+    {"symptom": "Coolant temperature meter shows no operation", "system": "system:dashboard", "diagnosis_steps": ["Check ECT sensor", "Check wiring continuity", "Check gauge / cluster"], "related_parts": ["Coolant temperature meter", "Coolant temperature sensor"], "vehicle_type": "LMV", "source_page": 14, "confidence": 0.9},
+    {"symptom": "Oil pressure warning light does not glow", "system": "system:dashboard", "diagnosis_steps": ["Check oil pressure switch", "Check bulb", "Check wiring"], "related_parts": ["Oil pressure light", "Oil pressure switch"], "vehicle_type": "LMV", "source_page": 14, "confidence": 0.9},
+    {"symptom": "Engine cranks but will not start or hard to start", "system": "system:ignition", "diagnosis_steps": ["Check ignition coil", "Check spark plug condition and gap", "Check ignition timing", "Check Hall effect / crank position sensor", "Check fuel supply"], "related_parts": ["Ignition coil", "Spark plug", "Hall effect sensor", "Fuel pump", "Fuel filter"], "vehicle_type": "LMV", "source_page": 24, "confidence": 0.95},
+    {"symptom": "Poor fuel economy or poor engine performance", "system": "system:edc_mpfi", "diagnosis_steps": ["Scan for DTCs using scan tool", "Test O2 sensor", "Test MAF / MAP sensor", "Check spark plugs", "Check fuel filter and pressure"], "related_parts": ["Exhaust gas oxygen sensor", "Mass airflow sensor", "Spark plug", "Fuel filter"], "vehicle_type": "LMV", "source_page": 24, "confidence": 0.85},
+    {"symptom": "Starter motor does not run", "system": "system:starting", "diagnosis_steps": ["Check battery voltage and terminals", "Test ignition switch", "Test solenoid pull-in and hold-in coils", "Test starter brushes and armature", "Check starter ground"], "related_parts": ["Starter motor", "Solenoid", "Battery", "Ignition switch"], "vehicle_type": "LMV", "source_page": 26, "confidence": 0.95},
+    {"symptom": "Starter motor runs but too slow (low torque)", "system": "system:starting", "diagnosis_steps": ["Test battery under load", "Check cable voltage drop", "Inspect brushes", "Test armature for shorts using growler"], "related_parts": ["Starter motor", "Battery", "Starter brushes", "Armature"], "vehicle_type": "LMV", "source_page": 26, "confidence": 0.9},
+    {"symptom": "Starter runs but does not crank engine", "system": "system:starting", "diagnosis_steps": ["Inspect starter pinion / bendix", "Inspect flywheel ring gear teeth", "Check solenoid plunger return"], "related_parts": ["Starter motor", "Pinion (plunger)", "Solenoid"], "vehicle_type": "LMV", "source_page": 26, "confidence": 0.9},
+    {"symptom": "Starter motor does not stop running after key release", "system": "system:starting", "diagnosis_steps": ["Check ignition switch", "Check stuck solenoid contacts", "Check starter relay"], "related_parts": ["Starter motor", "Solenoid", "Ignition switch", "Relay"], "vehicle_type": "LMV", "source_page": 26, "confidence": 0.9},
+    {"symptom": "Battery not charging / undercharge", "system": "system:charging", "diagnosis_steps": ["Check drive belt tension", "Test alternator output voltage", "Inspect rotor and stator for open/ground", "Test rectifier diodes", "Check voltage regulator", "Inspect slip ring and brushes"], "related_parts": ["Alternator", "Drive belt", "Voltage regulator", "Rectifier assembly", "Rotor", "Stator", "Slip ring and brush assembly"], "vehicle_type": "LMV", "source_page": 26, "confidence": 0.95},
+    {"symptom": "Overcharge condition", "system": "system:charging", "diagnosis_steps": ["Test voltage regulator", "Check alternator output", "Check ECU charging control"], "related_parts": ["Voltage regulator", "Alternator"], "vehicle_type": "LMV", "source_page": 26, "confidence": 0.9},
+    {"symptom": "Charging warning lamp does not glow when ignition on", "system": "system:charging", "diagnosis_steps": ["Check warning bulb", "Check wiring to alternator L terminal", "Test voltage regulator"], "related_parts": ["Charging warning lamp", "Voltage regulator", "Alternator"], "vehicle_type": "LMV", "source_page": 26, "confidence": 0.9},
+    {"symptom": "Charging warning lamp stays on while alternator running", "system": "system:charging", "diagnosis_steps": ["Test alternator output", "Check drive belt", "Test rectifier", "Test voltage regulator"], "related_parts": ["Alternator", "Drive belt", "Rectifier assembly", "Voltage regulator"], "vehicle_type": "LMV", "source_page": 27, "confidence": 0.9},
+    {"symptom": "Excessive key-off battery drain (parasitic draw)", "system": "system:battery", "diagnosis_steps": ["Measure parasitic current with ammeter", "Pull fuses one by one to isolate circuit", "Inspect accessory wiring"], "related_parts": ["Battery", "Fuse", "Wiring harness"], "vehicle_type": "LMV", "source_page": 21, "confidence": 0.9},
+    {"symptom": "Steering wheel feels heavy at low speed", "system": "system:power_steering", "diagnosis_steps": ["Check EPS warning on dash", "Scan EPS ECU for DTC", "Check EPS motor and torque sensor", "Check wiring to EPS module"], "related_parts": ["Electric power assisted steering module"], "vehicle_type": "LMV", "source_page": 28, "confidence": 0.85},
+    {"symptom": "Vehicle pulls to one side during straight driving", "system": "system:power_steering", "diagnosis_steps": ["Check tyre pressure", "Inspect alignment", "Check EPS module calibration"], "related_parts": ["Electric power assisted steering module"], "vehicle_type": "LMV", "source_page": 28, "confidence": 0.7},
+    {"symptom": "No cooling from AC", "system": "system:hvac", "diagnosis_steps": ["Check refrigerant charge via pressure gauges", "Check compressor clutch engagement", "Check AC fuse and relay", "Test pressure switches", "Inspect compressor belt"], "related_parts": ["AC compressor", "Magnetic clutch", "Refrigerant", "Pressure switch", "Compressor belt"], "vehicle_type": "LMV", "source_page": 29, "confidence": 0.95},
+    {"symptom": "Intermittent cooling from AC", "system": "system:hvac", "diagnosis_steps": ["Test pressure switches", "Check blower motor", "Check expansion valve for icing", "Check evaporator temp sensor"], "related_parts": ["Pressure switch", "Blower motor", "Thermostatic expansion valve", "Evaporator temperature sensor"], "vehicle_type": "LMV", "source_page": 29, "confidence": 0.85},
+    {"symptom": "Insufficient cooling from AC", "system": "system:hvac", "diagnosis_steps": ["Check refrigerant level", "Clean condenser fins", "Check condenser fan", "Check compressor output"], "related_parts": ["Refrigerant", "Condenser", "AC compressor"], "vehicle_type": "LMV", "source_page": 29, "confidence": 0.9},
+    {"symptom": "Abnormal noise from compressor / magnetic clutch / blower", "system": "system:hvac", "diagnosis_steps": ["Inspect compressor bearings", "Check magnetic clutch air gap", "Inspect blower motor bearings"], "related_parts": ["AC compressor", "Magnetic clutch", "Blower motor"], "vehicle_type": "LMV", "source_page": 29, "confidence": 0.85},
+    {"symptom": "Headlights do not light up", "system": "system:lighting", "diagnosis_steps": ["Check headlight fuse", "Test headlight relay", "Check combination switch", "Check ground connection", "Test bulbs"], "related_parts": ["Headlight bulb", "Fuse", "Relay", "Combination switch", "Dimmer switch"], "vehicle_type": "LMV", "source_page": 30, "confidence": 0.95},
+    {"symptom": "Only one headlight does not light up", "system": "system:lighting", "diagnosis_steps": ["Replace bulb", "Check wiring to that headlight", "Check ground at that lamp"], "related_parts": ["Headlight bulb", "Wiring harness"], "vehicle_type": "LMV", "source_page": 30, "confidence": 0.95},
+    {"symptom": "Only one beam (High or Low) does not light", "system": "system:lighting", "diagnosis_steps": ["Check dimmer switch", "Test bulb filament", "Check high/low circuit wiring"], "related_parts": ["Dimmer switch", "Headlight bulb", "Combination switch"], "vehicle_type": "LMV", "source_page": 30, "confidence": 0.9},
+    {"symptom": "Turn signal flash rate high or one side flashes only", "system": "system:lighting", "diagnosis_steps": ["Replace burnt turn bulb on affected side", "Check flasher unit", "Check wiring"], "related_parts": ["Turn signal lamp", "Flasher unit"], "vehicle_type": "LMV", "source_page": 30, "confidence": 0.95},
+    {"symptom": "No turn signal flashing", "system": "system:lighting", "diagnosis_steps": ["Check flasher unit", "Check turn signal fuse", "Check combination switch"], "related_parts": ["Flasher unit", "Fuse", "Combination switch"], "vehicle_type": "LMV", "source_page": 30, "confidence": 0.9},
+    {"symptom": "Brake lights do not light up", "system": "system:lighting", "diagnosis_steps": ["Check brake light switch at pedal", "Test bulbs", "Check fuse", "Check wiring"], "related_parts": ["Brake light", "Fuse"], "vehicle_type": "LMV", "source_page": 30, "confidence": 0.95},
+    {"symptom": "Brake lights stay on", "system": "system:lighting", "diagnosis_steps": ["Check brake pedal switch adjustment", "Check for stuck switch"], "related_parts": ["Brake light"], "vehicle_type": "LMV", "source_page": 30, "confidence": 0.9},
+    {"symptom": "Back-up / reverse lights do not light", "system": "system:lighting", "diagnosis_steps": ["Check reverse switch on gearbox", "Test bulbs", "Check fuse"], "related_parts": ["Reverse light", "Fuse"], "vehicle_type": "LMV", "source_page": 30, "confidence": 0.9},
+    {"symptom": "Interior light does not light up", "system": "system:lighting", "diagnosis_steps": ["Check bulb", "Check door jamb switch", "Check fuse"], "related_parts": ["Interior light", "Fuse"], "vehicle_type": "LMV", "source_page": 32, "confidence": 0.9},
+    {"symptom": "Fuel meter shows incorrect operation", "system": "system:dashboard", "diagnosis_steps": ["Check fuel sender", "Check wiring", "Check instrument cluster"], "related_parts": ["Fuel level meter", "Fuel gauge sender unit"], "vehicle_type": "LMV", "source_page": 31, "confidence": 0.85},
+    {"symptom": "Brake warning light does not light when parking brake pulled", "system": "system:brakes_electronic", "diagnosis_steps": ["Check parking brake switch", "Check bulb", "Check wiring"], "related_parts": ["Brake warning light"], "vehicle_type": "LMV", "source_page": 31, "confidence": 0.85},
+    {"symptom": "Brake warning light stays on", "system": "system:brakes_electronic", "diagnosis_steps": ["Check brake fluid level", "Check parking brake switch", "Check fluid level switch"], "related_parts": ["Brake warning light"], "vehicle_type": "LMV", "source_page": 32, "confidence": 0.85},
+    {"symptom": "No horn operation / poor sound / horn sounds continuously", "system": "system:body_electrical", "diagnosis_steps": ["Check horn fuse", "Test horn relay", "Check horn button / steering contact", "Replace horn if faulty"], "related_parts": ["Horn", "Fuse", "Relay"], "vehicle_type": "LMV", "source_page": 32, "confidence": 0.95},
+    {"symptom": "Windshield wiper no operation / intermittent / continuous / will not park", "system": "system:body_electrical", "diagnosis_steps": ["Check wiper fuse", "Test wiper switch", "Test wiper motor park contacts", "Check wiring"], "related_parts": ["Windshield wiper motor", "Wiper switch", "Fuse"], "vehicle_type": "LMV", "source_page": 32, "confidence": 0.9},
+    {"symptom": "Windshield washer does not spray", "system": "system:body_electrical", "diagnosis_steps": ["Check washer fluid level", "Test washer pump", "Check nozzles for clogging", "Check wiring"], "related_parts": ["Windshield washer pump"], "vehicle_type": "LMV", "source_page": 32, "confidence": 0.9},
+    {"symptom": "All power windows do not operate", "system": "system:body_electrical", "diagnosis_steps": ["Check master power window fuse", "Check main switch", "Check power window relay"], "related_parts": ["Power window switch", "Power window motor", "Fuse", "Relay"], "vehicle_type": "LMV", "source_page": 32, "confidence": 0.9},
+    {"symptom": "Some power window switches do not operate", "system": "system:body_electrical", "diagnosis_steps": ["Test individual door switch", "Check wiring to motor", "Test window motor"], "related_parts": ["Power window switch", "Power window motor"], "vehicle_type": "LMV", "source_page": 32, "confidence": 0.9}
+  ],
+  "aliases": [
+    {"canonical": "Starter motor", "alias": "self", "source_page": 25},
+    {"canonical": "Starter motor", "alias": "self starter", "source_page": 25},
+    {"canonical": "Alternator", "alias": "dynamo", "source_page": 26},
+    {"canonical": "Alternator", "alias": "generator", "source_page": 6},
+    {"canonical": "Voltage regulator", "alias": "cut out", "source_page": 6},
+    {"canonical": "Horn", "alias": "hooter", "source_page": 32},
+    {"canonical": "Turn signal lamp", "alias": "indicator", "source_page": 31},
+    {"canonical": "Turn signal lamp", "alias": "blinker", "source_page": 31},
+    {"canonical": "Dimmer switch", "alias": "dipper", "source_page": 31},
+    {"canonical": "Headlight bulb", "alias": "head lamp", "source_page": 30},
+    {"canonical": "Refrigerant", "alias": "AC gas", "source_page": 29},
+    {"canonical": "Condenser (ignition)", "alias": "capacitor", "source_page": 6},
+    {"canonical": "High-tension leads", "alias": "plug wires", "source_page": 24},
+    {"canonical": "Wiring harness", "alias": "wire loom", "source_page": 24},
+    {"canonical": "Ground strap", "alias": "earth strap", "source_page": 24},
+    {"canonical": "Fuel pump", "alias": "petrol pump", "source_page": 27},
+    {"canonical": "Spark plug", "alias": "plug", "source_page": 24},
+    {"canonical": "Car radio", "alias": "stereo", "source_page": 32},
+    {"canonical": "Brake light", "alias": "stop lamp", "source_page": 30},
+    {"canonical": "Reverse light", "alias": "back-up light", "source_page": 30},
+    {"canonical": "Interior light", "alias": "cabin light", "source_page": 31},
+    {"canonical": "License plate light", "alias": "number plate light", "source_page": 30},
+    {"canonical": "Electronic Control Unit", "alias": "ECU", "source_page": 27},
+    {"canonical": "Pinion (plunger)", "alias": "bendix", "source_page": 25}
+  ]
+}

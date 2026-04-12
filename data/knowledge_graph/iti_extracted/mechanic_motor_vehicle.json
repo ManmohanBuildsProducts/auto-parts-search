@@ -1,0 +1,677 @@
+{
+  "trade": "Mechanic Motor Vehicle",
+  "trade_key": "mechanic_motor_vehicle",
+  "pdf_path": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+  "pages_total": 76,
+  "vehicle_types": ["LMV", "HMV"],
+  "systems": [
+    {
+      "system_name": "Engine (Cylinder Head & Valve Train)",
+      "system_id": "system:engine_head_valvetrain",
+      "parts": [
+        {"name": "Cylinder head", "aliases": ["head"], "role": "Top cover of combustion chamber; houses valves", "source_page": 33},
+        {"name": "Head gasket", "aliases": [], "role": "Seals cylinder head to block", "source_page": 33},
+        {"name": "Rocker arm", "aliases": ["rocker", "rocker shaft assembly"], "role": "Transfers cam motion to valves", "source_page": 33},
+        {"name": "Engine valve", "aliases": ["intake valve", "exhaust valve"], "role": "Controls air/fuel intake and exhaust flow", "source_page": 33},
+        {"name": "Valve seat", "aliases": ["valve seat insert"], "role": "Sealing surface for valve", "source_page": 33},
+        {"name": "Valve guide", "aliases": [], "role": "Guides valve stem motion", "source_page": 33},
+        {"name": "Valve spring", "aliases": [], "role": "Returns valve to closed position", "source_page": 33},
+        {"name": "Valve stem oil seal", "aliases": ["stem seal"], "role": "Prevents oil entry into combustion chamber via valve stem", "source_page": 33},
+        {"name": "Tappet", "aliases": ["cam follower"], "role": "Transfers cam lobe motion to pushrod/valve", "source_page": 33},
+        {"name": "Push rod", "aliases": ["pushrod"], "role": "Transfers motion from tappet to rocker", "source_page": 33},
+        {"name": "Camshaft", "aliases": ["cam shaft"], "role": "Operates valves via cam lobes", "source_page": 33},
+        {"name": "Timing belt", "aliases": ["cam belt"], "role": "Synchronises crankshaft with camshaft", "source_page": 33},
+        {"name": "Timing chain", "aliases": [], "role": "Synchronises crankshaft with camshaft (chain drive)", "source_page": 33},
+        {"name": "Timing belt tensioner", "aliases": ["chain tensioner", "tensioner"], "role": "Maintains tension on timing belt/chain", "source_page": 33}
+      ],
+      "source_pages": [31, 32, 33]
+    },
+    {
+      "system_name": "Engine (Piston & Connecting Rod)",
+      "system_id": "system:engine_piston_rod",
+      "parts": [
+        {"name": "Piston", "aliases": [], "role": "Converts combustion pressure to motion", "source_page": 33},
+        {"name": "Piston ring", "aliases": ["ring set"], "role": "Seals combustion chamber, controls oil", "source_page": 33},
+        {"name": "Piston pin", "aliases": ["gudgeon pin", "wrist pin"], "role": "Connects piston to connecting rod", "source_page": 33},
+        {"name": "Connecting rod", "aliases": ["conrod"], "role": "Connects piston to crankshaft", "source_page": 33},
+        {"name": "Big end bearing", "aliases": ["big end shell"], "role": "Bearing between conrod big end and crank pin", "source_page": 33},
+        {"name": "Small end bearing", "aliases": ["small end bush"], "role": "Bearing between conrod and piston pin", "source_page": 33}
+      ],
+      "source_pages": [32, 33]
+    },
+    {
+      "system_name": "Engine (Crankshaft, Flywheel & Block)",
+      "system_id": "system:engine_crank_block",
+      "parts": [
+        {"name": "Crankshaft", "aliases": ["crank shaft"], "role": "Converts reciprocating motion to rotary motion", "source_page": 34},
+        {"name": "Main bearing", "aliases": ["main bearing shell"], "role": "Supports crankshaft in block", "source_page": 34},
+        {"name": "Flywheel", "aliases": [], "role": "Stores rotational energy; mounts clutch", "source_page": 34},
+        {"name": "Vibration damper", "aliases": ["harmonic balancer", "damper pulley"], "role": "Absorbs crankshaft torsional vibrations", "source_page": 34},
+        {"name": "Cylinder block", "aliases": ["engine block"], "role": "Main engine structure housing cylinders", "source_page": 34},
+        {"name": "Cylinder liner", "aliases": ["cylinder sleeve", "sleeve"], "role": "Wear surface of cylinder bore", "source_page": 34},
+        {"name": "Crank case", "aliases": ["crankcase"], "role": "Lower engine housing; contains crank & oil", "source_page": 34},
+        {"name": "Oil sump", "aliases": ["sump", "oil pan"], "role": "Reservoir for engine oil", "source_page": 34},
+        {"name": "Timing gear", "aliases": ["timing sprocket", "chain sprocket"], "role": "Drives camshaft from crankshaft", "source_page": 34}
+      ],
+      "source_pages": [33, 34]
+    },
+    {
+      "system_name": "Cooling System",
+      "system_id": "system:cooling",
+      "parts": [
+        {"name": "Radiator", "aliases": [], "role": "Dissipates heat from coolant", "source_page": 34},
+        {"name": "Radiator pressure cap", "aliases": ["radiator cap"], "role": "Maintains system pressure; relieves overpressure", "source_page": 34},
+        {"name": "Coolant hose", "aliases": ["radiator hose"], "role": "Carries coolant between engine and radiator", "source_page": 34},
+        {"name": "Water pump", "aliases": [], "role": "Circulates coolant through engine", "source_page": 34},
+        {"name": "Thermostat", "aliases": [], "role": "Regulates coolant flow to radiator based on temperature", "source_page": 34},
+        {"name": "Cooling fan", "aliases": ["radiator fan"], "role": "Forces air across radiator (mechanical/electrical/viscous/belt-drive)", "source_page": 34},
+        {"name": "Temperature indicator", "aliases": ["temperature sensor", "thermo-switch", "ECT sensor"], "role": "Senses and displays coolant temperature", "source_page": 34},
+        {"name": "Coolant recovery tank", "aliases": ["recovery tank", "expansion tank"], "role": "Holds overflow coolant; re-supplies radiator on cooling", "source_page": 34}
+      ],
+      "source_pages": [16, 34, 36]
+    },
+    {
+      "system_name": "Lubrication System",
+      "system_id": "system:lubrication",
+      "parts": [
+        {"name": "Oil pump", "aliases": [], "role": "Circulates engine oil", "source_page": 36},
+        {"name": "Oil filter", "aliases": [], "role": "Removes contaminants from engine oil", "source_page": 36},
+        {"name": "Oil cooler", "aliases": [], "role": "Cools engine oil", "source_page": 36},
+        {"name": "Oil sump / pan", "aliases": ["oil collection pan", "oil tank"], "role": "Stores engine oil reservoir", "source_page": 36},
+        {"name": "Oil pickup tube", "aliases": ["pickup tube"], "role": "Draws oil from sump to pump", "source_page": 36},
+        {"name": "Oil pressure relief valve", "aliases": [], "role": "Limits maximum oil pressure", "source_page": 36},
+        {"name": "Oil pressure indicator", "aliases": ["oil pressure warning light"], "role": "Warns of low oil pressure", "source_page": 36}
+      ],
+      "source_pages": [34, 36]
+    },
+    {
+      "system_name": "Intake System",
+      "system_id": "system:intake",
+      "parts": [
+        {"name": "Air cleaner", "aliases": ["air filter"], "role": "Filters intake air", "source_page": 30},
+        {"name": "Intake manifold", "aliases": [], "role": "Distributes air to cylinders", "source_page": 30},
+        {"name": "Turbocharger", "aliases": ["turbo"], "role": "Compresses intake air using exhaust-driven turbine", "source_page": 37},
+        {"name": "Air compressor", "aliases": [], "role": "Supplies compressed air (HMV air brake systems)", "source_page": 18},
+        {"name": "Air exhauster", "aliases": [], "role": "Creates vacuum for vacuum-assisted systems", "source_page": 18}
+      ],
+      "source_pages": [18, 30, 37]
+    },
+    {
+      "system_name": "Exhaust System",
+      "system_id": "system:exhaust",
+      "parts": [
+        {"name": "Exhaust manifold", "aliases": [], "role": "Collects exhaust gases from cylinders", "source_page": 37},
+        {"name": "Exhaust pipe", "aliases": ["tail pipe"], "role": "Carries exhaust gases to rear of vehicle", "source_page": 37},
+        {"name": "Muffler", "aliases": ["silencer"], "role": "Reduces exhaust noise (reactive/absorptive/combination)", "source_page": 37},
+        {"name": "Catalytic converter", "aliases": [], "role": "Reduces harmful emissions via catalytic reaction", "source_page": 37},
+        {"name": "Extractor", "aliases": ["exhaust extractor"], "role": "Performance exhaust header", "source_page": 37},
+        {"name": "Flexible connection", "aliases": ["flex pipe"], "role": "Allows exhaust movement between engine and body", "source_page": 37}
+      ],
+      "source_pages": [18, 37]
+    },
+    {
+      "system_name": "Fuel System (Diesel)",
+      "system_id": "system:fuel_diesel",
+      "parts": [
+        {"name": "Diesel tank", "aliases": ["fuel tank"], "role": "Stores diesel fuel", "source_page": 38},
+        {"name": "Diesel fuel filter", "aliases": ["fuel filter"], "role": "Removes contaminants from diesel", "source_page": 38},
+        {"name": "Water separator", "aliases": [], "role": "Separates water from diesel fuel", "source_page": 38},
+        {"name": "Lift pump", "aliases": ["fuel feed pump"], "role": "Pumps fuel from tank to injection system", "source_page": 38},
+        {"name": "Plunger pump", "aliases": [], "role": "High-pressure element of mechanical FIP", "source_page": 38},
+        {"name": "Priming pump", "aliases": [], "role": "Bleeds/primes the fuel system manually", "source_page": 38},
+        {"name": "Fuel injection pump", "aliases": ["FIP", "injector pump"], "role": "Delivers pressurised fuel to injectors", "source_page": 18},
+        {"name": "Fuel injector", "aliases": ["injector"], "role": "Atomises and injects fuel into cylinder", "source_page": 18},
+        {"name": "Common rail (CRDI)", "aliases": ["common rail"], "role": "High-pressure rail feeding all injectors in CRDI", "source_page": 38},
+        {"name": "Governor", "aliases": [], "role": "Regulates engine speed (mechanical/pneumatic)", "source_page": 16}
+      ],
+      "source_pages": [16, 18, 37, 38]
+    },
+    {
+      "system_name": "Fuel System (Petrol / MPFI / EFI)",
+      "system_id": "system:fuel_petrol_efi",
+      "parts": [
+        {"name": "Carburettor", "aliases": ["carburetor"], "role": "Mixes air and fuel for petrol engine", "source_page": 30},
+        {"name": "Electronic fuel injector", "aliases": ["MPFI injector", "EFI injector"], "role": "Electronically controlled petrol injector", "source_page": 49},
+        {"name": "Throttle position sensor", "aliases": ["TPS"], "role": "Senses throttle angle for ECU", "source_page": 49},
+        {"name": "Manifold absolute pressure sensor", "aliases": ["MAP sensor"], "role": "Measures intake manifold pressure", "source_page": 49},
+        {"name": "Mass airflow sensor", "aliases": ["MAF sensor"], "role": "Measures mass of intake air", "source_page": 49},
+        {"name": "Intake air temperature sensor", "aliases": ["IAT sensor"], "role": "Senses intake air temperature", "source_page": 49},
+        {"name": "Exhaust gas oxygen sensor", "aliases": ["O2 sensor", "lambda sensor"], "role": "Senses oxygen in exhaust for closed-loop control", "source_page": 49},
+        {"name": "Crank angle sensor", "aliases": ["crankshaft position sensor", "CKP"], "role": "Senses crankshaft position/RPM", "source_page": 49},
+        {"name": "Camshaft position sensor", "aliases": ["CMP"], "role": "Senses camshaft position", "source_page": 49},
+        {"name": "Electronic Control Unit", "aliases": ["ECU"], "role": "Engine management computer", "source_page": 49},
+        {"name": "Data link connector", "aliases": ["DLC", "OBD port"], "role": "Scan tool interface to ECU", "source_page": 20}
+      ],
+      "source_pages": [20, 30, 38, 49]
+    },
+    {
+      "system_name": "Emission Control",
+      "system_id": "system:emission",
+      "parts": [
+        {"name": "PCV valve", "aliases": ["positive crankcase ventilation valve"], "role": "Recirculates crankcase blow-by gases", "source_page": 16},
+        {"name": "EVAP canister", "aliases": ["charcoal canister", "EVAP"], "role": "Stores fuel vapours for purge", "source_page": 19},
+        {"name": "EGR valve", "aliases": ["exhaust gas recirculation valve"], "role": "Recirculates exhaust gas to reduce NOx", "source_page": 18},
+        {"name": "Diesel particulate filter", "aliases": ["DPF"], "role": "Traps diesel soot particulates", "source_page": 37},
+        {"name": "Selective catalytic reduction", "aliases": ["SCR"], "role": "Reduces NOx using urea/DEF injection", "source_page": 37}
+      ],
+      "source_pages": [16, 18, 19, 37]
+    },
+    {
+      "system_name": "Starting System",
+      "system_id": "system:starting",
+      "parts": [
+        {"name": "Starter motor", "aliases": ["self starter", "self", "self motor"], "role": "Cranks engine for starting", "source_page": 51},
+        {"name": "Solenoid switch", "aliases": ["starter solenoid"], "role": "Engages pinion and switches high current to starter", "source_page": 51},
+        {"name": "Starter pinion", "aliases": ["bendix"], "role": "Engages flywheel ring gear to crank engine", "source_page": 51},
+        {"name": "Flywheel ring gear", "aliases": ["ring gear"], "role": "Ring gear on flywheel engaged by starter pinion", "source_page": 41}
+      ],
+      "source_pages": [21, 51]
+    },
+    {
+      "system_name": "Charging System",
+      "system_id": "system:charging",
+      "parts": [
+        {"name": "Alternator", "aliases": [], "role": "Generates AC, converts to DC for charging", "source_page": 50},
+        {"name": "Rotor", "aliases": ["alternator rotor"], "role": "Rotating field winding of alternator", "source_page": 50},
+        {"name": "Stator", "aliases": ["alternator stator"], "role": "Stationary armature winding of alternator", "source_page": 50},
+        {"name": "Rectifier", "aliases": ["diode pack"], "role": "Converts AC to DC", "source_page": 50},
+        {"name": "Voltage regulator", "aliases": ["regulator unit"], "role": "Regulates alternator output voltage", "source_page": 50},
+        {"name": "Slip ring", "aliases": [], "role": "Delivers current to rotor field", "source_page": 50},
+        {"name": "Alternator brush", "aliases": [], "role": "Contacts slip ring to carry field current", "source_page": 50},
+        {"name": "Drive belt", "aliases": ["engine drive belt", "fan belt", "V-belt"], "role": "Drives alternator/pump/AC compressor from crank", "source_page": 50},
+        {"name": "Battery", "aliases": ["lead acid battery", "SMF battery"], "role": "Stores electrical energy for starting and accessories", "source_page": 28}
+      ],
+      "source_pages": [16, 28, 50]
+    },
+    {
+      "system_name": "Ignition System",
+      "system_id": "system:ignition",
+      "parts": [
+        {"name": "Ignition coil", "aliases": ["coil", "insulated coil"], "role": "Steps up battery voltage to spark voltage", "source_page": 52},
+        {"name": "Spark plug", "aliases": [], "role": "Produces spark in combustion chamber", "source_page": 52},
+        {"name": "Distributor", "aliases": [], "role": "Routes spark to correct cylinder (in distributor-type systems)", "source_page": 52},
+        {"name": "Hall effect sensor", "aliases": [], "role": "Ignition/position sensor using Hall effect", "source_page": 52},
+        {"name": "Optical sensor", "aliases": [], "role": "Optical ignition position sensor", "source_page": 52}
+      ],
+      "source_pages": [52]
+    },
+    {
+      "system_name": "Transmission (Manual / AMT)",
+      "system_id": "system:transmission_manual",
+      "parts": [
+        {"name": "Clutch", "aliases": ["single plate clutch", "diaphragm clutch", "multi-plate clutch"], "role": "Engages/disengages engine from transmission", "source_page": 41},
+        {"name": "Clutch pressure plate", "aliases": ["pressure plate"], "role": "Applies clamping force on clutch disc", "source_page": 41},
+        {"name": "Clutch driven plate", "aliases": ["clutch disc", "clutch plate", "centre plate"], "role": "Friction plate splined to gearbox input shaft", "source_page": 41},
+        {"name": "Throw-out bearing", "aliases": ["release bearing", "clutch bearing"], "role": "Releases clutch when pedal pressed", "source_page": 41},
+        {"name": "Pilot bearing", "aliases": [], "role": "Supports gearbox input shaft in crankshaft", "source_page": 41},
+        {"name": "Gear box", "aliases": ["gearbox", "transmission"], "role": "Provides ratio selection (constant mesh / synchromesh)", "source_page": 41},
+        {"name": "Synchromesh unit", "aliases": ["baulk ring synchromesh"], "role": "Equalises speeds during gear change", "source_page": 41},
+        {"name": "Gear shift mechanism", "aliases": ["gear linkage", "gear shifter"], "role": "Translates driver input into gear selection", "source_page": 42},
+        {"name": "Dual mass flywheel", "aliases": ["DMF"], "role": "Damps torsional vibrations between engine and gearbox", "source_page": 41}
+      ],
+      "source_pages": [41, 42]
+    },
+    {
+      "system_name": "Driveline (Propeller Shaft, Axle, Differential)",
+      "system_id": "system:driveline",
+      "parts": [
+        {"name": "Propeller shaft", "aliases": ["prop shaft", "drive shaft"], "role": "Transfers torque from gearbox to rear axle", "source_page": 42},
+        {"name": "Universal joint", "aliases": ["U-joint", "universal slip joint"], "role": "Allows angle change in prop shaft", "source_page": 42},
+        {"name": "Constant velocity joint", "aliases": ["CV joint"], "role": "Transfers torque through variable angle at constant speed (FWD)", "source_page": 42},
+        {"name": "Rear axle", "aliases": [], "role": "Drives rear wheels; houses final drive", "source_page": 42},
+        {"name": "Differential", "aliases": ["diff", "differential assembly"], "role": "Permits different wheel speeds in turns", "source_page": 42},
+        {"name": "Limited slip differential", "aliases": ["LSD"], "role": "Limits speed difference between driven wheels", "source_page": 42},
+        {"name": "Transfer case", "aliases": [], "role": "Distributes torque between front/rear axles in 4WD", "source_page": 42},
+        {"name": "Freewheeling hub", "aliases": ["locking hub"], "role": "Engages/disengages front hubs in 4WD", "source_page": 42}
+      ],
+      "source_pages": [42, 43]
+    },
+    {
+      "system_name": "Steering System",
+      "system_id": "system:steering",
+      "parts": [
+        {"name": "Steering wheel", "aliases": [], "role": "Driver input to steering system", "source_page": 44},
+        {"name": "Steering column", "aliases": [], "role": "Connects steering wheel to steering gearbox", "source_page": 44},
+        {"name": "Steering gearbox", "aliases": ["steering box"], "role": "Reduces and transmits steering motion (worm & roller / recirculating ball / rack & pinion)", "source_page": 44},
+        {"name": "Rack and pinion", "aliases": [], "role": "Rack-and-pinion steering mechanism", "source_page": 44},
+        {"name": "Drop arm", "aliases": ["pitman arm"], "role": "Transfers motion from steering box to linkage", "source_page": 44},
+        {"name": "Tie rod", "aliases": ["tie rod end"], "role": "Connects steering linkage to steering knuckle", "source_page": 44},
+        {"name": "Power steering pump", "aliases": [], "role": "Supplies hydraulic pressure for power steering", "source_page": 45},
+        {"name": "Electric power steering motor", "aliases": ["EPS motor"], "role": "Provides electric steering assistance", "source_page": 45},
+        {"name": "King pin", "aliases": ["kingpin"], "role": "Steering pivot on solid front axle", "source_page": 45}
+      ],
+      "source_pages": [44, 45]
+    },
+    {
+      "system_name": "Suspension System",
+      "system_id": "system:suspension",
+      "parts": [
+        {"name": "Shackle", "aliases": [], "role": "Pivoting link for leaf spring ends", "source_page": 19},
+        {"name": "Leaf spring", "aliases": ["patti spring"], "role": "Non-independent suspension spring", "source_page": 19},
+        {"name": "Coil spring", "aliases": [], "role": "Helical compression spring in suspension", "source_page": 46},
+        {"name": "Torsion bar", "aliases": [], "role": "Spring that resists twisting", "source_page": 46},
+        {"name": "Shock absorber", "aliases": ["damper", "shocker"], "role": "Damps suspension oscillations", "source_page": 46},
+        {"name": "MacPherson strut", "aliases": ["Mc Person strut"], "role": "Combined strut and suspension unit", "source_page": 46},
+        {"name": "Front axle", "aliases": [], "role": "Non-drive front axle (HMV)", "source_page": 19},
+        {"name": "Air suspension", "aliases": ["ECAS"], "role": "Electronically controlled air suspension", "source_page": 46}
+      ],
+      "source_pages": [19, 45, 46]
+    },
+    {
+      "system_name": "Braking System",
+      "system_id": "system:brakes",
+      "parts": [
+        {"name": "Brake pedal", "aliases": [], "role": "Driver input to brakes", "source_page": 49},
+        {"name": "Master cylinder", "aliases": [], "role": "Converts pedal force to hydraulic pressure", "source_page": 19},
+        {"name": "Tandem master cylinder", "aliases": [], "role": "Dual-circuit master cylinder", "source_page": 19},
+        {"name": "Brake line", "aliases": ["brake pipe", "brake hose"], "role": "Carries brake fluid to wheels", "source_page": 49},
+        {"name": "Brake fluid", "aliases": [], "role": "Hydraulic fluid for brakes", "source_page": 49},
+        {"name": "Vacuum booster", "aliases": ["brake booster", "power booster"], "role": "Amplifies pedal force using engine vacuum", "source_page": 19},
+        {"name": "Wheel cylinder", "aliases": [], "role": "Actuates drum brake shoes", "source_page": 19},
+        {"name": "Brake drum", "aliases": ["drum"], "role": "Rotating drum for shoe-type brakes", "source_page": 49},
+        {"name": "Brake shoe", "aliases": ["shoe", "brake lining"], "role": "Friction element in drum brake", "source_page": 49},
+        {"name": "Brake disc", "aliases": ["disc brake rotor", "rotor"], "role": "Rotating disc for caliper brakes", "source_page": 49},
+        {"name": "Brake pad", "aliases": ["disc pad"], "role": "Friction material for disc brakes", "source_page": 49},
+        {"name": "Brake caliper", "aliases": ["calliper"], "role": "Clamps brake pads on disc", "source_page": 49},
+        {"name": "Proportioning valve", "aliases": [], "role": "Balances brake force front/rear", "source_page": 49},
+        {"name": "Air tank", "aliases": ["air reservoir"], "role": "Stores compressed air for air brakes (HMV)", "source_page": 19},
+        {"name": "Brake valve", "aliases": [], "role": "Air brake foot valve", "source_page": 19},
+        {"name": "Slack adjuster", "aliases": [], "role": "Adjusts brake clearance in air brakes", "source_page": 19},
+        {"name": "Brake chamber", "aliases": ["single brake chamber"], "role": "Converts air pressure to mechanical force in air brakes", "source_page": 19},
+        {"name": "Hand brake", "aliases": ["parking brake", "hand/parking brake"], "role": "Mechanical parking brake", "source_page": 19},
+        {"name": "ABS module", "aliases": ["antilock brake module", "hydraulic control unit"], "role": "Antilock control unit for ABS", "source_page": 50},
+        {"name": "Wheel speed sensor", "aliases": ["ABS sensor"], "role": "Senses wheel speed for ABS/EBD", "source_page": 50},
+        {"name": "Exhaust brake", "aliases": [], "role": "Retarder using exhaust backpressure (HMV)", "source_page": 50},
+        {"name": "Electromagnetic retarder", "aliases": ["EMR"], "role": "Electromagnetic retarder brake", "source_page": 50}
+      ],
+      "source_pages": [19, 47, 48, 49, 50]
+    },
+    {
+      "system_name": "Wheels & Tyres",
+      "system_id": "system:wheels_tyres",
+      "parts": [
+        {"name": "Wheel rim", "aliases": ["rim"], "role": "Metal wheel disc", "source_page": 47},
+        {"name": "Tyre", "aliases": ["tire", "radial ply tyre"], "role": "Rubber wheel covering; contact patch", "source_page": 47},
+        {"name": "Tube", "aliases": ["inner tube"], "role": "Inner tube in tube-type tyres", "source_page": 47},
+        {"name": "Wheel bearing", "aliases": [], "role": "Bearing for wheel hub rotation", "source_page": 45},
+        {"name": "Tyre pressure monitoring system sensor", "aliases": ["TPMS sensor"], "role": "Monitors tyre pressure", "source_page": 47}
+      ],
+      "source_pages": [45, 47]
+    },
+    {
+      "system_name": "Electrical Accessories & Lighting",
+      "system_id": "system:electrical_accessories",
+      "parts": [
+        {"name": "Headlight", "aliases": ["head lamp", "sealed beam", "halogen headlight", "HID headlight"], "role": "Forward lighting", "source_page": 54},
+        {"name": "Tail light", "aliases": ["tail lamp"], "role": "Rear position light", "source_page": 54},
+        {"name": "Brake light", "aliases": ["stop lamp"], "role": "Illuminates on brake application", "source_page": 54},
+        {"name": "Turn signal", "aliases": ["indicator", "blinker", "flasher"], "role": "Signals turn direction", "source_page": 54},
+        {"name": "Fog light", "aliases": ["fog lamp"], "role": "Low-visibility forward lighting", "source_page": 54},
+        {"name": "Reverse light", "aliases": [], "role": "Rear light activated in reverse", "source_page": 54},
+        {"name": "Horn", "aliases": [], "role": "Audible warning", "source_page": 54},
+        {"name": "Windshield wiper motor", "aliases": ["wiper motor"], "role": "Drives wiper blades", "source_page": 54},
+        {"name": "Wiper blade", "aliases": [], "role": "Clears windshield", "source_page": 54},
+        {"name": "Windshield washer pump", "aliases": ["washer pump"], "role": "Sprays washer fluid on windshield", "source_page": 54},
+        {"name": "Power window motor", "aliases": [], "role": "Electric window operation", "source_page": 54},
+        {"name": "Power door lock actuator", "aliases": ["central locking actuator"], "role": "Electric door locking", "source_page": 54},
+        {"name": "Immobilizer", "aliases": ["immobiliser"], "role": "Anti-theft engine immobilising system", "source_page": 55},
+        {"name": "Remote keyless entry", "aliases": ["keyless entry"], "role": "Remote unlock system", "source_page": 54},
+        {"name": "Airbag", "aliases": ["air bag"], "role": "SRS inflatable restraint", "source_page": 55},
+        {"name": "Seat belt pre-tensioner", "aliases": ["seatbelt pretensioner"], "role": "Pre-tensions seat belt on crash", "source_page": 55},
+        {"name": "Fuse", "aliases": [], "role": "Circuit protection element", "source_page": 28},
+        {"name": "Relay", "aliases": [], "role": "Electromagnetic switch", "source_page": 28},
+        {"name": "Fuel level gauge", "aliases": ["fuel meter", "fuel gauge"], "role": "Displays fuel tank level", "source_page": 52}
+      ],
+      "source_pages": [28, 52, 53, 54, 55]
+    },
+    {
+      "system_name": "Vehicle Air Conditioning (HVAC)",
+      "system_id": "system:hvac",
+      "parts": [
+        {"name": "AC compressor", "aliases": ["air conditioning compressor"], "role": "Compresses refrigerant", "source_page": 55},
+        {"name": "Condenser", "aliases": [], "role": "Condenses refrigerant (high side)", "source_page": 55},
+        {"name": "Evaporator", "aliases": [], "role": "Evaporates refrigerant to absorb heat (low side)", "source_page": 55},
+        {"name": "Receiver drier", "aliases": ["receiver-drier"], "role": "Removes moisture from refrigerant", "source_page": 55},
+        {"name": "Thermostatic expansion valve", "aliases": ["TX valve", "expansion valve"], "role": "Meters refrigerant into evaporator", "source_page": 55},
+        {"name": "Magnetic clutch", "aliases": ["AC magnetic clutch"], "role": "Engages AC compressor to drive pulley", "source_page": 55},
+        {"name": "Blower motor", "aliases": [], "role": "Circulates cabin air", "source_page": 55},
+        {"name": "AC pressure switch", "aliases": [], "role": "Cuts compressor on high/low pressure fault", "source_page": 55},
+        {"name": "Refrigerant", "aliases": [], "role": "Heat transfer fluid in AC", "source_page": 55}
+      ],
+      "source_pages": [24, 55]
+    },
+    {
+      "system_name": "Electric Vehicle Components",
+      "system_id": "system:ev_components",
+      "parts": [
+        {"name": "Traction motor", "aliases": ["EV motor", "BLDC motor"], "role": "Propulsion motor for EV", "source_page": 56},
+        {"name": "Motor controller", "aliases": ["inverter"], "role": "Controls current/voltage to traction motor", "source_page": 56},
+        {"name": "Battery pack", "aliases": ["traction battery"], "role": "High-voltage energy store for EV", "source_page": 56},
+        {"name": "Battery management system", "aliases": ["BMS"], "role": "Monitors and controls battery cells", "source_page": 56},
+        {"name": "EV charging system", "aliases": ["onboard charger"], "role": "Charges traction battery", "source_page": 56},
+        {"name": "High voltage wiring", "aliases": ["HV cable"], "role": "Orange-jacketed HV cabling on EV", "source_page": 56}
+      ],
+      "source_pages": [25, 56]
+    },
+    {
+      "system_name": "Chassis & Body",
+      "system_id": "system:chassis_body",
+      "parts": [
+        {"name": "Chassis frame", "aliases": ["frame", "ladder frame"], "role": "Main structural frame of vehicle", "source_page": 46},
+        {"name": "Engine mounting", "aliases": ["engine mount"], "role": "Mounts engine to chassis; isolates vibration", "source_page": 15}
+      ],
+      "source_pages": [15, 46]
+    }
+  ],
+  "diagnostics": [
+    {
+      "symptom": "Engine will not start",
+      "system": "engine",
+      "diagnosis_steps": ["Investigate mechanical causes (compression, timing, fuel delivery)", "Investigate electrical causes (battery, starter, ignition, wiring)", "Use scan tool via DLC to read DTCs", "Check reference voltage and continuity of circuits"],
+      "related_parts": ["battery", "starter motor", "spark plug", "ignition coil", "fuel injector", "fuel pump", "ECU", "crankshaft position sensor"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 40,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "Engine cranks but will not start",
+      "system": "engine",
+      "diagnosis_steps": ["Check ignition timing", "Check MIL (Mal Indication Lamp) status", "Test sensors with multimeter/scan tool", "Check fuel pressure and spark"],
+      "related_parts": ["ignition coil", "spark plug", "crank angle sensor", "cam sensor", "fuel pump", "ECU"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 23,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "Engine overheating",
+      "system": "cooling_system",
+      "diagnosis_steps": ["Check coolant level and top up if required", "Test cooling system pressure", "Test thermostat operation", "Inspect radiator pressure cap", "Check water pump operation", "Check radiator fan (mechanical/electric/viscous)", "Reverse flush cooling system if blocked"],
+      "related_parts": ["coolant", "thermostat", "radiator", "radiator cap", "water pump", "cooling fan", "coolant hose"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 22,
+      "confidence": 0.98
+    },
+    {
+      "symptom": "High fuel consumption",
+      "system": "engine",
+      "diagnosis_steps": ["Check ignition timing", "Inspect air filter", "Check O2 sensor and fuel trims via scan tool", "Check injector condition", "Inspect for vacuum leaks"],
+      "related_parts": ["air filter", "O2 sensor", "fuel injector", "spark plug", "MAP sensor", "throttle position sensor"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 22,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Low power generation",
+      "system": "engine",
+      "diagnosis_steps": ["Check compression", "Inspect fuel injection timing", "Inspect turbocharger", "Check air intake and exhaust for restriction", "Check for injector leakage"],
+      "related_parts": ["fuel injector", "turbocharger", "air filter", "catalytic converter", "piston ring"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 22,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Excessive oil consumption",
+      "system": "engine",
+      "diagnosis_steps": ["Check for external oil leaks", "Test cylinder compression", "Inspect piston rings and cylinder liner wear", "Check valve stem oil seals", "Check PCV valve"],
+      "related_parts": ["piston ring", "cylinder liner", "valve stem oil seal", "PCV valve", "head gasket"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 22,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "Low / high engine oil pressure",
+      "system": "lubrication",
+      "diagnosis_steps": ["Check engine oil level and grade", "Measure oil pressure at various RPMs", "Inspect oil pump", "Inspect oil pressure relief valve", "Check main and big end bearing clearance"],
+      "related_parts": ["oil pump", "oil pressure relief valve", "main bearing", "big end bearing", "oil filter"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 22,
+      "confidence": 0.92
+    },
+    {
+      "symptom": "Abnormal engine noise",
+      "system": "engine",
+      "diagnosis_steps": ["Isolate source (top-end vs bottom-end)", "Check valve clearances and tappets", "Inspect timing belt/chain and tensioner", "Check bearings for wear", "Listen for knocking vs ticking vs whining"],
+      "related_parts": ["valve tappet", "timing belt", "timing chain tensioner", "connecting rod bearing", "main bearing", "camshaft"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 22,
+      "confidence": 0.88
+    },
+    {
+      "symptom": "Engine poor performance / poor fuel economy",
+      "system": "engine_management",
+      "diagnosis_steps": ["Connect scan tool and read DTCs via DLC", "Test reference voltage and continuity of sensor circuits", "Test sensors (MAP, MAF, O2, TPS, CKP, CMP) with multimeter/scan tool", "Erase error memory after repair and retest"],
+      "related_parts": ["ECU", "MAP sensor", "MAF sensor", "O2 sensor", "TPS", "CKP sensor", "CMP sensor"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 52,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Clutch slip / clutch noise / clutch binding / hard clutch",
+      "system": "transmission",
+      "diagnosis_steps": ["Adjust clutch pedal play", "Inspect clutch lining for wear", "Check pressure plate diaphragm and fingers", "Check pilot bearing and throw-out bearing", "Inspect flywheel surface"],
+      "related_parts": ["clutch disc", "clutch pressure plate", "throw-out bearing", "pilot bearing", "flywheel"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 45,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "Gearbox noise / gear slip / rear axle noise / propeller shaft noise / universal joint noise / differential noise",
+      "system": "transmission_driveline",
+      "diagnosis_steps": ["Identify noise source by driving conditions (coast/drive/turn)", "Inspect gear teeth and bearings in gearbox", "Check propeller shaft balance and U-joints", "Inspect differential crown-pinion backlash"],
+      "related_parts": ["gearbox bearing", "synchromesh unit", "universal joint", "propeller shaft", "differential", "rear axle"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 45,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Abnormal tyre wear / wheel wobbling / poor self-centering / hard steering / vehicle pulling to one side",
+      "system": "steering_suspension",
+      "diagnosis_steps": ["Inspect chassis frame for bends or cracks", "Check wheel alignment (toe-in, toe-out, camber, caster, king pin inclination)", "Balance wheels", "Check tie rod ends and ball joints", "Top up power steering fluid"],
+      "related_parts": ["tie rod", "ball joint", "wheel bearing", "steering gearbox", "power steering pump"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 45,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "Suspension defects - wheel hop / unequal ride height / noises / fluid leakage / excessive travel / bounce / vehicle crabbing",
+      "system": "suspension",
+      "diagnosis_steps": ["Visual inspection for worn dampers", "Check for worn joints and damaged linkages", "Inspect shock absorber for fluid leakage", "Measure ride height left vs right", "Lubricate suspension pivots"],
+      "related_parts": ["shock absorber", "coil spring", "leaf spring", "suspension bush", "ball joint"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 47,
+      "confidence": 0.92
+    },
+    {
+      "symptom": "Braking system trouble - hard pedal / no brakes / air brake leak",
+      "system": "brakes",
+      "diagnosis_steps": ["Bleed hydraulic brakes", "Inspect master cylinder and wheel cylinders", "Check brake pads and shoes for wear", "Locate air leaks in air brake lines", "Adjust wheel brake adjuster"],
+      "related_parts": ["master cylinder", "wheel cylinder", "brake pad", "brake shoe", "brake line", "air compressor", "slack adjuster"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 48,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Charging system - undercharge / no charge / overcharge",
+      "system": "charging",
+      "diagnosis_steps": ["Check warning lamp behaviour with ignition on and running", "Inspect drive belt tension and condition", "Inspect rotor for ground/open circuit", "Test stator for ground/open", "Inspect rectifier diodes", "Check slip ring surface and brush length"],
+      "related_parts": ["alternator", "rotor", "stator", "rectifier", "voltage regulator", "drive belt", "alternator brush"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 50,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "Starter motor not running / too slow / runs but not cranking / noise / does not stop running",
+      "system": "starting",
+      "diagnosis_steps": ["Perform pull-in test, hold-in test, pinion return test, no-load test on starter", "Perform growler test on rotor/armature", "Check battery state of charge", "Check solenoid switch operation", "Jump-start to isolate battery vs starter"],
+      "related_parts": ["starter motor", "solenoid switch", "battery", "starter pinion", "flywheel ring gear"],
+      "vehicle_type": "LMV/HMV",
+      "source_page": 51,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "Turn signal / hazard warning - flash rate high, one-side only, no flashing, flash rate low",
+      "system": "lighting",
+      "diagnosis_steps": ["Check bulbs for correct wattage", "Check ground connections", "Check flasher relay", "Check wiring continuity"],
+      "related_parts": ["turn signal bulb", "flasher relay", "fuse"],
+      "vehicle_type": "LMV",
+      "source_page": 52,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Clearance, tail & license plate lights - all or some lights do not light up",
+      "system": "lighting",
+      "diagnosis_steps": ["Check fuses", "Check bulbs individually", "Check ground connection", "Trace wiring circuit"],
+      "related_parts": ["tail light bulb", "fuse", "wiring harness"],
+      "vehicle_type": "LMV",
+      "source_page": 52,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Fuel meter shows no operation or incorrect operation",
+      "system": "instrumentation",
+      "diagnosis_steps": ["Test fuel gauge sender unit resistance", "Check fuel gauge instrument", "Check wiring continuity between sender and gauge"],
+      "related_parts": ["fuel gauge", "fuel level sensor"],
+      "vehicle_type": "LMV",
+      "source_page": 52,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Engine coolant temperature meter shows no operation or incorrect operation",
+      "system": "instrumentation",
+      "diagnosis_steps": ["Test ECT sensor resistance at known temperature", "Check gauge and wiring continuity"],
+      "related_parts": ["ECT sensor", "temperature gauge"],
+      "vehicle_type": "LMV",
+      "source_page": 53,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Oil pressure warning light does not light up when ignition on at engine off",
+      "system": "instrumentation",
+      "diagnosis_steps": ["Check bulb", "Check oil pressure switch", "Check wiring"],
+      "related_parts": ["oil pressure switch", "oil pressure warning light"],
+      "vehicle_type": "LMV",
+      "source_page": 53,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Brake / parking brake warning light - does not illuminate on low fluid or parking brake pull, or stays on",
+      "system": "brakes",
+      "diagnosis_steps": ["Check brake fluid level switch", "Check parking brake switch", "Check bulb and wiring"],
+      "related_parts": ["brake fluid level switch", "parking brake switch"],
+      "vehicle_type": "LMV",
+      "source_page": 53,
+      "confidence": 0.88
+    },
+    {
+      "symptom": "Horn - no operation, poor sound quality, or sounds continuously",
+      "system": "electrical_accessories",
+      "diagnosis_steps": ["Check horn fuse", "Check horn relay", "Check horn switch in steering wheel", "Replace horn if faulty"],
+      "related_parts": ["horn", "horn relay", "fuse", "horn switch"],
+      "vehicle_type": "LMV",
+      "source_page": 54,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Windshield wiper/washer - no operation, intermittent, continuous, or wipers will not park",
+      "system": "electrical_accessories",
+      "diagnosis_steps": ["Check wiper motor operation", "Check wiper switch", "Check washer pump", "Replace wiper blades if streaking"],
+      "related_parts": ["wiper motor", "wiper blade", "washer pump", "wiper switch"],
+      "vehicle_type": "LMV",
+      "source_page": 54,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Power window or power door lock - no operation",
+      "system": "electrical_accessories",
+      "diagnosis_steps": ["Check individual motor operation", "Check master switch", "Check fuse and relay", "Trace wiring"],
+      "related_parts": ["power window motor", "power door lock actuator", "master switch", "fuse"],
+      "vehicle_type": "LMV",
+      "source_page": 54,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Remote keyless entry / immobilizer no operation",
+      "system": "electrical_accessories",
+      "diagnosis_steps": ["Check key fob battery", "Reprogram key to immobiliser", "Check body control module", "Check antenna coil around ignition lock"],
+      "related_parts": ["immobilizer", "key fob", "body control module"],
+      "vehicle_type": "LMV",
+      "source_page": 54,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "Airbag / automatic seat belt system fault (error indication)",
+      "system": "safety",
+      "diagnosis_steps": ["Read SRS DTCs with scan tool", "Inspect SRS harness connectors", "Inspect crash sensors"],
+      "related_parts": ["airbag module", "crash sensor", "seat belt pre-tensioner"],
+      "vehicle_type": "LMV",
+      "source_page": 24,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "AC - no cooling / intermittent cooling / insufficient cooling",
+      "system": "hvac",
+      "diagnosis_steps": ["Check refrigerant charge with gauge set", "Inspect drive belt", "Inspect magnetic clutch engagement", "Evacuate and recharge system", "Check expansion valve operation"],
+      "related_parts": ["refrigerant", "AC compressor", "magnetic clutch", "expansion valve", "condenser", "evaporator", "receiver drier"],
+      "vehicle_type": "LMV",
+      "source_page": 55,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "AC - abnormal noise from compressor, magnetic clutch, condenser, evaporator or blower motor",
+      "system": "hvac",
+      "diagnosis_steps": ["Isolate noise source by component", "Check compressor bearing", "Check blower motor bearing and cage", "Inspect magnetic clutch air gap"],
+      "related_parts": ["AC compressor", "magnetic clutch", "blower motor", "condenser fan"],
+      "vehicle_type": "LMV",
+      "source_page": 24,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "AC - high-side pressure too high/low or low-side pressure too high/low",
+      "system": "hvac",
+      "diagnosis_steps": ["Connect manifold gauge set", "Interpret high/low side readings", "Check condenser airflow", "Check expansion valve", "Check refrigerant charge amount"],
+      "related_parts": ["AC pressure switch", "expansion valve", "condenser", "refrigerant"],
+      "vehicle_type": "LMV",
+      "source_page": 55,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "EVAP system fault",
+      "system": "emission",
+      "diagnosis_steps": ["Inspect EVAP canister purge with scan tool", "Check purge valve operation", "Inspect charcoal canister for damage"],
+      "related_parts": ["EVAP canister", "purge valve"],
+      "vehicle_type": "LMV",
+      "source_page": 19,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "Excessive key-off battery drain (parasitic draw)",
+      "system": "electrical",
+      "diagnosis_steps": ["Measure parasitic current with ammeter", "Isolate circuits by pulling fuses one at a time", "Test relays and solenoids for stuck-on condition"],
+      "related_parts": ["battery", "relay", "fuse"],
+      "vehicle_type": "LMV",
+      "source_page": 28,
+      "confidence": 0.9
+    }
+  ],
+  "aliases": [
+    {"canonical": "Exhaust Muffler", "alias": "Silencer", "source_page": 18, "note": "Indian English term for muffler, used throughout syllabus (e.g. 'overhauling of manifolds, silencer and tail pipe')"},
+    {"canonical": "Starter Motor", "alias": "Self / Self starter", "source_page": 51, "note": "Colloquial Indian term; syllabus uses 'starter motor' but industry uses 'self'"},
+    {"canonical": "Shock absorber", "alias": "Shocker", "source_page": 46, "note": "Common Indian colloquial term for shock absorber"},
+    {"canonical": "Fuel Injection Pump", "alias": "FIP", "source_page": 1, "note": "Abbreviation used in syllabus course information"},
+    {"canonical": "Piston pin", "alias": "Gudgeon pin", "source_page": 32, "note": "British/Indian term for wrist pin"},
+    {"canonical": "Tie rod end", "alias": "Ball joint", "source_page": 45, "note": "Steering linkage joint"},
+    {"canonical": "Universal joint", "alias": "U-joint / Universal slip joint", "source_page": 17, "note": "Syllabus uses 'Universal Slip Joint' spelling"},
+    {"canonical": "Drop arm", "alias": "Pitman arm", "source_page": 44, "note": "Syllabus uses 'drop arm' (British/Indian); American term is 'pitman arm'"},
+    {"canonical": "Cylinder liner", "alias": "Sleeve / Cylinder sleeve", "source_page": 34, "note": "Both terms used interchangeably in text"},
+    {"canonical": "Bonnet", "alias": "Hood", "source_page": null, "note": "Indian English uses 'bonnet' over 'hood' (general convention; not cited explicitly)"},
+    {"canonical": "Leaf spring", "alias": "Patti", "source_page": 19, "note": "Colloquial Hindi/Indian workshop term for leaf spring (common trade usage)"},
+    {"canonical": "Mechanical advantage", "alias": "Lever/mechanical advantage", "source_page": 47, "note": "Syllabus phrasing for brake mechanical advantage"},
+    {"canonical": "Recirculating ball steering", "alias": "Reticulating ball steering", "source_page": 19, "note": "Syllabus spells 'Reticulating' (a misspelling of 'recirculating' that has propagated in Indian workshop manuals)"},
+    {"canonical": "HMV", "alias": "Heavy Motor Vehicle / Lorry / Bus", "source_page": 41, "note": "Syllabus uses 'lorry/bus' for HMV"},
+    {"canonical": "LMV", "alias": "Light Motor Vehicle", "source_page": 1, "note": "Acronym used throughout syllabus"},
+    {"canonical": "Callipers", "alias": "Calipers", "source_page": 25, "note": "Syllabus uses British spelling 'Callipers'"},
+    {"canonical": "Tyre", "alias": "Tire", "source_page": 47, "note": "Indian English uses 'tyre'"},
+    {"canonical": "Anti-lock Braking System", "alias": "ABS", "source_page": 48, "note": "Acronym"},
+    {"canonical": "Electric Power Steering", "alias": "EPS / Power Assisted Steering", "source_page": 44, "note": "Syllabus term 'Power Assisted steering'"}
+  ]
+}

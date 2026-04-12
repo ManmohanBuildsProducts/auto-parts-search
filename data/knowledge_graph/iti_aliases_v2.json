@@ -1,0 +1,1692 @@
+{
+  "metadata": {
+    "description": "Indian-English / Hindi aliases extracted from DGT ITI syllabi via LLM",
+    "source": "iti_dgt_v2",
+    "version": "2.0",
+    "extraction_date": "2026-04-12",
+    "method": "llm_extracted",
+    "total_aliases": 168
+  },
+  "aliases": [
+    {
+      "canonical": "Starter motor",
+      "alias": "self",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "Starter motor",
+      "alias": "self starter",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "Alternator",
+      "alias": "dynamo",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 26
+      }
+    },
+    {
+      "canonical": "Alternator",
+      "alias": "generator",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "Voltage regulator",
+      "alias": "cut out",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "Horn",
+      "alias": "hooter",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 32
+      }
+    },
+    {
+      "canonical": "Turn signal lamp",
+      "alias": "indicator",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 31
+      }
+    },
+    {
+      "canonical": "Turn signal lamp",
+      "alias": "blinker",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 31
+      }
+    },
+    {
+      "canonical": "Dimmer switch",
+      "alias": "dipper",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 31
+      }
+    },
+    {
+      "canonical": "Headlight bulb",
+      "alias": "head lamp",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 30
+      }
+    },
+    {
+      "canonical": "Refrigerant",
+      "alias": "AC gas",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 29
+      }
+    },
+    {
+      "canonical": "Condenser (ignition)",
+      "alias": "capacitor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "High-tension leads",
+      "alias": "plug wires",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "Wiring harness",
+      "alias": "wire loom",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "Ground strap",
+      "alias": "earth strap",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "Fuel pump",
+      "alias": "petrol pump",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "Spark plug",
+      "alias": "plug",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "Car radio",
+      "alias": "stereo",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 32
+      }
+    },
+    {
+      "canonical": "Brake light",
+      "alias": "stop lamp",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 30
+      }
+    },
+    {
+      "canonical": "Reverse light",
+      "alias": "back-up light",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 30
+      }
+    },
+    {
+      "canonical": "Interior light",
+      "alias": "cabin light",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 31
+      }
+    },
+    {
+      "canonical": "License plate light",
+      "alias": "number plate light",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 30
+      }
+    },
+    {
+      "canonical": "Electronic Control Unit",
+      "alias": "ECU",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "Pinion (plunger)",
+      "alias": "bendix",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_auto_electrical",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "Fuel Injection Pump (FIP)",
+      "alias": "FIP",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 26
+      }
+    },
+    {
+      "canonical": "Glow Plug",
+      "alias": "heater plug",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 35
+      }
+    },
+    {
+      "canonical": "Common Rail Diesel Injection",
+      "alias": "CRDI",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "Distributor-Type Injection Pump",
+      "alias": "VE pump",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 35
+      }
+    },
+    {
+      "canonical": "Distributor-Type Injection Pump",
+      "alias": "DPC pump",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 35
+      }
+    },
+    {
+      "canonical": "Distributor-Type Injection Pump",
+      "alias": "rotary fuel pump",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 35
+      }
+    },
+    {
+      "canonical": "Diesel Particulate Filter",
+      "alias": "DPF",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "Selective Catalytic Reduction",
+      "alias": "SCR",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "Exhaust Gas Recirculation",
+      "alias": "EGR",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "Positive Crankcase Ventilation",
+      "alias": "PCV",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 13
+      }
+    },
+    {
+      "canonical": "Hydraulically Actuated Electronically Controlled Unit Injector",
+      "alias": "HEUI",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "Electronic Control Unit",
+      "alias": "ECU",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "Muffler",
+      "alias": "silencer",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "Cylinder Liner",
+      "alias": "sleeve",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 23
+      }
+    },
+    {
+      "canonical": "Oil Sump",
+      "alias": "oil pan",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "Vibration Damper",
+      "alias": "harmonic balancer",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 23
+      }
+    },
+    {
+      "canonical": "Starter Motor",
+      "alias": "self starter",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "Battery (Maintenance Free)",
+      "alias": "SMF battery",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 40
+      }
+    },
+    {
+      "canonical": "Connecting Rod",
+      "alias": "conrod",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 22
+      }
+    },
+    {
+      "canonical": "Piston Pin",
+      "alias": "gudgeon pin",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 22
+      }
+    },
+    {
+      "canonical": "Light Motor Vehicle",
+      "alias": "LMV",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 10
+      }
+    },
+    {
+      "canonical": "Heavy Motor Vehicle",
+      "alias": "HMV",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_diesel",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+        "page": 10
+      }
+    },
+    {
+      "canonical": "Motor Controller",
+      "alias": "inverter",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "Motor Controller",
+      "alias": "traction inverter",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "Motor Controller",
+      "alias": "motor drive",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 29
+      }
+    },
+    {
+      "canonical": "BMS",
+      "alias": "Battery Management System",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 15
+      }
+    },
+    {
+      "canonical": "BMS",
+      "alias": "EMS",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 26
+      }
+    },
+    {
+      "canonical": "BMS",
+      "alias": "Energy Management System",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 26
+      }
+    },
+    {
+      "canonical": "Onboard Charger",
+      "alias": "OBC",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 35
+      }
+    },
+    {
+      "canonical": "Onboard Charger",
+      "alias": "on-board charger",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 35
+      }
+    },
+    {
+      "canonical": "DC-DC Converter",
+      "alias": "DC/DC convertor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 4
+      }
+    },
+    {
+      "canonical": "HV Battery Pack",
+      "alias": "traction battery",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 15
+      }
+    },
+    {
+      "canonical": "HV Battery Pack",
+      "alias": "rechargeable energy storage system",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 15
+      }
+    },
+    {
+      "canonical": "HV Battery Pack",
+      "alias": "RESS",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 15
+      }
+    },
+    {
+      "canonical": "SoC",
+      "alias": "State of Charge",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "SoH",
+      "alias": "State of Health",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "SoP",
+      "alias": "State of Power",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "BLDC Motor",
+      "alias": "Brushless DC Motor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "PMSM",
+      "alias": "Permanent Magnet Synchronous Motor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 29
+      }
+    },
+    {
+      "canonical": "SRM",
+      "alias": "Switched Reluctance Motor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 29
+      }
+    },
+    {
+      "canonical": "HVIL Loop",
+      "alias": "High Voltage Interlock Loop",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "CAN Bus",
+      "alias": "Control Area Network",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "LIN Bus",
+      "alias": "Local Interconnect Network",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "HVAC Control Panel",
+      "alias": "FATC",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 4
+      }
+    },
+    {
+      "canonical": "HVAC Control Panel",
+      "alias": "Automatic Climate Control",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 33
+      }
+    },
+    {
+      "canonical": "Bharat DC-001",
+      "alias": "DC001",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 35
+      }
+    },
+    {
+      "canonical": "Accelerator Pedal",
+      "alias": "APP sensor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 33
+      }
+    },
+    {
+      "canonical": "Electric Compressor",
+      "alias": "e-compressor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_electric_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+        "page": 33
+      }
+    },
+    {
+      "canonical": "Exhaust Muffler",
+      "alias": "Silencer",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 18
+      }
+    },
+    {
+      "canonical": "Starter Motor",
+      "alias": "Self / Self starter",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 51
+      }
+    },
+    {
+      "canonical": "Shock absorber",
+      "alias": "Shocker",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 46
+      }
+    },
+    {
+      "canonical": "Fuel Injection Pump",
+      "alias": "FIP",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 1
+      }
+    },
+    {
+      "canonical": "Piston pin",
+      "alias": "Gudgeon pin",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 32
+      }
+    },
+    {
+      "canonical": "Tie rod end",
+      "alias": "Ball joint",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 45
+      }
+    },
+    {
+      "canonical": "Universal joint",
+      "alias": "U-joint / Universal slip joint",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 17
+      }
+    },
+    {
+      "canonical": "Drop arm",
+      "alias": "Pitman arm",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 44
+      }
+    },
+    {
+      "canonical": "Cylinder liner",
+      "alias": "Sleeve / Cylinder sleeve",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 34
+      }
+    },
+    {
+      "canonical": "Bonnet",
+      "alias": "Hood",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": null
+      }
+    },
+    {
+      "canonical": "Leaf spring",
+      "alias": "Patti",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 19
+      }
+    },
+    {
+      "canonical": "Mechanical advantage",
+      "alias": "Lever/mechanical advantage",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 47
+      }
+    },
+    {
+      "canonical": "Recirculating ball steering",
+      "alias": "Reticulating ball steering",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 19
+      }
+    },
+    {
+      "canonical": "HMV",
+      "alias": "Heavy Motor Vehicle / Lorry / Bus",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 41
+      }
+    },
+    {
+      "canonical": "LMV",
+      "alias": "Light Motor Vehicle",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 1
+      }
+    },
+    {
+      "canonical": "Callipers",
+      "alias": "Calipers",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "Tyre",
+      "alias": "Tire",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 47
+      }
+    },
+    {
+      "canonical": "Anti-lock Braking System",
+      "alias": "ABS",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 48
+      }
+    },
+    {
+      "canonical": "Electric Power Steering",
+      "alias": "EPS / Power Assisted Steering",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_motor_vehicle",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
+        "page": 44
+      }
+    },
+    {
+      "canonical": "power take-off",
+      "alias": "PTO",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 29
+      }
+    },
+    {
+      "canonical": "power tiller",
+      "alias": "two-wheel tractor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 32
+      }
+    },
+    {
+      "canonical": "belt pulley",
+      "alias": "belly pulley",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 32
+      }
+    },
+    {
+      "canonical": "mouldboard plough",
+      "alias": "MB plough",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 32
+      }
+    },
+    {
+      "canonical": "three-point hitch",
+      "alias": "three-point linkage",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 32
+      }
+    },
+    {
+      "canonical": "differential lock",
+      "alias": "diff lock",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "crown wheel and pinion",
+      "alias": "CWP",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 29
+      }
+    },
+    {
+      "canonical": "common rail diesel injection",
+      "alias": "CRDI",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "fuel injection pump",
+      "alias": "FIP",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 15
+      }
+    },
+    {
+      "canonical": "exhaust gas recirculation",
+      "alias": "EGR",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "diesel particulate filter",
+      "alias": "DPF",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "compression ignition engine",
+      "alias": "C.I. engine",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "spark ignition engine",
+      "alias": "S.I. engine",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "stay maintenance free battery",
+      "alias": "SMF battery",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 22
+      }
+    },
+    {
+      "canonical": "4-wheel drive",
+      "alias": "4x4",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "tractor trailer",
+      "alias": "trolley",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 32
+      }
+    },
+    {
+      "canonical": "auxiliary gearbox",
+      "alias": "range gearbox",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "turbocharger",
+      "alias": "turbo",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 15
+      }
+    },
+    {
+      "canonical": "starter motor",
+      "alias": "self starter",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 32
+      }
+    },
+    {
+      "canonical": "muffler",
+      "alias": "silencer",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_tractor",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
+        "page": 15
+      }
+    },
+    {
+      "canonical": "kick starter",
+      "alias": "kicker",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 14
+      }
+    },
+    {
+      "canonical": "kick starter",
+      "alias": "kick",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 14
+      }
+    },
+    {
+      "canonical": "self starter motor",
+      "alias": "self",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "self starter motor",
+      "alias": "self motor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "self starter motor",
+      "alias": "starter motor",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "drive chain",
+      "alias": "chain patta",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 22
+      }
+    },
+    {
+      "canonical": "cam chain",
+      "alias": "timing chain",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 23
+      }
+    },
+    {
+      "canonical": "brake pad",
+      "alias": "patti",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "brake lining",
+      "alias": "brake patti",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 26
+      }
+    },
+    {
+      "canonical": "clutch plate",
+      "alias": "clutch patti",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "fuel tank",
+      "alias": "tanki",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "fuel tank cap",
+      "alias": "tanki dhakkan",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 14
+      }
+    },
+    {
+      "canonical": "air cleaner",
+      "alias": "hawa filter",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "shock absorber",
+      "alias": "shocker",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "fork spring",
+      "alias": "fork kamani",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "valve spring",
+      "alias": "valve kamani",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 23
+      }
+    },
+    {
+      "canonical": "ignition switch",
+      "alias": "chaabi",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "tyre",
+      "alias": "tayar",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "spoke",
+      "alias": "teeli",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "throttle grip",
+      "alias": "race",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 23
+      }
+    },
+    {
+      "canonical": "throttle cable",
+      "alias": "race wire",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 23
+      }
+    },
+    {
+      "canonical": "silencer",
+      "alias": "muffler",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "silencer",
+      "alias": "exhaust pipe",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "main stand",
+      "alias": "center stand",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "main stand",
+      "alias": "double stand",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "side stand",
+      "alias": "kick stand",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "side stand",
+      "alias": "single stand",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "pillion seat",
+      "alias": "rear seat",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "handlebar",
+      "alias": "handle",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "gear shift lever",
+      "alias": "gear lever",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "gear shift lever",
+      "alias": "gear pedal",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "CDI unit",
+      "alias": "CDI box",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "AC generator",
+      "alias": "magneto",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "AC generator",
+      "alias": "alternator",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "AC generator",
+      "alias": "dynamo",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 6
+      }
+    },
+    {
+      "canonical": "regulator rectifier",
+      "alias": "reg-rec",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "carburetor",
+      "alias": "carb",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 23
+      }
+    },
+    {
+      "canonical": "petrol tap",
+      "alias": "fuel cock",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "petrol tap",
+      "alias": "petcock",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "spark plug",
+      "alias": "plug",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "cast wheel",
+      "alias": "alloy wheel",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "swing arm",
+      "alias": "rear fork",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "telescopic front fork",
+      "alias": "front fork",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 25
+      }
+    },
+    {
+      "canonical": "connecting rod",
+      "alias": "con rod",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 22
+      }
+    },
+    {
+      "canonical": "indicator lamp",
+      "alias": "blinker",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "indicator lamp",
+      "alias": "turn signal",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "horn",
+      "alias": "hooter",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 28
+      }
+    },
+    {
+      "canonical": "high-tension lead",
+      "alias": "plug wire",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "high-tension lead",
+      "alias": "plug cap",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "capacitor",
+      "alias": "condenser",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "piston pin",
+      "alias": "gudgeon pin",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 22
+      }
+    },
+    {
+      "canonical": "contact breaker",
+      "alias": "points",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "clutch cable",
+      "alias": "clutch wire",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 22
+      }
+    },
+    {
+      "canonical": "fuel line",
+      "alias": "petrol pipe",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 24
+      }
+    },
+    {
+      "canonical": "battery",
+      "alias": "batteri",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 20
+      }
+    },
+    {
+      "canonical": "gearbox",
+      "alias": "transmission",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    },
+    {
+      "canonical": "counter shaft",
+      "alias": "lay shaft",
+      "provenance": {
+        "method": "llm_extracted",
+        "trade": "mechanic_two_three_wheeler",
+        "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
+        "page": 27
+      }
+    }
+  ]
+}

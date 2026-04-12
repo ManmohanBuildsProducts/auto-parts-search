@@ -1,0 +1,212 @@
+{
+  "trade": "Mechanic Electric Vehicle",
+  "trade_key": "mechanic_electric_vehicle",
+  "pdf_path": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
+  "pages_total": 55,
+  "vehicle_types": ["EV", "2W-EV", "4W-EV"],
+  "systems": [
+    {
+      "system_name": "Traction Motor System",
+      "system_id": "system:traction_motor",
+      "parts": [
+        {"name": "Traction Motor", "aliases": ["drive motor", "EV motor", "electric motor", "drive/traction motor-generator"], "role": "Converts electrical energy to mechanical torque to drive the wheels", "source_page": 29},
+        {"name": "BLDC Motor", "aliases": ["Brushless DC Motor", "brushless motor"], "role": "Common traction motor type, especially for 2W EVs (Ola, Ather, TVS iQube)", "source_page": 24},
+        {"name": "PMSM", "aliases": ["Permanent Magnet Synchronous Motor"], "role": "High-efficiency traction motor used in 4W EVs", "source_page": 29},
+        {"name": "Induction Motor", "aliases": ["AC induction motor"], "role": "Traction motor type used in some 4W EVs", "source_page": 29},
+        {"name": "Switched Reluctance Motor", "aliases": ["SRM"], "role": "Alternate EV traction motor architecture", "source_page": 29},
+        {"name": "Motor Rotor Position Sensor", "aliases": ["rotor position sensor", "resolver"], "role": "Feedback sensor for motor controller commutation", "source_page": 29},
+        {"name": "Motor Cooling System", "aliases": ["motor cooling circuit", "motor coolant loop"], "role": "Removes heat from traction motor", "source_page": 15}
+      ],
+      "source_pages": [15, 24, 29]
+    },
+    {
+      "system_name": "Motor Controller / Power Electronics",
+      "system_id": "system:motor_controller",
+      "parts": [
+        {"name": "Motor Controller", "aliases": ["inverter", "motor drive", "traction inverter", "VCU (in 2W EVs)"], "role": "Controls speed and torque of traction motor; converts DC from battery to AC for motor", "source_page": 15},
+        {"name": "Traction Inverter", "aliases": ["inverter", "main inverter"], "role": "DC to AC inverter feeding traction motor", "source_page": 28},
+        {"name": "IGBT Module", "aliases": ["IGBT", "Insulated Gate Bipolar Transistor"], "role": "Power switching device inside motor controller/inverter", "source_page": 21},
+        {"name": "MOSFET", "aliases": ["power MOSFET"], "role": "Power semiconductor switch used in 2W EV motor controllers", "source_page": 21},
+        {"name": "Scan Tool", "aliases": ["diagnostic scanner", "OBD scanner"], "role": "Reads DTCs from EV ECUs, inverter, BMS", "source_page": 28}
+      ],
+      "source_pages": [15, 21, 28, 29]
+    },
+    {
+      "system_name": "High Voltage Battery Pack",
+      "system_id": "system:hv_battery_pack",
+      "parts": [
+        {"name": "HV Battery Pack", "aliases": ["high voltage battery", "traction battery", "EV battery pack", "rechargeable energy storage system", "RESS"], "role": "Primary energy storage for EV propulsion", "source_page": 15},
+        {"name": "Battery Module", "aliases": ["48V Module", "battery module assembly"], "role": "Sub-assembly of cells within battery pack; often swapped as service unit", "source_page": 15},
+        {"name": "Li-ion Cell", "aliases": ["lithium-ion cell", "Li-ion"], "role": "Dominant cell chemistry for EVs", "source_page": 26},
+        {"name": "NiMH Cell", "aliases": ["Nickel Metal Hydride"], "role": "Alternate cell chemistry", "source_page": 26},
+        {"name": "NiCad Cell", "aliases": ["Nickel Cadmium"], "role": "Legacy cell chemistry", "source_page": 26},
+        {"name": "Lead Acid Battery", "aliases": ["lead-acid"], "role": "Legacy/low-cost EV energy storage and 12V auxiliary", "source_page": 26},
+        {"name": "Battery Temperature Sensor", "aliases": ["temp sensor", "cell temperature sensor"], "role": "Monitors cell/pack temperature for thermal protection", "source_page": 15},
+        {"name": "Pack Sealing / Enclosure", "aliases": ["battery pack enclosure", "pack housing"], "role": "Structural and ingress protection for battery pack", "source_page": 26},
+        {"name": "Cell Balancing Circuit", "aliases": ["balancer"], "role": "Equalizes cell voltages during charge/discharge", "source_page": 26}
+      ],
+      "source_pages": [15, 26, 27]
+    },
+    {
+      "system_name": "Battery Management System (BMS)",
+      "system_id": "system:bms",
+      "parts": [
+        {"name": "BMS", "aliases": ["Battery Management System", "EMS", "Energy Management System"], "role": "Monitors and controls battery pack: SoC, SoH, cell balancing, thermal protection, charging/discharging", "source_page": 15},
+        {"name": "BMS Sensors", "aliases": ["voltage sensor", "current sensor", "temperature sensor"], "role": "Inputs to BMS for pack monitoring", "source_page": 26}
+      ],
+      "source_pages": [15, 26]
+    },
+    {
+      "system_name": "Charging System (Onboard)",
+      "system_id": "system:onboard_charging",
+      "parts": [
+        {"name": "Onboard Charger", "aliases": ["OBC", "AC charger module", "on-board charger"], "role": "Converts AC from charging station to DC for battery pack", "source_page": 35},
+        {"name": "Charging Port", "aliases": ["charge inlet", "charging socket", "charging connector"], "role": "Vehicle-side interface for plug-in charging", "source_page": 35},
+        {"name": "Charging Cable", "aliases": ["EVSE cable", "charging lead"], "role": "Connects vehicle to charging station", "source_page": 35},
+        {"name": "Solar Charger", "aliases": ["solar-based charger"], "role": "Solar-sourced EV charging, mentioned in Indian context", "source_page": 35}
+      ],
+      "source_pages": [35, 36]
+    },
+    {
+      "system_name": "Charging Ecosystem / Charging Station",
+      "system_id": "system:charging_ecosystem",
+      "parts": [
+        {"name": "AC Charger", "aliases": ["Level 1 charger", "Level 2 charger", "slow charger"], "role": "AC charging station (requires onboard charger)", "source_page": 35},
+        {"name": "DC Fast Charger", "aliases": ["DC charger", "fast charger", "DC001"], "role": "Direct DC charging bypassing OBC", "source_page": 35},
+        {"name": "CHAdeMO Connector", "aliases": ["CHAdeMO"], "role": "DC fast-charging standard", "source_page": 35},
+        {"name": "GB/T Connector", "aliases": ["GB/T"], "role": "Chinese DC charging standard, used in some Indian EVs", "source_page": 35},
+        {"name": "Bharat DC-001", "aliases": ["DC001", "Bharat EV charger"], "role": "Indian DC charging standard for low-voltage EVs", "source_page": 35}
+      ],
+      "source_pages": [35]
+    },
+    {
+      "system_name": "DC-DC Converter & Auxiliary Power",
+      "system_id": "system:dc_dc_converter",
+      "parts": [
+        {"name": "DC-DC Converter", "aliases": ["DC/DC convertor", "auxiliary DC-DC"], "role": "Steps HV battery voltage down to 12V for auxiliaries and accessories", "source_page": 4},
+        {"name": "12V Auxiliary Battery", "aliases": ["LV battery", "accessory battery"], "role": "Powers low-voltage accessories when vehicle is off", "source_page": 28}
+      ],
+      "source_pages": [4, 28]
+    },
+    {
+      "system_name": "High Voltage Distribution & Safety",
+      "system_id": "system:hv_distribution",
+      "parts": [
+        {"name": "HV Contactor", "aliases": ["contactor", "main contactor"], "role": "Connects/disconnects battery pack from HV bus", "source_page": 28},
+        {"name": "HVIL Loop", "aliases": ["High Voltage Interlock Loop", "HVIL"], "role": "Safety interlock that opens contactors if HV connectors are disturbed", "source_page": 28},
+        {"name": "HV Cabling", "aliases": ["orange cables", "HV harness"], "role": "Carries high voltage between battery, inverter, OBC, DC-DC", "source_page": 28},
+        {"name": "Isolation Monitor", "aliases": ["isolation sensor", "insulation monitor"], "role": "Detects HV leakage to chassis", "source_page": 28},
+        {"name": "HV Fuse", "aliases": ["pyro fuse", "maxi fuse"], "role": "Overcurrent protection for HV bus", "source_page": 22}
+      ],
+      "source_pages": [22, 28]
+    },
+    {
+      "system_name": "Regenerative Braking System",
+      "system_id": "system:regenerative_braking",
+      "parts": [
+        {"name": "Regenerative Braking Controller", "aliases": ["regen controller", "regenerative brake module"], "role": "Captures kinetic energy via motor and returns it to battery", "source_page": 33},
+        {"name": "Brake Pedal Sensor", "aliases": ["brake position sensor"], "role": "Signals driver braking demand; blended with regen", "source_page": 33},
+        {"name": "Friction Brake", "aliases": ["service brake"], "role": "Conventional brake blended with regenerative braking", "source_page": 33}
+      ],
+      "source_pages": [33]
+    },
+    {
+      "system_name": "EV Thermal Management (HVAC + Pack/Motor Cooling)",
+      "system_id": "system:thermal_management",
+      "parts": [
+        {"name": "Battery Cooling Fan", "aliases": ["pack cooling fan"], "role": "Active air cooling for battery pack", "source_page": 32},
+        {"name": "Battery Cooling System", "aliases": ["battery coolant loop", "liquid cooling"], "role": "Active/passive cooling to maintain cell temperature", "source_page": 32},
+        {"name": "Inverter Cooling", "aliases": ["inverter coolant loop"], "role": "Cooling circuit for motor controller/inverter assembly", "source_page": 32},
+        {"name": "Electric Compressor", "aliases": ["e-compressor", "HV compressor"], "role": "HV-driven AC compressor for cabin cooling and battery cooling", "source_page": 33},
+        {"name": "HVAC Control Panel", "aliases": ["climate control", "FATC", "Automatic climate control"], "role": "Driver interface for cabin HVAC", "source_page": 24},
+        {"name": "Condenser", "aliases": ["AC condenser"], "role": "Heat exchanger rejecting heat from refrigerant", "source_page": 33},
+        {"name": "Thermostatic Expansion Valve", "aliases": ["TXV", "expansion valve"], "role": "Meters refrigerant flow to evaporator", "source_page": 32},
+        {"name": "Magnetic Clutch", "aliases": ["AC magnetic clutch"], "role": "Engages/disengages compressor in some HVAC systems", "source_page": 33}
+      ],
+      "source_pages": [24, 32, 33]
+    },
+    {
+      "system_name": "Vehicle Communication Networks",
+      "system_id": "system:comm_networks",
+      "parts": [
+        {"name": "CAN Bus", "aliases": ["Control Area Network", "CAN"], "role": "Primary in-vehicle network between ECUs, BMS, inverter, VCU", "source_page": 28},
+        {"name": "LIN Bus", "aliases": ["Local Interconnect Network"], "role": "Low-speed network for body electronics (switches, sensors)", "source_page": 28},
+        {"name": "FlexRay Bus", "aliases": ["FlexRay"], "role": "High-bandwidth vehicle network", "source_page": 28},
+        {"name": "Telematics Unit", "aliases": ["telematics ECU", "connected car module"], "role": "Cellular connectivity for remote diagnostics and fleet management", "source_page": 22}
+      ],
+      "source_pages": [22, 28]
+    },
+    {
+      "system_name": "Low Voltage Accessories",
+      "system_id": "system:lv_accessories",
+      "parts": [
+        {"name": "Horn", "aliases": ["vehicle horn"], "role": "Audible warning device", "source_page": 13},
+        {"name": "Wiper Motor", "aliases": ["windshield wiper motor"], "role": "Drives wiper linkage", "source_page": 13},
+        {"name": "Power Window Motor", "aliases": ["window motor"], "role": "Electric window regulator motor", "source_page": 13},
+        {"name": "Accelerator Pedal", "aliases": ["throttle pedal", "APP sensor", "accelerator position sensor"], "role": "Driver torque demand input to VCU/motor controller", "source_page": 16},
+        {"name": "Charging Gauge", "aliases": ["state of charge gauge", "SoC gauge"], "role": "Instrument cluster indicator for battery level", "source_page": 23},
+        {"name": "Motor Temperature Gauge", "aliases": ["motor temp indicator"], "role": "Instrument cluster indicator", "source_page": 23}
+      ],
+      "source_pages": [13, 16, 23]
+    },
+    {
+      "system_name": "Chassis / Drivetrain (shared with ICE)",
+      "system_id": "system:chassis_drivetrain",
+      "parts": [
+        {"name": "Gear Box", "aliases": ["single-speed transmission", "EV gearbox", "reduction gear"], "role": "Single-speed reduction for most EVs; multi-speed in some 4W EVs", "source_page": 7},
+        {"name": "Rear Axle", "aliases": ["drive axle"], "role": "Power delivery to driven wheels", "source_page": 7},
+        {"name": "Steering Mechanism", "aliases": ["power-assisted steering", "EPS"], "role": "Electric power steering for EVs", "source_page": 7},
+        {"name": "Monocoque Body", "aliases": ["unibody"], "role": "EV body structure", "source_page": 25}
+      ],
+      "source_pages": [7, 25]
+    }
+  ],
+  "diagnostics": [
+    {"symptom": "Charger not responding", "system": "Charging System (Onboard)", "diagnosis_steps": ["Verify AC input voltage at charging station", "Check charging port integrity and pin continuity", "Verify HVIL loop closed", "Scan OBC and BMS DTCs", "Check CAN communication between OBC and BMS"], "related_parts": ["Onboard Charger", "Charging Port", "HVIL Loop", "BMS", "CAN Bus"], "vehicle_type": "EV", "source_page": 35, "confidence": 0.9},
+    {"symptom": "Charger not delivering current / not charging", "system": "Charging System (Onboard)", "diagnosis_steps": ["Check charger type and voltage level compatibility", "Verify contactor closing on charge request", "Test OBC output with DC meter", "Check BMS SoC; may be at limit"], "related_parts": ["Onboard Charger", "HV Contactor", "BMS"], "vehicle_type": "EV", "source_page": 35, "confidence": 0.9},
+    {"symptom": "Battery range dropped / reduced range", "system": "High Voltage Battery Pack", "diagnosis_steps": ["Read BMS for SoH (State of Health)", "Check cell balance / delta voltage across cells", "Verify temperature sensor readings", "Inspect for key-off battery drain", "Map battery SoH against cycle count"], "related_parts": ["HV Battery Pack", "BMS", "Battery Temperature Sensor", "Cell Balancing Circuit"], "vehicle_type": "EV", "source_page": 27, "confidence": 0.9},
+    {"symptom": "Key-off battery drain", "system": "Low Voltage Accessories", "diagnosis_steps": ["Measure parasitic current on 12V battery", "Isolate modules via fuse pull", "Check telematics unit sleep state"], "related_parts": ["12V Auxiliary Battery", "DC-DC Converter", "Telematics Unit"], "vehicle_type": "EV", "source_page": 27, "confidence": 0.8},
+    {"symptom": "Defective battery module / module replacement needed", "system": "High Voltage Battery Pack", "diagnosis_steps": ["Identify failing module via BMS cell voltage logs", "Safely de-energize pack", "Replace 48V module", "Rebalance pack", "Verify SoC/SoH after replacement"], "related_parts": ["Battery Module", "BMS", "HV Contactor"], "vehicle_type": "EV", "source_page": 27, "confidence": 0.9},
+    {"symptom": "Motor not spinning / inoperative drive motor", "system": "Traction Motor System", "diagnosis_steps": ["Check HV contactor closing", "Scan motor controller DTCs", "Verify rotor position sensor signal", "Inspect motor phase cables", "Check accelerator pedal input on CAN"], "related_parts": ["Traction Motor", "Motor Controller", "Motor Rotor Position Sensor", "HV Contactor", "Accelerator Pedal"], "vehicle_type": "EV", "source_page": 29, "confidence": 0.9},
+    {"symptom": "Inverter fault / inverter warning lamp", "system": "Motor Controller / Power Electronics", "diagnosis_steps": ["Scan inverter DTCs with scan tool", "Check inverter coolant level and temperature", "Inspect IGBT/MOSFET module for short", "Verify HV bus voltage into inverter"], "related_parts": ["Motor Controller", "IGBT Module", "Inverter Cooling", "Scan Tool"], "vehicle_type": "EV", "source_page": 28, "confidence": 0.9},
+    {"symptom": "DC-DC converter fault / 12V battery not charging while driving", "system": "DC-DC Converter & Auxiliary Power", "diagnosis_steps": ["Measure 12V battery voltage with vehicle in Ready state", "Scan DC-DC converter DTCs", "Check HV input to DC-DC", "Verify enable signal from VCU"], "related_parts": ["DC-DC Converter", "12V Auxiliary Battery"], "vehicle_type": "EV", "source_page": 28, "confidence": 0.9},
+    {"symptom": "Regen braking not working", "system": "Regenerative Braking System", "diagnosis_steps": ["Check brake pedal sensor signal", "Verify BMS is accepting regen current (SoC not at 100%)", "Check battery temperature (regen disabled when cold)", "Scan controller for regen inhibit flags"], "related_parts": ["Regenerative Braking Controller", "Brake Pedal Sensor", "BMS", "Motor Controller"], "vehicle_type": "EV", "source_page": 33, "confidence": 0.9},
+    {"symptom": "Brake not working / brake failure", "system": "Regenerative Braking System", "diagnosis_steps": ["Inspect friction brake hydraulic circuit", "Check brake pedal sensor", "Verify regen blending logic", "Test vacuum/electric brake booster"], "related_parts": ["Friction Brake", "Brake Pedal Sensor", "Regenerative Braking Controller"], "vehicle_type": "EV", "source_page": 33, "confidence": 0.85},
+    {"symptom": "Accelerator pedal problem / no throttle response", "system": "Low Voltage Accessories", "diagnosis_steps": ["Check APP sensor dual-track signal", "Verify CAN message to motor controller", "Inspect pedal wiring harness"], "related_parts": ["Accelerator Pedal", "Motor Controller", "CAN Bus"], "vehicle_type": "EV", "source_page": 33, "confidence": 0.9},
+    {"symptom": "HV battery overheating / thermal warning", "system": "EV Thermal Management", "diagnosis_steps": ["Check battery cooling fan operation", "Verify coolant level and pump", "Inspect temperature sensor readings in BMS", "Check for blocked cooling passages"], "related_parts": ["Battery Cooling Fan", "Battery Cooling System", "Battery Temperature Sensor", "BMS"], "vehicle_type": "EV", "source_page": 32, "confidence": 0.9},
+    {"symptom": "Inverter/motor overheating", "system": "EV Thermal Management", "diagnosis_steps": ["Check inverter coolant loop", "Inspect pump operation", "Verify motor temperature sensor", "Check coolant flow and air lock"], "related_parts": ["Inverter Cooling", "Motor Cooling System"], "vehicle_type": "EV", "source_page": 32, "confidence": 0.9},
+    {"symptom": "AC not cooling / HVAC insufficient cooling", "system": "EV Thermal Management",  "diagnosis_steps": ["Check refrigerant charge state (high/low side)", "Inspect electric compressor operation", "Verify condenser fan", "Check TXV"], "related_parts": ["Electric Compressor", "Condenser", "Thermostatic Expansion Valve", "HVAC Control Panel"], "vehicle_type": "EV", "source_page": 33, "confidence": 0.9},
+    {"symptom": "No horn / poor horn / continuous horn", "system": "Low Voltage Accessories", "diagnosis_steps": ["Test horn relay and fuse", "Check horn button/switch", "Measure horn coil resistance"], "related_parts": ["Horn"], "vehicle_type": "EV", "source_page": 13, "confidence": 0.9},
+    {"symptom": "Wiper no operation / continuous / intermittent fault", "system": "Low Voltage Accessories", "diagnosis_steps": ["Check wiper relay and fuse", "Inspect wiper switch/stalk", "Measure wiper motor current", "Check intermittent-wiper module"], "related_parts": ["Wiper Motor"], "vehicle_type": "EV", "source_page": 13, "confidence": 0.9},
+    {"symptom": "HV isolation fault / HV leakage warning", "system": "High Voltage Distribution & Safety", "diagnosis_steps": ["Perform megger insulation test on HV cables", "Inspect HV connectors for moisture/damage", "Check isolation monitor DTCs", "Isolate pack, OBC, DC-DC one by one"], "related_parts": ["Isolation Monitor", "HV Cabling", "HV Contactor", "HVIL Loop"], "vehicle_type": "EV", "source_page": 28, "confidence": 0.9},
+    {"symptom": "Vehicle will not go into Ready / no power", "system": "High Voltage Distribution & Safety", "diagnosis_steps": ["Verify HVIL loop closed", "Check 12V auxiliary battery voltage", "Scan VCU/BMS for contactor fault", "Inspect HV fuse"], "related_parts": ["HVIL Loop", "HV Contactor", "12V Auxiliary Battery", "HV Fuse", "BMS"], "vehicle_type": "EV", "source_page": 28, "confidence": 0.85}
+  ],
+  "aliases": [
+    {"canonical": "Motor Controller", "alias": "inverter", "source_page": 28},
+    {"canonical": "Motor Controller", "alias": "traction inverter", "source_page": 28},
+    {"canonical": "Motor Controller", "alias": "motor drive", "source_page": 29},
+    {"canonical": "BMS", "alias": "Battery Management System", "source_page": 15},
+    {"canonical": "BMS", "alias": "EMS", "source_page": 26},
+    {"canonical": "BMS", "alias": "Energy Management System", "source_page": 26},
+    {"canonical": "Onboard Charger", "alias": "OBC", "source_page": 35},
+    {"canonical": "Onboard Charger", "alias": "on-board charger", "source_page": 35},
+    {"canonical": "DC-DC Converter", "alias": "DC/DC convertor", "source_page": 4},
+    {"canonical": "HV Battery Pack", "alias": "traction battery", "source_page": 15},
+    {"canonical": "HV Battery Pack", "alias": "rechargeable energy storage system", "source_page": 15},
+    {"canonical": "HV Battery Pack", "alias": "RESS", "source_page": 15},
+    {"canonical": "SoC", "alias": "State of Charge", "source_page": 27},
+    {"canonical": "SoH", "alias": "State of Health", "source_page": 27},
+    {"canonical": "SoP", "alias": "State of Power", "source_page": 27},
+    {"canonical": "BLDC Motor", "alias": "Brushless DC Motor", "source_page": 24},
+    {"canonical": "PMSM", "alias": "Permanent Magnet Synchronous Motor", "source_page": 29},
+    {"canonical": "SRM", "alias": "Switched Reluctance Motor", "source_page": 29},
+    {"canonical": "HVIL Loop", "alias": "High Voltage Interlock Loop", "source_page": 28},
+    {"canonical": "CAN Bus", "alias": "Control Area Network", "source_page": 28},
+    {"canonical": "LIN Bus", "alias": "Local Interconnect Network", "source_page": 28},
+    {"canonical": "HVAC Control Panel", "alias": "FATC", "source_page": 4},
+    {"canonical": "HVAC Control Panel", "alias": "Automatic Climate Control", "source_page": 33},
+    {"canonical": "Bharat DC-001", "alias": "DC001", "source_page": 35},
+    {"canonical": "Accelerator Pedal", "alias": "APP sensor", "source_page": 33},
+    {"canonical": "Electric Compressor", "alias": "e-compressor", "source_page": 33}
+  ]
+}

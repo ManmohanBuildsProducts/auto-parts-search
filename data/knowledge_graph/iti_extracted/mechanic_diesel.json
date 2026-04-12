@@ -1,0 +1,458 @@
+{
+  "trade": "Mechanic Diesel",
+  "trade_key": "mechanic_diesel",
+  "pdf_path": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
+  "pages_total": 48,
+  "vehicle_types": ["LMV", "HMV", "stationary", "marine", "CRDI LMV", "heavy commercial vehicle"],
+  "systems": [
+    {
+      "system_name": "Diesel Fuel Injection System",
+      "system_id": "system:diesel_fuel_injection",
+      "parts": [
+        {"name": "Fuel Injection Pump (FIP)", "aliases": ["FIP", "fuel injector pump", "injection pump"], "role": "Pressurizes and meters diesel fuel to injectors at precise timing", "source_page": 26},
+        {"name": "Inline Injection Pump", "aliases": ["inline FIP", "inline pump"], "role": "Plunger-per-cylinder pump for diesel fuel delivery; common in HMV/commercial diesels", "source_page": 27},
+        {"name": "Distributor-Type Injection Pump", "aliases": ["VE pump", "DPC pump", "rotary fuel pump", "distributor pump"], "role": "Single rotating plunger distributes fuel to all cylinders; common in smaller diesels", "source_page": 27},
+        {"name": "Diesel Injector", "aliases": ["injector nozzle", "fuel injector", "multi hole injector", "pintle injector"], "role": "Atomizes and sprays fuel into combustion chamber", "source_page": 27},
+        {"name": "Glow Plug", "aliases": ["heater plug", "pre-heater plug"], "role": "Heats combustion chamber for cold-start of diesel engine", "source_page": 27},
+        {"name": "Fuel Feed Pump", "aliases": ["lift pump", "feed pump"], "role": "Transfers fuel from tank to injection pump (mechanical or electrical)", "source_page": 26},
+        {"name": "Plunger Pump", "aliases": ["plunger"], "role": "High-pressure fuel pumping element inside FIP", "source_page": 27},
+        {"name": "Priming Pump", "aliases": ["hand primer"], "role": "Manually bleeds air from diesel fuel lines", "source_page": 27},
+        {"name": "Diesel Fuel Filter", "aliases": ["diesel filter", "primary filter", "secondary filter"], "role": "Removes contaminants from diesel fuel", "source_page": 26},
+        {"name": "Water Separator", "aliases": ["fuel-water separator"], "role": "Separates water from diesel fuel", "source_page": 27},
+        {"name": "Common Rail (CRDI)", "aliases": ["CRDI", "common rail", "common rail direct injection"], "role": "High-pressure rail feeds electronically-controlled injectors in modern diesels", "source_page": 27},
+        {"name": "HEUI Injector", "aliases": ["HEUI", "hydraulically actuated electronically controlled unit injector"], "role": "Hydraulic-electronic unit injector diesel injection system", "source_page": 27},
+        {"name": "ECU (Electronic Control Unit)", "aliases": ["ECU", "engine control unit"], "role": "Controls diesel injection timing, quantity based on sensor data", "source_page": 27},
+        {"name": "Diesel Fuel Tank", "aliases": ["diesel tank"], "role": "Stores diesel fuel", "source_page": 26},
+        {"name": "Fuel Line", "aliases": ["diesel line", "fuel pipe"], "role": "Carries fuel from tank to pump/injectors", "source_page": 26}
+      ],
+      "source_pages": [26, 27]
+    },
+    {
+      "system_name": "Engine Cooling System",
+      "system_id": "system:cooling",
+      "parts": [
+        {"name": "Radiator", "aliases": ["radiator core", "cross flow radiator", "down flow radiator"], "role": "Dissipates coolant heat", "source_page": 24},
+        {"name": "Water Pump", "aliases": ["coolant pump"], "role": "Circulates coolant through engine", "source_page": 24},
+        {"name": "Thermostat", "aliases": ["cooling thermostat"], "role": "Regulates coolant flow based on temperature", "source_page": 24},
+        {"name": "Coolant Hose", "aliases": ["radiator hose"], "role": "Routes coolant between radiator and engine", "source_page": 24},
+        {"name": "Radiator Pressure Cap", "aliases": ["radiator cap", "pressure cap"], "role": "Maintains cooling system pressure, allows recovery overflow", "source_page": 24},
+        {"name": "Recovery Tank", "aliases": ["overflow tank", "coolant reservoir"], "role": "Collects overflow coolant", "source_page": 24},
+        {"name": "Radiator Fan", "aliases": ["cooling fan", "viscous fan", "belt-drive fan", "electrical fan"], "role": "Draws air through radiator", "source_page": 13},
+        {"name": "Thermo-Switch", "aliases": ["temperature switch", "temp sensor"], "role": "Turns on electric cooling fan at threshold temp", "source_page": 24},
+        {"name": "Temperature Indicator", "aliases": ["temp gauge"], "role": "Dashboard display of coolant temperature", "source_page": 24}
+      ],
+      "source_pages": [13, 24]
+    },
+    {
+      "system_name": "Engine Lubrication System",
+      "system_id": "system:lubrication",
+      "parts": [
+        {"name": "Oil Pump", "aliases": ["engine oil pump"], "role": "Pressurizes engine oil to galleries", "source_page": 24},
+        {"name": "Oil Filter", "aliases": ["engine oil filter"], "role": "Filters engine oil", "source_page": 24},
+        {"name": "Oil Sump", "aliases": ["sump", "oil pan", "oil collection pan"], "role": "Reservoir holding engine oil", "source_page": 24},
+        {"name": "Oil Cooler", "aliases": ["engine oil cooler"], "role": "Cools engine oil", "source_page": 24},
+        {"name": "Oil Pressure Relief Valve", "aliases": ["pressure relief valve", "oil relief valve"], "role": "Limits oil pressure", "source_page": 24},
+        {"name": "Pickup Tube", "aliases": ["oil pickup"], "role": "Draws oil from sump to pump", "source_page": 24},
+        {"name": "Oil Pressure Indicator", "aliases": ["oil pressure gauge", "oil pressure warning"], "role": "Dashboard display of oil pressure", "source_page": 24}
+      ],
+      "source_pages": [24]
+    },
+    {
+      "system_name": "Intake & Exhaust System",
+      "system_id": "system:intake_exhaust",
+      "parts": [
+        {"name": "Air Filter", "aliases": ["air cleaner", "air filter element"], "role": "Filters intake air", "source_page": 25},
+        {"name": "Intake Manifold", "aliases": ["inlet manifold"], "role": "Distributes air to cylinders", "source_page": 25},
+        {"name": "Exhaust Manifold", "aliases": ["exhaust header"], "role": "Collects exhaust from cylinders", "source_page": 25},
+        {"name": "Turbocharger", "aliases": ["turbo", "turbo charger", "variable turbocharger", "VGT"], "role": "Exhaust-driven compressor that increases intake air pressure", "source_page": 25},
+        {"name": "Intercooler", "aliases": ["charge air cooler", "CAC"], "role": "Cools compressed intake air from turbo", "source_page": 25},
+        {"name": "Supercharger", "aliases": ["super charger"], "role": "Mechanically driven intake air compressor", "source_page": 25},
+        {"name": "Air Compressor", "aliases": [], "role": "Compresses air for air brake system (HMV)", "source_page": 25},
+        {"name": "Air Exhauster", "aliases": ["exhauster"], "role": "Creates vacuum for vacuum-assisted brakes on diesel engines", "source_page": 25},
+        {"name": "Muffler", "aliases": ["silencer", "exhaust silencer"], "role": "Reduces exhaust noise", "source_page": 25},
+        {"name": "Catalytic Converter", "aliases": ["cat converter", "catcon"], "role": "Converts exhaust pollutants via catalytic reaction", "source_page": 25},
+        {"name": "Tail Pipe", "aliases": ["tailpipe", "exhaust pipe"], "role": "Final exhaust outlet to atmosphere", "source_page": 25}
+      ],
+      "source_pages": [25]
+    },
+    {
+      "system_name": "Emission Control System",
+      "system_id": "system:emission_control",
+      "parts": [
+        {"name": "EGR Valve", "aliases": ["exhaust gas recirculation valve", "EGR"], "role": "Recirculates exhaust to reduce NOx", "source_page": 28},
+        {"name": "Diesel Particulate Filter (DPF)", "aliases": ["DPF", "particulate filter"], "role": "Traps diesel soot particulates", "source_page": 28},
+        {"name": "SCR (Selective Catalytic Reduction)", "aliases": ["SCR", "AdBlue system", "urea injection", "DEF system"], "role": "Injects urea to reduce NOx in diesel exhaust", "source_page": 28},
+        {"name": "SCR Valve", "aliases": ["SCR valve"], "role": "Controls urea dosing in SCR", "source_page": 28},
+        {"name": "PCV Valve", "aliases": ["positive crankcase ventilation valve", "PCV"], "role": "Vents crankcase blow-by gases back to intake", "source_page": 13},
+        {"name": "EVAP Canister", "aliases": ["charcoal canister", "EVAP"], "role": "Traps fuel vapors (evaporative emission control)", "source_page": 13},
+        {"name": "Diesel Smoke Meter", "aliases": ["smoke meter", "opacity meter"], "role": "Measures diesel exhaust opacity (emission test)", "source_page": 25},
+        {"name": "Engine Gas Analyser", "aliases": ["gas analyzer", "exhaust gas analyzer"], "role": "Measures exhaust gas composition", "source_page": 28}
+      ],
+      "source_pages": [13, 25, 28]
+    },
+    {
+      "system_name": "Cylinder Head & Valve Train",
+      "system_id": "system:cylinder_head_valve_train",
+      "parts": [
+        {"name": "Cylinder Head", "aliases": ["head"], "role": "Seals top of cylinder, houses valves and combustion chamber", "source_page": 21},
+        {"name": "Head Gasket", "aliases": ["cylinder head gasket"], "role": "Seals joint between head and block", "source_page": 21},
+        {"name": "Engine Valve", "aliases": ["intake valve", "exhaust valve"], "role": "Controls gas flow in/out of cylinder", "source_page": 21},
+        {"name": "Valve Seat", "aliases": ["valve seat insert"], "role": "Sealing surface for valve in head", "source_page": 21},
+        {"name": "Valve Guide", "aliases": [], "role": "Guides valve stem movement", "source_page": 21},
+        {"name": "Valve Stem Oil Seal", "aliases": ["valve seal", "stem seal"], "role": "Prevents oil leaking past valve stem", "source_page": 22},
+        {"name": "Valve Spring", "aliases": [], "role": "Returns valve to closed position", "source_page": 22},
+        {"name": "Tappet", "aliases": ["lifter", "cam follower"], "role": "Transfers cam lobe motion to pushrod/valve", "source_page": 22},
+        {"name": "Push Rod", "aliases": ["pushrod"], "role": "Transfers motion from tappet to rocker arm", "source_page": 22},
+        {"name": "Rocker Arm", "aliases": ["rocker"], "role": "Pivots to push valve open", "source_page": 21},
+        {"name": "Camshaft", "aliases": ["cam shaft", "SOHC", "DOHC"], "role": "Rotating shaft with lobes that actuate valves", "source_page": 22},
+        {"name": "Timing Belt", "aliases": ["cam belt"], "role": "Synchronizes crankshaft and camshaft rotation", "source_page": 22},
+        {"name": "Timing Chain", "aliases": ["cam chain"], "role": "Chain drive syncing crank and cam", "source_page": 22},
+        {"name": "Timing Belt Tensioner", "aliases": ["tensioner"], "role": "Maintains belt tension", "source_page": 22}
+      ],
+      "source_pages": [21, 22]
+    },
+    {
+      "system_name": "Piston & Connecting Rod Assembly",
+      "system_id": "system:piston_conrod",
+      "parts": [
+        {"name": "Piston", "aliases": [], "role": "Reciprocates in cylinder, transfers combustion pressure to conrod", "source_page": 22},
+        {"name": "Piston Ring", "aliases": ["compression ring", "oil ring"], "role": "Seals combustion and controls oil", "source_page": 22},
+        {"name": "Piston Pin", "aliases": ["gudgeon pin", "wrist pin"], "role": "Connects piston to connecting rod", "source_page": 22},
+        {"name": "Connecting Rod", "aliases": ["conrod", "con rod"], "role": "Links piston to crankshaft", "source_page": 22},
+        {"name": "Big End Bearing", "aliases": ["con rod bearing", "shell bearing"], "role": "Bearing at crankshaft end of conrod", "source_page": 23},
+        {"name": "Cylinder Liner", "aliases": ["sleeve", "dry liner", "wet liner"], "role": "Replaceable cylinder wall insert", "source_page": 23}
+      ],
+      "source_pages": [22, 23]
+    },
+    {
+      "system_name": "Crankshaft & Flywheel",
+      "system_id": "system:crankshaft_flywheel",
+      "parts": [
+        {"name": "Crankshaft", "aliases": ["crank shaft", "crank"], "role": "Converts reciprocating motion to rotary", "source_page": 23},
+        {"name": "Main Bearing", "aliases": ["crankshaft bearing", "shell bearing"], "role": "Supports crankshaft in block", "source_page": 23},
+        {"name": "Flywheel", "aliases": [], "role": "Stores rotational energy, smooths power pulses", "source_page": 23},
+        {"name": "Vibration Damper", "aliases": ["harmonic balancer", "damper pulley", "crank pulley"], "role": "Absorbs crankshaft torsional vibration", "source_page": 23},
+        {"name": "Timing Gear", "aliases": ["crank timing gear", "chain sprocket"], "role": "Drives camshaft and accessories", "source_page": 23},
+        {"name": "Chain Tensioner", "aliases": [], "role": "Keeps timing chain tight", "source_page": 23}
+      ],
+      "source_pages": [23]
+    },
+    {
+      "system_name": "Cylinder Block",
+      "system_id": "system:cylinder_block",
+      "parts": [
+        {"name": "Cylinder Block", "aliases": ["engine block", "crankcase"], "role": "Main engine casting housing cylinders and crankshaft", "source_page": 23},
+        {"name": "Cylinder Sleeve", "aliases": ["liner", "dry sleeve", "wet sleeve"], "role": "Replaceable cylinder wall", "source_page": 23}
+      ],
+      "source_pages": [23]
+    },
+    {
+      "system_name": "Starting & Charging System",
+      "system_id": "system:starting_charging",
+      "parts": [
+        {"name": "Starter Motor", "aliases": ["self starter", "starting motor", "axial type starter", "pre-engagement starter", "co-axial starter"], "role": "Cranks engine for starting", "source_page": 28},
+        {"name": "Starter Solenoid", "aliases": ["solenoid switch"], "role": "Electromagnetically engages starter drive and switches heavy current", "source_page": 28},
+        {"name": "Alternator", "aliases": ["AC generator"], "role": "Generates electrical power to charge battery", "source_page": 28},
+        {"name": "Regulator Unit", "aliases": ["voltage regulator"], "role": "Regulates alternator output voltage", "source_page": 28},
+        {"name": "Battery", "aliases": ["lead acid battery", "SMF battery", "maintenance free battery"], "role": "Stores electrical energy for starting and electronics", "source_page": 19},
+        {"name": "Ignition Warning Lamp", "aliases": ["charging warning lamp"], "role": "Indicates charging system fault", "source_page": 28},
+        {"name": "Drive Belt", "aliases": ["fan belt", "alternator belt", "V-belt"], "role": "Drives alternator/water pump/fan", "source_page": 28}
+      ],
+      "source_pages": [19, 28]
+    },
+    {
+      "system_name": "Governor System (Stationary/Diesel Engine)",
+      "system_id": "system:governor",
+      "parts": [
+        {"name": "Mechanical Governor", "aliases": ["centrifugal governor"], "role": "Mechanically regulates engine speed by controlling fuel", "source_page": 27},
+        {"name": "Pneumatic Governor", "aliases": ["vacuum governor"], "role": "Uses intake vacuum to regulate engine speed", "source_page": 27},
+        {"name": "Venturi Control Unit", "aliases": ["venturi unit"], "role": "Part of pneumatic governor sensing intake airflow", "source_page": 27},
+        {"name": "Damping Device", "aliases": [], "role": "Damps governor oscillations", "source_page": 27}
+      ],
+      "source_pages": [27]
+    },
+    {
+      "system_name": "Brake System (LMV/HMV Diesel)",
+      "system_id": "system:brakes",
+      "parts": [
+        {"name": "Hydraulic Brake System", "aliases": ["hydraulic brakes"], "role": "Fluid-pressure brake actuation (LMV)", "source_page": 11},
+        {"name": "Air Brake System", "aliases": ["air brakes"], "role": "Compressed-air brake actuation (HMV)", "source_page": 11},
+        {"name": "Tandem Master Cylinder", "aliases": ["master cylinder"], "role": "Dual-circuit hydraulic brake master cylinder", "source_page": 37},
+        {"name": "Brake Booster", "aliases": ["vacuum booster"], "role": "Assists brake pedal effort via engine vacuum", "source_page": 37}
+      ],
+      "source_pages": [11, 37]
+    },
+    {
+      "system_name": "Power Steering (Hydraulic)",
+      "system_id": "system:power_steering",
+      "parts": [
+        {"name": "Hydraulic Power Steering", "aliases": ["HPS", "power steering"], "role": "Hydraulic assist for steering", "source_page": 11}
+      ],
+      "source_pages": [11]
+    },
+    {
+      "system_name": "Diagnostic & Test Equipment",
+      "system_id": "system:diagnostic_tools",
+      "parts": [
+        {"name": "Multi Scan Tool", "aliases": ["scan tool", "OBD scanner", "diagnostic scanner"], "role": "Reads ECU data / DTCs on CRDI engines", "source_page": 39},
+        {"name": "Injector Testing Set", "aliases": ["injector tester", "pop tester"], "role": "Tests diesel injector spray and opening pressure", "source_page": 36},
+        {"name": "Fuel Injection Test Bench", "aliases": ["FIP calibration bench", "pump test bench"], "role": "Calibrates fuel injection pumps", "source_page": 40},
+        {"name": "Glow Plug Tester", "aliases": [], "role": "Tests glow plug resistance/function", "source_page": 35},
+        {"name": "Compression Testing Gauge", "aliases": ["compression gauge", "diesel compression tester"], "role": "Measures cylinder compression pressure", "source_page": 34},
+        {"name": "Cylinder Bore Gauge", "aliases": ["bore gauge"], "role": "Measures cylinder bore diameter/taper/ovality", "source_page": 34},
+        {"name": "Engineer's Stethoscope", "aliases": ["mechanic's stethoscope"], "role": "Listens for abnormal engine noises", "source_page": 35},
+        {"name": "Timing Light", "aliases": ["timing lighter"], "role": "Checks ignition/injection timing", "source_page": 38},
+        {"name": "Tachometer", "aliases": ["RPM gauge"], "role": "Measures engine RPM", "source_page": 20}
+      ],
+      "source_pages": [20, 34, 35, 36, 38, 39, 40]
+    }
+  ],
+  "diagnostics": [
+    {
+      "symptom": "Engine not starting (cold/diesel)",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Check mechanical causes: fuel delivery, FIP operation, injector condition, injection timing",
+        "Check electrical causes: battery, starter motor, solenoid, glow plug circuit",
+        "Bleed air from fuel lines if air entered system",
+        "Test glow plugs with glow plug tester (especially in cold conditions)",
+        "Test injectors for spray pattern on injector testing set",
+        "Verify injection timing via spill cut-off method"
+      ],
+      "related_parts": ["Glow Plug", "Fuel Injection Pump (FIP)", "Diesel Injector", "Starter Motor", "Starter Solenoid", "Battery", "Fuel Filter", "Priming Pump"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "High fuel consumption",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Inspect air filter (clogged filter richens mixture)",
+        "Test injectors for leakage / bad spray pattern",
+        "Check FIP calibration on test bench",
+        "Verify injection timing",
+        "Check for exhaust smoke (black smoke = over-fuelling)"
+      ],
+      "related_parts": ["Diesel Injector", "Fuel Injection Pump (FIP)", "Air Filter", "Diesel Fuel Filter"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Engine overheating",
+      "system": "system:cooling",
+      "diagnosis_steps": [
+        "Check & top up coolant level",
+        "Test thermostat operation",
+        "Pressure test cooling system for leaks",
+        "Check radiator pressure cap",
+        "Inspect radiator fan (mechanical/electric/viscous) operation",
+        "Reverse-flush radiator if clogged",
+        "Inspect water pump"
+      ],
+      "related_parts": ["Radiator", "Thermostat", "Water Pump", "Radiator Pressure Cap", "Radiator Fan", "Coolant Hose", "Thermo-Switch"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.95
+    },
+    {
+      "symptom": "Low power generation",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Test cylinder compression",
+        "Check injectors and FIP",
+        "Inspect turbocharger for axial clearance / leaks",
+        "Check air filter and intercooler",
+        "Check EGR valve for stuck open",
+        "Check injection timing"
+      ],
+      "related_parts": ["Diesel Injector", "Fuel Injection Pump (FIP)", "Turbocharger", "Air Filter", "Intercooler", "EGR Valve"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Excessive engine oil consumption",
+      "system": "system:piston_conrod",
+      "diagnosis_steps": [
+        "Check piston rings end-gap and piston-to-liner clearance",
+        "Inspect valve stem oil seals",
+        "Check for turbocharger seal leak (oil in intake)",
+        "Inspect cylinder liner for wear / taper / ovality"
+      ],
+      "related_parts": ["Piston Ring", "Valve Stem Oil Seal", "Cylinder Liner", "Turbocharger"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Low engine oil pressure",
+      "system": "system:lubrication",
+      "diagnosis_steps": [
+        "Check engine oil level and grade",
+        "Overhaul oil pump",
+        "Adjust oil pressure relief valve",
+        "Inspect main and big-end bearings for wear",
+        "Inspect oil filter and pickup tube for blockage"
+      ],
+      "related_parts": ["Oil Pump", "Oil Pressure Relief Valve", "Oil Filter", "Main Bearing", "Big End Bearing", "Pickup Tube"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "High engine oil pressure",
+      "system": "system:lubrication",
+      "diagnosis_steps": [
+        "Check oil pressure relief valve (stuck closed)",
+        "Check oil grade / viscosity",
+        "Inspect oil galleries for blockage"
+      ],
+      "related_parts": ["Oil Pressure Relief Valve", "Oil Filter"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "Abnormal engine noise",
+      "system": "system:cylinder_head_valve_train",
+      "diagnosis_steps": [
+        "Use engineer's stethoscope to localize noise",
+        "Check valve clearance adjustment",
+        "Inspect tappets, pushrods, rocker arms",
+        "Check big-end and main bearing wear",
+        "Inspect piston slap / piston-to-liner clearance",
+        "Check timing belt/chain tension"
+      ],
+      "related_parts": ["Tappet", "Push Rod", "Rocker Arm", "Big End Bearing", "Main Bearing", "Piston", "Timing Belt", "Timing Chain", "Chain Tensioner"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Missing cylinder / rough running",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Isolate each injector one by one to find defective cylinder",
+        "Test suspect injector on bench",
+        "Replace defective injector and reassemble",
+        "Check cylinder compression on suspect cylinder"
+      ],
+      "related_parts": ["Diesel Injector", "Fuel Injection Pump (FIP)"],
+      "vehicle_type": "stationary/LMV/HMV diesel",
+      "source_page": 27,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Air in fuel lines (hard starting, stalling)",
+      "system": "system:diesel_fuel_injection",
+      "diagnosis_steps": [
+        "Inspect fuel lines for leaks",
+        "Check fuel filter seals",
+        "Use priming/hand pump to bleed air from fuel lines",
+        "Service primary and secondary fuel filters"
+      ],
+      "related_parts": ["Priming Pump", "Diesel Fuel Filter", "Fuel Line", "Fuel Feed Pump"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 26,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Turbocharger malfunction (boost loss / oil leak / whine)",
+      "system": "system:intake_exhaust",
+      "diagnosis_steps": [
+        "Dismantle turbocharger",
+        "Check axial clearance per service manual",
+        "Inspect for oil leak at seals",
+        "Check intercooler for leaks"
+      ],
+      "related_parts": ["Turbocharger", "Intercooler", "Exhaust Manifold"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 25,
+      "confidence": 0.85
+    },
+    {
+      "symptom": "High exhaust smoke / failed emission test",
+      "system": "system:emission_control",
+      "diagnosis_steps": [
+        "Measure smoke opacity with diesel smoke meter",
+        "Inspect/clean EGR valve",
+        "Check DPF condition (clogged / needs regen)",
+        "Inspect SCR/urea dosing system",
+        "Check injector spray and FIP"
+      ],
+      "related_parts": ["EGR Valve", "Diesel Particulate Filter (DPF)", "SCR (Selective Catalytic Reduction)", "Diesel Injector", "Diesel Smoke Meter"],
+      "vehicle_type": "LMV/HMV diesel (BS-IV/V/VI)",
+      "source_page": 28,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Charging system fault (battery not charging)",
+      "system": "system:starting_charging",
+      "diagnosis_steps": [
+        "Check ignition warning lamp behavior",
+        "Trace circuit from alternator to battery",
+        "Test alternator output / motoring action",
+        "Inspect regulator unit",
+        "Check drive belt condition and tension"
+      ],
+      "related_parts": ["Alternator", "Regulator Unit", "Drive Belt", "Battery", "Ignition Warning Lamp"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Starter motor fails to crank",
+      "system": "system:starting_charging",
+      "diagnosis_steps": [
+        "Check battery charge and terminals",
+        "Test starter solenoid switch",
+        "Overhaul starter motor: brushes, armature, bearings",
+        "Test starter motor on bench"
+      ],
+      "related_parts": ["Starter Motor", "Starter Solenoid", "Battery"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 28,
+      "confidence": 0.9
+    },
+    {
+      "symptom": "Cylinder head warped / head gasket leak",
+      "system": "system:cylinder_head_valve_train",
+      "diagnosis_steps": [
+        "Check cylinder head flatness with straightedge + feeler gauge",
+        "Inspect head and manifold surfaces for warping/cracks",
+        "Check valve seat sealing (leakage test)",
+        "Replace head gasket"
+      ],
+      "related_parts": ["Cylinder Head", "Head Gasket", "Engine Valve", "Valve Seat"],
+      "vehicle_type": "LMV/HMV diesel",
+      "source_page": 21,
+      "confidence": 0.9
+    }
+  ],
+  "aliases": [
+    {"canonical": "Fuel Injection Pump (FIP)", "alias": "FIP", "source_page": 26},
+    {"canonical": "Glow Plug", "alias": "heater plug", "source_page": 35},
+    {"canonical": "Common Rail Diesel Injection", "alias": "CRDI", "source_page": 27},
+    {"canonical": "Distributor-Type Injection Pump", "alias": "VE pump", "source_page": 35},
+    {"canonical": "Distributor-Type Injection Pump", "alias": "DPC pump", "source_page": 35},
+    {"canonical": "Distributor-Type Injection Pump", "alias": "rotary fuel pump", "source_page": 35},
+    {"canonical": "Diesel Particulate Filter", "alias": "DPF", "source_page": 28},
+    {"canonical": "Selective Catalytic Reduction", "alias": "SCR", "source_page": 28},
+    {"canonical": "Exhaust Gas Recirculation", "alias": "EGR", "source_page": 28},
+    {"canonical": "Positive Crankcase Ventilation", "alias": "PCV", "source_page": 13},
+    {"canonical": "Hydraulically Actuated Electronically Controlled Unit Injector", "alias": "HEUI", "source_page": 27},
+    {"canonical": "Electronic Control Unit", "alias": "ECU", "source_page": 27},
+    {"canonical": "Muffler", "alias": "silencer", "source_page": 25},
+    {"canonical": "Cylinder Liner", "alias": "sleeve", "source_page": 23},
+    {"canonical": "Oil Sump", "alias": "oil pan", "source_page": 24},
+    {"canonical": "Vibration Damper", "alias": "harmonic balancer", "source_page": 23},
+    {"canonical": "Starter Motor", "alias": "self starter", "source_page": 28},
+    {"canonical": "Battery (Maintenance Free)", "alias": "SMF battery", "source_page": 40},
+    {"canonical": "Connecting Rod", "alias": "conrod", "source_page": 22},
+    {"canonical": "Piston Pin", "alias": "gudgeon pin", "source_page": 22},
+    {"canonical": "Light Motor Vehicle", "alias": "LMV", "source_page": 10},
+    {"canonical": "Heavy Motor Vehicle", "alias": "HMV", "source_page": 10}
+  ]
+}
