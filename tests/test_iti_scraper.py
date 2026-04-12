@@ -107,7 +107,12 @@ class TestFullPipeline:
         return parse_iti_diagnostics()
 
     def test_minimum_100_chains(self, chains):
-        """Must produce at least 100 diagnostic chains."""
+        """Must produce at least 100 diagnostic chains.
+
+        Note (ADR 008): ~98 come from hardcoded STRUCTURED_DIAGNOSTICS; the rest
+        from thin PDF regex enrichment. Real PDF-to-structured extraction via
+        LLM is queued as T102b/T103b and will raise this count substantially.
+        """
         assert len(chains) >= 100, f"Only {len(chains)} chains, need at least 100"
 
     def test_all_chains_have_ids(self, chains):

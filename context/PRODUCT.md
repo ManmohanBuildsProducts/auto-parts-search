@@ -25,10 +25,13 @@ Mid-market Indian auto parts e-commerce platforms (Koovers, SparesHub, Autozilla
 - GoMechanic Spares is dead (fraud → fire sale → shutdown)
 
 ## Defensible Moat
-1. Indian auto parts knowledge graph (HSN taxonomy + DGT syllabi + vocabulary)
-2. Hindi/Hinglish training data (not replicable by Western search companies)
-3. Fitment database for Indian vehicles (Maruti/Tata/Mahindra models that TecDoc barely covers)
-4. Customer search logs → demand intelligence (compounds over time)
+
+**Note (2026-04-12):** moat claims below are aspirational — current defensibility is partial. See ADR 011 for the honest positioning. The real moat is the compounding customer-query feedback loop; items 1–3 are transient advantages that fund the build toward item 4.
+
+1. Indian auto parts knowledge graph. Sources: HSN taxonomy (real scrape from CBIC), NHTSA API (real), ASDC qualification packs (real), vocabulary research (real). **DGT ITI syllabi content is hand-curated v1 at present** (see ADR 008); LLM re-extraction from PDFs is queued as T102b/T103b in Phase 2b.
+2. Hindi/Hinglish training data — 1,593 vocabulary pairs (synonym, misspelling, symptom, brand-as-generic) from research. Not replicable by Western search companies short-term. Base-model improvements (BGE-m3, Jina v3, Cohere multilingual) erode this ~30%/6mo.
+3. Fitment database for Indian vehicles — currently ~688 `fits` edges in the KG from NHTSA Honda/Hyundai/Toyota/Suzuki overlap. Thin for Maruti/Tata/Mahindra India-specific variants; improved by customer-catalog ingestion at pilot stage.
+4. **Customer search logs → demand intelligence (compounds over time).** The only durable moat. Requires ≥1 live customer producing query logs. Zero defensibility until GTM lands (T505/T506).
 
 ## Product Pillars
 1. **Search API** — The wedge. Hindi/Hinglish/symptom/misspelling-aware search endpoint. Rs.8K-25K/month.

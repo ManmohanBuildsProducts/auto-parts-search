@@ -27,3 +27,13 @@ Edges: is_a, in_system, caused_by, fits, equivalent_to, known_as
 - Graded similarity (not just binary) based on graph distance
 - Multi-type training pairs from different edge types
 - Potentially multi-task loss functions per edge type
+
+---
+
+## 2026-04-12 provenance addendum (see ADR 008)
+
+When this ADR was written, it implied DGT ITI syllabus content would be extracted from PDFs. The current `iti_systems.json` (124 parts) and `iti_diagnostics.json` (103 chains) are **~95% hand-curated Python dicts** derived from the founder's reading of the syllabi, not from programmatic extraction. The PDFs are in `data/knowledge_graph/iti_pdfs/` (gitignored until T101b).
+
+ADR 008 documents this honestly and queues T102b/T103b for LLM-based re-extraction with per-entry `provenance: {method, pdf, page}` fields. Until T102b/T103b ship, external-facing materials (PRODUCT.md moat claim, sales pitches) must describe v1 as hand-curated, v2 as LLM-extracted.
+
+Other KG sources (HSN, NHTSA, ASDC) were audited 2026-04-12 and appear clean — real network scraping, no hand-curation pattern. Only ITI has the provenance issue.

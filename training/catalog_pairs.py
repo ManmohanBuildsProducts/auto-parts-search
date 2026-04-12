@@ -14,7 +14,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from auto_parts_search.schemas import Product, TrainingPair
 from auto_parts_search.config import TRAINING_DIR, RAW_DIR, NEGATIVE_RATIO, RANDOM_SEED
 
-# ADR 009: deterministic pair generation. Do not remove.
+# ADR 009: deterministic pair generation via per-function Random(seed).
+# Module-level seed retained as a fallback; per-function rng is the authoritative
+# mechanism — it cannot be polluted by other modules calling random.*.
 random.seed(RANDOM_SEED)
 
 
@@ -50,10 +52,15 @@ def group_products(products: list[Product]) -> dict[str, list[Product]]:
     return dict(groups)
 
 
-def generate_positive_pairs(groups: dict[str, list[Product]], max_per_group: int = 10) -> list[TrainingPair]:
-    """Generate positive pairs from products in same group."""
+def generate_positive_pairs(
+    groups: dict[str, list[Product]],
+    max_per_group: int = 10,
+    seed: int = RANDOM_SEED,
+) -> list[TrainingPair]:
+    """Generate positive pairs from products in same group. Deterministic per seed."""
+    rng = random.Random(seed)
     pairs = []
-    for group_key, products in groups.items():
+    for group_key, products in sorted(groups.items()):
         if len(products) < 2:
             continue
         # Sample pairs from the group
@@ -62,7 +69,7 @@ def generate_positive_pairs(groups: dict[str, list[Product]], max_per_group: int
         attempts = 0
         while len(seen) < n and attempts < n * 3:
             attempts += 1
-            a, b = random.sample(products, 2)
+            a, b = rng.sample(products, 2)
             pair_key = tuple(sorted([a.product_id, b.product_id]))
             if pair_key in seen:
                 continue
@@ -81,15 +88,17 @@ def generate_negative_pairs(
     products: list[Product],
     num_positives: int,
     ratio: int = NEGATIVE_RATIO,
+    seed: int = RANDOM_SEED,
 ) -> list[TrainingPair]:
-    """Generate negative pairs from products in different categories."""
+    """Generate negative pairs from products in different categories. Deterministic per seed."""
+    rng = random.Random(seed)
     # Group by category for negative sampling
     by_category = defaultdict(list)
     for p in products:
         cat = p.category.lower().strip() if p.category else "unknown"
         by_category[cat].append(p)
 
-    categories = list(by_category.keys())
+    categories = sorted(by_category.keys())
     if len(categories) < 2:
         return []
 
@@ -100,9 +109,9 @@ def generate_negative_pairs(
 
     while len(pairs) < target and attempts < target * 3:
         attempts += 1
-        cat_a, cat_b = random.sample(categories, 2)
-        a = random.choice(by_category[cat_a])
-        b = random.choice(by_category[cat_b])
+        cat_a, cat_b = rng.sample(categories, 2)
+        a = rng.choice(by_category[cat_a])
+        b = rng.choice(by_category[cat_b])
         pair_key = tuple(sorted([a.product_id, b.product_id]))
         if pair_key in seen:
             continue
