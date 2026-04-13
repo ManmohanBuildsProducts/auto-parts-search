@@ -15,7 +15,7 @@
 
 set -euo pipefail
 
-HF_USERNAME="${HF_USERNAME:-TBD}"
+HF_USERNAME="${HF_USERNAME:-ManmohanBuildsProducts}"
 DATASET_NAME="auto-parts-search-raw"
 DATASET_REPO="${HF_USERNAME}/${DATASET_NAME}"
 

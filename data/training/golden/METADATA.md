@@ -10,7 +10,7 @@
 |-----------|--------|
 | `random.seed(RANDOM_SEED)` in all generators (T603a) | ✅ Module-level + per-function `rng = Random(42)` in `training/catalog_pairs.py`; per-function in `training/vocabulary_pairs.py`; `training/benchmark.py` uses no random |
 | Deterministic regeneration verified (T603-verify) | ✅ Two consecutive `python3 -m auto_parts_search pairs` runs produced byte-identical output (2026-04-12) |
-| Raw data snapshot manifest (T603b) | 🟡 Template present at `data/raw/MANIFEST.md` with TBD SHA256 for scrape-v1-2026-04-10; B2 upload pending (T603c) |
+| Raw data snapshot manifest (T603b) | ✅ `data/raw/MANIFEST.md` references `scrape-v3-2026-04-13` hosted at Hugging Face Datasets `ManmohanBuildsProducts/auto-parts-search-raw`; fetch via `bash scripts/fetch_raw.sh`; SHA-verified round-trip confirmed |
 | Benchmark dev/test split (T208) | ❌ Not yet done — benchmark.json is the full 195-query set; split lives in Phase 3 plan |
 
 ## SHA256 hashes (as promoted)
@@ -24,9 +24,9 @@
 
 ## Upstream dependencies
 
-- Scrape snapshot: **TBD** — will be `scrape-v1-2026-04-10` once uploaded to Backblaze B2 per T603c.
+- Scrape snapshot: **`scrape-v3-2026-04-13`** at Hugging Face Datasets `ManmohanBuildsProducts/auto-parts-search-raw` (tarball SHA256 `a7bf97525c4bd54b6f20369e85715cd2c724cdd4943a7b9ea07a58da2af25bfa`, 21 MB compressed from ~516 MB raw).
 - Catalog-pair seed: `RANDOM_SEED = 42` from `auto_parts_search/config.py`.
-- Generator commits: latest as of this promotion is `7890da2` (master).
+- Generator commits: latest as of this promotion is `f05771d` (master).
 
 ## When to bump to v2
 
