@@ -77,7 +77,7 @@ All P0. Four independent tracks.
 | T103b | LLM-extract diagnostic chains from each PDF | M | ✅ a4eb69d (154 chains / 168 aliases) |
 | T102c | Public framing update — disclose v1 hand-curation | S | ✅ 775e446 (decisions/003 + PRODUCT.md) |
 | T113-audit | Audit ASDC/HSN/NHTSA for same hand-curation pattern | S | ✅ 775e446 (clean; only ITI affected) |
-| T110b | Integrate v2 into `build_graph.py`; rebuild graph.db | M | Backlog (next session) |
+| T110b | Integrate v2 into `build_graph.py`; rebuild graph.db | M | ✅ a99f83c (4,252 nodes / 5,445 edges; +62% vs v1) |
 
 **Track C — Reproducibility** (ADR 009)
 | ID | Task | Size | Status |

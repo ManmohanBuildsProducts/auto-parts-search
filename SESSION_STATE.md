@@ -2,19 +2,20 @@
 
 **Rolling dashboard. Open this first.** One page, always current. Claude updates via `/wrap` at session end.
 
-Last updated: 2026-04-13 (Phase 2b fully shipped — HF Datasets snapshot closes reproducibility chain)
+Last updated: 2026-04-13 (T110b shipped — ITI v2 wired into graph.db; Phase 2b 100% complete)
 
 ---
 
 ## 🟢 Current focus
 
-Phase 2b fully shipped except one follow-up (T110b: integrate ITI v2 into `build_graph.py`). GTM is now materially unblocked — first prospect list + audit notebook are ready. Next session = T110b integration + deliver first audit to one of the 3 top prospects.
+**Phase 2b 100% complete.** graph.db now reflects the ITI v2 dataset (4,252 nodes / 5,445 edges — +62% vs v1). GTM tools ready (notebook + 5 named prospects). Phase 3 (training loop) is the next phase — first Phase-3 task is T303a (`training/evaluate.py` harness).
 
-## ✅ Done (recent — 2026-04-12/13, 13 commits)
+## ✅ Done (recent — 2026-04-12/13, 16 commits)
 
-- **HF Datasets raw snapshot (f957e95)** — `scrape-v3-2026-04-13` uploaded to `ManmohanBuildsProducts/auto-parts-search-raw` (private), 21MB tarball (516MB raw), SHA-verified round-trip via `scripts/fetch_raw.sh`. T603b/c/d all closed. Reproducibility chain complete.
-- **v1+v2 ITI merge (f05771d)** — `scripts/merge_iti_v2.py` now folds hand-curated v1 (124 parts / 103 chains) into v2 via `provenance.method`. Final: 646 parts (86 dual-sourced) / 247 chains (10 dual-sourced). 93 v1-only diagnostics preserved.
-- **Scraping queue (f05771d)** — `context/scraping-queue.md` as evergreen registry for domains × (scrape status + outreach status + priority).
+- **T110b — ITI v2 wired into graph.db (a99f83c)** — `build_graph.py:ingest_iti_v2` reads merged systems + diagnostics + aliases with provenance. Graph: 2,627 → 4,252 nodes (+62%), 3,375 → 5,445 edges (+61%). Big wins: aliases 189 → 1,111 (+922 Hindi/Hinglish vocabulary), parts 1,584 → 2,121 (+537), symptoms 103 → 247 (+144). Query-layer tests pass: "patti" returns brake_pad + brake_lining + leaf_spring; `alias:kicker → part:kick_starter`.
+- **HF Datasets raw snapshot (f957e95)** — `scrape-v3-2026-04-13` uploaded to `ManmohanBuildsProducts/auto-parts-search-raw` (private), 21MB tarball (516MB raw), SHA-verified round-trip via `scripts/fetch_raw.sh`. Reproducibility chain complete.
+- **v1+v2 ITI merge (f05771d)** — `scripts/merge_iti_v2.py` folds hand-curated v1 (124 parts / 103 chains) into v2 via `provenance.method`. Final: 646 parts (86 dual-sourced) / 247 chains (10 dual-sourced). 93 v1-only diagnostics preserved.
+- **Scraping queue (f05771d)** — `context/scraping-queue.md` evergreen domain registry.
 
 - **ITI v2 LLM extraction (a4eb69d)** — 6 parallel subagents parsed DGT PDFs + `scripts/merge_iti_v2.py` consolidated:
   - 20 systems / 608 parts (5× v1) / 154 diagnostics / **168 aliases** — all with `source_page` citations.
@@ -39,12 +40,12 @@ Phase 2b fully shipped except one follow-up (T110b: integrate ITI v2 into `build
 
 ## 🔷 Next up (ranked by leverage)
 
-1. **T506 — deliver first free audit** — run `notebooks/search_audit.ipynb` against one prospect's catalog. Requires LinkedIn DM to Ratan Kumar Singh (Pikpart) / Pranay Tagare (AutoDukan) / Vineet Asija (Parts Big Boss) asking for 48 hrs of search logs. **Highest-EV item; retires the single biggest unknown in the project.**
-2. **T110b — integrate ITI v2 into `build_graph.py`** — currently graph.db uses v1 hand-curated. Update to prefer v2, or merge both with provenance-marked nodes. Rebuild graph.db. Expected count: v1 2,627 → v2 ~3,200+ nodes. ~30 min.
-3. **T208 + T208b — benchmark dev/test split + top-20 graded labels** — unblocks Phase 3 nDCG@10 measurement. ~1.5 hr.
-4. **T603b/c — MANIFEST SHA256s + Backblaze upload** — closes reproducibility chain. ~30 min (once B2 account exists).
-5. **T112 — Boodmo → HSN category mapping for top 1K parts** — enriches KG for Phase 3. ~2 hr.
-6. **T303a — `training/evaluate.py` harness** — the `(model, benchmark) → scores` function. ~30 min.
+1. **T506 — deliver first free audit** — run `notebooks/search_audit.ipynb` against one prospect's catalog. Requires LinkedIn DM to Ratan Kumar Singh (Pikpart) / Pranay Tagare (AutoDukan) / Vineet Asija (Parts Big Boss). **Highest-EV item; retires the single biggest unknown in the project.** At the user's own pace.
+2. **T303a — `training/evaluate.py` harness** — opens Phase 3. `evaluate(model_path, benchmark_path) → {mrr, ndcg@10, recall@5, zero_result_rate}`. Baseline with `all-MiniLM-L6-v2`. ~30 min.
+3. **T208 + T208b — benchmark dev/test split + top-20 graded labels via LLM judge** — unblocks nDCG@10. ~1.5 hr.
+4. **T303b — base-model shootout** — BGE-m3, Jina v3, multilingual-e5-large, OpenAI `text-embedding-3-large`, Cohere `embed-multilingual-v3` on our 195-query benchmark. Decide base for fine-tuning. ~2 hr.
+5. **T112 — Boodmo → HSN category mapping (top 1K parts)** — enriches KG for Phase 3 pair generation. ~2 hr.
+6. **T200b + T201b + T202b — generate pair sets from the merged KG** — HSN hierarchy graded pairs, ITI system-membership pairs, diagnostic chain pairs. Phase 3 training loop unit-of-work. ~3 hr total.
 
 ## 🗝 Key recent decisions
 
