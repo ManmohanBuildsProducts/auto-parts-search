@@ -28,6 +28,12 @@ OUT = Path("data/training/experiments/2026-04-13-kg-pairs/diagnostic_pairs.jsonl
 
 MAX_COOCCUR_PER_SYMPTOM = 40
 
+# Co-occurrence = parts sharing a root cause. Related, not synonymous.
+# Graded label so MNR-style positive-only losses drop them; graded losses
+# (CoSENT) still see partial signal.
+COOCCURRENCE_LABEL = 0.5
+SYMPTOM_PART_LABEL = 1.0
+
 
 def pretty_symptom(raw: str) -> str:
     """symptom:abnormal_engine_noise -> abnormal engine noise."""
@@ -83,13 +89,13 @@ def main() -> None:
     pairs: list[dict] = []
     seen: set[tuple[str, str, str]] = set()
 
-    def add(a: str, b: str, ptype: str) -> None:
+    def add(a: str, b: str, ptype: str, label: float) -> None:
         key = (a.lower(), b.lower(), ptype)
         if key in seen or a.lower() == b.lower():
             return
         seen.add(key)
         pairs.append({
-            "text_a": a, "text_b": b, "label": 1.0,
+            "text_a": a, "text_b": b, "label": label,
             "pair_type": ptype, "source": "iti_v2",
         })
 
@@ -99,7 +105,7 @@ def main() -> None:
         for part_id in part_ids:
             forms = surface_forms(parts[part_id], aliases.get(part_id, []))
             for form in forms:
-                add(sym_name, form, "symptom_part")
+                add(sym_name, form, "symptom_part", SYMPTOM_PART_LABEL)
 
     # Symptom co-occurrence: parts that share a root cause cluster together.
     for sym_id, part_ids in chains.items():
@@ -108,7 +114,7 @@ def main() -> None:
         combos = list(combinations(sorted(set(part_ids)), 2))
         rng.shuffle(combos)
         for p1, p2 in combos[:MAX_COOCCUR_PER_SYMPTOM]:
-            add(parts[p1], parts[p2], "symptom_cooccurrence")
+            add(parts[p1], parts[p2], "symptom_cooccurrence", COOCCURRENCE_LABEL)
 
     pairs.sort(key=lambda d: (d["pair_type"], d["text_a"].lower(), d["text_b"].lower()))
 

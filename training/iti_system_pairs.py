@@ -29,6 +29,13 @@ OUT = Path("data/training/experiments/2026-04-13-kg-pairs/system_pairs.jsonl")
 
 MAX_COOCCUR_PER_SYSTEM = 80  # cap (k choose 2) explosion for big systems
 
+# Co-occurrence is a RELATED signal, not a SAME-MEANING signal. Two parts
+# in the same system (e.g. "brake pad" and "brake disc") are neighbors in
+# embedding space but not synonyms — label them graded so MNR-style losses
+# filter them out and CoSENT-style losses see them as partial matches.
+COOCCURRENCE_LABEL = 0.5
+MEMBERSHIP_LABEL = 1.0
+
 
 def aliases_for(conn: sqlite3.Connection) -> dict[str, list[str]]:
     """part_id -> list of alias names (excluding the canonical part name)."""
@@ -79,13 +86,13 @@ def main() -> None:
     pairs: list[dict] = []
     seen: set[tuple[str, str, str]] = set()
 
-    def add(a: str, b: str, ptype: str) -> None:
+    def add(a: str, b: str, ptype: str, label: float) -> None:
         key = (a.lower(), b.lower(), ptype)
         if key in seen or a.lower() == b.lower():
             return
         seen.add(key)
         pairs.append({
-            "text_a": a, "text_b": b, "label": 1.0,
+            "text_a": a, "text_b": b, "label": label,
             "pair_type": ptype, "source": "iti_v2",
         })
 
@@ -95,7 +102,7 @@ def main() -> None:
         for sys_id in sys_ids:
             sys_name = systems[sys_id]
             for form in forms:
-                add(form, sys_name, "system_membership")
+                add(form, sys_name, "system_membership", MEMBERSHIP_LABEL)
 
     # Co-occurrence: pairs of co-member parts within each system, capped.
     system_to_parts: dict[str, list[str]] = defaultdict(list)
@@ -110,7 +117,7 @@ def main() -> None:
         rng.shuffle(all_combos)
         for p1, p2 in all_combos[:MAX_COOCCUR_PER_SYSTEM]:
             # Use canonical names only for co-occurrence to keep signal clean.
-            add(parts[p1], parts[p2], "system_cooccurrence")
+            add(parts[p1], parts[p2], "system_cooccurrence", COOCCURRENCE_LABEL)
 
     pairs.sort(key=lambda d: (d["pair_type"], d["text_a"].lower(), d["text_b"].lower()))
 
