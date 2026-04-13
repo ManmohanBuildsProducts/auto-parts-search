@@ -1,0 +1,88 @@
+{
+  "total_videos": 13,
+  "total_minutes": 109.5,
+  "total_chars": 89391,
+  "unique_devanagari_tokens": 4819,
+  "kg_vocab_hits": 1,
+  "kg_vocab_total": 2716,
+  "per_video": [
+    {
+      "file": "data/external/yt_pilot/MechanicalTechHindi/6Lkit3YhUfc.json",
+      "duration_min": 11.125454266666667,
+      "chars": 11630,
+      "devanagari_tokens": 634
+    },
+    {
+      "file": "data/external/yt_pilot/MechanicalTechHindi/H8Ii2Zwp-DI.json",
+      "duration_min": 4.537566133333333,
+      "chars": 4723,
+      "devanagari_tokens": 273
+    },
+    {
+      "file": "data/external/yt_pilot/MechanicalTechHindi/JeNdIssdUh0.json",
+      "duration_min": 4.693139833333333,
+      "chars": 4751,
+      "devanagari_tokens": 265
+    },
+    {
+      "file": "data/external/yt_pilot/MechanicalTechHindi/LZ6FimDGptY.json",
+      "duration_min": 3.656368866666667,
+      "chars": 3879,
+      "devanagari_tokens": 219
+    },
+    {
+      "file": "data/external/yt_pilot/MechanicalTechHindi/kh352PwiLZ4.json",
+      "duration_min": 4.271697649999999,
+      "chars": 4423,
+      "devanagari_tokens": 250
+    },
+    {
+      "file": "data/external/yt_pilot/MechanicalTechHindi/wqp4-U55LNk.json",
+      "duration_min": 3.96867725,
+      "chars": 4175,
+      "devanagari_tokens": 231
+    },
+    {
+      "file": "data/external/yt_pilot/UC_ac2x2rwzSwCDMwvcFooOA/SIceIGFM52U.json",
+      "duration_min": 15.494675733333334,
+      "chars": 14798,
+      "devanagari_tokens": 801
+    },
+    {
+      "file": "data/external/yt_pilot/UCxb7vkrqAAACtPXF-goCDPg/CG6sJ293jQQ.json",
+      "duration_min": 19.966065,
+      "chars": 15430,
+      "devanagari_tokens": 899
+    },
+    {
+      "file": "data/external/yt_pilot/UCxb7vkrqAAACtPXF-goCDPg/OJUjym1H1CE.json",
+      "duration_min": 4.7070718,
+      "chars": 3713,
+      "devanagari_tokens": 216
+    },
+    {
+      "file": "data/external/yt_pilot/UCxb7vkrqAAACtPXF-goCDPg/RYT7rV180c0.json",
+      "duration_min": 11.134742249999999,
+      "chars": 9169,
+      "devanagari_tokens": 542
+    },
+    {
+      "file": "data/external/yt_pilot/UCxb7vkrqAAACtPXF-goCDPg/a6O8txd0Q5k.json",
+      "duration_min": 14.77447015,
+      "chars": 5427,
+      "devanagari_tokens": 323
+    },
+    {
+      "file": "data/external/yt_pilot/UCxb7vkrqAAACtPXF-goCDPg/hX2Td4gbsbA.json",
+      "duration_min": 8.174198033333333,
+      "chars": 5772,
+      "devanagari_tokens": 345
+    },
+    {
+      "file": "data/external/yt_pilot/UCxb7vkrqAAACtPXF-goCDPg/vLLTyido0Rw.json",
+      "duration_min": 2.99421315,
+      "chars": 1501,
+      "devanagari_tokens": 88
+    }
+  ]
+}

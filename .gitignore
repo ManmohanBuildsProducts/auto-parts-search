@@ -12,3 +12,8 @@ data/knowledge_graph/*.db
 models/
 data/training/experiments/
 .claude/settings.local.json
+data/external/raw/
+data/external/yt_pilot/**/*.mp3
+data/external/yt_pilot/**/*.wav
+data/external/yt_pilot/**/*.m4a
+data/external/yt_pilot/**/*_chunks/
