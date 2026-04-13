@@ -2,7 +2,7 @@
 
 **Rolling dashboard. Open this first.** One page, always current. Claude updates via `/wrap` at session end.
 
-Last updated: 2026-04-12 (Phase 2b substantively complete — ITI v2, prospects, golden-v1)
+Last updated: 2026-04-13 (Phase 2b fully shipped — HF Datasets snapshot closes reproducibility chain)
 
 ---
 
@@ -10,7 +10,11 @@ Last updated: 2026-04-12 (Phase 2b substantively complete — ITI v2, prospects,
 
 Phase 2b fully shipped except one follow-up (T110b: integrate ITI v2 into `build_graph.py`). GTM is now materially unblocked — first prospect list + audit notebook are ready. Next session = T110b integration + deliver first audit to one of the 3 top prospects.
 
-## ✅ Done (recent — this session 2026-04-12, 11 commits)
+## ✅ Done (recent — 2026-04-12/13, 13 commits)
+
+- **HF Datasets raw snapshot (f957e95)** — `scrape-v3-2026-04-13` uploaded to `ManmohanBuildsProducts/auto-parts-search-raw` (private), 21MB tarball (516MB raw), SHA-verified round-trip via `scripts/fetch_raw.sh`. T603b/c/d all closed. Reproducibility chain complete.
+- **v1+v2 ITI merge (f05771d)** — `scripts/merge_iti_v2.py` now folds hand-curated v1 (124 parts / 103 chains) into v2 via `provenance.method`. Final: 646 parts (86 dual-sourced) / 247 chains (10 dual-sourced). 93 v1-only diagnostics preserved.
+- **Scraping queue (f05771d)** — `context/scraping-queue.md` as evergreen registry for domains × (scrape status + outreach status + priority).
 
 - **ITI v2 LLM extraction (a4eb69d)** — 6 parallel subagents parsed DGT PDFs + `scripts/merge_iti_v2.py` consolidated:
   - 20 systems / 608 parts (5× v1) / 154 diagnostics / **168 aliases** — all with `source_page` citations.
@@ -25,12 +29,10 @@ Phase 2b fully shipped except one follow-up (T110b: integrate ITI v2 into `build
 
 ## 🟡 In progress / partial
 
-- **Golden-v1** — deterministic, hashed, SHA256s in METADATA.md. Awaits Backblaze B2 upload for bit-identical cold-clone reproducibility (T603c).
-- **MANIFEST.md** — template with TBD SHA256s (pending T603c).
+- (none — all Phase 2b tasks shipped)
 
 ## 🔴 Blocked / pending external action
 
-- **T603c B2 upload** — needs user credentials.
 - **Cline VS Code extension disable** — user-machine action (JSON is gone from repo).
 - **T706 live-verify SessionStart hook** — open a fresh Claude Code session in repo; script smoke-tested green.
 - **Outreach to Pikpart / AutoDukan / Parts Big Boss** — user action; pitch copy ready once outreach channel chosen.
