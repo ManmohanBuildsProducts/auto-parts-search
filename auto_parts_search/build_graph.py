@@ -204,6 +204,211 @@ class GraphBuilder:
                      len(systems_added), len(parts_added),
                      len([n for n in self.nodes if n.startswith("symptom:")]))
 
+    def ingest_iti_v2(self, systems_path: Path, diagnostics_path: Path, aliases_path: Path):
+        """Ingest merged v1+v2 ITI files with per-entry provenance (ADR 008, T110b).
+
+        Supersedes ingest_iti. Reads three files:
+        - iti_systems_v2.json: authoritative systems + parts list (wasn't ingested in v1)
+        - iti_diagnostics_v2.json: merged hand-curated + LLM-extracted chains
+        - iti_aliases_v2.json: standalone Indian-English / Hindi alias layer
+        """
+        systems_count = parts_count = symptom_count = alias_count = 0
+        alias_nodes_added: set[str] = set()
+
+        # 1) Systems + their parts (the new rich source)
+        with open(systems_path) as f:
+            sys_data = json.load(f)
+
+        for system in sys_data["systems"]:
+            sid = system["system_id"]
+            if not sid.startswith("system:"):
+                sid = f"system:{_slugify(sid)}"
+
+            self._add_node(sid, {
+                "id": sid,
+                "node_type": "system",
+                "name": system.get("system_name", sid.replace("system:", "").replace("_", " ").title()),
+                "description": system.get("description", ""),
+                "provenance": {
+                    "source": "iti_dgt_v2",
+                    "source_trades": system.get("source_trades", []),
+                    "confidence": 0.9,
+                    "added_date": TODAY,
+                },
+            })
+            systems_count += 1
+
+            for part in system.get("parts", []):
+                pname = part.get("name", "").strip()
+                if not pname:
+                    continue
+                pslug = _slugify(pname)
+                pid = f"part:{pslug}"
+
+                # Confidence: dual-sourced > hand_curated-only > llm-only
+                methods = sorted({p.get("method") for p in part.get("provenance", []) if p.get("method")})
+                if "hand_curated" in methods and "llm_extracted" in methods:
+                    confidence = 0.95
+                elif "hand_curated" in methods:
+                    confidence = 0.9
+                else:
+                    confidence = 0.8
+
+                source_pages = sorted({
+                    p.get("page") for p in part.get("provenance", [])
+                    if p.get("page")
+                })
+
+                if pid not in self.nodes:
+                    self._add_node(pid, {
+                        "id": pid,
+                        "node_type": "part",
+                        "name": pname,
+                        "aliases": list(part.get("aliases", [])),
+                        "role": part.get("role", ""),
+                        "hsn_code": "",
+                        "part_numbers": [],
+                        "provenance": {
+                            "source": "iti_dgt_v2",
+                            "methods": methods,
+                            "confidence": confidence,
+                            "source_pages": source_pages,
+                            "added_date": TODAY,
+                        },
+                    })
+                    parts_count += 1
+
+                self._add_edge(pid, sid, "in_system", "iti_dgt_v2", confidence=confidence)
+
+                # Each alias → Alias node → known_as → Part
+                for alias_text in part.get("aliases", []):
+                    if not alias_text:
+                        continue
+                    aslug = _slugify(alias_text)
+                    aid = f"alias:{aslug}"
+                    if aid not in alias_nodes_added and aid not in self.nodes:
+                        self._add_node(aid, {
+                            "id": aid,
+                            "node_type": "alias",
+                            "name": alias_text,
+                            "provenance": {
+                                "source": "iti_dgt_v2",
+                                "confidence": 0.8,
+                                "added_date": TODAY,
+                            },
+                        })
+                        alias_nodes_added.add(aid)
+                    self._add_edge(aid, pid, "known_as", "iti_dgt_v2", confidence=0.8)
+
+        # 2) Diagnostic chains — symptoms + caused_by edges to parts
+        with open(diagnostics_path) as f:
+            diag_data = json.load(f)
+
+        for chain in diag_data["chains"]:
+            symptom_text = chain.get("symptom", "").strip()
+            if not symptom_text:
+                continue
+            symptom_slug = _slugify(symptom_text)
+            symptom_id = f"symptom:{symptom_slug}"
+
+            methods = sorted({p.get("method") for p in chain.get("provenance", []) if p.get("method")})
+            confidences = [p.get("confidence") for p in chain.get("provenance", []) if p.get("confidence") is not None]
+            confidence = max(confidences) if confidences else 0.8
+
+            self._add_node(symptom_id, {
+                "id": symptom_id,
+                "node_type": "symptom",
+                "description": symptom_text,
+                "hindi_description": "",
+                "provenance": {
+                    "source": "iti_dgt_v2",
+                    "methods": methods,
+                    "confidence": confidence,
+                    "source_id": chain.get("id", ""),
+                    "added_date": TODAY,
+                },
+            })
+            symptom_count += 1
+
+            # System node (may already exist from systems ingest)
+            raw_sys = chain.get("system", "")
+            if raw_sys:
+                system_slug = _slugify(raw_sys)
+                system_id = f"system:{system_slug}"
+                if system_id not in self.nodes:
+                    self._add_node(system_id, {
+                        "id": system_id,
+                        "node_type": "system",
+                        "name": raw_sys.replace("_", " ").title(),
+                        "description": "",
+                        "provenance": {
+                            "source": "iti_dgt_v2",
+                            "confidence": 0.8,
+                            "added_date": TODAY,
+                        },
+                    })
+
+            # Part nodes + caused_by edges
+            for part_name in chain.get("related_parts", []):
+                if not part_name:
+                    continue
+                part_slug = _slugify(part_name)
+                part_id = f"part:{part_slug}"
+                if part_id not in self.nodes:
+                    self._add_node(part_id, {
+                        "id": part_id,
+                        "node_type": "part",
+                        "name": part_name.title(),
+                        "aliases": [],
+                        "hsn_code": "",
+                        "part_numbers": [],
+                        "provenance": {
+                            "source": "iti_dgt_v2",
+                            "methods": methods or ["llm_extracted"],
+                            "confidence": confidence,
+                            "added_date": TODAY,
+                        },
+                    })
+                    parts_count += 1
+                self._add_edge(symptom_id, part_id, "caused_by", "iti_dgt_v2",
+                               confidence=confidence,
+                               metadata={"diagnosis_steps": chain.get("diagnosis_steps", [])})
+
+        # 3) Standalone aliases layer
+        if aliases_path.exists():
+            with open(aliases_path) as f:
+                alias_data = json.load(f)
+
+            for a in alias_data.get("aliases", []):
+                canonical = a.get("canonical", "").strip()
+                alias = a.get("alias", "").strip()
+                if not (canonical and alias):
+                    continue
+                canonical_id = f"part:{_slugify(canonical)}"
+                alias_id = f"alias:{_slugify(alias)}"
+
+                if alias_id not in self.nodes:
+                    self._add_node(alias_id, {
+                        "id": alias_id,
+                        "node_type": "alias",
+                        "name": alias,
+                        "provenance": {
+                            "source": "iti_dgt_v2",
+                            "confidence": 0.85,
+                            "added_date": TODAY,
+                        },
+                    })
+                    alias_count += 1
+
+                # Only edge if the canonical part exists in the graph
+                if canonical_id in self.nodes:
+                    self._add_edge(alias_id, canonical_id, "known_as", "iti_dgt_v2", confidence=0.85)
+
+        logger.info(
+            "ITI v2: %d systems, %d parts (newly added), %d symptoms, %d standalone aliases",
+            systems_count, parts_count, symptom_count, alias_count,
+        )
+
     # ------------------------------------------------------------------
     # NHTSA recalls -> Part, Vehicle nodes + fits edges
     # ------------------------------------------------------------------
@@ -556,6 +761,9 @@ def build_knowledge_graph() -> dict:
 
     hsn_path = KNOWLEDGE_GRAPH_DIR / "hsn_taxonomy.json"
     iti_path = KNOWLEDGE_GRAPH_DIR / "iti_diagnostics.json"
+    iti_systems_v2 = KNOWLEDGE_GRAPH_DIR / "iti_systems_v2.json"
+    iti_diagnostics_v2 = KNOWLEDGE_GRAPH_DIR / "iti_diagnostics_v2.json"
+    iti_aliases_v2 = KNOWLEDGE_GRAPH_DIR / "iti_aliases_v2.json"
     nhtsa_path = KNOWLEDGE_GRAPH_DIR / "nhtsa_recalls.json"
     asdc_path = KNOWLEDGE_GRAPH_DIR / "asdc_tasks.json"
 
@@ -564,10 +772,15 @@ def build_knowledge_graph() -> dict:
     else:
         logger.warning("Missing %s", hsn_path)
 
-    if iti_path.exists():
+    # Prefer ITI v2 (merged hand-curated + LLM-extracted with provenance) per ADR 008.
+    # Fall back to v1 only if v2 files are missing.
+    if iti_systems_v2.exists() and iti_diagnostics_v2.exists():
+        builder.ingest_iti_v2(iti_systems_v2, iti_diagnostics_v2, iti_aliases_v2)
+    elif iti_path.exists():
+        logger.warning("ITI v2 files missing; falling back to v1 %s", iti_path)
         builder.ingest_iti(iti_path)
     else:
-        logger.warning("Missing %s", iti_path)
+        logger.warning("Missing %s (no v1 or v2 ITI files)", iti_path)
 
     if nhtsa_path.exists():
         builder.ingest_nhtsa(nhtsa_path)

@@ -14,7 +14,7 @@
     {
       "id": "diag:abnormal_engine_noise",
       "symptom": "Abnormal engine noise",
-      "system": "system:cylinder_head_valve_train",
+      "system": "engine",
       "diagnosis_steps": [
         "Use engineer's stethoscope to localize noise",
         "Check valve clearance adjustment",
@@ -75,7 +75,7 @@
     {
       "id": "diag:abnormal_noise_from_compressor_magnetic_clutch_blower",
       "symptom": "Abnormal noise from compressor / magnetic clutch / blower",
-      "system": "system:hvac",
+      "system": "ac_system",
       "diagnosis_steps": [
         "Inspect compressor bearings",
         "Check magnetic clutch air gap",
@@ -102,7 +102,7 @@
     {
       "id": "diag:abnormal_tire_wear",
       "symptom": "Abnormal tire wear",
-      "system": "suspension_steering",
+      "system": "suspension",
       "diagnosis_steps": [
         "Check tire pressure",
         "Inspect wheel alignment (toe, camber, caster)",
@@ -162,7 +162,7 @@
     {
       "id": "diag:ac_abnormal_noise_from_compressor_magnetic_clutch_condenser_evaporator_or_blower_motor",
       "symptom": "AC - abnormal noise from compressor, magnetic clutch, condenser, evaporator or blower motor",
-      "system": "hvac",
+      "system": "ac_system",
       "diagnosis_steps": [
         "Isolate noise source by component",
         "Check compressor bearing",
@@ -218,7 +218,7 @@
     {
       "id": "diag:ac_high_side_pressure_too_high_low_or_low_side_pressure_too_high_low",
       "symptom": "AC - high-side pressure too high/low or low-side pressure too high/low",
-      "system": "hvac",
+      "system": "ac_system",
       "diagnosis_steps": [
         "Connect manifold gauge set",
         "Interpret high/low side readings",
@@ -248,7 +248,7 @@
     {
       "id": "diag:ac_no_cooling_intermittent_cooling_insufficient_cooling",
       "symptom": "AC - no cooling / intermittent cooling / insufficient cooling",
-      "system": "hvac",
+      "system": "ac_system",
       "diagnosis_steps": [
         "Check refrigerant charge with gauge set",
         "Inspect drive belt",
@@ -281,7 +281,7 @@
     {
       "id": "diag:ac_not_cooling_hvac_insufficient_cooling",
       "symptom": "AC not cooling / HVAC insufficient cooling",
-      "system": "EV Thermal Management",
+      "system": "ev_thermal_management",
       "diagnosis_steps": [
         "Check refrigerant charge state (high/low side)",
         "Inspect electric compressor operation",
@@ -423,7 +423,7 @@
     {
       "id": "diag:accelerator_pedal_problem_no_throttle_response",
       "symptom": "Accelerator pedal problem / no throttle response",
-      "system": "Low Voltage Accessories",
+      "system": "low_voltage_accessories",
       "diagnosis_steps": [
         "Check APP sensor dual-track signal",
         "Verify CAN message to motor controller",
@@ -450,7 +450,7 @@
     {
       "id": "diag:air_in_fuel_lines_hard_starting_stalling",
       "symptom": "Air in fuel lines (hard starting, stalling)",
-      "system": "system:diesel_fuel_injection",
+      "system": "fuel_system",
       "diagnosis_steps": [
         "Inspect fuel lines for leaks",
         "Check fuel filter seals",
@@ -559,7 +559,7 @@
     {
       "id": "diag:all_power_windows_do_not_operate",
       "symptom": "All power windows do not operate",
-      "system": "system:body_electrical",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check master power window fuse",
         "Check main switch",
@@ -587,7 +587,7 @@
     {
       "id": "diag:back_up_reverse_lights_do_not_light",
       "symptom": "Back-up / reverse lights do not light",
-      "system": "system:lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check reverse switch on gearbox",
         "Test bulbs",
@@ -613,7 +613,7 @@
     {
       "id": "diag:battery_drain_parasitic_draw_battery_not_charging",
       "symptom": "battery drain / parasitic draw / battery not charging",
-      "system": "electrical_charging_starting",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Clean and top up lead acid battery",
         "Test battery with hydrometer",
@@ -673,7 +673,7 @@
     {
       "id": "diag:battery_not_charging_undercharge",
       "symptom": "Battery not charging / undercharge",
-      "system": "system:charging",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check drive belt tension",
         "Test alternator output voltage",
@@ -732,7 +732,7 @@
     {
       "id": "diag:battery_range_dropped_reduced_range",
       "symptom": "Battery range dropped / reduced range",
-      "system": "High Voltage Battery Pack",
+      "system": "high_voltage_battery_pack",
       "diagnosis_steps": [
         "Read BMS for SoH (State of Health)",
         "Check cell balance / delta voltage across cells",
@@ -790,7 +790,7 @@
     {
       "id": "diag:brake_ineffective_spongy_pedal",
       "symptom": "brake ineffective / spongy pedal",
-      "system": "brakes",
+      "system": "braking_system",
       "diagnosis_steps": [
         "Test brake effectiveness",
         "Overhaul brakes including cleaning and inspection",
@@ -823,7 +823,7 @@
     {
       "id": "diag:brake_lights_do_not_light_up",
       "symptom": "Brake lights do not light up",
-      "system": "system:lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check brake light switch at pedal",
         "Test bulbs",
@@ -850,7 +850,7 @@
     {
       "id": "diag:brake_lights_stay_on",
       "symptom": "Brake lights stay on",
-      "system": "system:lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check brake pedal switch adjustment",
         "Check for stuck switch"
@@ -874,7 +874,7 @@
     {
       "id": "diag:brake_not_working_brake_failure",
       "symptom": "Brake not working / brake failure",
-      "system": "Regenerative Braking System",
+      "system": "regenerative_braking_system",
       "diagnosis_steps": [
         "Inspect friction brake hydraulic circuit",
         "Check brake pedal sensor",
@@ -902,7 +902,7 @@
     {
       "id": "diag:brake_parking_brake_warning_light_does_not_illuminate_on_low_fluid_or_parking_brake_pull_or_stays_on",
       "symptom": "Brake / parking brake warning light - does not illuminate on low fluid or parking brake pull, or stays on",
-      "system": "brakes",
+      "system": "braking_system",
       "diagnosis_steps": [
         "Check brake fluid level switch",
         "Check parking brake switch",
@@ -955,7 +955,7 @@
     {
       "id": "diag:brake_warning_light_does_not_light_when_parking_brake_pulled",
       "symptom": "Brake warning light does not light when parking brake pulled",
-      "system": "system:brakes_electronic",
+      "system": "braking_system",
       "diagnosis_steps": [
         "Check parking brake switch",
         "Check bulb",
@@ -980,7 +980,7 @@
     {
       "id": "diag:brake_warning_light_stays_on",
       "symptom": "Brake warning light stays on",
-      "system": "system:brakes_electronic",
+      "system": "braking_system",
       "diagnosis_steps": [
         "Check brake fluid level",
         "Check parking brake switch",
@@ -1005,7 +1005,7 @@
     {
       "id": "diag:braking_system_trouble_hard_pedal_no_brakes_air_brake_leak",
       "symptom": "Braking system trouble - hard pedal / no brakes / air brake leak",
-      "system": "brakes",
+      "system": "braking_system",
       "diagnosis_steps": [
         "Bleed hydraulic brakes",
         "Inspect master cylinder and wheel cylinders",
@@ -1196,7 +1196,7 @@
     {
       "id": "diag:charger_not_delivering_current_not_charging",
       "symptom": "Charger not delivering current / not charging",
-      "system": "Charging System (Onboard)",
+      "system": "charging_system_onboard",
       "diagnosis_steps": [
         "Check charger type and voltage level compatibility",
         "Verify contactor closing on charge request",
@@ -1224,7 +1224,7 @@
     {
       "id": "diag:charger_not_responding",
       "symptom": "Charger not responding",
-      "system": "Charging System (Onboard)",
+      "system": "charging_system_onboard",
       "diagnosis_steps": [
         "Verify AC input voltage at charging station",
         "Check charging port integrity and pin continuity",
@@ -1255,7 +1255,7 @@
     {
       "id": "diag:charging_system_fault_battery_not_charging",
       "symptom": "Charging system fault (battery not charging)",
-      "system": "system:starting_charging",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check ignition warning lamp behavior",
         "Trace circuit from alternator to battery",
@@ -1286,7 +1286,7 @@
     {
       "id": "diag:charging_system_undercharge_no_charge_overcharge",
       "symptom": "Charging system - undercharge / no charge / overcharge",
-      "system": "charging",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check warning lamp behaviour with ignition on and running",
         "Inspect drive belt tension and condition",
@@ -1320,7 +1320,7 @@
     {
       "id": "diag:charging_warning_lamp_does_not_glow_when_ignition_on",
       "symptom": "Charging warning lamp does not glow when ignition on",
-      "system": "system:charging",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check warning bulb",
         "Check wiring to alternator L terminal",
@@ -1347,7 +1347,7 @@
     {
       "id": "diag:charging_warning_lamp_stays_on_while_alternator_running",
       "symptom": "Charging warning lamp stays on while alternator running",
-      "system": "system:charging",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Test alternator output",
         "Check drive belt",
@@ -1404,7 +1404,7 @@
     {
       "id": "diag:clearance_tail_license_plate_lights_all_or_some_lights_do_not_light_up",
       "symptom": "Clearance, tail & license plate lights - all or some lights do not light up",
-      "system": "lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check fuses",
         "Check bulbs individually",
@@ -1491,7 +1491,7 @@
     {
       "id": "diag:clutch_slip_when_accelerating",
       "symptom": "clutch slip when accelerating",
-      "system": "clutch",
+      "system": "transmission",
       "diagnosis_steps": [
         "check clutch cable free play",
         "inspect clutch plates for wear",
@@ -1546,7 +1546,7 @@
     {
       "id": "diag:clutch_slipping_or_clutch_pedal_free_play_incorrect",
       "symptom": "clutch slipping or clutch pedal free play incorrect",
-      "system": "clutch",
+      "system": "transmission",
       "diagnosis_steps": [
         "Adjust clutch pedal free play",
         "Dismantle and inspect clutch plate for wear",
@@ -1577,7 +1577,7 @@
     {
       "id": "diag:clutch_will_not_disengage",
       "symptom": "clutch will not disengage",
-      "system": "clutch",
+      "system": "transmission",
       "diagnosis_steps": [
         "check clutch cable adjustment",
         "inspect warped clutch plates",
@@ -1632,7 +1632,7 @@
     {
       "id": "diag:coolant_temperature_meter_shows_no_operation",
       "symptom": "Coolant temperature meter shows no operation",
-      "system": "system:dashboard",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check ECT sensor",
         "Check wiring continuity",
@@ -1687,7 +1687,7 @@
     {
       "id": "diag:cylinder_head_warped_head_gasket_leak",
       "symptom": "Cylinder head warped / head gasket leak",
-      "system": "system:cylinder_head_valve_train",
+      "system": "engine",
       "diagnosis_steps": [
         "Check cylinder head flatness with straightedge + feeler gauge",
         "Inspect head and manifold surfaces for warping/cracks",
@@ -1746,7 +1746,7 @@
     {
       "id": "diag:dashboard_gauge_showing_incorrect_reading",
       "symptom": "dashboard gauge showing incorrect reading",
-      "system": "dashboard",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Identify different gauges fitted on dashboard",
         "Perform daily checks before starting engine",
@@ -1776,7 +1776,7 @@
     {
       "id": "diag:dc_dc_converter_fault_12v_battery_not_charging_while_driving",
       "symptom": "DC-DC converter fault / 12V battery not charging while driving",
-      "system": "DC-DC Converter & Auxiliary Power",
+      "system": "dc_dc_converter_auxiliary_power",
       "diagnosis_steps": [
         "Measure 12V battery voltage with vehicle in Ready state",
         "Scan DC-DC converter DTCs",
@@ -1803,7 +1803,7 @@
     {
       "id": "diag:defective_battery_module_module_replacement_needed",
       "symptom": "Defective battery module / module replacement needed",
-      "system": "High Voltage Battery Pack",
+      "system": "high_voltage_battery_pack",
       "diagnosis_steps": [
         "Identify failing module via BMS cell voltage logs",
         "Safely de-energize pack",
@@ -1881,7 +1881,7 @@
     {
       "id": "diag:diesel_engine_hard_to_start_or_air_lock_in_fuel_system",
       "symptom": "diesel engine hard to start or air lock in fuel system",
-      "system": "fuel_feed_diesel",
+      "system": "fuel_system",
       "diagnosis_steps": [
         "Check for leakages in diesel fuel line",
         "Bleed the fuel system to vent trapped air",
@@ -2152,7 +2152,7 @@
     {
       "id": "diag:differential_or_final_drive_noise_wheel_traction_loss",
       "symptom": "differential or final drive noise / wheel traction loss",
-      "system": "differential",
+      "system": "transmission",
       "diagnosis_steps": [
         "Overhaul differential unit",
         "Adjust crown wheel and pinion backlash",
@@ -2214,7 +2214,7 @@
     {
       "id": "diag:engine_compression_low_unusual_noise_and_knocks",
       "symptom": "engine compression low / unusual noise and knocks",
-      "system": "tractor_diesel_engine",
+      "system": "engine",
       "diagnosis_steps": [
         "Test cylinder compression",
         "Check valve clearances and adjust",
@@ -2247,7 +2247,7 @@
     {
       "id": "diag:engine_coolant_temperature_meter_shows_no_operation_or_incorrect_operation",
       "symptom": "Engine coolant temperature meter shows no operation or incorrect operation",
-      "system": "instrumentation",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Test ECT sensor resistance at known temperature",
         "Check gauge and wiring continuity"
@@ -2272,7 +2272,7 @@
     {
       "id": "diag:engine_cranks_but_hard_to_start_ignition_fault",
       "symptom": "Engine cranks but hard to start (ignition fault)",
-      "system": "ignition_system",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check spark plug condition and gap",
         "Test ignition coil primary and secondary winding",
@@ -2361,7 +2361,7 @@
     {
       "id": "diag:engine_cranks_but_will_not_start_or_hard_to_start",
       "symptom": "Engine cranks but will not start or hard to start",
-      "system": "system:ignition",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check ignition coil",
         "Check spark plug condition and gap",
@@ -2477,7 +2477,7 @@
     {
       "id": "diag:engine_not_starting_cold_diesel",
       "symptom": "Engine not starting (cold/diesel)",
-      "system": "system:diesel_fuel_injection",
+      "system": "fuel_system",
       "diagnosis_steps": [
         "Check mechanical causes: fuel delivery, FIP operation, injector condition, injection timing",
         "Check electrical causes: battery, starter motor, solenoid, glow plug circuit",
@@ -2572,7 +2572,7 @@
     {
       "id": "diag:engine_overheating",
       "symptom": "Engine overheating",
-      "system": "system:cooling",
+      "system": "cooling_system",
       "diagnosis_steps": [
         "Check & top up coolant level",
         "Test thermostat operation",
@@ -2654,7 +2654,7 @@
     {
       "id": "diag:engine_overheating_or_undercooling",
       "symptom": "engine overheating or undercooling",
-      "system": "cooling",
+      "system": "cooling_system",
       "diagnosis_steps": [
         "Check coolant level and quality",
         "Reverse-flush cooling system with flushing solution",
@@ -2721,7 +2721,7 @@
     {
       "id": "diag:engine_starts_but_runs_poorly_ignition",
       "symptom": "engine starts but runs poorly (ignition)",
-      "system": "ignition",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "check ignition timing",
         "inspect spark plug fouling",
@@ -3089,7 +3089,7 @@
     {
       "id": "diag:evap_system_fault",
       "symptom": "EVAP system fault",
-      "system": "emission",
+      "system": "exhaust_emission",
       "diagnosis_steps": [
         "Inspect EVAP canister purge with scan tool",
         "Check purge valve operation",
@@ -3115,7 +3115,7 @@
     {
       "id": "diag:excessive_engine_oil_consumption",
       "symptom": "Excessive engine oil consumption",
-      "system": "system:piston_conrod",
+      "system": "engine",
       "diagnosis_steps": [
         "Check piston rings end-gap and piston-to-liner clearance",
         "Inspect valve stem oil seals",
@@ -3144,7 +3144,7 @@
     {
       "id": "diag:excessive_key_off_battery_drain_parasitic_draw",
       "symptom": "Excessive key-off battery drain (parasitic draw)",
-      "system": "system:battery",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Measure parasitic current with ammeter",
         "Pull fuses one by one to isolate circuit",
@@ -3271,7 +3271,7 @@
     {
       "id": "diag:exhaust_leakage_or_noise",
       "symptom": "exhaust leakage or noise",
-      "system": "intake_exhaust",
+      "system": "intake_system",
       "diagnosis_steps": [
         "Check exhaust leakages and rubber mounting",
         "Service exhaust manifold",
@@ -3354,7 +3354,7 @@
     {
       "id": "diag:fuel_level_meter_shows_no_operation",
       "symptom": "Fuel level meter shows no operation",
-      "system": "system:dashboard",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check fuel gauge fuse",
         "Test fuel sender unit resistance",
@@ -3382,7 +3382,7 @@
     {
       "id": "diag:fuel_meter_shows_incorrect_operation",
       "symptom": "Fuel meter shows incorrect operation",
-      "system": "system:dashboard",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check fuel sender",
         "Check wiring",
@@ -3408,7 +3408,7 @@
     {
       "id": "diag:fuel_meter_shows_no_operation_or_incorrect_operation",
       "symptom": "Fuel meter shows no operation or incorrect operation",
-      "system": "instrumentation",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Test fuel gauge sender unit resistance",
         "Check fuel gauge instrument",
@@ -3704,7 +3704,7 @@
     {
       "id": "diag:headlights_do_not_light_up",
       "symptom": "Headlights do not light up",
-      "system": "system:lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check headlight fuse",
         "Test headlight relay",
@@ -3735,7 +3735,7 @@
     {
       "id": "diag:high_engine_oil_pressure",
       "symptom": "High engine oil pressure",
-      "system": "system:lubrication",
+      "system": "lubrication_system",
       "diagnosis_steps": [
         "Check oil pressure relief valve (stuck closed)",
         "Check oil grade / viscosity",
@@ -3774,7 +3774,7 @@
     {
       "id": "diag:high_exhaust_smoke_failed_emission_test",
       "symptom": "High exhaust smoke / failed emission test",
-      "system": "system:emission_control",
+      "system": "exhaust_emission",
       "diagnosis_steps": [
         "Measure smoke opacity with diesel smoke meter",
         "Inspect/clean EGR valve",
@@ -3805,7 +3805,7 @@
     {
       "id": "diag:high_fuel_consumption",
       "symptom": "High fuel consumption",
-      "system": "system:diesel_fuel_injection",
+      "system": "fuel_system",
       "diagnosis_steps": [
         "Inspect air filter (clogged filter richens mixture)",
         "Test injectors for leakage / bad spray pattern",
@@ -3902,7 +3902,7 @@
     {
       "id": "diag:high_oil_consumption",
       "symptom": "high oil consumption",
-      "system": "lubrication",
+      "system": "lubrication_system",
       "diagnosis_steps": [
         "Check piston rings for wear and ring gap",
         "Check valve stem oil seals",
@@ -3929,7 +3929,7 @@
     {
       "id": "diag:horn_no_operation_poor_sound_quality_or_sounds_continuously",
       "symptom": "Horn - no operation, poor sound quality, or sounds continuously",
-      "system": "electrical_accessories",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check horn fuse",
         "Check horn relay",
@@ -3958,7 +3958,7 @@
     {
       "id": "diag:hv_battery_overheating_thermal_warning",
       "symptom": "HV battery overheating / thermal warning",
-      "system": "EV Thermal Management",
+      "system": "ev_thermal_management",
       "diagnosis_steps": [
         "Check battery cooling fan operation",
         "Verify coolant level and pump",
@@ -3987,7 +3987,7 @@
     {
       "id": "diag:hv_isolation_fault_hv_leakage_warning",
       "symptom": "HV isolation fault / HV leakage warning",
-      "system": "High Voltage Distribution & Safety",
+      "system": "high_voltage_distribution_safety",
       "diagnosis_steps": [
         "Perform megger insulation test on HV cables",
         "Inspect HV connectors for moisture/damage",
@@ -4109,7 +4109,7 @@
     {
       "id": "diag:insufficient_cooling_from_ac",
       "symptom": "Insufficient cooling from AC",
-      "system": "system:hvac",
+      "system": "ac_system",
       "diagnosis_steps": [
         "Check refrigerant level",
         "Clean condenser fins",
@@ -4137,7 +4137,7 @@
     {
       "id": "diag:interior_light_does_not_light_up",
       "symptom": "Interior light does not light up",
-      "system": "system:lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check bulb",
         "Check door jamb switch",
@@ -4163,7 +4163,7 @@
     {
       "id": "diag:intermittent_cooling_from_ac",
       "symptom": "Intermittent cooling from AC",
-      "system": "system:hvac",
+      "system": "ac_system",
       "diagnosis_steps": [
         "Test pressure switches",
         "Check blower motor",
@@ -4192,7 +4192,7 @@
     {
       "id": "diag:inverter_fault_inverter_warning_lamp",
       "symptom": "Inverter fault / inverter warning lamp",
-      "system": "Motor Controller / Power Electronics",
+      "system": "motor_controller_power_electronics",
       "diagnosis_steps": [
         "Scan inverter DTCs with scan tool",
         "Check inverter coolant level and temperature",
@@ -4221,7 +4221,7 @@
     {
       "id": "diag:inverter_motor_overheating",
       "symptom": "Inverter/motor overheating",
-      "system": "EV Thermal Management",
+      "system": "ev_thermal_management",
       "diagnosis_steps": [
         "Check inverter coolant loop",
         "Inspect pump operation",
@@ -4248,7 +4248,7 @@
     {
       "id": "diag:key_off_battery_drain",
       "symptom": "Key-off battery drain",
-      "system": "Low Voltage Accessories",
+      "system": "low_voltage_accessories",
       "diagnosis_steps": [
         "Measure parasitic current on 12V battery",
         "Isolate modules via fuse pull",
@@ -4301,7 +4301,7 @@
     {
       "id": "diag:kick_start_not_working",
       "symptom": "kick start not working",
-      "system": "starting",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "inspect kick starter pawl/ratchet wear",
         "check return spring",
@@ -4411,7 +4411,7 @@
     {
       "id": "diag:low_engine_oil_pressure",
       "symptom": "Low engine oil pressure",
-      "system": "system:lubrication",
+      "system": "lubrication_system",
       "diagnosis_steps": [
         "Check engine oil level and grade",
         "Overhaul oil pump",
@@ -4492,7 +4492,7 @@
     {
       "id": "diag:low_high_engine_oil_pressure",
       "symptom": "Low / high engine oil pressure",
-      "system": "lubrication",
+      "system": "lubrication_system",
       "diagnosis_steps": [
         "Check engine oil level and grade",
         "Measure oil pressure at various RPMs",
@@ -4523,7 +4523,7 @@
     {
       "id": "diag:low_or_high_engine_oil_pressure",
       "symptom": "low or high engine oil pressure",
-      "system": "lubrication",
+      "system": "lubrication_system",
       "diagnosis_steps": [
         "Test oil pressure with gauge",
         "Check engine oil level and grade (SAE spec)",
@@ -4555,7 +4555,7 @@
     {
       "id": "diag:low_power_generation",
       "symptom": "Low power generation",
-      "system": "system:diesel_fuel_injection",
+      "system": "fuel_system",
       "diagnosis_steps": [
         "Test cylinder compression",
         "Check injectors and FIP",
@@ -4606,7 +4606,7 @@
     {
       "id": "diag:misfiring",
       "symptom": "misfiring",
-      "system": "ignition",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "check spark plug fouling",
         "check HT lead",
@@ -4634,7 +4634,7 @@
     {
       "id": "diag:missing_cylinder_rough_running",
       "symptom": "Missing cylinder / rough running",
-      "system": "system:diesel_fuel_injection",
+      "system": "fuel_system",
       "diagnosis_steps": [
         "Isolate each injector one by one to find defective cylinder",
         "Test suspect injector on bench",
@@ -4661,7 +4661,7 @@
     {
       "id": "diag:motor_not_spinning_inoperative_drive_motor",
       "symptom": "Motor not spinning / inoperative drive motor",
-      "system": "Traction Motor System",
+      "system": "traction_motor_system",
       "diagnosis_steps": [
         "Check HV contactor closing",
         "Scan motor controller DTCs",
@@ -4692,7 +4692,7 @@
     {
       "id": "diag:motorcycle_creeps_with_clutch_disengaged",
       "symptom": "motorcycle creeps with clutch disengaged",
-      "system": "clutch",
+      "system": "transmission",
       "diagnosis_steps": [
         "adjust clutch free play",
         "inspect clutch plates sticking"
@@ -4747,7 +4747,7 @@
     {
       "id": "diag:no_cooling_from_ac",
       "symptom": "No cooling from AC",
-      "system": "system:hvac",
+      "system": "ac_system",
       "diagnosis_steps": [
         "Check refrigerant charge via pressure gauges",
         "Check compressor clutch engagement",
@@ -4778,7 +4778,7 @@
     {
       "id": "diag:no_horn_operation_poor_sound_horn_sounds_continuously",
       "symptom": "No horn operation / poor sound / horn sounds continuously",
-      "system": "system:body_electrical",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check horn fuse",
         "Test horn relay",
@@ -4806,7 +4806,7 @@
     {
       "id": "diag:no_horn_poor_horn_continuous_horn",
       "symptom": "No horn / poor horn / continuous horn",
-      "system": "Low Voltage Accessories",
+      "system": "low_voltage_accessories",
       "diagnosis_steps": [
         "Test horn relay and fuse",
         "Check horn button/switch",
@@ -4876,7 +4876,7 @@
     {
       "id": "diag:no_sparks_at_plugs",
       "symptom": "no sparks at plugs",
-      "system": "ignition",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "check spark plug gap",
         "measure ignition coil primary/secondary resistance",
@@ -4905,7 +4905,7 @@
     {
       "id": "diag:no_turn_signal_flashing",
       "symptom": "No turn signal flashing",
-      "system": "system:lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check flasher unit",
         "Check turn signal fuse",
@@ -4932,7 +4932,7 @@
     {
       "id": "diag:oil_contamination",
       "symptom": "oil contamination",
-      "system": "lubrication",
+      "system": "lubrication_system",
       "diagnosis_steps": [
         "check head gasket for coolant/fuel ingress",
         "change engine oil and filter"
@@ -4957,7 +4957,7 @@
     {
       "id": "diag:oil_level_too_low",
       "symptom": "oil level too low",
-      "system": "lubrication",
+      "system": "lubrication_system",
       "diagnosis_steps": [
         "check for leakage at oil seals",
         "check oil consumption at rings",
@@ -4983,7 +4983,7 @@
     {
       "id": "diag:oil_pressure_warning_light_does_not_glow",
       "symptom": "Oil pressure warning light does not glow",
-      "system": "system:dashboard",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check oil pressure switch",
         "Check bulb",
@@ -5009,7 +5009,7 @@
     {
       "id": "diag:oil_pressure_warning_light_does_not_light_up_when_ignition_on_at_engine_off",
       "symptom": "Oil pressure warning light does not light up when ignition on at engine off",
-      "system": "instrumentation",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check bulb",
         "Check oil pressure switch",
@@ -5035,7 +5035,7 @@
     {
       "id": "diag:only_one_beam_high_or_low_does_not_light",
       "symptom": "Only one beam (High or Low) does not light",
-      "system": "system:lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check dimmer switch",
         "Test bulb filament",
@@ -5062,7 +5062,7 @@
     {
       "id": "diag:only_one_headlight_does_not_light_up",
       "symptom": "Only one headlight does not light up",
-      "system": "system:lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Replace bulb",
         "Check wiring to that headlight",
@@ -5088,7 +5088,7 @@
     {
       "id": "diag:overcharge_condition",
       "symptom": "Overcharge condition",
-      "system": "system:charging",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Test voltage regulator",
         "Check alternator output",
@@ -5114,7 +5114,7 @@
     {
       "id": "diag:parking_brake_not_holding",
       "symptom": "parking brake not holding",
-      "system": "brakes",
+      "system": "braking_system",
       "diagnosis_steps": [
         "Inspect parking brake mechanism",
         "Set parking brake cable/linkage adjustment",
@@ -5140,7 +5140,7 @@
     {
       "id": "diag:poor_fuel_economy_ignition_related",
       "symptom": "Poor fuel economy (ignition-related)",
-      "system": "ignition_system",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check spark plug condition (fouled/worn)",
         "Test ignition timing with timing light",
@@ -5168,7 +5168,7 @@
     {
       "id": "diag:poor_fuel_economy_or_engine_performance",
       "symptom": "poor fuel economy or engine performance",
-      "system": "fuel_feed_diesel",
+      "system": "fuel_system",
       "diagnosis_steps": [
         "Perform engine tune-up",
         "Test vacuum and compression",
@@ -5199,7 +5199,7 @@
     {
       "id": "diag:poor_fuel_economy_or_poor_engine_performance",
       "symptom": "Poor fuel economy or poor engine performance",
-      "system": "system:edc_mpfi",
+      "system": "fuel_system",
       "diagnosis_steps": [
         "Scan for DTCs using scan tool",
         "Test O2 sensor",
@@ -5257,7 +5257,7 @@
     {
       "id": "diag:poor_self_centering_of_steering",
       "symptom": "Poor self-centering of steering",
-      "system": "suspension_steering",
+      "system": "suspension",
       "diagnosis_steps": [
         "Check caster angle alignment",
         "Inspect steering column and U-joints",
@@ -5388,7 +5388,7 @@
     {
       "id": "diag:power_window_or_power_door_lock_no_operation",
       "symptom": "Power window or power door lock - no operation",
-      "system": "electrical_accessories",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check individual motor operation",
         "Check master switch",
@@ -5434,7 +5434,7 @@
     {
       "id": "diag:pto_not_engaging_or_pto_shaft_rpm_incorrect",
       "symptom": "PTO not engaging or PTO shaft rpm incorrect",
-      "system": "pto",
+      "system": "pto_system",
       "diagnosis_steps": [
         "Service PTO unit of tractor",
         "Measure rpm of PTO shaft against standard",
@@ -5463,7 +5463,7 @@
     {
       "id": "diag:regen_braking_not_working",
       "symptom": "Regen braking not working",
-      "system": "Regenerative Braking System",
+      "system": "regenerative_braking_system",
       "diagnosis_steps": [
         "Check brake pedal sensor signal",
         "Verify BMS is accepting regen current (SoC not at 100%)",
@@ -5492,7 +5492,7 @@
     {
       "id": "diag:remote_keyless_entry_immobilizer_no_operation",
       "symptom": "Remote keyless entry / immobilizer no operation",
-      "system": "electrical_accessories",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check key fob battery",
         "Reprogram key to immobiliser",
@@ -5547,7 +5547,7 @@
     {
       "id": "diag:self_start_not_cranking",
       "symptom": "self start not cranking",
-      "system": "starting",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "check battery voltage",
         "test starter relay",
@@ -5602,7 +5602,7 @@
     {
       "id": "diag:some_power_window_switches_do_not_operate",
       "symptom": "Some power window switches do not operate",
-      "system": "system:body_electrical",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Test individual door switch",
         "Check wiring to motor",
@@ -5628,7 +5628,7 @@
     {
       "id": "diag:speedometer_shows_no_operation",
       "symptom": "Speedometer shows no operation",
-      "system": "system:dashboard",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check speedometer fuse",
         "Check VSS / speed sensor",
@@ -5657,7 +5657,7 @@
     {
       "id": "diag:starter_motor_does_not_run",
       "symptom": "Starter motor does not run",
-      "system": "system:starting",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check battery voltage and terminals",
         "Test ignition switch",
@@ -5712,7 +5712,7 @@
     {
       "id": "diag:starter_motor_does_not_stop_running_after_key_release",
       "symptom": "Starter motor does not stop running after key release",
-      "system": "system:starting",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check ignition switch",
         "Check stuck solenoid contacts",
@@ -5740,7 +5740,7 @@
     {
       "id": "diag:starter_motor_fails_to_crank",
       "symptom": "Starter motor fails to crank",
-      "system": "system:starting_charging",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Check battery charge and terminals",
         "Test starter solenoid switch",
@@ -5794,7 +5794,7 @@
     {
       "id": "diag:starter_motor_not_cranking",
       "symptom": "starter motor not cranking",
-      "system": "electrical_charging_starting",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Test battery voltage",
         "Test starter solenoid",
@@ -5852,7 +5852,7 @@
     {
       "id": "diag:starter_motor_not_running_too_slow_runs_but_not_cranking_noise_does_not_stop_running",
       "symptom": "Starter motor not running / too slow / runs but not cranking / noise / does not stop running",
-      "system": "starting",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Perform pull-in test, hold-in test, pinion return test, no-load test on starter",
         "Perform growler test on rotor/armature",
@@ -5908,7 +5908,7 @@
     {
       "id": "diag:starter_motor_runs_but_too_slow_low_torque",
       "symptom": "Starter motor runs but too slow (low torque)",
-      "system": "system:starting",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Test battery under load",
         "Check cable voltage drop",
@@ -5951,7 +5951,7 @@
     {
       "id": "diag:starter_runs_but_does_not_crank_engine",
       "symptom": "Starter runs but does not crank engine",
-      "system": "system:starting",
+      "system": "electrical_system",
       "diagnosis_steps": [
         "Inspect starter pinion / bendix",
         "Inspect flywheel ring gear teeth",
@@ -6006,7 +6006,7 @@
     {
       "id": "diag:steering_wheel_feels_heavy_at_low_speed",
       "symptom": "Steering wheel feels heavy at low speed",
-      "system": "system:power_steering",
+      "system": "steering",
       "diagnosis_steps": [
         "Check EPS warning on dash",
         "Scan EPS ECU for DTC",
@@ -6399,7 +6399,7 @@
     {
       "id": "diag:tractor_steering_heavy_wandering",
       "symptom": "Tractor steering heavy / wandering",
-      "system": "suspension_steering",
+      "system": "suspension",
       "diagnosis_steps": [
         "Check steering fluid level (power steering)",
         "Inspect steering linkage for wear",
@@ -6480,7 +6480,7 @@
     {
       "id": "diag:turbocharger_malfunction_boost_loss_oil_leak_whine",
       "symptom": "Turbocharger malfunction (boost loss / oil leak / whine)",
-      "system": "system:intake_exhaust",
+      "system": "intake_system",
       "diagnosis_steps": [
         "Dismantle turbocharger",
         "Check axial clearance per service manual",
@@ -6508,7 +6508,7 @@
     {
       "id": "diag:turbocharger_underperformance_or_axial_play",
       "symptom": "turbocharger underperformance or axial play",
-      "system": "intake_exhaust",
+      "system": "intake_system",
       "diagnosis_steps": [
         "Dismantle and assemble turbocharger",
         "Check axial clearance per service manual",
@@ -6536,7 +6536,7 @@
     {
       "id": "diag:turn_signal_flash_rate_high_or_one_side_flashes_only",
       "symptom": "Turn signal flash rate high or one side flashes only",
-      "system": "system:lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Replace burnt turn bulb on affected side",
         "Check flasher unit",
@@ -6562,7 +6562,7 @@
     {
       "id": "diag:turn_signal_hazard_warning_flash_rate_high_one_side_only_no_flashing_flash_rate_low",
       "symptom": "Turn signal / hazard warning - flash rate high, one-side only, no flashing, flash rate low",
-      "system": "lighting",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check bulbs for correct wattage",
         "Check ground connections",
@@ -6914,7 +6914,7 @@
     {
       "id": "diag:tyre_wear_abnormal_or_incorrect_inflation",
       "symptom": "tyre wear abnormal or incorrect inflation",
-      "system": "wheels_tyres",
+      "system": "wheels",
       "diagnosis_steps": [
         "Check tyre pressure against manufacturer recommendation",
         "Inspect tread for wear patterns",
@@ -7029,7 +7029,7 @@
     {
       "id": "diag:vehicle_pulls_to_one_side_during_straight_driving",
       "symptom": "Vehicle pulls to one side during straight driving",
-      "system": "system:power_steering",
+      "system": "steering",
       "diagnosis_steps": [
         "Check tyre pressure",
         "Inspect alignment",
@@ -7054,7 +7054,7 @@
     {
       "id": "diag:vehicle_will_not_go_into_ready_no_power",
       "symptom": "Vehicle will not go into Ready / no power",
-      "system": "High Voltage Distribution & Safety",
+      "system": "high_voltage_distribution_safety",
       "diagnosis_steps": [
         "Verify HVIL loop closed",
         "Check 12V auxiliary battery voltage",
@@ -7084,7 +7084,7 @@
     {
       "id": "diag:wheel_wobbling",
       "symptom": "Wheel wobbling",
-      "system": "suspension_steering",
+      "system": "suspension",
       "diagnosis_steps": [
         "Check wheel balance",
         "Inspect wheel bearings",
@@ -7112,7 +7112,7 @@
     {
       "id": "diag:windshield_washer_does_not_spray",
       "symptom": "Windshield washer does not spray",
-      "system": "system:body_electrical",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check washer fluid level",
         "Test washer pump",
@@ -7138,7 +7138,7 @@
     {
       "id": "diag:windshield_wiper_no_operation_intermittent_continuous_will_not_park",
       "symptom": "Windshield wiper no operation / intermittent / continuous / will not park",
-      "system": "system:body_electrical",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check wiper fuse",
         "Test wiper switch",
@@ -7166,7 +7166,7 @@
     {
       "id": "diag:windshield_wiper_washer_no_operation_intermittent_continuous_or_wipers_will_not_park",
       "symptom": "Windshield wiper/washer - no operation, intermittent, continuous, or wipers will not park",
-      "system": "electrical_accessories",
+      "system": "body_electrical",
       "diagnosis_steps": [
         "Check wiper motor operation",
         "Check wiper switch",
@@ -7195,7 +7195,7 @@
     {
       "id": "diag:wiper_no_operation_continuous_intermittent_fault",
       "symptom": "Wiper no operation / continuous / intermittent fault",
-      "system": "Low Voltage Accessories",
+      "system": "low_voltage_accessories",
       "diagnosis_steps": [
         "Check wiper relay and fuse",
         "Inspect wiper switch/stalk",

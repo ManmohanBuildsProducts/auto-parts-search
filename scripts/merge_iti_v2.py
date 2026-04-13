@@ -203,6 +203,20 @@ def canonical_system_id(system_name: str, system_id: str = "") -> str:
     return SYSTEM_ALIAS.get(raw, raw)
 
 
+def canonicalize_system_label(raw: str) -> str:
+    """Normalize a free-form system reference (chain['system']) to canonical ID.
+
+    Handles 'engine', 'system:engine', 'Engine', 'Engine System' → 'engine'.
+    Empty/unrecognized → passes through the slug as-is.
+    """
+    if not raw:
+        return ""
+    r = str(raw).replace("system:", "").strip()
+    if not r:
+        return ""
+    return SYSTEM_ALIAS.get(slug(r), slug(r))
+
+
 def _ingest_v1_systems(systems: dict[str, dict]) -> int:
     """Fold hand-curated v1 systems into the aggregate, with provenance = hand_curated.
 
@@ -412,6 +426,10 @@ def main() -> int:
     v1_sys_added = _ingest_v1_systems(systems)
     v1_diag_added = _ingest_v1_diagnostics(diagnostics)
     print(f"v1 fold-in: +{v1_sys_added} new parts, +{v1_diag_added} new diagnostics")
+
+    # Canonicalize chain['system'] so build_graph.py doesn't fragment system nodes
+    for dkey, diag in diagnostics.items():
+        diag["system"] = canonicalize_system_label(diag.get("system", ""))
 
     # Serialize: sets → lists, sort stably
     systems_out = []
