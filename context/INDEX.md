@@ -67,7 +67,16 @@ Market intelligence + vendor research. Dated; treat older reports as snapshots.
 | File | Date | Topic |
 |------|------|-------|
 | [research/market-audit-2026-04-12.md](research/market-audit-2026-04-12.md) | 2026-04-12 | Horizontal commerce search vendor landscape (Constructor, Klevu/Athos, Vectara, Algolia Hindi gap, ONDC) |
-| [research/claude-code-workflows-2026-04-12.md](research/claude-code-workflows-2026-04-12.md) | 2026-04-12 | Best practices for long-running Claude Code projects (in flight at time of writing) |
+| [research/claude-code-workflows-2026-04-12.md](research/claude-code-workflows-2026-04-12.md) | 2026-04-12 | Best practices for long-running Claude Code projects |
+| [research/t505-prospects-2026-04-12.md](research/t505-prospects-2026-04-12.md) | 2026-04-12 | 5 mid-market Indian auto-parts pilot prospects (Pikpart, AutoDukan, Parts Big Boss top 3) |
+
+## Scraping & prospect registry
+
+Evergreen (updated per session, not dated):
+
+| File | Purpose |
+|------|---------|
+| [scraping-queue.md](scraping-queue.md) | Running registry of auto-parts domains. Scrape status + outreach status + priority + notes. Both pilot prospects and scraping targets live here — they overlap. |
 
 ---
 

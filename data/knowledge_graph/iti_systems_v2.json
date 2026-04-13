@@ -1,10 +1,13 @@
 {
   "metadata": {
-    "description": "Vehicle systems + parts extracted from DGT ITI syllabi via LLM (T102b)",
+    "description": "Vehicle systems + parts from DGT ITI syllabi — LLM-extracted (v2) + hand-curated (v1) merged with per-part provenance. See ADR 008.",
     "source": "iti_dgt_v2",
-    "version": "2.0",
-    "extraction_date": "2026-04-12",
-    "method": "llm_extracted",
+    "version": "2.1",
+    "extraction_date": "2026-04-13",
+    "methods": [
+      "llm_extracted",
+      "hand_curated"
+    ],
     "trades_processed": [
       "mechanic_auto_electrical",
       "mechanic_diesel",
@@ -14,15 +17,16 @@
       "mechanic_two_three_wheeler"
     ],
     "total_systems": 20,
-    "total_parts": 608,
-    "supersedes": "iti_systems.json (hand-curated v1 retained as fallback per ADR 008)"
+    "total_parts": 646,
+    "note": "Each part's provenance[] array lists every source that attests to it. Hand-curated v1 and LLM v2 co-exist; queries can filter by method if needed."
   },
   "systems": [
     {
       "system_id": "system:ac_system",
       "system_name": "HVAC / Air Conditioning",
-      "description": "",
+      "description": "Vehicle air conditioning and heating. Covers refrigeration cycle components and cabin air management.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_auto_electrical",
         "mechanic_motor_vehicle"
       ],
@@ -37,6 +41,23 @@
         ]
       },
       "parts": [
+        {
+          "name": "AC Compressor Clutch",
+          "aliases": [
+            "magnetic clutch"
+          ],
+          "role": "Engages/disengages compressor from engine",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
+            }
+          ]
+        },
         {
           "name": "AC ECU",
           "aliases": [
@@ -104,7 +125,9 @@
           "name": "Blower motor",
           "aliases": [
             "blower",
-            "AC blower"
+            "AC blower",
+            "blower fan",
+            "cabin fan"
           ],
           "role": "circulates cabin air",
           "provenance": [
@@ -119,6 +142,50 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 55
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Cabin Air Filter",
+          "aliases": [
+            "pollen filter",
+            "AC filter"
+          ],
+          "role": "Filters air entering the cabin",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Compressor",
+          "aliases": [
+            "AC compressor",
+            "A/C compressor"
+          ],
+          "role": "Compresses refrigerant gas to high pressure",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
@@ -155,13 +222,22 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 55
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
         {
           "name": "Evaporator",
           "aliases": [
-            "cooling coil"
+            "cooling coil",
+            "AC evaporator"
           ],
           "role": "cools cabin air",
           "provenance": [
@@ -176,6 +252,14 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 55
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
@@ -189,6 +273,24 @@
               "trade": "mechanic_auto_electrical",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
               "page": 29
+            }
+          ]
+        },
+        {
+          "name": "Expansion Valve",
+          "aliases": [
+            "TXV",
+            "thermostatic expansion valve"
+          ],
+          "role": "Meters refrigerant flow to evaporator",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
@@ -251,7 +353,8 @@
           "aliases": [
             "drier",
             "dryer",
-            "receiver-drier"
+            "receiver-drier",
+            "accumulator"
           ],
           "role": "removes moisture from refrigerant",
           "provenance": [
@@ -266,6 +369,14 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 55
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
@@ -331,8 +442,9 @@
     {
       "system_id": "system:body_electrical",
       "system_name": "Lighting System",
-      "description": "",
+      "description": "Vehicle lighting, signaling, comfort, and safety electronics. Covers lamps, wipers, power windows, instruments, and safety systems.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_auto_electrical",
         "mechanic_diesel",
         "mechanic_electric_vehicle",
@@ -861,7 +973,10 @@
             "head lamp",
             "sealed beam",
             "halogen headlight",
-            "HID headlight"
+            "HID headlight",
+            "headlamp",
+            "head light",
+            "headlight assembly"
           ],
           "role": "Forward lighting",
           "provenance": [
@@ -870,6 +985,16 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 54
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -909,7 +1034,8 @@
           "name": "Horn",
           "aliases": [
             "hooter",
-            "vehicle horn"
+            "vehicle horn",
+            "electric horn"
           ],
           "role": "audible warning",
           "provenance": [
@@ -930,6 +1056,16 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 54
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -952,6 +1088,27 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 55
+            }
+          ]
+        },
+        {
+          "name": "Indicator Light",
+          "aliases": [
+            "turn signal",
+            "blinker",
+            "indicator lamp"
+          ],
+          "role": "Signals turning/lane change intention",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1338,7 +1495,10 @@
         },
         {
           "name": "Speedometer",
-          "aliases": [],
+          "aliases": [
+            "speedo",
+            "speedometer cable"
+          ],
           "role": "displays vehicle speed",
           "provenance": [
             {
@@ -1346,6 +1506,16 @@
               "trade": "mechanic_auto_electrical",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
               "page": 13
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1374,7 +1544,9 @@
         {
           "name": "Tail light",
           "aliases": [
-            "tail lamp"
+            "tail lamp",
+            "rear light",
+            "rear lamp assembly"
           ],
           "role": "rear position light",
           "provenance": [
@@ -1389,6 +1561,16 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 54
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1526,13 +1708,25 @@
               "trade": "mechanic_electric_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
               "page": 13
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
         {
           "name": "Wiper blade",
           "aliases": [
-            "wiper"
+            "wiper",
+            "wiper rubber",
+            "windshield wiper blade"
           ],
           "role": "clears windshield",
           "provenance": [
@@ -1547,6 +1741,16 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 54
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1593,7 +1797,10 @@
         },
         {
           "name": "fuel gauge",
-          "aliases": [],
+          "aliases": [
+            "fuel level sensor",
+            "fuel sender unit"
+          ],
           "role": "fuel level",
           "provenance": [
             {
@@ -1601,6 +1808,16 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 13
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1664,7 +1881,9 @@
         },
         {
           "name": "temperature gauge",
-          "aliases": [],
+          "aliases": [
+            "temp gauge"
+          ],
           "role": "displays coolant temperature",
           "provenance": [
             {
@@ -1672,6 +1891,16 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 13
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         }
@@ -1680,8 +1909,9 @@
     {
       "system_id": "system:braking_system",
       "system_name": "Braking System (Electronic)",
-      "description": "",
+      "description": "Decelerates and stops the vehicle. Covers disc brakes, drum brakes, hydraulic actuation, and ABS.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_auto_electrical",
         "mechanic_diesel",
         "mechanic_motor_vehicle",
@@ -1717,6 +1947,25 @@
       },
       "parts": [
         {
+          "name": "ABS Sensor",
+          "aliases": [
+            "wheel speed sensor"
+          ],
+          "role": "Monitors wheel rotation speed for ABS",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
+            }
+          ]
+        },
+        {
           "name": "ABS control unit",
           "aliases": [
             "ABS module",
@@ -1749,7 +1998,9 @@
           "name": "ABS module",
           "aliases": [
             "antilock brake module",
-            "hydraulic control unit"
+            "hydraulic control unit",
+            "ABS unit",
+            "anti-lock braking module"
           ],
           "role": "Antilock control unit for ABS",
           "provenance": [
@@ -1758,6 +2009,16 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 50
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1811,7 +2072,8 @@
           "aliases": [
             "vacuum booster",
             "hydraulic brake booster",
-            "power booster"
+            "power booster",
+            "servo unit"
           ],
           "role": "Assists brake pedal effort via engine vacuum",
           "provenance": [
@@ -1826,6 +2088,16 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 31
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1833,7 +2105,8 @@
           "name": "Brake caliper",
           "aliases": [
             "calliper",
-            "caliper"
+            "caliper",
+            "caliper assembly"
           ],
           "role": "Clamps brake pads on disc",
           "provenance": [
@@ -1854,6 +2127,16 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 27
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1878,7 +2161,8 @@
             "disc brake rotor",
             "rotor",
             "disc rotor",
-            "disc"
+            "disc",
+            "brake rotor"
           ],
           "role": "Rotating disc for caliper brakes",
           "provenance": [
@@ -1899,6 +2183,16 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 27
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1926,12 +2220,25 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 25
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
         {
           "name": "Brake fluid",
-          "aliases": [],
+          "aliases": [
+            "DOT fluid",
+            "hydraulic fluid"
+          ],
           "role": "Hydraulic fluid for brakes",
           "provenance": [
             {
@@ -1945,6 +2252,16 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 26
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1961,6 +2278,16 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 49
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -1969,7 +2296,9 @@
           "aliases": [
             "disc pad",
             "pad",
-            "patti"
+            "patti",
+            "disc brake pad",
+            "brake pad set"
           ],
           "role": "Friction material for disc brakes",
           "provenance": [
@@ -1984,6 +2313,16 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 27
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -2019,7 +2358,9 @@
           "name": "Brake shoe",
           "aliases": [
             "shoe",
-            "brake lining"
+            "brake lining",
+            "drum brake shoe",
+            "brake shoe set"
           ],
           "role": "Friction element in drum brake",
           "provenance": [
@@ -2034,6 +2375,16 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 26
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -2184,7 +2535,9 @@
         {
           "name": "Master cylinder",
           "aliases": [
-            "tandem master cylinder"
+            "tandem master cylinder",
+            "brake master cylinder",
+            "TMC"
           ],
           "role": "Converts pedal force to hydraulic pressure",
           "provenance": [
@@ -2205,6 +2558,16 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 26
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -2279,7 +2642,9 @@
         },
         {
           "name": "Wheel cylinder",
-          "aliases": [],
+          "aliases": [
+            "brake wheel cylinder"
+          ],
           "role": "Actuates drum brake shoes",
           "provenance": [
             {
@@ -2287,6 +2652,16 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 19
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -2696,8 +3071,9 @@
     {
       "system_id": "system:cooling_system",
       "system_name": "Engine Cooling System",
-      "description": "",
+      "description": "Maintains engine operating temperature by transferring excess heat. Covers liquid cooling and air cooling components.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_diesel",
         "mechanic_electric_vehicle",
         "mechanic_motor_vehicle",
@@ -2811,7 +3187,8 @@
         {
           "name": "Cooling fan",
           "aliases": [
-            "radiator fan"
+            "radiator fan",
+            "electric fan"
           ],
           "role": "Forces air across radiator (mechanical/electrical/viscous/belt-drive)",
           "provenance": [
@@ -2820,6 +3197,15 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 34
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -2836,6 +3222,26 @@
               "trade": "mechanic_electric_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
               "page": 33
+            }
+          ]
+        },
+        {
+          "name": "Expansion Tank",
+          "aliases": [
+            "overflow tank",
+            "reservoir tank",
+            "coolant reservoir"
+          ],
+          "role": "Stores excess coolant during expansion",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -2891,7 +3297,8 @@
           "aliases": [
             "radiator core",
             "cross flow radiator",
-            "down flow radiator"
+            "down flow radiator",
+            "radiator assembly"
           ],
           "role": "Dissipates coolant heat",
           "provenance": [
@@ -2912,6 +3319,15 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 14
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -2930,6 +3346,26 @@
               "trade": "mechanic_diesel",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_diesel.pdf",
               "page": 13
+            }
+          ]
+        },
+        {
+          "name": "Radiator Hose",
+          "aliases": [
+            "coolant hose",
+            "upper hose",
+            "lower hose"
+          ],
+          "role": "Routes coolant between engine and radiator",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -2996,6 +3432,25 @@
           ]
         },
         {
+          "name": "Temperature Sensor",
+          "aliases": [
+            "coolant temperature sensor",
+            "CTS"
+          ],
+          "role": "Sends temperature reading to ECU/gauge",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
+            }
+          ]
+        },
+        {
           "name": "Thermo-Switch",
           "aliases": [
             "temperature switch",
@@ -3042,6 +3497,15 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 14
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -3085,13 +3549,24 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 14
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
         {
           "name": "coolant",
           "aliases": [
-            "anti-freeze"
+            "anti-freeze",
+            "antifreeze",
+            "coolant fluid"
           ],
           "role": "heat transfer fluid",
           "provenance": [
@@ -3100,13 +3575,25 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 26
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
         {
           "name": "fan belt",
           "aliases": [
-            "alternator belt"
+            "alternator belt",
+            "drive belt",
+            "V-belt",
+            "serpentine belt"
           ],
           "role": "drives fan and alternator",
           "provenance": [
@@ -3115,6 +3602,15 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 14
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -3130,6 +3626,15 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 14
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -3168,8 +3673,9 @@
     {
       "system_id": "system:electrical_system",
       "system_name": "Battery System",
-      "description": "",
+      "description": "Generates, stores, and distributes electrical power. Covers battery, charging, starting, ignition, and electronic control systems.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_auto_electrical",
         "mechanic_diesel",
         "mechanic_motor_vehicle",
@@ -3230,7 +3736,8 @@
           "aliases": [
             "dynamo",
             "generator",
-            "AC generator"
+            "AC generator",
+            "charging alternator"
           ],
           "role": "converts mechanical to electrical energy, charges battery",
           "provenance": [
@@ -3257,6 +3764,17 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 32
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -3321,7 +3839,9 @@
             "SMF battery",
             "maintenance free battery",
             "storage battery",
-            "batteri"
+            "batteri",
+            "car battery",
+            "vehicle battery"
           ],
           "role": "Stores electrical energy for starting and electronics",
           "provenance": [
@@ -3348,6 +3868,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 20
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -3564,6 +4095,28 @@
           ]
         },
         {
+          "name": "ECU",
+          "aliases": [
+            "ECM",
+            "engine control unit",
+            "engine control module"
+          ],
+          "role": "Central computer managing engine operation",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
+            }
+          ]
+        },
+        {
           "name": "Field coil",
           "aliases": [],
           "role": "provides magnetic field in starter",
@@ -3601,6 +4154,26 @@
               "trade": "mechanic_auto_electrical",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
               "page": 21
+            }
+          ]
+        },
+        {
+          "name": "Glow Plug",
+          "aliases": [
+            "heater plug"
+          ],
+          "role": "Pre-heats combustion chamber for diesel cold start",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -3725,7 +4298,9 @@
           "aliases": [
             "coil",
             "insulated coil",
-            "HT coil"
+            "HT coil",
+            "spark coil",
+            "coil pack"
           ],
           "role": "steps up voltage for spark",
           "provenance": [
@@ -3746,6 +4321,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 28
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -3919,7 +4505,9 @@
         },
         {
           "name": "Relay",
-          "aliases": [],
+          "aliases": [
+            "automotive relay"
+          ],
           "role": "switches high current via low current coil",
           "provenance": [
             {
@@ -3933,6 +4521,17 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 22
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4054,7 +4653,8 @@
         {
           "name": "Spark plug",
           "aliases": [
-            "plug"
+            "plug",
+            "sparking plug"
           ],
           "role": "ignites air-fuel mixture",
           "provenance": [
@@ -4069,6 +4669,17 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 52
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4112,7 +4723,8 @@
             "axial type starter",
             "pre-engagement starter",
             "co-axial starter",
-            "self motor"
+            "self motor",
+            "cranking motor"
           ],
           "role": "cranks engine for starting",
           "provenance": [
@@ -4139,6 +4751,17 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 32
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4214,7 +4837,8 @@
           "name": "Voltage regulator",
           "aliases": [
             "cut out",
-            "regulator unit"
+            "regulator unit",
+            "regulator"
           ],
           "role": "regulates alternator output voltage",
           "provenance": [
@@ -4229,6 +4853,17 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 50
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4237,7 +4872,9 @@
           "aliases": [
             "wire loom",
             "harness",
-            "wiring"
+            "wiring",
+            "wire harness",
+            "loom"
           ],
           "role": "bundled electrical wires",
           "provenance": [
@@ -4252,6 +4889,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 28
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4318,7 +4966,9 @@
         {
           "name": "fuse",
           "aliases": [
-            "fuze"
+            "fuze",
+            "fuse box",
+            "blade fuse"
           ],
           "role": "circuit protection",
           "provenance": [
@@ -4327,6 +4977,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 27
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Auto Electrical & Electronics",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4604,8 +5265,9 @@
     {
       "system_id": "system:engine",
       "system_name": "Cylinder Head & Valve Train",
-      "description": "",
+      "description": "Internal combustion engine — converts fuel energy to mechanical motion. Covers cylinder block, valve train, and rotating assembly.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_diesel",
         "mechanic_motor_vehicle",
         "mechanic_tractor",
@@ -4697,6 +5359,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 23
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4744,6 +5417,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 22
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4793,6 +5477,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 22
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4829,7 +5524,8 @@
           "aliases": [
             "head",
             "head assembly",
-            "silinder head"
+            "silinder head",
+            "cylinder head assembly"
           ],
           "role": "Seals top of cylinder, houses valves and combustion chamber",
           "provenance": [
@@ -4856,6 +5552,37 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 13
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Cylinder Head Gasket",
+          "aliases": [
+            "head gasket"
+          ],
+          "role": "Seals joint between block and head",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -4930,7 +5657,9 @@
         },
         {
           "name": "Flywheel",
-          "aliases": [],
+          "aliases": [
+            "fly wheel"
+          ],
           "role": "Stores rotational energy, smooths power pulses",
           "provenance": [
             {
@@ -4956,6 +5685,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 14
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5055,6 +5795,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 22
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5099,7 +5850,8 @@
             "oil ring",
             "ring set",
             "rings",
-            "piston rings"
+            "piston rings",
+            "piston ring set"
           ],
           "role": "Seals combustion and controls oil",
           "provenance": [
@@ -5120,6 +5872,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 22
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5141,6 +5904,26 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 33
+            }
+          ]
+        },
+        {
+          "name": "Pushrod",
+          "aliases": [
+            "push rod"
+          ],
+          "role": "Transfers lifter motion to rocker arm (OHV engines)",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5170,6 +5953,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 23
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5219,6 +6013,27 @@
           ]
         },
         {
+          "name": "Tensioner",
+          "aliases": [
+            "chain tensioner",
+            "belt tensioner"
+          ],
+          "role": "Maintains timing chain/belt tension",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
+            }
+          ]
+        },
+        {
           "name": "Timing Belt",
           "aliases": [
             "cam belt"
@@ -5264,7 +6079,9 @@
         {
           "name": "Timing Chain",
           "aliases": [
-            "cam chain"
+            "cam chain",
+            "timing belt",
+            "cam belt"
           ],
           "role": "Chain drive syncing crank and cam",
           "provenance": [
@@ -5279,6 +6096,17 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 33
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5333,6 +6161,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 23
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5360,6 +6199,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 23
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5387,6 +6237,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 23
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5599,7 +6460,8 @@
           "name": "valve",
           "aliases": [
             "intake valve",
-            "exhaust valve"
+            "exhaust valve",
+            "engine valve"
           ],
           "role": "controls gas flow in/out of cylinder",
           "provenance": [
@@ -5608,6 +6470,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 23
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -5629,8 +6502,9 @@
     {
       "system_id": "system:ev_system",
       "system_name": "Traction Motor System",
-      "description": "",
+      "description": "EV-specific powertrain and energy systems. Covers traction motor, battery pack, power electronics, and charging.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_electric_vehicle",
         "mechanic_motor_vehicle",
         "mechanic_two_three_wheeler"
@@ -5730,6 +6604,13 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 30
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Electric Vehicle",
+              "vehicle_types": [
+                "EV"
+              ]
             }
           ]
         },
@@ -5894,7 +6775,9 @@
           "aliases": [
             "charge inlet",
             "charging socket",
-            "charging connector"
+            "charging connector",
+            "charge socket",
+            "charging inlet"
           ],
           "role": "Vehicle-side interface for plug-in charging",
           "provenance": [
@@ -5903,6 +6786,13 @@
               "trade": "mechanic_electric_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
               "page": 35
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Electric Vehicle",
+              "vehicle_types": [
+                "EV"
+              ]
             }
           ]
         },
@@ -5927,7 +6817,8 @@
           "name": "DC-DC Converter",
           "aliases": [
             "DC/DC convertor",
-            "auxiliary DC-DC"
+            "auxiliary DC-DC",
+            "auxiliary converter"
           ],
           "role": "Steps HV battery voltage down to 12V for auxiliaries and accessories",
           "provenance": [
@@ -5936,6 +6827,13 @@
               "trade": "mechanic_electric_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
               "page": 4
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Electric Vehicle",
+              "vehicle_types": [
+                "EV"
+              ]
             }
           ]
         },
@@ -6197,7 +7095,9 @@
             "motor drive",
             "traction inverter",
             "VCU (in 2W EVs)",
-            "controller"
+            "controller",
+            "motor driver",
+            "VCU"
           ],
           "role": "Controls speed and torque of traction motor; converts DC from battery to AC for motor",
           "provenance": [
@@ -6218,6 +7118,13 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 30
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Electric Vehicle",
+              "vehicle_types": [
+                "EV"
+              ]
             }
           ]
         },
@@ -6288,7 +7195,8 @@
           "aliases": [
             "OBC",
             "AC charger module",
-            "on-board charger"
+            "on-board charger",
+            "AC charger"
           ],
           "role": "Converts AC from charging station to DC for battery pack",
           "provenance": [
@@ -6297,6 +7205,13 @@
               "trade": "mechanic_electric_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
               "page": 35
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Electric Vehicle",
+              "vehicle_types": [
+                "EV"
+              ]
             }
           ]
         },
@@ -6344,6 +7259,22 @@
               "trade": "mechanic_electric_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_electric_vehicle.pdf",
               "page": 33
+            }
+          ]
+        },
+        {
+          "name": "Regenerative Braking Module",
+          "aliases": [
+            "regen braking"
+          ],
+          "role": "Recovers kinetic energy during braking",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Electric Vehicle",
+              "vehicle_types": [
+                "EV"
+              ]
             }
           ]
         },
@@ -6416,7 +7347,8 @@
             "EV motor",
             "electric motor",
             "drive/traction motor-generator",
-            "BLDC motor"
+            "BLDC motor",
+            "hub motor"
           ],
           "role": "Converts electrical energy to mechanical torque to drive the wheels",
           "provenance": [
@@ -6431,6 +7363,13 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 56
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Electric Vehicle",
+              "vehicle_types": [
+                "EV"
+              ]
             }
           ]
         },
@@ -6455,7 +7394,9 @@
           "aliases": [
             "HV battery",
             "traction battery",
-            "EV battery"
+            "EV battery",
+            "battery pack",
+            "lithium battery"
           ],
           "role": "energy storage for EV",
           "provenance": [
@@ -6464,6 +7405,13 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 30
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Electric Vehicle",
+              "vehicle_types": [
+                "EV"
+              ]
             }
           ]
         },
@@ -6487,8 +7435,9 @@
     {
       "system_id": "system:exhaust_emission",
       "system_name": "Emission Control System",
-      "description": "",
+      "description": "Routes exhaust gases out and reduces harmful emissions. Covers exhaust manifold, catalytic converter, EGR, and sensors.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_diesel",
         "mechanic_motor_vehicle"
       ],
@@ -6508,7 +7457,10 @@
       "parts": [
         {
           "name": "Catalytic converter",
-          "aliases": [],
+          "aliases": [
+            "cat converter",
+            "catalytic"
+          ],
           "role": "Reduces harmful emissions via catalytic reaction",
           "provenance": [
             {
@@ -6516,6 +7468,32 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 37
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DPF",
+          "aliases": [
+            "diesel particulate filter",
+            "soot filter"
+          ],
+          "role": "Traps soot particles from diesel exhaust",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
@@ -6585,6 +7563,14 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 18
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
@@ -6628,7 +7614,9 @@
         },
         {
           "name": "Exhaust manifold",
-          "aliases": [],
+          "aliases": [
+            "exhaust header"
+          ],
           "role": "Collects exhaust gases from cylinders",
           "provenance": [
             {
@@ -6636,13 +7624,22 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 37
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
         {
           "name": "Exhaust pipe",
           "aliases": [
-            "tail pipe"
+            "tail pipe",
+            "exhaust tube"
           ],
           "role": "Carries exhaust gases to rear of vehicle",
           "provenance": [
@@ -6651,6 +7648,14 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 37
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
@@ -6685,6 +7690,23 @@
           ]
         },
         {
+          "name": "Intake Manifold",
+          "aliases": [
+            "inlet manifold"
+          ],
+          "role": "Distributes air/fuel mixture to cylinders",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
+            }
+          ]
+        },
+        {
           "name": "Muffler",
           "aliases": [
             "silencer"
@@ -6696,6 +7718,24 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 37
+            }
+          ]
+        },
+        {
+          "name": "Oxygen Sensor",
+          "aliases": [
+            "O2 sensor",
+            "lambda sensor"
+          ],
+          "role": "Monitors exhaust oxygen content for ECU fuel control",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
             }
           ]
         },
@@ -6768,14 +7808,51 @@
               "page": 37
             }
           ]
+        },
+        {
+          "name": "Silencer",
+          "aliases": [
+            "muffler",
+            "exhaust silencer"
+          ],
+          "role": "Reduces exhaust noise",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Turbocharger",
+          "aliases": [
+            "turbo",
+            "turbo charger"
+          ],
+          "role": "Uses exhaust energy to compress intake air",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV"
+              ]
+            }
+          ]
         }
       ]
     },
     {
       "system_id": "system:fuel_system",
       "system_name": "EDC / Fuel Injection System",
-      "description": "",
+      "description": "Stores, delivers, and meters fuel to the engine. Covers carburetion, fuel injection (MPFI/CRDI), and fuel supply.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_auto_electrical",
         "mechanic_diesel",
         "mechanic_motor_vehicle",
@@ -6812,6 +7889,27 @@
         ]
       },
       "parts": [
+        {
+          "name": "Air Filter",
+          "aliases": [
+            "air cleaner",
+            "air filter element"
+          ],
+          "role": "Filters intake air to engine",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
+            }
+          ]
+        },
         {
           "name": "Auxiliary air valve",
           "aliases": [
@@ -7239,7 +8337,8 @@
           "aliases": [
             "diesel line",
             "fuel pipe",
-            "petrol pipe"
+            "petrol pipe",
+            "fuel hose"
           ],
           "role": "Carries fuel from tank to pump/injectors",
           "provenance": [
@@ -7254,13 +8353,45 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 24
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Fuel Pressure Regulator",
+          "aliases": [
+            "pressure regulator"
+          ],
+          "role": "Maintains constant fuel rail pressure",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
         {
           "name": "Fuel filter",
           "aliases": [
-            "diesel filter"
+            "diesel filter",
+            "fuel strainer"
           ],
           "role": "filters fuel contaminants",
           "provenance": [
@@ -7275,6 +8406,17 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 15
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -7298,7 +8440,9 @@
           "name": "Fuel injector",
           "aliases": [
             "injector",
-            "injector nozzle"
+            "injector nozzle",
+            "nozzle",
+            "injection nozzle"
           ],
           "role": "sprays fuel into manifold/cylinder",
           "provenance": [
@@ -7325,6 +8469,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 29
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -7332,7 +8487,9 @@
           "name": "Fuel pump",
           "aliases": [
             "petrol pump",
-            "EFI fuel pump"
+            "EFI fuel pump",
+            "fuel delivery pump",
+            "lift pump"
           ],
           "role": "delivers fuel to injectors",
           "provenance": [
@@ -7341,6 +8498,17 @@
               "trade": "mechanic_auto_electrical",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
               "page": 27
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -7448,6 +8616,28 @@
               "trade": "mechanic_auto_electrical",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
               "page": 27
+            }
+          ]
+        },
+        {
+          "name": "Injection Pump",
+          "aliases": [
+            "diesel injection pump",
+            "FIP",
+            "fuel injection pump"
+          ],
+          "role": "Pressurizes and times diesel fuel delivery",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -7723,6 +8913,26 @@
           ]
         },
         {
+          "name": "Throttle Body",
+          "aliases": [
+            "throttle valve"
+          ],
+          "role": "Controls airflow to engine",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
+            }
+          ]
+        },
+        {
           "name": "Throttle position sensor",
           "aliases": [
             "TPS"
@@ -7808,6 +9018,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 23
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -7939,6 +9160,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 24
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Diesel",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -8771,8 +10003,9 @@
     {
       "system_id": "system:lubrication_system",
       "system_name": "Engine Lubrication System",
-      "description": "",
+      "description": "Reduces friction and wear between moving parts by supplying pressurized oil. Covers oil pump, filtration, and galleries.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_diesel",
         "mechanic_motor_vehicle",
         "mechanic_tractor"
@@ -8815,13 +10048,23 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 14
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
         {
           "name": "Oil Filter",
           "aliases": [
-            "engine oil filter"
+            "engine oil filter",
+            "oil filter element"
           ],
           "role": "Filters engine oil",
           "provenance": [
@@ -8842,6 +10085,34 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 14
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Oil Pan",
+          "aliases": [
+            "sump",
+            "oil sump"
+          ],
+          "role": "Stores engine oil at bottom of engine",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -8891,6 +10162,25 @@
           ]
         },
         {
+          "name": "Oil Pressure Sensor",
+          "aliases": [
+            "oil pressure switch",
+            "oil pressure sending unit"
+          ],
+          "role": "Monitors oil pressure for warning system",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
+            }
+          ]
+        },
+        {
           "name": "Oil Pump",
           "aliases": [
             "engine oil pump"
@@ -8914,6 +10204,15 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 14
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -8962,6 +10261,24 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 36
+            }
+          ]
+        },
+        {
+          "name": "PCV Valve",
+          "aliases": [
+            "positive crankcase ventilation valve"
+          ],
+          "role": "Vents crankcase gases back to intake",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "tractor"
+              ]
             }
           ]
         },
@@ -9167,8 +10484,9 @@
     {
       "system_id": "system:steering",
       "system_name": "Power Steering (Electric)",
-      "description": "",
+      "description": "Controls vehicle direction. Covers manual steering, power steering (hydraulic and electric), and wheel alignment.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_auto_electrical",
         "mechanic_diesel",
         "mechanic_motor_vehicle",
@@ -9276,8 +10594,29 @@
           ]
         },
         {
+          "name": "Power Steering Fluid",
+          "aliases": [
+            "PS fluid",
+            "ATF"
+          ],
+          "role": "Hydraulic medium for power steering",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "3W"
+              ]
+            }
+          ]
+        },
+        {
           "name": "Power steering pump",
-          "aliases": [],
+          "aliases": [
+            "PS pump"
+          ],
           "role": "Supplies hydraulic pressure for power steering",
           "provenance": [
             {
@@ -9285,6 +10624,15 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 45
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "3W"
+              ]
             }
           ]
         },
@@ -9302,8 +10650,48 @@
           ]
         },
         {
+          "name": "Steering Knuckle",
+          "aliases": [
+            "stub axle",
+            "upright"
+          ],
+          "role": "Carries wheel hub, pivots for steering",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "3W"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Steering Rack",
+          "aliases": [
+            "rack and pinion",
+            "steering gear"
+          ],
+          "role": "Converts rotary steering input to linear wheel motion",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "3W"
+              ]
+            }
+          ]
+        },
+        {
           "name": "Steering column",
-          "aliases": [],
+          "aliases": [
+            "steering shaft"
+          ],
           "role": "Connects steering wheel to steering gearbox",
           "provenance": [
             {
@@ -9311,6 +10699,15 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 44
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "3W"
+              ]
             }
           ]
         },
@@ -9351,13 +10748,24 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 29
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "3W"
+              ]
             }
           ]
         },
         {
           "name": "Tie rod",
           "aliases": [
-            "tie rod end"
+            "tie rod end",
+            "track rod",
+            "tie rod assembly"
           ],
           "role": "Connects steering linkage to steering knuckle",
           "provenance": [
@@ -9372,6 +10780,15 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 29
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "3W"
+              ]
             }
           ]
         },
@@ -9586,8 +11003,9 @@
     {
       "system_id": "system:suspension",
       "system_name": "Suspension System",
-      "description": "",
+      "description": "Absorbs road shocks and maintains tire contact with road surface. Covers springs, dampers, and linkages.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_motor_vehicle",
         "mechanic_tractor",
         "mechanic_two_three_wheeler"
@@ -9624,8 +11042,51 @@
           ]
         },
         {
+          "name": "Ball Joint",
+          "aliases": [
+            "ball joint assembly"
+          ],
+          "role": "Pivot point connecting control arm to knuckle",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Bushing",
+          "aliases": [
+            "rubber bush",
+            "suspension bush",
+            "silent block"
+          ],
+          "role": "Isolates vibration at mounting points",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
+            }
+          ]
+        },
+        {
           "name": "Coil spring",
-          "aliases": [],
+          "aliases": [
+            "suspension spring",
+            "spring"
+          ],
           "role": "Helical compression spring in suspension",
           "provenance": [
             {
@@ -9633,6 +11094,38 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 46
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Control Arm",
+          "aliases": [
+            "wishbone",
+            "A-arm",
+            "lower arm",
+            "upper arm"
+          ],
+          "role": "Links wheel assembly to vehicle frame",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -9652,7 +11145,9 @@
         {
           "name": "Leaf spring",
           "aliases": [
-            "patti spring"
+            "patti spring",
+            "leaf spring assembly",
+            "multi-leaf spring"
           ],
           "role": "Non-independent suspension spring",
           "provenance": [
@@ -9661,6 +11156,16 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 19
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -9705,7 +11210,8 @@
             "shocker",
             "shock",
             "rear shock",
-            "rear shocker"
+            "rear shocker",
+            "strut"
           ],
           "role": "Damps suspension oscillations",
           "provenance": [
@@ -9720,6 +11226,56 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 25
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Stabilizer Bar",
+          "aliases": [
+            "sway bar",
+            "anti-roll bar"
+          ],
+          "role": "Reduces body roll in corners",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Strut Mount",
+          "aliases": [
+            "top mount",
+            "strut bearing"
+          ],
+          "role": "Connects strut to body, allows rotation",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W"
+              ]
             }
           ]
         },
@@ -9937,8 +11493,9 @@
     {
       "system_id": "system:transmission",
       "system_name": "Transmission (Electronic)",
-      "description": "",
+      "description": "Transmits engine power to wheels with variable speed/torque ratios. Covers clutch, gearbox, propeller shaft, differential, and axles.",
       "source_trades": [
+        "hand_curated_v1",
         "mechanic_auto_electrical",
         "mechanic_motor_vehicle",
         "mechanic_tractor",
@@ -9977,6 +11534,48 @@
               "trade": "mechanic_auto_electrical",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_auto_electrical.pdf",
               "page": 29
+            }
+          ]
+        },
+        {
+          "name": "Axle Shaft",
+          "aliases": [
+            "half shaft",
+            "drive axle"
+          ],
+          "role": "Transmits power from differential to wheel",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CV Joint",
+          "aliases": [
+            "constant velocity joint",
+            "CV boot"
+          ],
+          "role": "Allows power transmission at variable angles (FWD)",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -10048,7 +11647,8 @@
           "name": "Differential",
           "aliases": [
             "diff",
-            "differential assembly"
+            "differential assembly",
+            "rear axle assembly"
           ],
           "role": "Permits different wheel speeds in turns",
           "provenance": [
@@ -10063,6 +11663,17 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 15
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -10160,7 +11771,8 @@
           "name": "Propeller shaft",
           "aliases": [
             "prop shaft",
-            "drive shaft"
+            "drive shaft",
+            "cardan shaft"
           ],
           "role": "Transfers torque from gearbox to rear axle",
           "provenance": [
@@ -10175,6 +11787,17 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 28
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -10188,6 +11811,27 @@
               "trade": "mechanic_motor_vehicle",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_motor_vehicle.pdf",
               "page": 42
+            }
+          ]
+        },
+        {
+          "name": "Release Bearing",
+          "aliases": [
+            "throwout bearing",
+            "clutch bearing"
+          ],
+          "role": "Disengages pressure plate when pedal pressed",
+          "provenance": [
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -10274,7 +11918,9 @@
           "name": "Universal joint",
           "aliases": [
             "U-joint",
-            "universal slip joint"
+            "universal slip joint",
+            "UJ",
+            "cross joint"
           ],
           "role": "Allows angle change in prop shaft",
           "provenance": [
@@ -10289,6 +11935,17 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 28
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -10365,6 +12022,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 22
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -10402,7 +12070,8 @@
             "driven plate",
             "friction disc",
             "friction plate",
-            "clutch patti"
+            "clutch patti",
+            "clutch disc"
           ],
           "role": "transmits engine torque to gearbox",
           "provenance": [
@@ -10417,6 +12086,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 27
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -10634,6 +12314,17 @@
               "trade": "mechanic_two_three_wheeler",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_two_three_wheeler.pdf",
               "page": 27
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },
@@ -10714,7 +12405,9 @@
         {
           "name": "pressure plate",
           "aliases": [
-            "driver plate"
+            "driver plate",
+            "clutch cover",
+            "clutch pressure plate"
           ],
           "role": "clamps clutch plate to flywheel",
           "provenance": [
@@ -10723,6 +12416,17 @@
               "trade": "mechanic_tractor",
               "pdf": "data/knowledge_graph/iti_pdfs/mechanic_tractor.pdf",
               "page": 28
+            },
+            {
+              "method": "hand_curated",
+              "source_trade": "Mechanic Motor Vehicle",
+              "vehicle_types": [
+                "LMV",
+                "HMV",
+                "2W",
+                "3W",
+                "tractor"
+              ]
             }
           ]
         },

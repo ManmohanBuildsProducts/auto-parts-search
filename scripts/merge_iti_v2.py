@@ -24,6 +24,8 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 EXTRACTED = ROOT / "data" / "knowledge_graph" / "iti_extracted"
 OUT = ROOT / "data" / "knowledge_graph"
+V1_SYSTEMS = OUT / "iti_systems.json"
+V1_DIAGNOSTICS = OUT / "iti_diagnostics.json"
 
 
 def slug(s: str) -> str:
@@ -201,6 +203,102 @@ def canonical_system_id(system_name: str, system_id: str = "") -> str:
     return SYSTEM_ALIAS.get(raw, raw)
 
 
+def _ingest_v1_systems(systems: dict[str, dict]) -> int:
+    """Fold hand-curated v1 systems into the aggregate, with provenance = hand_curated.
+
+    Union semantics: if a part name already exists in a v2 system, merge aliases
+    and record an additional provenance entry. v1-only parts are added whole.
+    """
+    if not V1_SYSTEMS.exists():
+        return 0
+    data = json.load(open(V1_SYSTEMS))
+    added = 0
+    for s in data.get("systems", []):
+        cid = canonical_system_id(s.get("system_name", ""), s.get("system_id", ""))
+        entry = systems.setdefault(cid, {
+            "system_id": f"system:{cid}",
+            "system_name": s.get("system_name", cid.replace("_", " ").title()),
+            "description": s.get("description", ""),
+            "source_trades": set(),
+            "source_pages_by_trade": defaultdict(list),
+            "parts": {},
+        })
+        # v1 has no trade tag; mark as hand_curated
+        entry["source_trades"].add("hand_curated_v1")
+        if not entry["description"] and s.get("description"):
+            entry["description"] = s["description"]
+
+        for p in s.get("parts", []):
+            pname = (p.get("name") or "").strip()
+            if not pname:
+                continue
+            pkey = slug(pname)
+            part = entry["parts"].get(pkey)
+            if part is None:
+                part = {
+                    "name": pname,
+                    "aliases": list(p.get("aliases", [])),
+                    "role": p.get("role", "") or "",
+                    "provenance": [],
+                }
+                entry["parts"][pkey] = part
+                added += 1
+            else:
+                for a in p.get("aliases", []):
+                    if a and a not in part["aliases"]:
+                        part["aliases"].append(a)
+                if not part["role"] and p.get("role"):
+                    part["role"] = p["role"]
+            part["provenance"].append({
+                "method": "hand_curated",
+                "source_trade": s.get("source_trade", ""),
+                "vehicle_types": s.get("vehicle_types", []),
+            })
+    return added
+
+
+def _ingest_v1_diagnostics(diagnostics: dict[str, dict]) -> int:
+    """Fold hand-curated v1 diagnostic chains; same union semantics."""
+    if not V1_DIAGNOSTICS.exists():
+        return 0
+    data = json.load(open(V1_DIAGNOSTICS))
+    added = 0
+    for d in data.get("chains", []):
+        symptom = (d.get("symptom") or "").strip()
+        if not symptom:
+            continue
+        dkey = slug(symptom)
+        diag = diagnostics.get(dkey)
+        if diag is None:
+            diag = {
+                "id": f"diag:{dkey}",
+                "symptom": symptom,
+                "system": d.get("system", ""),
+                "diagnosis_steps": list(d.get("diagnosis_steps", [])),
+                "related_parts": list(d.get("related_parts", [])),
+                "vehicle_types": [],
+                "provenance": [],
+            }
+            diagnostics[dkey] = diag
+            added += 1
+        else:
+            for st in d.get("diagnosis_steps", []):
+                if st and st not in diag["diagnosis_steps"]:
+                    diag["diagnosis_steps"].append(st)
+            for rp in d.get("related_parts", []):
+                if rp and rp not in diag["related_parts"]:
+                    diag["related_parts"].append(rp)
+        vt = d.get("vehicle_type", "")
+        if vt and vt not in diag["vehicle_types"]:
+            diag["vehicle_types"].append(vt)
+        diag["provenance"].append({
+            "method": "hand_curated",
+            "source_trade": d.get("source_trade", ""),
+            "confidence": d.get("confidence", 0.8),
+        })
+    return added
+
+
 def main() -> int:
     files = sorted(EXTRACTED.glob("*.json"))
     if not files:
@@ -310,6 +408,11 @@ def main() -> int:
                 },
             })
 
+    # Fold in hand-curated v1 (Option C: dual-track with explicit provenance)
+    v1_sys_added = _ingest_v1_systems(systems)
+    v1_diag_added = _ingest_v1_diagnostics(diagnostics)
+    print(f"v1 fold-in: +{v1_sys_added} new parts, +{v1_diag_added} new diagnostics")
+
     # Serialize: sets → lists, sort stably
     systems_out = []
     for cid in sorted(systems):
@@ -323,31 +426,34 @@ def main() -> int:
 
     diagnostics_out = sorted(diagnostics.values(), key=lambda x: x["id"])
 
-    trades = sorted({p["provenance"][0]["trade"] for s in systems_out for p in s["parts"]})
+    trades = sorted({
+        pr["trade"]
+        for s in systems_out for p in s["parts"] for pr in p["provenance"]
+        if pr.get("trade")
+    })
 
     systems_payload = {
         "metadata": {
-            "description": "Vehicle systems + parts extracted from DGT ITI syllabi via LLM (T102b)",
+            "description": "Vehicle systems + parts from DGT ITI syllabi — LLM-extracted (v2) + hand-curated (v1) merged with per-part provenance. See ADR 008.",
             "source": "iti_dgt_v2",
-            "version": "2.0",
-            "extraction_date": "2026-04-12",
-            "method": "llm_extracted",
+            "version": "2.1",  # 2.0 = v2 only; 2.1 = v1+v2 merged
+            "extraction_date": "2026-04-13",
+            "methods": ["llm_extracted", "hand_curated"],
             "trades_processed": trades,
             "total_systems": len(systems_out),
             "total_parts": sum(len(s["parts"]) for s in systems_out),
-            "supersedes": "iti_systems.json (hand-curated v1 retained as fallback per ADR 008)",
+            "note": "Each part's provenance[] array lists every source that attests to it. Hand-curated v1 and LLM v2 co-exist; queries can filter by method if needed.",
         },
         "systems": systems_out,
     }
     diagnostics_payload = {
         "metadata": {
-            "description": "Diagnostic chains extracted from DGT ITI syllabi via LLM (T103b)",
+            "description": "Diagnostic chains from DGT ITI syllabi — LLM-extracted (v2) + hand-curated (v1) merged with per-chain provenance. See ADR 008.",
             "source": "iti_dgt_v2",
-            "version": "2.0",
-            "extraction_date": "2026-04-12",
-            "method": "llm_extracted",
+            "version": "2.1",
+            "extraction_date": "2026-04-13",
+            "methods": ["llm_extracted", "hand_curated"],
             "total_chains": len(diagnostics_out),
-            "supersedes": "iti_diagnostics.json (hand-curated v1 retained as fallback per ADR 008)",
         },
         "chains": diagnostics_out,
     }
