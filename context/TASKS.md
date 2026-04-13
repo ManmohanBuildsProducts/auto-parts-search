@@ -113,21 +113,21 @@ Replaces old Phase 3 + Phase 4 (ADR 006). Unit of work = `(pair_gen_strategy, mo
 
 | ID | Task | Size | Priority |
 |----|------|------|----------|
-| T303a | `training/evaluate.py` harness | S | P0 |
-| T208 | Split benchmark into dev/test | S | P0 |
-| T208b | Expand ground-truth to top-20 graded | M | P0 |
-| T303b | Base-model shootout (BGE-m3, Jina v3, e5, OpenAI, Cohere, Sarvam) | S | P0 |
-| T303c | Pair schema decision (graded vs binary) | M | P0 |
+| T303a | `training/evaluate.py` harness | S | ✅ Done 2026-04-13 (63cf909) |
+| T208 | Split benchmark into dev/test | S | ✅ Done 2026-04-13 (599fbf1) — 149 dev / 46 sealed test |
+| T208b | Expand ground-truth to top-20 graded | M | ✅ Done 2026-04-13 (6166a85 + d4db804) — DeepSeek V3 judge, 149×20 labels |
+| T303b | Base-model shootout (BGE-m3, e5-large, MiniLM) | S | ✅ Stage A done 2026-04-13 (3282d67) — Jina v3 skipped (broken install); OpenAI/Cohere deferred to T305 |
+| T303c | Pair schema decision (graded vs binary) | M | P0 — unblocked by T208b |
 | T303d | Loss function decision | M | P0 |
-| T200b | HSN hierarchy graded pairs | M | P0 |
-| T201b | ITI system-membership pairs | M | P0 |
-| T202b | ITI diagnostic chain pairs | M | P0 |
+| T200b | HSN hierarchy graded pairs | M | ✅ Done 2026-04-13 (807c529) — 1,753 pairs, sibling 0.85 / cousin 0.40 |
+| T201b | ITI system-membership pairs | M | ✅ Done 2026-04-13 (c284532; label-fix 95000f1) — 2,902 pairs |
+| T202b | ITI diagnostic chain pairs | M | ✅ Done 2026-04-13 (c284532; label-fix 95000f1) — 4,556 pairs |
 | T205b | ASDC task-parts pairs | S | P1 |
 | T203 | NHTSA compatibility pairs | M | P1 |
-| T206b | Merge to `golden/all_pairs_v2.jsonl` | S | P0 |
-| T302 | Train v1 (vocab+catalog) | M | P0 |
-| T303e | Train v2 (full set) — stop if <10% over base | L | P0 |
-| T305 | External benchmark (OpenAI, Cohere) | S | P0 |
+| T206b | Merge to `golden/all_pairs_v2.jsonl` | S | ✅ Done 2026-04-13 (b3cca6e) — 26,760 pairs, SHA 7157b634… |
+| T302 | Train v1 (vocab+catalog) | M | ✅ Done 2026-04-13 (8538881 + 00f6044 + 2d9bc06) — v1.2 auto-parts-search-v1 on HF |
+| T303e | Train v2 (full set) — stop if <10% over v1.2 | L | P0 — unblocked by T303c/T303d |
+| T305 | External benchmark (OpenAI, Cohere) | S | P0 — needs joint pool (fix v1.2 judge-pool bias first) |
 | T307 | ONNX quantization | M | P1 |
 
 ### Phase 5: Search system

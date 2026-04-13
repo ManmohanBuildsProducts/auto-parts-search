@@ -2,69 +2,71 @@
 
 **Rolling dashboard. Open this first.** One page, always current. Claude updates via `/wrap` at session end.
 
-Last updated: 2026-04-13 (T110b shipped — ITI v2 wired into graph.db; Phase 2b 100% complete)
+Last updated: 2026-04-13 (Phase 3 first training loop landed — v1.2 beats BGE-m3 base by +21.8% MRR / +38% graded nDCG@10 on dev-149)
 
 ---
 
 ## 🟢 Current focus
 
-**Phase 2b 100% complete.** graph.db now reflects the ITI v2 dataset (4,252 nodes / 5,445 edges — +62% vs v1). GTM tools ready (notebook + 5 named prospects). Phase 3 (training loop) is the next phase — first Phase-3 task is T303a (`training/evaluate.py` harness).
+**Phase 3 first training loop complete end-to-end.** Closed the loop from pair generation → HF upload → Colab fine-tune → HF model push → local benchmark → graded re-eval. After two bad runs exposed label-schema bugs, v1.2 cleared the gate on the third attempt. Golden v2 promoted. Ready for Phase 3 track B (graded-label training with CoSENT loss) or jump to Phase 5 (search API).
 
-## ✅ Done (recent — 2026-04-12/13, 16 commits)
+## ✅ Done (recent — 2026-04-13, Phase 3 session)
 
-- **T110b — ITI v2 wired into graph.db (a99f83c)** — `build_graph.py:ingest_iti_v2` reads merged systems + diagnostics + aliases with provenance. Graph: 2,627 → 4,252 nodes (+62%), 3,375 → 5,445 edges (+61%). Big wins: aliases 189 → 1,111 (+922 Hindi/Hinglish vocabulary), parts 1,584 → 2,121 (+537), symptoms 103 → 247 (+144). Query-layer tests pass: "patti" returns brake_pad + brake_lining + leaf_spring; `alias:kicker → part:kick_starter`.
-- **HF Datasets raw snapshot (f957e95)** — `scrape-v3-2026-04-13` uploaded to `ManmohanBuildsProducts/auto-parts-search-raw` (private), 21MB tarball (516MB raw), SHA-verified round-trip via `scripts/fetch_raw.sh`. Reproducibility chain complete.
-- **v1+v2 ITI merge (f05771d)** — `scripts/merge_iti_v2.py` folds hand-curated v1 (124 parts / 103 chains) into v2 via `provenance.method`. Final: 646 parts (86 dual-sourced) / 247 chains (10 dual-sourced). 93 v1-only diagnostics preserved.
-- **Scraping queue (f05771d)** — `context/scraping-queue.md` evergreen domain registry.
+- **T303a — evaluate.py harness (63cf909)** — CLI `python3 -m training.evaluate`. MRR / nDCG@10 / Recall@5 / zero-result-by-type against KG corpus (option 1, 2,121 parts). MiniLM baseline: MRR 0.397.
+- **T303b Stage A — open-weights shootout (3282d67)** — BGE-m3, e5-large (with prefix support), MiniLM. Decision: fine-tune on BGE-m3 (balanced; T4-friendly). Jina v3 skipped (broken transitive dep on Mac CPU). ADR 012 unchanged.
+- **T208 — dev/test split (599fbf1)** — `scripts/split_benchmark.py`, seed 42, 149 dev / 46 sealed test, stratified by query_type.
+- **T201b + T202b — KG pair generators (c284532)** — ITI system membership + diagnostic chains, with alias expansion. 2,902 + 4,556 pairs.
+- **T200b — HSN graded pairs (807c529)** — sibling (0.85) + cousin (0.40) pairs from HSN hierarchy, 1,753 pairs.
+- **T302 — Colab training notebook + HF pair upload (8538881)** — `notebooks/train_v1.ipynb` + `scripts/upload_pairs_to_hf.py`. Batch 16 / seq 128 / fp16 AMP fits T4 (00f6044). Idempotent push via `HfApi.upload_folder` (2d9bc06).
+- **🎯 v1.2 fine-tune cleared the Phase 3 gate (b3cca6e)** — MRR 0.468 vs BGE-m3 base 0.384 on dev-149 = **+21.8%** (bar: +10%). Per-category gains (zero-result rate):
+  - Hindi/Hinglish 40.7% → **29.6%** (−27%)
+  - Symptom 55.6% → **40.7%** (−27%)
+  - Brand-as-generic 63.6% → **45.5%** (−28%)
+- **🎯 golden-v2 promoted (b3cca6e)** — `data/training/golden/all_pairs_v2.jsonl` (26,760 pairs, SHA `7157b634…`). METADATA updated with v1.2 as first model to clear the gate.
+- **T208b — DeepSeek V3 graded labels (6166a85 + d4db804)** — 149 dev queries × top-20 candidates = 2,980 judgments, 0/1/2 graded. `training/evaluate_graded.py` re-scores against this pool:
+  - Graded nDCG@10: BGE-m3 0.400 → v1.2 **0.554** (**+38.4%**)
+  - Graded Recall@5: BGE-m3 0.433 → v1.2 **0.485** (+12.0%)
+  - Per-type: hindi_hinglish +57%, symptom +68%, brand_as_generic +48%, exact_english +26%, misspelled +21%, part_number tied (both ~0.11 — embedding-inappropriate task, needs Phase 5 hybrid).
 
-- **ITI v2 LLM extraction (a4eb69d)** — 6 parallel subagents parsed DGT PDFs + `scripts/merge_iti_v2.py` consolidated:
-  - 20 systems / 608 parts (5× v1) / 154 diagnostics / **168 aliases** — all with `source_page` citations.
-  - Alias goldmine: `kicker`, `chain patta`, `brake patti`, `tanki`, `hawa filter`, `shocker`, `kamani`, `chaabi`, `tayar`, `teeli`, `self`, `dynamo`, `hooter`, `dipper`, `silencer`, `dickey`, and more.
-  - Provenance on every leaf: `{method: "llm_extracted", trade, pdf, page}`.
-- **T505 prospects (a4eb69d)** — 5 pilot candidates named, top 3: **Pikpart** (Faridabad 2W, blank-slate search), **AutoDukan** (Pune, $1.36M raised), **Parts Big Boss** (Ghaziabad, GoDaddy+Zoho stack). Full report at `context/research/t505-prospects-2026-04-12.md`.
-- **Phase 2b execution (775e446)** — PDFs committed, T113-verify, T603a/verify/e, T102c framing, notebook skeleton.
-- **Session dashboard + global install (35ce0e9, ae19f95)** — `SESSION_STATE.md`, `/start`/`/status`/`/wrap` global commands, SessionStart hook.
-- **SQLite KG (c958134)** — `graph_db.py` + 7 tests + `build-graph-db` CLI.
-- **Phase 2b scaffolding (c92c94b)** — ADRs 005–011, 2 plans, market + workflow research.
-- **Cline Kanban removed (3f2b187)**.
+**Note on failed runs (kept as learnings, not artifacts):**
+- v1.0 regressed −10.6% due to co-occurrence pairs labeled 1.0 (catastrophic conflation). Fix in `95000f1` — grade cooccurrence at 0.5.
+- v1.1 still −2.4% — catalog positives over-broad. Fix in `8d57414` — filter catalog by group-key specificity (drop 1-part brand-only, downgrade 2-part to 0.5).
+- Both documented in `memory/learnings.md` → "Training / Embeddings".
 
 ## 🟡 In progress / partial
 
-- (none — all Phase 2b tasks shipped)
+- (none — every task in this session landed)
 
 ## 🔴 Blocked / pending external action
 
-- **Outreach to Pikpart / AutoDukan / Parts Big Boss** — user action on their own pace; pitch copy + audit notebook ready when they are.
-
-*(T706 hook live-verify ✅ confirmed in a fresh session 2026-04-13 — SessionStart hook auto-injects SESSION_STATE + commits + regressions, briefing correctly names next-up items. Cline extension disable ✅ deferred at user's discretion, not a project blocker.)*
+- **Outreach to Pikpart / AutoDukan / Parts Big Boss** — user action on own pace; pitch + audit notebook still ready.
+- **Pool-bias fix for external benchmarks (T305)** — graded pool was retrieved by v1.2, biasing comparison to v1.2's advantage. Fix = union top-20s from multiple models before judging. Needed before OpenAI/Cohere comparison.
 
 ## 🔷 Next up (ranked by leverage)
 
-1. **T506 — deliver first free audit** — run `notebooks/search_audit.ipynb` against one prospect's catalog. Requires LinkedIn DM to Ratan Kumar Singh (Pikpart) / Pranay Tagare (AutoDukan) / Vineet Asija (Parts Big Boss). **Highest-EV item; retires the single biggest unknown in the project.** At the user's own pace.
-2. **T303a — `training/evaluate.py` harness** — opens Phase 3. `evaluate(model_path, benchmark_path) → {mrr, ndcg@10, recall@5, zero_result_rate}`. Baseline with `all-MiniLM-L6-v2`. ~30 min.
-3. **T208 + T208b — benchmark dev/test split + top-20 graded labels via LLM judge** — unblocks nDCG@10. ~1.5 hr.
-4. **T303b — base-model shootout** — BGE-m3, Jina v3, multilingual-e5-large, OpenAI `text-embedding-3-large`, Cohere `embed-multilingual-v3` on our 195-query benchmark. Decide base for fine-tuning. ~2 hr.
-5. **T112 — Boodmo → HSN category mapping (top 1K parts)** — enriches KG for Phase 3 pair generation. ~2 hr.
-6. **T200b + T201b + T202b — generate pair sets from the merged KG** — HSN hierarchy graded pairs, ITI system-membership pairs, diagnostic chain pairs. Phase 3 training loop unit-of-work. ~3 hr total.
+1. **T506 — deliver first free audit** — unchanged from last session; highest-EV single item. At user's pace.
+2. **T303c — pair schema ADR 013 (binary vs graded)** — 1-epoch CoSENT training run on the graded labels, compare vs MNR v1.2. Decide the v2 loss function. ~1 hr.
+3. **T303d — loss function ADR 014** — follows T303c. Likely CoSENT (graded) + MultipleNegatives (distill). ~30 min doc.
+4. **T303e — v2 training run** — same base (BGE-m3), graded labels, CoSENT loss. Must beat v1.2 by ≥10% graded nDCG@10 to promote. ~1 hr Colab + bench.
+5. **T305 — OpenAI / Cohere external benchmark** — needs joint pool + paid API keys. ~$1 spend. Ships the "credible vs incumbents" number. Bar: v2 ≥ OpenAI on Hindi subset or stop fine-tuning path.
+6. **Phase 5 kickoff** — T402a tokenizer / T401 FastAPI. Needed regardless of Phase 3 outcome for shipping.
 
 ## 🗝 Key recent decisions
 
-- **Phase 3 runs on Colab Free + HF Hub** ($0 v1 budget; ADR 012). Training script + Colab notebook will live in this repo; trained model artifacts go to HF private repo `ManmohanBuildsProducts/auto-parts-search-v<N>`.
-- **ITI v2 is LLM-extracted with page citations** — disclosure obligation from ADR 008 discharged; PRODUCT.md + decisions/003 already reflect honest v1 hand-curated framing.
-- **2W/3W vocabulary is concentrated in the 2W syllabus** — 57 aliases from one PDF. Hindi-belt mechanic terms are extractable from this source; future models should weight 2W/3W highly.
-- **Stay vertical, Indian multilingual commerce search** — ADR 011.
-- **Phase 3 = training loop** — `(pair_strategy, model, benchmark)` triples — ADR 006.
-- **SQLite for KG** — ADR 007. graph.db is 3.3MB; will grow with T110b.
-- **Session-hygiene as global rule** — `~/.claude/rules/session-hygiene.md`.
+- **Co-occurrence is not synonymy.** Cooccurrence pairs grade at 0.5, membership + symptom_part stay at 1.0. Logged in `memory/learnings.md`.
+- **Catalog positives filtered by group-key specificity** — 3-part (cat+brand+model) = 1.0; 2-part (brand+model) = 0.5; 1-part (brand only) dropped. `scripts/merge_v2_pairs.py`.
+- **Phase 3 gate discipline pays off** — when v1 failed the gate, plan said "don't tune hyperparameters, fix data." Doing that caught two structural bugs in one session at ~$0 cost.
+- **Part-number retrieval is not an embedding problem** — both BGE-m3 and v1.2 score ~0.11 nDCG@10 on part_number queries. Phase 5 hybrid search (BM25 fusion) is the fix, not more fine-tuning.
+- **golden-v2 locked** — `all_pairs_v2.jsonl` SHA `7157b634…` is the new training baseline. Future pairs work branches into `data/training/experiments/` and only promotes on a proven beat-v1.2 run.
 
 ## 🚨 Watch-outs (surface every session)
 
 - "Done" ≠ "artifact exists." Done = verified outcome (`memory/regressions.md`).
-- Do NOT generate training pairs without a model to consume them (ADR 006; T200-T206 post-mortem).
+- Phase 3 gate rule: **if a trained model fails +10% on dev MRR, stop — fix data, don't tune hyperparameters.**
 - `TASKS.md` is the single task-board source.
 - CLAUDE.md stays <100 lines / 2,500 tokens. Architecture → skills. Decisions → ADRs.
-- Experiments live in `data/training/experiments/`; never mutate `golden/` directly.
-- v1 and v2 ITI files both exist; the graph currently reads v1. Integration via T110b is the next gate.
+- Experiments live in `data/training/experiments/`; never mutate `golden/` directly except via a promotion commit.
+- Pool-bias in graded nDCG@10: current scores favor the model whose top-20 seeded the judge. Fix before external benchmarks.
 
 ---
 
