@@ -108,7 +108,8 @@ def judge_with_deepseek(query: str, candidates: list[str], api_key: str, model: 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark", default="data/training/golden/benchmark_dev.json")
-    ap.add_argument("--model", default="ManmohanBuildsProducts/auto-parts-search-v1")
+    ap.add_argument("--model", action="append", default=None,
+                    help="Model repo. Repeat for a joint pool (union of each model's top-k).")
     ap.add_argument("--out", required=True)
     ap.add_argument("--k", type=int, default=20)
     ap.add_argument("--deepseek-model", default="deepseek-reasoner")
@@ -139,13 +140,28 @@ def main() -> None:
         print("nothing to do.")
         return
 
-    # Retrieve top-k for all remaining queries up front.
+    # Retrieve top-k per model. When multiple models are given, union the
+    # per-query top-k across models (dedup, preserve one-model-rank as tiebreak).
+    models = args.model or ["ManmohanBuildsProducts/auto-parts-search-v1"]
     queries = [q["query"] for q in to_do]
-    top_k_indices = retrieve_top_k(args.model, queries, docs, args.k)
+    all_top_k = [retrieve_top_k(m, queries, docs, args.k) for m in models]
+
+    # For each query, build ordered union of indices across models.
+    unioned: list[list[int]] = []
+    for qi in range(len(to_do)):
+        seen: set[int] = set()
+        order: list[int] = []
+        for mi in range(len(models)):
+            for idx in all_top_k[mi][qi]:
+                idx_i = int(idx)
+                if idx_i not in seen:
+                    seen.add(idx_i)
+                    order.append(idx_i)
+        unioned.append(order)
 
     with out_path.open("a") as f:
         for qi, q in enumerate(to_do):
-            idxs = top_k_indices[qi]
+            idxs = unioned[qi]
             candidates = [docs[i] for i in idxs]
             candidate_ids = [part_ids[i] for i in idxs]
 
@@ -170,7 +186,7 @@ def main() -> None:
 
             rel = sum(1 for g in grades if g == 2)
             mar = sum(1 for g in grades if g == 1)
-            print(f"   -> {rel} rel, {mar} marginal, {args.k - rel - mar} irr", flush=True)
+            print(f"   -> n={len(grades)}: {rel} rel, {mar} marginal, {len(grades) - rel - mar} irr", flush=True)
 
     print(f"\nsaved -> {out_path}")
 
