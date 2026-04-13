@@ -45,6 +45,7 @@ Architectural + strategic decisions. Numbered; never edited after status = "Deci
 | 009 | [009-reproducibility.md](decisions/009-reproducibility.md) | Manifest + seed + golden-run convention |
 | 010 | [010-search-tokenizer.md](decisions/010-search-tokenizer.md) | IndicNLP + IndicTrans2 + lemma map pipeline |
 | 011 | [011-positioning-moat.md](decisions/011-positioning-moat.md) | Stay vertical; ONDC optionality; GTM unblocked |
+| 012 | [012-phase3-compute-infra.md](decisions/012-phase3-compute-infra.md) | Phase 3 runs on Colab Free + HF Hub; $0 v1 budget |
 
 ---
 

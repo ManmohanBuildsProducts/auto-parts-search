@@ -65,3 +65,23 @@ Produce a fine-tuned embedding model that beats the best publicly-available mult
 - Hybrid search (keyword + dense fusion) — Phase 5.
 - Reranker (Cohere Rerank, ColBERT) — Phase 5.
 - Query classifier — Phase 5.
+
+## Where Phase 3 runs (compute infra — see ADR 012)
+
+Four-room architecture, $0 budget for v1:
+
+| Step | Where it runs | Service | Cost |
+|------|---------------|---------|------|
+| Generate pairs from `graph.db` | Local | Laptop (Mac) | $0 |
+| Fine-tune embedding model | Cloud GPU | **Google Colab Free** (T4) | $0 |
+| Store trained model | Cloud | **Hugging Face Hub** private repo `ManmohanBuildsProducts/auto-parts-search-v<N>` | $0 |
+| Evaluate against 195-query benchmark | Local | Laptop (Mac) — pulls model from HF | $0 |
+
+**Per-run user workflow:** open the Colab notebook → paste HF token → Run all → walk away ~30–60 min → scorecard printed + model auto-pushed to HF.
+
+**Fallback ladder** (only if needed):
+- Colab Free hits 12-hr cap → Colab Pro ($10/mo)
+- Need A100 for a specific experiment → Modal or RunPod ($1–2/hr pay-per-second)
+- Want hosted demo URL after v1 → HF Spaces ($0–9/mo)
+
+The training script + evaluation script + Colab notebook are committable to this repo. The trained model artifacts and experiments live outside (HF + gitignored `data/training/experiments/`). See ADR 012 for full rationale.

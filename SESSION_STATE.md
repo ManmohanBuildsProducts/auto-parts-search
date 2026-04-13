@@ -49,6 +49,7 @@ Last updated: 2026-04-13 (T110b shipped — ITI v2 wired into graph.db; Phase 2b
 
 ## 🗝 Key recent decisions
 
+- **Phase 3 runs on Colab Free + HF Hub** ($0 v1 budget; ADR 012). Training script + Colab notebook will live in this repo; trained model artifacts go to HF private repo `ManmohanBuildsProducts/auto-parts-search-v<N>`.
 - **ITI v2 is LLM-extracted with page citations** — disclosure obligation from ADR 008 discharged; PRODUCT.md + decisions/003 already reflect honest v1 hand-curated framing.
 - **2W/3W vocabulary is concentrated in the 2W syllabus** — 57 aliases from one PDF. Hindi-belt mechanic terms are extractable from this source; future models should weight 2W/3W highly.
 - **Stay vertical, Indian multilingual commerce search** — ADR 011.
