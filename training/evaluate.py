@@ -92,15 +92,18 @@ def evaluate(
     k_ndcg: int = 10,
     k_recall: int = 5,
     k_zero: int = 10,
+    query_prefix: str = "",
+    doc_prefix: str = "",
 ) -> dict:
     from sentence_transformers import SentenceTransformer
 
     benchmark = json.loads(Path(benchmark_path).read_text())
     part_ids, docs, rel_strings = load_corpus(db_path)
 
-    model = SentenceTransformer(model_path)
-    doc_emb = model.encode(docs, convert_to_numpy=True, normalize_embeddings=True, show_progress_bar=True)
-    queries = [q["query"] for q in benchmark]
+    model = SentenceTransformer(model_path, trust_remote_code=True)
+    doc_texts = [doc_prefix + d for d in docs] if doc_prefix else docs
+    doc_emb = model.encode(doc_texts, convert_to_numpy=True, normalize_embeddings=True, show_progress_bar=True)
+    queries = [query_prefix + q["query"] for q in benchmark]
     q_emb = model.encode(queries, convert_to_numpy=True, normalize_embeddings=True, show_progress_bar=True)
 
     sims = q_emb @ doc_emb.T  # (Q, D), cosine since normalized
@@ -158,9 +161,14 @@ def main() -> None:
     ap.add_argument("--benchmark", default="data/training/golden/benchmark.json")
     ap.add_argument("--db", default=str(GRAPH_DB))
     ap.add_argument("--out", default=None, help="Optional path to write JSON results.")
+    ap.add_argument("--query-prefix", default="", help="Prepended to each query (e.g. 'query: ' for e5).")
+    ap.add_argument("--doc-prefix", default="", help="Prepended to each doc (e.g. 'passage: ' for e5).")
     args = ap.parse_args()
 
-    results = evaluate(args.model, args.benchmark, Path(args.db))
+    results = evaluate(
+        args.model, args.benchmark, Path(args.db),
+        query_prefix=args.query_prefix, doc_prefix=args.doc_prefix,
+    )
     print(json.dumps(results, indent=2))
     if args.out:
         Path(args.out).write_text(json.dumps(results, indent=2))
