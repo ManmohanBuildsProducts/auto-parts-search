@@ -69,6 +69,10 @@ Experiments branch into `data/training/experiments/<YYYY-MM-DD>-<hypothesis>/` a
 | Model | Base | Dev MRR | Dev nDCG@10 | Dev Recall@5 | vs base | Commit | Notes |
 |-------|------|---------|-------------|--------------|---------|--------|-------|
 | BGE-m3 (baseline) | — | 0.384 | 0.407 | 0.245 | — | — | No fine-tune; used as decision-gate baseline |
-| **auto-parts-search-v1.2** | BAAI/bge-m3 | **0.468** | **0.490** | **0.268** | **+21.8%** | `8d57414` | 1 epoch, MNR loss, batch 16, seq 128, fp16, 7,828 positives. First model to clear the Phase 3 gate. Private HF repo `ManmohanBuildsProducts/auto-parts-search-v1`. |
+| auto-parts-search-v1.2 | BAAI/bge-m3 | 0.468 | 0.490 | 0.268 | +21.8% | `8d57414` | 1 epoch, MNR, batch 16, seq 128, fp16. First model to clear the Phase 3 gate. Superseded by v3. Retained on HF for provenance. |
+| **auto-parts-search-v3** (production) | BAAI/bge-m3 | **0.484** | **0.507** | **0.292** | **+25.9%** | `34fba48` | 2 epochs with best-on-dev checkpointing, MNR, batch 32, seq 128, fp16. +4.4% graded nDCG@10 over v1.2 on fair joint-pool (0.559 vs 0.535). No regressions. Private HF repo `ManmohanBuildsProducts/auto-parts-search-v3`. Promoted per ADR 014 (discipline-upgrade exception). |
 
-v1.0 (polluted cooccurrence positives) and v1.1 (cooccurrence fix only) are discarded — see `memory/learnings.md` "Training / Embeddings" section.
+### Discarded (failed gate, kept for provenance of the learning)
+
+- **v1.0, v1.1** (co-occurrence pair bugs; see `memory/learnings.md`)
+- **v2** (CoSENT + graded labels; regressed 19% below base; see ADR 013)
