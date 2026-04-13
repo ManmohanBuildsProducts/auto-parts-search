@@ -1,0 +1,606 @@
+[
+  {
+    "query": "Bullet chain sprocket",
+    "query_type": "brand_as_generic",
+    "expected_parts": [
+      "chain sprocket kit"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Royal Enfield"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "Bullet crash guard",
+    "query_type": "brand_as_generic",
+    "expected_parts": [
+      "crash guard"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Royal Enfield"
+    ],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "Delco kharaab hai",
+    "query_type": "brand_as_generic",
+    "expected_parts": [
+      "distributor"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "Dunlop for Splendor",
+    "query_type": "brand_as_generic",
+    "expected_parts": [
+      "tyre"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Hero Splendor"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "Exide dead ho gayi",
+    "query_type": "brand_as_generic",
+    "expected_parts": [
+      "battery"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "Servo brakes Scorpio",
+    "query_type": "brand_as_generic",
+    "expected_parts": [
+      "brake booster"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Mahindra Scorpio"
+    ],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "dynamo Swift",
+    "query_type": "brand_as_generic",
+    "expected_parts": [
+      "alternator"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Maruti Swift"
+    ],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "self motor Splendor",
+    "query_type": "brand_as_generic",
+    "expected_parts": [
+      "starter motor"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Hero Splendor"
+    ],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "AC compressor Tata Punch",
+    "query_type": "exact_english",
+    "expected_parts": [
+      "AC compressor"
+    ],
+    "expected_categories": [
+      "Heating & Cooling"
+    ],
+    "expected_vehicles": [
+      "Tata Punch"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "air filter Bajaj Pulsar 150",
+    "query_type": "exact_english",
+    "expected_parts": [
+      "air filter"
+    ],
+    "expected_categories": [
+      "Service Parts"
+    ],
+    "expected_vehicles": [
+      "Bajaj Pulsar"
+    ],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "brake shoe Honda Activa rear",
+    "query_type": "exact_english",
+    "expected_parts": [
+      "brake shoe"
+    ],
+    "expected_categories": [
+      "Brake System"
+    ],
+    "expected_vehicles": [
+      "Honda Activa"
+    ],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "cabin filter Kia Seltos",
+    "query_type": "exact_english",
+    "expected_parts": [
+      "cabin filter"
+    ],
+    "expected_categories": [
+      "Service Parts"
+    ],
+    "expected_vehicles": [
+      "Kia Seltos"
+    ],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "catalytic converter Hyundai Creta",
+    "query_type": "exact_english",
+    "expected_parts": [
+      "catalytic converter"
+    ],
+    "expected_categories": [
+      "Body & Exhaust"
+    ],
+    "expected_vehicles": [
+      "Hyundai Creta"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "radiator Mahindra Scorpio",
+    "query_type": "exact_english",
+    "expected_parts": [
+      "radiator"
+    ],
+    "expected_categories": [
+      "Heating & Cooling"
+    ],
+    "expected_vehicles": [
+      "Mahindra Scorpio"
+    ],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "side mirror ORVM Maruti Swift",
+    "query_type": "exact_english",
+    "expected_parts": [
+      "side mirror",
+      "ORVM"
+    ],
+    "expected_categories": [
+      "Body & Exhaust"
+    ],
+    "expected_vehicles": [
+      "Maruti Swift"
+    ],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "suspension spring Maruti Fronx",
+    "query_type": "exact_english",
+    "expected_parts": [
+      "suspension spring",
+      "coil spring"
+    ],
+    "expected_categories": [
+      "Suspension & Steering"
+    ],
+    "expected_vehicles": [
+      "Maruti Fronx"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "activa ka tyre",
+    "query_type": "hindi_hinglish",
+    "expected_parts": [
+      "tyre"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Honda Activa"
+    ],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "gaadi ka bonnet",
+    "query_type": "hindi_hinglish",
+    "expected_parts": [
+      "bonnet",
+      "hood"
+    ],
+    "expected_categories": [
+      "Body & Exhaust"
+    ],
+    "expected_vehicles": [],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "indicator ki light",
+    "query_type": "hindi_hinglish",
+    "expected_parts": [
+      "indicator bulb",
+      "turn signal"
+    ],
+    "expected_categories": [
+      "Electrical & Lighting"
+    ],
+    "expected_vehicles": [],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "mobil daalna hai",
+    "query_type": "hindi_hinglish",
+    "expected_parts": [
+      "engine oil"
+    ],
+    "expected_categories": [
+      "Service Parts"
+    ],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "pulsar ka chain sprocket",
+    "query_type": "hindi_hinglish",
+    "expected_parts": [
+      "chain sprocket kit"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Bajaj Pulsar"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "swift ka shocker",
+    "query_type": "hindi_hinglish",
+    "expected_parts": [
+      "shock absorber"
+    ],
+    "expected_categories": [
+      "Suspension & Steering"
+    ],
+    "expected_vehicles": [
+      "Maruti Swift"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "taar badalni hai gaadi ki",
+    "query_type": "hindi_hinglish",
+    "expected_parts": [
+      "wiring harness"
+    ],
+    "expected_categories": [
+      "Electrical & Lighting"
+    ],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "wagon r ka clutch set",
+    "query_type": "hindi_hinglish",
+    "expected_parts": [
+      "clutch kit",
+      "clutch plate"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Maruti Wagon R"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "alternater swift",
+    "query_type": "misspelled",
+    "expected_parts": [
+      "alternator"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Maruti Swift"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "brake flude creta",
+    "query_type": "misspelled",
+    "expected_parts": [
+      "brake fluid"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Hyundai Creta"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "break pad swift",
+    "query_type": "misspelled",
+    "expected_parts": [
+      "brake pad"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Maruti Swift"
+    ],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "cluch plate nexon",
+    "query_type": "misspelled",
+    "expected_parts": [
+      "clutch plate"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Tata Nexon"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "fleewheel wagon r",
+    "query_type": "misspelled",
+    "expected_parts": [
+      "flywheel"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Maruti Wagon R"
+    ],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "fule filter swift diesel",
+    "query_type": "misspelled",
+    "expected_parts": [
+      "fuel filter"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Maruti Swift"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "klutch plate wagon r",
+    "query_type": "misspelled",
+    "expected_parts": [
+      "clutch plate"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Maruti Wagon R"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "09241M20002",
+    "query_type": "part_number",
+    "expected_parts": [
+      "bolt",
+      "fastener"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Maruti"
+    ],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "16510M86J00",
+    "query_type": "part_number",
+    "expected_parts": [
+      "oil filter"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Maruti"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "37110-3X000",
+    "query_type": "part_number",
+    "expected_parts": [
+      "battery"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Hyundai"
+    ],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "94601-KZZ-900",
+    "query_type": "part_number",
+    "expected_parts": [
+      "chain"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [
+      "Hero"
+    ],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "Amaron AAM-FL-0BH45D20L",
+    "query_type": "part_number",
+    "expected_parts": [
+      "battery"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "Denso 234-4350",
+    "query_type": "part_number",
+    "expected_parts": [
+      "O2 sensor"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "KYB 333115",
+    "query_type": "part_number",
+    "expected_parts": [
+      "shock absorber"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "click ki awaaz start nahi hota",
+    "query_type": "symptom",
+    "expected_parts": [
+      "battery",
+      "starter motor"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "engine mein thak-thak awaaz",
+    "query_type": "symptom",
+    "expected_parts": [
+      "engine oil",
+      "valve train"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "gaadi bahut uchhal rahi hai",
+    "query_type": "symptom",
+    "expected_parts": [
+      "shock absorber"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "medium",
+    "notes": ""
+  },
+  {
+    "query": "gear nahi lag raha",
+    "query_type": "symptom",
+    "expected_parts": [
+      "clutch fluid",
+      "clutch plate"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "idle par hil rahi hai",
+    "query_type": "symptom",
+    "expected_parts": [
+      "spark plug",
+      "fuel injector"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "pickup nahi hai",
+    "query_type": "symptom",
+    "expected_parts": [
+      "air filter",
+      "spark plug",
+      "fuel filter"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  },
+  {
+    "query": "squealing noise when braking",
+    "query_type": "symptom",
+    "expected_parts": [
+      "brake pad",
+      "brake disc"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "easy",
+    "notes": ""
+  },
+  {
+    "query": "warning light jal rahi hai",
+    "query_type": "symptom",
+    "expected_parts": [
+      "O2 sensor",
+      "MAF sensor"
+    ],
+    "expected_categories": [],
+    "expected_vehicles": [],
+    "difficulty": "hard",
+    "notes": ""
+  }
+]
