@@ -33,9 +33,9 @@ Phase 2b fully shipped except one follow-up (T110b: integrate ITI v2 into `build
 
 ## 🔴 Blocked / pending external action
 
-- **Cline VS Code extension disable** — user-machine action (JSON is gone from repo).
-- **T706 live-verify SessionStart hook** — open a fresh Claude Code session in repo; script smoke-tested green.
-- **Outreach to Pikpart / AutoDukan / Parts Big Boss** — user action; pitch copy ready once outreach channel chosen.
+- **Outreach to Pikpart / AutoDukan / Parts Big Boss** — user action on their own pace; pitch copy + audit notebook ready when they are.
+
+*(T706 hook live-verify ✅ confirmed in a fresh session 2026-04-13 — SessionStart hook auto-injects SESSION_STATE + commits + regressions, briefing correctly names next-up items. Cline extension disable ✅ deferred at user's discretion, not a project blocker.)*
 
 ## 🔷 Next up (ranked by leverage)
 
