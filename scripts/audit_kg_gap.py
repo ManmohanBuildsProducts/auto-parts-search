@@ -17,6 +17,7 @@ from pathlib import Path
 GRAPH_DB = Path("data/knowledge_graph/graph.db")
 YT_DIR = Path("data/external/yt_pilot")
 AKS = Path("data/external/processed/ai4bharat_aksharantar_auto.jsonl")
+HINGLISH = Path("data/external/processed/kg_hinglish_bridge.jsonl")
 OUT = Path("data/external/processed/kg_gap_audit.json")
 
 # Devanagari word-boundary token (avoid multi-word blobs)
@@ -96,10 +97,29 @@ def main() -> None:
     print(f"  bridge entries (unique devanagari): {len(bridge)}")
 
     # Devanagari tokens that map to a known KG token (via Aksharantar)
-    covered_devan = {
+    aks_covered = {
         dev for dev, roms in bridge.items() if any(r in kg for r in roms)
     }
-    print(f"  Aksharantar-covered devanagari (intersects KG): {len(covered_devan)}")
+    print(f"  Aksharantar-covered devanagari (intersects KG): {len(aks_covered)}")
+
+    # Also load our Hinglish bridge (DeepSeek-enriched)
+    hinglish_covered: set[str] = set()
+    if HINGLISH.exists():
+        for line in HINGLISH.read_text().splitlines():
+            if not line.strip(): continue
+            r = json.loads(line)
+            # Every rendering (Devanagari) is a covered term if source term is in KG
+            if r["term"] in kg:  # already-known latin terms
+                for rend in r["renderings"]:
+                    # Also break multi-word renderings into tokens for matching
+                    hinglish_covered.add(rend.strip())
+                    for tok in re.split(r"\s+", rend.strip()):
+                        if re.search(r"[\u0900-\u097F]", tok):
+                            hinglish_covered.add(tok)
+        print(f"  Hinglish-bridge-covered devanagari tokens: {len(hinglish_covered)}")
+
+    covered_devan = aks_covered | hinglish_covered
+    print(f"  UNION covered devanagari: {len(covered_devan)}")
 
     print("extracting Devanagari tokens from YouTube transcripts...")
     yt = extract_devan_tokens(YT_DIR)
