@@ -126,9 +126,12 @@ Replaces old Phase 3 + Phase 4 (ADR 006). Unit of work = `(pair_gen_strategy, mo
 | T203 | NHTSA compatibility pairs | M | P1 |
 | T206b | Merge to `golden/all_pairs_v2.jsonl` | S | ✅ Done 2026-04-13 (b3cca6e) — 26,760 pairs, SHA 7157b634… |
 | T302 | Train v1 (vocab+catalog) | M | ✅ Done 2026-04-13 (8538881 + 00f6044 + 2d9bc06) — v1.2 auto-parts-search-v1 on HF |
-| T303e | Train v2 (full set) — stop if <10% over v1.2 | L | P0 — unblocked by T303c/T303d |
-| T305 | External benchmark (OpenAI, Cohere) | S | P0 — needs joint pool (fix v1.2 judge-pool bias first) |
-| T307 | ONNX quantization | M | P1 |
+| T303e | Train v3 (disciplined v1.2 recipe; 2-epoch + checkpointing) | L | ✅ Done 2026-04-13 (b2f368f) — v3 +4.4% graded nDCG@10 over v1.2; promoted per ADR 014 |
+| T305 | External benchmark (OpenAI, Cohere) | S | Deferred — per ADR 015 Phase 3 closed before getting here; revisit during Phase 5 if still relevant for sales |
+| T307 | ONNX quantization | M | Deferred to Phase 5 (production serving path) |
+| T4-ablation | v4 A/B/C ablation (YT / Aksharantar / Hinglish bridge) | L | ✅ Done 2026-04-14 — all three failed +10% gate; ADR 015 |
+| T5 | v5 — queryified YT + Aksharantar | L | ✅ Done 2026-04-14 — failed +5% gate (−1.6% overall, +14% symptom, −21% misspelled); ADR 015 |
+| T-phase3-close | Ship v3, ADR 015, pivot to Phase 5 | S | ✅ Done 2026-04-14 |
 
 ### Phase 5: Search system
 
