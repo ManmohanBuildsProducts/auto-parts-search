@@ -87,11 +87,19 @@ class SarvamTransliterator:
     def transliterate(
         self, text: str, target_lang: str = "hi-IN", source_lang: str | None = None
     ) -> str | None:
-        """target_lang='hi-IN' for -> Devanagari; target_lang='en-IN' for -> Latin.
+        """Transliterate via Sarvam /transliterate API.
 
+        target_lang='hi-IN' -> Devanagari; target_lang='en-IN' -> Latin.
+        source_lang: required by Sarvam API. Auto-inferred from script if not given.
         Returns None on any failure. Cached per (text, source, target).
         """
-        key = (text, source_lang or "auto", target_lang)
+        # Auto-detect source language if not provided
+        if not source_lang:
+            # Heuristic: Devanagari input -> hi-IN source; else en-IN
+            src = "hi-IN" if any("\u0900" <= c <= "\u097F" for c in text) else "en-IN"
+        else:
+            src = source_lang
+        key = (text, src, target_lang)
         if key in self.cache:
             return self.cache[key]
         if not self.api_key:
@@ -103,12 +111,11 @@ class SarvamTransliterator:
         try:
             body = {
                 "input": text,
+                "source_language_code": src,
                 "target_language_code": target_lang,
                 "numerals_format": "international",
                 "spoken_form_numerals_language": "english",
             }
-            if source_lang:
-                body["source_language_code"] = source_lang
             r = requests.post(
                 _SARVAM_URL,
                 headers={"api-subscription-key": self.api_key, "Content-Type": "application/json"},
