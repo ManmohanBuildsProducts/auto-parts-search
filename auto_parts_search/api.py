@@ -276,6 +276,83 @@ def demo_delete(sid: str):
     return {"deleted": sid}
 
 
+# ---------- async job flow for large catalogs ----------
+
+class CatalogStartRequest(BaseModel):
+    name: str | None = Field(None, max_length=100)
+
+
+class CatalogBatchRequest(BaseModel):
+    products: list[CatalogUploadProduct] = Field(..., min_length=1, max_length=10000)
+
+
+class CatalogUrlIngestRequest(BaseModel):
+    name: str | None = Field(None, max_length=100)
+    source_url: str = Field(..., description="HTTP(S) URL returning JSONL (one product per line)")
+
+
+@app.post("/demo/catalog/start", tags=["demo-async"],
+          summary="Start a job for a large catalog (batched upload)")
+def demo_catalog_start(req: CatalogStartRequest):
+    """Returns a job_id. Send products via /demo/catalog/{jid}/batch (up to 10K per
+    call, up to 500K total per job), then POST /commit to trigger embedding.
+    """
+    return demo_tenant.start_job(req.name)
+
+
+@app.post("/demo/catalog/{jid}/batch", tags=["demo-async"],
+          summary="Append a batch of products to a job (max 10K per call)")
+def demo_catalog_batch(jid: str, req: CatalogBatchRequest):
+    try:
+        return demo_tenant.append_to_job(
+            jid, [p.model_dump(exclude_none=True) for p in req.products]
+        )
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"job {jid} not found")
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.post("/demo/catalog/{jid}/commit", tags=["demo-async"],
+          summary="Kick off async embedding + indexing (returns 202 Accepted)")
+def demo_catalog_commit(jid: str):
+    try:
+        return demo_tenant.commit_job(jid)
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"job {jid} not found")
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.post("/demo/catalog/ingest-url", tags=["demo-async"],
+          summary="Ingest a JSONL catalog from a URL (server fetches + embeds)")
+def demo_catalog_url(req: CatalogUrlIngestRequest):
+    try:
+        return demo_tenant.ingest_from_url(req.name, req.source_url)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.get("/demo/catalog/{jid}", tags=["demo-async"], summary="Job progress + status")
+def demo_catalog_status(jid: str):
+    s = demo_tenant.job_status(jid)
+    if not s:
+        raise HTTPException(status_code=404, detail=f"job {jid} not found or expired")
+    return s
+
+
+@app.get("/demo/catalog", tags=["demo-async"], summary="List active jobs")
+def demo_catalog_list():
+    return {"jobs": demo_tenant.list_jobs()}
+
+
+@app.delete("/demo/catalog/{jid}", tags=["demo-async"], summary="Cancel a job + drop its session")
+def demo_catalog_delete(jid: str):
+    if not demo_tenant.delete_job(jid):
+        raise HTTPException(status_code=404, detail=f"job {jid} not found")
+    return {"deleted": jid}
+
+
 @app.get("/demo", tags=["demo"], summary="List active demo sessions")
 def demo_list():
     return {"sessions": demo_tenant.list_sessions()}

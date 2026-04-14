@@ -42,11 +42,18 @@ from auto_parts_search.search_hybrid import _encode_query, rrf_fuse
 from auto_parts_search.tokenizer import IndicTokenizer
 
 TTL_HOURS = 24
-MAX_SESSIONS = 8
-MAX_PRODUCTS_PER_UPLOAD = 10_000
+MAX_SESSIONS = 4
+MAX_PRODUCTS_PER_UPLOAD = 10_000      # single-shot /demo/catalog cap (quick demos)
+MAX_PRODUCTS_PER_BATCH = 10_000       # per /demo/catalog/{jid}/batch call
+MAX_PRODUCTS_PER_JOB = 500_000        # total per async job (memory cap on Mac)
+MAX_URL_PRODUCTS = 500_000
+EMBED_BATCH = 256                      # encode batch size for progress granularity
+URL_FETCH_TIMEOUT = 900
 
 _lock = threading.Lock()
 _sessions: dict[str, dict[str, Any]] = {}
+_jobs: dict[str, dict[str, Any]] = {}
+_jobs_lock = threading.Lock()
 _tokenizer = IndicTokenizer()
 
 
@@ -183,22 +190,20 @@ class Catalog:
     products: list[dict]
 
 
-def upload_catalog(name: str | None, products: list[dict]) -> dict[str, Any]:
-    """Create a session from an uploaded catalog. Returns session metadata."""
+def _validate_products(products: list[dict]) -> None:
     if not isinstance(products, list) or not products:
         raise ValueError("products must be a non-empty list")
-    if len(products) > MAX_PRODUCTS_PER_UPLOAD:
-        raise ValueError(f"too many products: max {MAX_PRODUCTS_PER_UPLOAD}")
-    # Validate minimal schema: each item must have at least a name
     for i, p in enumerate(products):
         if not isinstance(p, dict) or not p.get("name"):
             raise ValueError(f"product {i} missing 'name' field")
 
-    with _lock:
-        _evict_expired()
-        _evict_lru_if_full()
 
-    sid = _new_sid()
+def _build_session(sid: str, name: str | None, products: list[dict],
+                   progress_cb: Any | None = None) -> dict[str, Any]:
+    """Core: turn a product list into a session. Shared by sync + async flows.
+
+    progress_cb: optional callable(n_embedded, n_total) invoked periodically.
+    """
     index_name = f"demo_{sid}"
 
     # Build docs with token expansion + part-number extraction
@@ -253,20 +258,28 @@ def upload_catalog(name: str | None, products: list[dict]) -> dict[str, Any]:
     _meili_create_index(index_name)
     _meili_upsert_docs(index_name, docs)
 
-    # Embed via v3 (uses cached model in search_hybrid)
+    # Embed via v3, in chunks with progress callback
     from sentence_transformers import SentenceTransformer
     from auto_parts_search.search_hybrid import _model_cache, MODEL_NAME
     if MODEL_NAME not in _model_cache:
         _model_cache[MODEL_NAME] = SentenceTransformer(MODEL_NAME, trust_remote_code=True)
     model = _model_cache[MODEL_NAME]
     t0 = time.perf_counter()
-    emb = model.encode(
-        encode_inputs,
-        convert_to_numpy=True,
-        normalize_embeddings=True,
-        batch_size=32,
-        show_progress_bar=False,
-    ).astype(np.float32)
+    emb_chunks = []
+    n_total = len(encode_inputs)
+    for i in range(0, n_total, EMBED_BATCH):
+        chunk = encode_inputs[i : i + EMBED_BATCH]
+        chunk_emb = model.encode(
+            chunk, convert_to_numpy=True, normalize_embeddings=True,
+            batch_size=EMBED_BATCH, show_progress_bar=False,
+        )
+        emb_chunks.append(chunk_emb)
+        if progress_cb:
+            try:
+                progress_cb(min(i + EMBED_BATCH, n_total), n_total)
+            except Exception:
+                pass
+    emb = np.vstack(emb_chunks).astype(np.float32)
     emb_dt = time.perf_counter() - t0
 
     created_at = _now()
@@ -297,6 +310,288 @@ def upload_catalog(name: str | None, products: list[dict]) -> dict[str, Any]:
         "search_url": f"/demo/{sid}/search",
         "status_url": f"/demo/{sid}",
     }
+
+
+def upload_catalog(name: str | None, products: list[dict]) -> dict[str, Any]:
+    """Single-shot upload. Caps at MAX_PRODUCTS_PER_UPLOAD (10K).
+    For large catalogs use the async job flow (start -> batch -> commit).
+    """
+    _validate_products(products)
+    if len(products) > MAX_PRODUCTS_PER_UPLOAD:
+        raise ValueError(
+            f"too many products for single-shot upload: max {MAX_PRODUCTS_PER_UPLOAD}. "
+            f"Use the async job flow for larger catalogs: POST /demo/catalog/start"
+        )
+    with _lock:
+        _evict_expired()
+        _evict_lru_if_full()
+    sid = _new_sid()
+    return _build_session(sid, name, products)
+
+
+# ---------- async job flow ----------
+
+def _evict_expired_jobs() -> None:
+    # Drop jobs older than 2 hours that are accepting/failed; ready jobs survive
+    # as long as their session is alive (TTL handled by _evict_expired).
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc)
+    dead = []
+    for jid, j in _jobs.items():
+        if j["status"] in ("ready",):
+            continue
+        age_hours = (now - datetime.fromisoformat(j["updated_at"])).total_seconds() / 3600
+        if age_hours > 2:
+            dead.append(jid)
+    for jid in dead:
+        _jobs.pop(jid, None)
+
+
+def start_job(name: str | None) -> dict:
+    with _jobs_lock:
+        _evict_expired_jobs()
+    with _lock:
+        _evict_expired()
+        _evict_lru_if_full()
+    jid = "j_" + secrets.token_hex(5)
+    now = _now().isoformat()
+    with _jobs_lock:
+        _jobs[jid] = {
+            "job_id": jid,
+            "session_id": jid,  # session takes job_id once ready
+            "status": "accepting",
+            "name": name or "demo",
+            "created_at": now,
+            "updated_at": now,
+            "staged_products": [],
+            "n_staged": 0,
+            "n_embedded": 0,
+            "n_total_at_commit": 0,
+            "error": None,
+        }
+    return {
+        "job_id": jid,
+        "session_id": jid,
+        "status": "accepting",
+        "created_at": now,
+        "batch_url": f"/demo/catalog/{jid}/batch",
+        "commit_url": f"/demo/catalog/{jid}/commit",
+        "status_url": f"/demo/catalog/{jid}",
+    }
+
+
+def append_to_job(jid: str, products: list[dict]) -> dict:
+    _validate_products(products)
+    if len(products) > MAX_PRODUCTS_PER_BATCH:
+        raise ValueError(
+            f"batch too large: max {MAX_PRODUCTS_PER_BATCH} products per /batch call"
+        )
+    with _jobs_lock:
+        j = _jobs.get(jid)
+        if not j:
+            raise KeyError(f"job {jid} not found")
+        if j["status"] != "accepting":
+            raise ValueError(f"job {jid} is {j['status']}, cannot accept new batches")
+        if j["n_staged"] + len(products) > MAX_PRODUCTS_PER_JOB:
+            raise ValueError(
+                f"job cap exceeded: max {MAX_PRODUCTS_PER_JOB} products per job "
+                f"(currently staged: {j['n_staged']})"
+            )
+        j["staged_products"].extend(products)
+        j["n_staged"] = len(j["staged_products"])
+        j["updated_at"] = _now().isoformat()
+        return {
+            "job_id": jid,
+            "status": j["status"],
+            "n_staged": j["n_staged"],
+            "remaining_capacity": MAX_PRODUCTS_PER_JOB - j["n_staged"],
+        }
+
+
+def commit_job(jid: str) -> dict:
+    with _jobs_lock:
+        j = _jobs.get(jid)
+        if not j:
+            raise KeyError(f"job {jid} not found")
+        if j["status"] != "accepting":
+            raise ValueError(f"job {jid} is {j['status']}, cannot commit")
+        if not j["staged_products"]:
+            raise ValueError(f"job {jid} has no staged products")
+        j["status"] = "embedding"
+        j["n_total_at_commit"] = len(j["staged_products"])
+        j["updated_at"] = _now().isoformat()
+        total = j["n_total_at_commit"]
+    threading.Thread(target=_worker_embed_job, args=(jid,), daemon=True).start()
+    return {
+        "job_id": jid,
+        "status": "embedding",
+        "n_total": total,
+        "status_url": f"/demo/catalog/{jid}",
+    }
+
+
+def _worker_embed_job(jid: str) -> None:
+    try:
+        with _jobs_lock:
+            j = _jobs[jid]
+            products = j["staged_products"]
+            name = j["name"]
+
+        def progress(n_done: int, n_total: int) -> None:
+            with _jobs_lock:
+                if jid in _jobs:
+                    _jobs[jid]["n_embedded"] = n_done
+                    _jobs[jid]["updated_at"] = _now().isoformat()
+
+        # Evict to make room for this session (capped sessions)
+        with _lock:
+            _evict_expired()
+            _evict_lru_if_full()
+
+        result = _build_session(jid, name, products, progress_cb=progress)
+
+        with _jobs_lock:
+            j = _jobs[jid]
+            j["status"] = "ready"
+            j["session_result"] = result
+            j["n_embedded"] = j["n_total_at_commit"]
+            j["staged_products"] = []  # free memory; session now holds the data
+            j["updated_at"] = _now().isoformat()
+    except Exception as e:
+        with _jobs_lock:
+            if jid in _jobs:
+                _jobs[jid]["status"] = "failed"
+                _jobs[jid]["error"] = f"{type(e).__name__}: {e}"
+                _jobs[jid]["updated_at"] = _now().isoformat()
+
+
+def ingest_from_url(name: str | None, source_url: str) -> dict:
+    """Kick off a job that streams JSONL from a URL."""
+    if not source_url.startswith(("http://", "https://")):
+        raise ValueError("source_url must be http(s)")
+    with _jobs_lock:
+        _evict_expired_jobs()
+    jid = "j_" + secrets.token_hex(5)
+    now = _now().isoformat()
+    with _jobs_lock:
+        _jobs[jid] = {
+            "job_id": jid,
+            "session_id": jid,
+            "status": "fetching",
+            "name": name or "demo",
+            "created_at": now,
+            "updated_at": now,
+            "source_url": source_url,
+            "staged_products": [],
+            "n_staged": 0,
+            "n_embedded": 0,
+            "n_total_at_commit": 0,
+            "error": None,
+        }
+    threading.Thread(target=_worker_ingest_url, args=(jid, source_url), daemon=True).start()
+    return {
+        "job_id": jid,
+        "status": "fetching",
+        "source_url": source_url,
+        "status_url": f"/demo/catalog/{jid}",
+    }
+
+
+def _worker_ingest_url(jid: str, source_url: str) -> None:
+    import json as _json
+    try:
+        products: list[dict] = []
+        r = requests.get(source_url, stream=True, timeout=URL_FETCH_TIMEOUT)
+        r.raise_for_status()
+        for i, raw in enumerate(r.iter_lines(decode_unicode=True)):
+            if not raw or not raw.strip():
+                continue
+            try:
+                p = _json.loads(raw)
+            except _json.JSONDecodeError:
+                continue
+            if not isinstance(p, dict) or not p.get("name"):
+                continue
+            products.append(p)
+            if len(products) >= MAX_URL_PRODUCTS:
+                break
+            if len(products) % 2000 == 0:
+                with _jobs_lock:
+                    if jid in _jobs:
+                        _jobs[jid]["n_staged"] = len(products)
+                        _jobs[jid]["updated_at"] = _now().isoformat()
+        if not products:
+            raise ValueError("no valid JSONL products found at source_url")
+
+        with _jobs_lock:
+            _jobs[jid]["n_staged"] = len(products)
+            _jobs[jid]["n_total_at_commit"] = len(products)
+            _jobs[jid]["status"] = "embedding"
+            _jobs[jid]["updated_at"] = _now().isoformat()
+            name = _jobs[jid]["name"]
+
+        def progress(n_done: int, n_total: int) -> None:
+            with _jobs_lock:
+                if jid in _jobs:
+                    _jobs[jid]["n_embedded"] = n_done
+                    _jobs[jid]["updated_at"] = _now().isoformat()
+
+        with _lock:
+            _evict_expired()
+            _evict_lru_if_full()
+        result = _build_session(jid, name, products, progress_cb=progress)
+
+        with _jobs_lock:
+            j = _jobs[jid]
+            j["status"] = "ready"
+            j["session_result"] = result
+            j["n_embedded"] = j["n_total_at_commit"]
+            j["updated_at"] = _now().isoformat()
+    except Exception as e:
+        with _jobs_lock:
+            if jid in _jobs:
+                _jobs[jid]["status"] = "failed"
+                _jobs[jid]["error"] = f"{type(e).__name__}: {e}"
+                _jobs[jid]["updated_at"] = _now().isoformat()
+
+
+def job_status(jid: str) -> dict | None:
+    with _jobs_lock:
+        j = _jobs.get(jid)
+        if not j:
+            return None
+        pct = None
+        if j["n_total_at_commit"]:
+            pct = round(100 * j["n_embedded"] / j["n_total_at_commit"], 1)
+        return {
+            "job_id": j["job_id"],
+            "session_id": j["session_id"] if j["status"] == "ready" else None,
+            "status": j["status"],
+            "name": j["name"],
+            "n_staged": j["n_staged"],
+            "n_embedded": j["n_embedded"],
+            "n_total": j["n_total_at_commit"],
+            "progress_pct": pct,
+            "created_at": j["created_at"],
+            "updated_at": j["updated_at"],
+            "error": j["error"],
+            "search_url": f"/demo/{j['session_id']}/search" if j["status"] == "ready" else None,
+        }
+
+
+def list_jobs() -> list[dict]:
+    return [job_status(jid) for jid in _jobs]
+
+
+def delete_job(jid: str) -> bool:
+    with _jobs_lock:
+        if jid not in _jobs:
+            return False
+        sess_id = _jobs[jid].get("session_id")
+        _jobs.pop(jid, None)
+    if sess_id:
+        delete_session(sess_id)  # best-effort
+    return True
 
 
 def get_session(sid: str) -> dict | None:
