@@ -253,7 +253,11 @@ class IndicTokenizer:
     stemmer: _StemmerFacade = field(default_factory=_StemmerFacade)
 
     def index_tokens(self, text: str) -> list[str]:
-        """Tokens for catalog-side indexing. Applies stemming + dual-script expansion."""
+        """Tokens for catalog-side indexing. Applies stemming + dual-script expansion.
+
+        Uses ALL known bridge variants per token so the index covers every
+        common catalog spelling (e.g. pad -> [पद, पैड]).
+        """
         t = normalize(text)
         raw = split_tokens(t)
         out: list[str] = []
@@ -262,23 +266,33 @@ class IndicTokenizer:
             if script == "devanagari":
                 stem = self.stemmer.stem_hindi(tok)
                 out.append(stem)
-                # dual-index as roman where known
-                rom = self.transliterator.to_roman(tok)
-                if rom:
+                for rom in self.transliterator.all_roman(tok):
                     out.append(rom.lower())
             elif script == "latin":
                 low = tok.lower()
                 out.append(self.stemmer.stem_english(low))
-                # dual-index as Devanagari where known
-                dev = self.transliterator.to_devanagari(low)
-                if dev:
+                # also include unstemmed lowercase for exact-match recall
+                if self.stemmer.stem_english(low) != low:
+                    out.append(low)
+                for dev in self.transliterator.all_devanagari(low):
                     out.append(dev)
             else:
                 out.append(tok.lower())
-        return out
+        # dedup preserve order
+        seen: set[str] = set()
+        uniq: list[str] = []
+        for t in out:
+            if t not in seen:
+                seen.add(t)
+                uniq.append(t)
+        return uniq
 
     def query_tokens(self, text: str) -> list[str]:
-        """Tokens for query-side. No stemming (preserves part numbers). Bridge expansion only."""
+        """Tokens for query-side. No stemming (preserves part numbers).
+
+        Emits ALL known bridge variants per token (not just top-1) so BM25
+        matches across catalog spellings + Aksharantar romanizations.
+        """
         t = normalize(text)
         raw = split_tokens(t)
         out: list[str] = []
@@ -286,18 +300,23 @@ class IndicTokenizer:
             script = detect_script(tok)
             if script == "devanagari":
                 out.append(tok)
-                rom = self.transliterator.to_roman(tok)
-                if rom:
+                for rom in self.transliterator.all_roman(tok):
                     out.append(rom.lower())
             elif script == "latin":
                 low = tok.lower()
                 out.append(low)
-                dev = self.transliterator.to_devanagari(low)
-                if dev:
+                for dev in self.transliterator.all_devanagari(low):
                     out.append(dev)
             else:
                 out.append(tok.lower())
-        return out
+        # Dedup preserving order
+        seen: set[str] = set()
+        uniq: list[str] = []
+        for t in out:
+            if t not in seen:
+                seen.add(t)
+                uniq.append(t)
+        return uniq
 
 
 # ---------- stats ----------
