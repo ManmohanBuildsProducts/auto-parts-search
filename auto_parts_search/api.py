@@ -34,6 +34,7 @@ from auto_parts_search.search_hybrid import (
 )
 from auto_parts_search.search_bm25 import MEILI_URL, _meili, INDEX_NAME
 from auto_parts_search.tokenizer import bridge_stats
+from auto_parts_search import demo_tenant
 import requests
 
 
@@ -205,6 +206,79 @@ def search_get(
     k: int = Query(10, ge=1, le=50),
 ):
     return _run_search(q, k)
+
+
+# ---------- demo multi-tenant endpoints ----------
+
+class CatalogUploadProduct(BaseModel):
+    id: str | None = Field(None, description="Optional SKU ID; auto-generated if missing")
+    name: str = Field(..., min_length=2, max_length=500)
+    brand: str | None = None
+    vehicle_make: str | None = None
+    vehicle_model: str | None = None
+    description: str | None = None
+
+
+class CatalogUploadRequest(BaseModel):
+    name: str | None = Field(None, max_length=100, description="Friendly session label (e.g. 'Pikpart test')")
+    products: list[CatalogUploadProduct] = Field(..., min_length=1, max_length=10000)
+
+
+@app.post("/demo/catalog", tags=["demo"], summary="Upload a catalog and get a private demo session")
+def demo_upload(req: CatalogUploadRequest):
+    """Upload up to 10,000 products. Returns a session_id + per-session search URL.
+
+    Session is isolated (your data only), auto-expires in 24 hours, and is
+    kept in memory — restart wipes sessions. Purely a demo layer.
+    """
+    try:
+        result = demo_tenant.upload_catalog(
+            name=req.name,
+            products=[p.model_dump(exclude_none=True) for p in req.products],
+        )
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"upload failed: {e}")
+
+
+@app.get("/demo/{sid}", tags=["demo"], summary="Session metadata + sample products")
+def demo_status(sid: str):
+    s = demo_tenant.session_summary(sid)
+    if not s:
+        raise HTTPException(status_code=404, detail=f"session {sid} not found or expired")
+    return s
+
+
+@app.get("/demo/{sid}/search", tags=["demo"], summary="Search within an uploaded catalog")
+def demo_search(
+    sid: str,
+    q: str = Query(..., min_length=1, max_length=400),
+    k: int = Query(10, ge=1, le=50),
+):
+    try:
+        t0 = time.perf_counter()
+        result = demo_tenant.search_in_session(sid, q, k=k)
+        result["latency_ms"] = round((time.perf_counter() - t0) * 1000, 2)
+        return result
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"session {sid} not found or expired")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"search failed: {e}")
+
+
+@app.delete("/demo/{sid}", tags=["demo"], summary="Explicitly delete a session")
+def demo_delete(sid: str):
+    ok = demo_tenant.delete_session(sid)
+    if not ok:
+        raise HTTPException(status_code=404, detail=f"session {sid} not found")
+    return {"deleted": sid}
+
+
+@app.get("/demo", tags=["demo"], summary="List active demo sessions")
+def demo_list():
+    return {"sessions": demo_tenant.list_sessions()}
 
 
 @app.get("/stats", tags=["meta"])
