@@ -72,7 +72,7 @@ def judge_with_deepseek(query: str, candidates: list[str], api_key: str, model: 
             {"role": "user", "content": user_msg},
         ],
         "temperature": 0.0,
-        "max_tokens": 2000,
+        "max_tokens": 8000,
     }).encode("utf-8")
 
     req = urllib.request.Request(
