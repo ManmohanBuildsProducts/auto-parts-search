@@ -205,12 +205,15 @@ def _validate_products(products: list[dict]) -> None:
 
 
 def _build_session(sid: str, name: str | None, products: list[dict],
-                   progress_cb: Any | None = None) -> dict[str, Any]:
+                   progress_cb: Any | None = None,
+                   api_key: str | None = None) -> dict[str, Any]:
     """Core: turn a product list into a session. Shared by sync + async flows.
 
     progress_cb: optional callable(n_embedded, n_total) invoked periodically.
+    api_key:     optional pre-set key; otherwise auto-generated.
     """
     index_name = f"demo_{sid}"
+    key = api_key or _new_api_key()
 
     # Build docs with token expansion + part-number extraction
     docs = []
@@ -301,6 +304,7 @@ def _build_session(sid: str, name: str | None, products: list[dict],
         "product_names": product_names,
         "product_raw": raw_keep,
         "embed_seconds": round(emb_dt, 2),
+        "api_key": key,
     }
     with _lock:
         _sessions[sid] = session
@@ -313,12 +317,20 @@ def _build_session(sid: str, name: str | None, products: list[dict],
         "embedding_seconds": session["embed_seconds"],
         "created_at": session["created_at"],
         "expires_at": session["expires_at"],
-        "search_url": f"/demo/{sid}/search",
+        "api_key": key,
+        "search_url": f"/demo/{sid}/search?key={key}",
+        "try_url": f"/demo/{sid}/try?key={key}",
         "status_url": f"/demo/{sid}",
     }
 
 
-def upload_catalog(name: str | None, products: list[dict], slug: str | None = None) -> dict[str, Any]:
+def _new_api_key() -> str:
+    return secrets.token_urlsafe(16)
+
+
+def upload_catalog(name: str | None, products: list[dict],
+                   slug: str | None = None,
+                   api_key: str | None = None) -> dict[str, Any]:
     """Single-shot upload. Caps at MAX_PRODUCTS_PER_UPLOAD (10K).
     For large catalogs use the async job flow (start -> batch -> commit).
 
@@ -341,7 +353,8 @@ def upload_catalog(name: str | None, products: list[dict], slug: str | None = No
             _drop_session(sid)
     else:
         sid = _new_sid()
-    return _build_session(sid, name, products)
+    result = _build_session(sid, name, products, api_key=api_key)
+    return result
 
 
 # ---------- async job flow ----------
@@ -362,7 +375,8 @@ def _evict_expired_jobs() -> None:
         _jobs.pop(jid, None)
 
 
-def start_job(name: str | None, slug: str | None = None) -> dict:
+def start_job(name: str | None, slug: str | None = None,
+              api_key: str | None = None) -> dict:
     with _jobs_lock:
         _evict_expired_jobs()
     with _lock:
@@ -379,6 +393,7 @@ def start_job(name: str | None, slug: str | None = None) -> dict:
     else:
         jid = "j_" + secrets.token_hex(5)
     now = _now().isoformat()
+    key = api_key or _new_api_key()
     with _jobs_lock:
         _jobs[jid] = {
             "job_id": jid,
@@ -392,12 +407,14 @@ def start_job(name: str | None, slug: str | None = None) -> dict:
             "n_embedded": 0,
             "n_total_at_commit": 0,
             "error": None,
+            "api_key": key,
         }
     return {
         "job_id": jid,
         "session_id": jid,
         "status": "accepting",
         "created_at": now,
+        "api_key": key,
         "batch_url": f"/demo/catalog/{jid}/batch",
         "commit_url": f"/demo/catalog/{jid}/commit",
         "status_url": f"/demo/catalog/{jid}",
@@ -472,7 +489,9 @@ def _worker_embed_job(jid: str) -> None:
             _evict_expired()
             _evict_lru_if_full()
 
-        result = _build_session(jid, name, products, progress_cb=progress)
+        with _jobs_lock:
+            api_key = _jobs[jid].get("api_key")
+        result = _build_session(jid, name, products, progress_cb=progress, api_key=api_key)
 
         with _jobs_lock:
             j = _jobs[jid]
@@ -489,7 +508,8 @@ def _worker_embed_job(jid: str) -> None:
                 _jobs[jid]["updated_at"] = _now().isoformat()
 
 
-def ingest_from_url(name: str | None, source_url: str, slug: str | None = None) -> dict:
+def ingest_from_url(name: str | None, source_url: str, slug: str | None = None,
+                    api_key: str | None = None) -> dict:
     """Kick off a job that streams JSONL from a URL."""
     if not source_url.startswith(("http://", "https://")):
         raise ValueError("source_url must be http(s)")
@@ -505,6 +525,7 @@ def ingest_from_url(name: str | None, source_url: str, slug: str | None = None) 
     else:
         jid = "j_" + secrets.token_hex(5)
     now = _now().isoformat()
+    key = api_key or _new_api_key()
     with _jobs_lock:
         _jobs[jid] = {
             "job_id": jid,
@@ -519,12 +540,14 @@ def ingest_from_url(name: str | None, source_url: str, slug: str | None = None) 
             "n_embedded": 0,
             "n_total_at_commit": 0,
             "error": None,
+            "api_key": key,
         }
     threading.Thread(target=_worker_ingest_url, args=(jid, source_url), daemon=True).start()
     return {
         "job_id": jid,
         "status": "fetching",
         "source_url": source_url,
+        "api_key": key,
         "status_url": f"/demo/catalog/{jid}",
     }
 
@@ -571,7 +594,9 @@ def _worker_ingest_url(jid: str, source_url: str) -> None:
         with _lock:
             _evict_expired()
             _evict_lru_if_full()
-        result = _build_session(jid, name, products, progress_cb=progress)
+        with _jobs_lock:
+            api_key = _jobs[jid].get("api_key")
+        result = _build_session(jid, name, products, progress_cb=progress, api_key=api_key)
 
         with _jobs_lock:
             j = _jobs[jid]
@@ -628,6 +653,21 @@ def delete_job(jid: str) -> bool:
 
 def get_session(sid: str) -> dict | None:
     return _sessions.get(sid)
+
+
+def check_session_auth(sid: str, provided_key: str | None) -> tuple[bool, str]:
+    """Return (ok, reason). ok=True if session has no key (legacy) or provided key matches."""
+    s = _sessions.get(sid)
+    if not s:
+        return False, "session not found"
+    stored = s.get("api_key")
+    if not stored:
+        return True, "no key required"
+    if not provided_key:
+        return False, "api key required (pass ?key=... or X-API-Key header)"
+    if provided_key != stored:
+        return False, "invalid api key"
+    return True, "ok"
 
 
 def session_summary(sid: str) -> dict | None:

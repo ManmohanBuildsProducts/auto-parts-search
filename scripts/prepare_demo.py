@@ -196,14 +196,18 @@ def upload_sync(api_base: str, slug: str, name: str, products: list[dict]) -> di
     )
     if r.status_code >= 400:
         raise RuntimeError(f"{r.status_code}: {r.text[:500]}")
-    return r.json()
+    d = r.json()
+    return {"session_id": d["session_id"], "api_key": d.get("api_key"),
+            "embedding_seconds": d.get("embedding_seconds")}
 
 
 def upload_async(api_base: str, slug: str, name: str, products: list[dict], chunk: int = 5000) -> dict:
     r = requests.post(f"{api_base}/demo/catalog/start",
                       json={"name": name, "slug": slug}, timeout=60)
     r.raise_for_status()
-    jid = r.json()["job_id"]
+    start_resp = r.json()
+    jid = start_resp["job_id"]
+    api_key = start_resp.get("api_key")
     print(f"  [job] {jid}  staging {len(products)} products in chunks of {chunk}...")
     for i in range(0, len(products), chunk):
         batch = products[i : i + chunk]
@@ -227,7 +231,8 @@ def upload_async(api_base: str, slug: str, name: str, products: list[dict], chun
         time.sleep(3)
     if s["status"] != "ready":
         raise RuntimeError(f"job failed: {s.get('error')}")
-    return {"session_id": s["session_id"], "search_url": s["search_url"]}
+    return {"session_id": s["session_id"], "api_key": api_key,
+            "search_url": s["search_url"]}
 
 
 def main() -> None:
@@ -314,11 +319,23 @@ def main() -> None:
 
     # Print the shareable URL
     public = args.public_url or args.api
+    api_key = None
+    if args.url:
+        # Fetch key from job status
+        st = requests.get(f"{args.api}/demo/catalog/{sid}", timeout=10).json()
+        # (key isn't returned in status; retrieve from the start response if we have it)
+    else:
+        api_key = result.get("api_key")
     print(f"\n{'='*60}")
     print(f"✅ Demo ready")
     print(f"   Session ID: {sid}")
-    print(f"   Search API: {public}/demo/{sid}/search?q=...")
-    print(f"   Try page:   {public}/demo/{sid}/try")
+    if api_key:
+        print(f"   API Key:    {api_key}")
+        print(f"   Search:     {public}/demo/{sid}/search?q=...&key={api_key}")
+        print(f"   Try page:   {public}/demo/{sid}/try?key={api_key}")
+    else:
+        print(f"   Search:     {public}/demo/{sid}/search?q=...")
+        print(f"   Try page:   {public}/demo/{sid}/try")
     print(f"{'='*60}")
 
 

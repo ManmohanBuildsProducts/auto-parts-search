@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Auto-Parts Search — Hybrid Hindi/Hinglish search demo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    :root {
+      --bg: #0b1220; --panel: #111a2e; --card: #162238; --border: #243049;
+      --text: #e6edf7; --muted: #8898b8;
+      --accent: #7c3aed; --accent-light: #a78bfa; --accent-soft: rgba(124,58,237,.15);
+      --good: #22c55e; --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text);
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 32px 20px 64px; }
+
+    header.hero { text-align: center; margin-bottom: 32px; }
+    h1 { margin: 0; font-size: 40px; font-weight: 700;
+         background: linear-gradient(90deg, #ec4899, #a78bfa); -webkit-background-clip: text;
+         background-clip: text; color: transparent; }
+    .tagline { color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+    .search-row { display: flex; gap: 10px; align-items: stretch; margin: 24px 0 12px; }
+    .search-row input {
+      flex: 1; padding: 14px 18px; border-radius: 10px; background: var(--panel);
+      border: 2px solid var(--border); color: var(--text); font-size: 16px; outline: none;
+      transition: border-color .1s ease;
+    }
+    .search-row input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .search-row select, .search-row button {
+      padding: 14px 18px; border-radius: 10px; background: var(--panel); color: var(--text);
+      border: 2px solid var(--border); font-size: 14px; cursor: pointer;
+    }
+    .search-row button { background: var(--accent); border-color: var(--accent); font-weight: 500; }
+    .search-row button:hover { background: var(--accent-light); border-color: var(--accent-light); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .chips button {
+      padding: 5px 10px; border-radius: 999px; background: transparent;
+      border: 1px solid var(--border); color: var(--muted); font-size: 12px; cursor: pointer;
+    }
+    .chips button:hover { color: var(--text); border-color: var(--accent-light); }
+
+    .layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
+    @media (max-width: 780px) { .layout { grid-template-columns: 1fr; } }
+
+    .filters {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px 14px; height: fit-content;
+    }
+    .filters h3 { margin: 0 0 10px; font-size: 13px; font-weight: 600;
+                  color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .facet { margin-bottom: 18px; }
+    .facet-title { font-size: 14px; font-weight: 500; margin-bottom: 8px;
+                   padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    .facet-item { display: flex; justify-content: space-between; padding: 4px 0;
+                  font-size: 13px; cursor: pointer; color: var(--text); }
+    .facet-item:hover { color: var(--accent-light); }
+    .facet-item.active { color: var(--accent); font-weight: 500; }
+    .facet-item .count { color: var(--muted); font-size: 11px; }
+
+    .results-panel { min-height: 200px; }
+    .status-bar {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 16px; margin-bottom: 12px; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 10px;
+    }
+    .status-bar .count { font-size: 14px; font-weight: 500; }
+    .status-bar .timing { color: var(--muted); font-size: 12px; font-family: ui-monospace, monospace; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 6px;
+             background: var(--accent-soft); color: var(--accent-light); font-size: 11px;
+             font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; }
+    .badge.symptom { background: rgba(251,191,36,.15); color: var(--warn); }
+    .badge.part_number { background: rgba(34,197,94,.15); color: var(--good); }
+
+    .result {
+      background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 10px;
+      transition: border-color .1s ease, transform .05s ease;
+    }
+    .result:hover { border-color: var(--accent-light); }
+    .result .name { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+    .result .meta { display: flex; flex-wrap: wrap; gap: 12px 16px; color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .result .meta strong { color: var(--text); font-weight: 500; }
+    .result .rank { color: var(--muted); font-size: 11px; font-family: ui-monospace, monospace; }
+    .pn { color: var(--good); font-family: ui-monospace, monospace; background: rgba(34,197,94,.08);
+          padding: 1px 6px; border-radius: 4px; }
+
+    .empty { color: var(--muted); text-align: center; padding: 60px 20px; font-size: 14px; }
+    footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 40px; }
+    footer a { color: var(--accent-light); text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1 id="title">Auto-Parts Search</h1>
+    <div class="tagline">Hybrid BM25 + fine-tuned BGE-m3 · Hindi / Hinglish / Devanagari / misspellings / part numbers</div>
+  </header>
+
+  <div class="search-row">
+    <input id="q" placeholder="Try: 'patti badal do bhaiya', 'Bosch 0986AB1234', 'ब्रेक पैड'…" autofocus/>
+    <select id="k">
+      <option value="10">10 results</option>
+      <option value="20" selected>20 results</option>
+      <option value="50">50 results</option>
+    </select>
+    <button id="btn">Search</button>
+  </div>
+
+  <div class="chips" id="examples"></div>
+
+  <div class="layout">
+    <aside class="filters" id="filters-panel">
+      <h3>Filters</h3>
+      <div id="filters"><div style="color:var(--muted);font-size:12px;">Run a search to see filters.</div></div>
+    </aside>
+
+    <section class="results-panel">
+      <div class="status-bar" id="status-bar" style="display:none">
+        <div>
+          <span class="count" id="hitcount"></span>
+          <span class="badge" id="class-badge"></span>
+        </div>
+        <div class="timing" id="timing"></div>
+      </div>
+      <div id="results">
+        <div class="empty">Type a query to search across 27,000+ indexed auto parts (KG + scraped catalog).</div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    Hybrid search · KG corpus + SparesHub / BikeSpares / eAuto scraped catalog ·
+    <a href="/docs" target="_blank">API docs</a>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const qInput = document.getElementById('q');
+  const kSelect = document.getElementById('k');
+  const btn = document.getElementById('btn');
+  const resultsEl = document.getElementById('results');
+  const filtersEl = document.getElementById('filters');
+  const statusBar = document.getElementById('status-bar');
+  const hitCount = document.getElementById('hitcount');
+  const timingEl = document.getElementById('timing');
+  const classBadge = document.getElementById('class-badge');
+  const examplesEl = document.getElementById('examples');
+
+  const EXAMPLES = [
+    'patti badal do bhaiya', 'brake pad Swift', 'brek pad',
+    'ब्रेक पैड', 'Bosch 0986AB1234', 'shocker for Activa',
+    'O2 sensor', 'engine garam', 'MRF for Swift',
+  ];
+  EXAMPLES.forEach(q => {
+    const b = document.createElement('button');
+    b.textContent = q;
+    b.onclick = () => { qInput.value = q; doSearch(); };
+    examplesEl.appendChild(b);
+  });
+
+  // active filter state
+  const filters = { brand: null, vehicle_make: null, source: null, doc_type: null };
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  let inflight = null;
+  async function doSearch() {
+    const q = qInput.value.trim();
+    if (!q) return;
+    if (inflight) inflight.abort();
+    inflight = new AbortController();
+
+    const params = new URLSearchParams({ q, k: kSelect.value });
+    for (const [k, v] of Object.entries(filters)) if (v) params.append(k, v);
+
+    try {
+      const r = await fetch(`/catalog/search?${params}`, { signal: inflight.signal });
+      const d = await r.json();
+      if (d.detail) throw new Error(d.detail);
+      renderResults(d);
+      renderFilters(d.facets);
+    } catch (e) {
+      if (e.name === 'AbortError') return;
+      resultsEl.innerHTML = `<div class="empty" style="color:#f87171">${esc(e.message || String(e))}</div>`;
+    }
+  }
+
+  function renderResults(d) {
+    statusBar.style.display = 'flex';
+    hitCount.textContent = `Showing ${d.hits.length} of ${d.total_estimated.toLocaleString()} results for "${d.query}"`;
+    classBadge.textContent = d.query_class;
+    classBadge.className = 'badge ' + d.query_class;
+    const t = d.timing;
+    timingEl.textContent = `${d.latency_ms}ms total — embed ${t.embed_ms}ms · bm25 ${t.bm25_ms}ms · fuse ${t.fuse_ms}ms · classify ${t.classify_ms}ms`;
+
+    if (!d.hits.length) {
+      resultsEl.innerHTML = '<div class="empty">No matches.</div>';
+      return;
+    }
+    resultsEl.innerHTML = d.hits.map(h => {
+      const pns = (h.part_numbers || []).map(p => `<span class="pn">${esc(p)}</span>`).join(' ');
+      const metaBits = [];
+      if (h.brand) metaBits.push(`Brand: <strong>${esc(h.brand)}</strong>`);
+      if (h.vehicle_make || h.vehicle_model) metaBits.push(`Vehicle: <strong>${esc([h.vehicle_make, h.vehicle_model].filter(Boolean).join(' '))}</strong>`);
+      if (h.source) metaBits.push(`Source: <strong>${esc(h.source)}</strong>`);
+      if (pns) metaBits.push(`Part#: ${pns}`);
+      return `
+        <div class="result">
+          <div class="name">${h.rank}. ${esc(h.name)}</div>
+          <div class="meta">${metaBits.join(' · ') || '<em style="color:var(--muted)">no extra metadata</em>'}</div>
+          <div class="rank">bm25=${h.bm25_rank ?? '—'} · emb=${h.embedding_rank ?? '—'} · fused=${h.fused_score.toFixed(4)}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderFilters(facets) {
+    const sections = [
+      { key: 'brand', title: 'Brand', data: facets.brand || {} },
+      { key: 'vehicle_make', title: 'Vehicle Make', data: facets.vehicle_make || {} },
+      { key: 'source', title: 'Source', data: facets.source || {} },
+      { key: 'doc_type', title: 'Type', data: facets.doc_type || {} },
+    ];
+    filtersEl.innerHTML = sections.filter(s => Object.keys(s.data).length).map(s => {
+      const items = Object.entries(s.data)
+        .filter(([k]) => k)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 8);
+      if (!items.length) return '';
+      return `
+        <div class="facet">
+          <div class="facet-title">${esc(s.title)}</div>
+          ${items.map(([val, cnt]) => {
+            const active = filters[s.key] === val;
+            return `<div class="facet-item ${active ? 'active' : ''}" data-key="${s.key}" data-val="${esc(val)}">
+              <span>${active ? '✓ ' : ''}${esc(val)}</span>
+              <span class="count">${cnt.toLocaleString()}</span>
+            </div>`;
+          }).join('')}
+        </div>
+      `;
+    }).join('') || '<div style="color:var(--muted);font-size:12px;">No filters for this query.</div>';
+    filtersEl.querySelectorAll('.facet-item').forEach(el => {
+      el.onclick = () => {
+        const k = el.dataset.key, v = el.dataset.val;
+        filters[k] = filters[k] === v ? null : v;
+        doSearch();
+      };
+    });
+  }
+
+  btn.onclick = doSearch;
+  qInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+  kSelect.addEventListener('change', doSearch);
+})();
+</script>
+</body>
+</html>

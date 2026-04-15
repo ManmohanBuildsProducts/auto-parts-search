@@ -21,7 +21,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Header
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
@@ -254,12 +254,24 @@ def demo_status(sid: str):
     return s
 
 
+def _require_session_key(sid: str, key: str | None, x_api_key: str | None) -> None:
+    provided = key or x_api_key
+    ok, reason = demo_tenant.check_session_auth(sid, provided)
+    if not ok:
+        if reason == "session not found":
+            raise HTTPException(status_code=404, detail=f"session {sid} not found or expired")
+        raise HTTPException(status_code=401, detail=reason)
+
+
 @app.get("/demo/{sid}/search", tags=["demo"], summary="Search within an uploaded catalog")
 def demo_search(
     sid: str,
     q: str = Query(..., min_length=1, max_length=400),
     k: int = Query(10, ge=1, le=50),
+    key: str | None = Query(None, description="Session API key; or pass X-API-Key header"),
+    x_api_key: str | None = Header(None, alias="X-API-Key"),
 ):
+    _require_session_key(sid, key, x_api_key)
     try:
         t0 = time.perf_counter()
         result = demo_tenant.search_in_session(sid, q, k=k)
@@ -273,7 +285,12 @@ def demo_search(
 
 @app.get("/demo/{sid}/try", tags=["demo"], include_in_schema=False,
          summary="Prospect-facing search UI (static HTML)")
-def demo_try_ui(sid: str):
+def demo_try_ui(
+    sid: str,
+    key: str | None = Query(None),
+    x_api_key: str | None = Header(None, alias="X-API-Key"),
+):
+    _require_session_key(sid, key, x_api_key)
     html_path = Path(__file__).parent / "static" / "try.html"
     if not html_path.exists():
         raise HTTPException(status_code=500, detail="try.html missing")
@@ -370,6 +387,137 @@ def demo_catalog_delete(jid: str):
 @app.get("/demo", tags=["demo"], summary="List active demo sessions")
 def demo_list():
     return {"sessions": demo_tenant.list_sessions()}
+
+
+# ---------- public catalog dashboard (scraped index) ----------
+
+class CatalogSearchResponse(BaseModel):
+    query: str
+    query_class: str
+    weights: dict
+    classification_reason: str
+    total_estimated: int
+    hits: list[dict]
+    facets: dict
+    latency_ms: float
+    timing: dict
+
+
+@app.get("/catalog/try", tags=["catalog"], include_in_schema=False,
+         summary="Public search dashboard over our scraped catalog index")
+def catalog_try_ui():
+    html_path = Path(__file__).parent / "static" / "catalog.html"
+    if not html_path.exists():
+        raise HTTPException(status_code=500, detail="catalog.html missing")
+    return FileResponse(html_path, media_type="text/html")
+
+
+@app.get("/catalog/search", response_model=CatalogSearchResponse, tags=["catalog"],
+         summary="Faceted search over the scraped catalog index")
+def catalog_search(
+    q: str = Query(..., min_length=1, max_length=400),
+    k: int = Query(20, ge=1, le=100),
+    brand: str | None = Query(None),
+    vehicle_make: str | None = Query(None),
+    source: str | None = Query(None),
+    doc_type: str | None = Query(None),
+):
+    """Like /search but returns facet counts (brand / vehicle_make / source /
+    doc_type) for the sidebar filters, plus timing breakdown."""
+    if not EMB_PATH.exists():
+        raise HTTPException(status_code=503, detail="v3 corpus cache missing")
+
+    t_all = time.perf_counter()
+
+    # Classify + tokenize
+    t0 = time.perf_counter()
+    cls = classify(q)
+    t_classify = (time.perf_counter() - t0) * 1000
+
+    # Embedding query
+    t0 = time.perf_counter()
+    from auto_parts_search.search_hybrid import _encode_query, _load_corpus_cache, rrf_fuse
+    import numpy as np
+    q_emb = _encode_query(q)
+    emb_corpus, corpus_ids, corpus_docs = _load_corpus_cache()
+    scores = emb_corpus @ q_emb
+    top_n = min(k * 3, 60)
+    top_idx = np.argsort(-scores)[:top_n]
+    emb_ranks = {corpus_ids[i]: rank + 1 for rank, i in enumerate(top_idx)}
+    t_embed = (time.perf_counter() - t0) * 1000
+
+    # BM25 + facets via Meilisearch
+    t0 = time.perf_counter()
+    from auto_parts_search.tokenizer import IndicTokenizer
+    tok = IndicTokenizer()
+    expanded = tok.query_tokens(q)
+    q_str = " ".join(expanded)
+    filters = []
+    if brand:
+        filters.append(f'brand = "{brand}"')
+    if vehicle_make:
+        filters.append(f'vehicle_make = "{vehicle_make}"')
+    if source:
+        filters.append(f'source = "{source}"')
+    if doc_type:
+        filters.append(f'doc_type = "{doc_type}"')
+    body = {
+        "q": q_str,
+        "limit": k * 3,
+        "matchingStrategy": "frequency",
+        "showRankingScore": True,
+        "facets": ["brand", "vehicle_make", "source", "doc_type"],
+    }
+    if filters:
+        body["filter"] = " AND ".join(filters)
+    bm = _meili("POST", f"/indexes/{INDEX_NAME}/search", body)
+    t_bm25 = (time.perf_counter() - t0) * 1000
+
+    # Fuse
+    t0 = time.perf_counter()
+    bm25_ranks = {h.get("part_id", h["id"]): i + 1 for i, h in enumerate(bm.get("hits", []))}
+    id_to_bm = {h.get("part_id", h["id"]): h for h in bm.get("hits", [])}
+    fused = rrf_fuse(bm25_ranks, emb_ranks, cls.bm25_weight, cls.embedding_weight)[:k]
+    t_fuse = (time.perf_counter() - t0) * 1000
+
+    # Hydrate results
+    id_to_doc = {pid: doc for pid, doc in zip(corpus_ids, corpus_docs)}
+    hits_out = []
+    for rank, (pid, score) in enumerate(fused, start=1):
+        bm_hit = id_to_bm.get(pid, {})
+        name = bm_hit.get("name") or id_to_doc.get(pid, pid).split(" | ")[0]
+        hits_out.append({
+            "rank": rank,
+            "part_id": pid,
+            "name": name,
+            "brand": bm_hit.get("brand", ""),
+            "vehicle_make": bm_hit.get("vehicle_make", ""),
+            "vehicle_model": bm_hit.get("vehicle_model", ""),
+            "part_numbers": bm_hit.get("part_numbers", []),
+            "source": bm_hit.get("source", ""),
+            "doc_type": bm_hit.get("doc_type", ""),
+            "fused_score": round(float(score), 6),
+            "bm25_rank": bm25_ranks.get(pid),
+            "embedding_rank": emb_ranks.get(pid),
+        })
+
+    dt_all = (time.perf_counter() - t_all) * 1000
+    return CatalogSearchResponse(
+        query=q,
+        query_class=cls.query_class,
+        weights={"bm25": cls.bm25_weight, "embedding": cls.embedding_weight},
+        classification_reason=cls.evidence,
+        total_estimated=bm.get("estimatedTotalHits", 0),
+        hits=hits_out,
+        facets=bm.get("facetDistribution", {}),
+        latency_ms=round(dt_all, 2),
+        timing={
+            "classify_ms": round(t_classify, 2),
+            "embed_ms": round(t_embed, 2),
+            "bm25_ms": round(t_bm25, 2),
+            "fuse_ms": round(t_fuse, 2),
+        },
+    )
 
 
 @app.get("/stats", tags=["meta"])

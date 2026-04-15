@@ -117,7 +117,12 @@
     examplesEl.appendChild(b);
   });
 
-  // Load session metadata
+  // Propagate ?key= to both metadata + search calls
+  const urlParams = new URLSearchParams(window.location.search);
+  const apiKey = urlParams.get('key');
+  const keyQs = apiKey ? `&key=${encodeURIComponent(apiKey)}` : '';
+
+  // Load session metadata (doesn't require key for now; if we tighten later this gets keyQs too)
   fetch(`/demo/${sid}`).then(r => r.json()).then(d => {
     if (d.detail) { document.getElementById('n_products').textContent = 'n/a'; return; }
     document.getElementById('title').textContent = d.name ? `${d.name} — Search Demo` : 'Search Demo';
@@ -132,7 +137,7 @@
     inflight = new AbortController();
     try {
       const t0 = performance.now();
-      const r = await fetch(`/demo/${sid}/search?q=${encodeURIComponent(q)}&k=10`, { signal: inflight.signal });
+      const r = await fetch(`/demo/${sid}/search?q=${encodeURIComponent(q)}&k=10${keyQs}`, { signal: inflight.signal });
       const d = await r.json();
       if (d.detail) throw new Error(d.detail);
       const dt = (performance.now() - t0).toFixed(0);
