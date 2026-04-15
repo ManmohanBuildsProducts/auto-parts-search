@@ -137,19 +137,26 @@ Replaces old Phase 3 + Phase 4 (ADR 006). Unit of work = `(pair_gen_strategy, mo
 
 | ID | Task | Size | Priority |
 |----|------|------|----------|
-| T402a | Tokenizer pipeline (IndicNLP + IndicTrans2 + lemma map) — see ADR 010 | M | P0 |
-| T402b | Meilisearch index + BM25 baseline | M | P0 |
-| T402c | Hybrid fusion + query classifier | M | P0 |
-| T402d | Domain lemma map (~300 entries) | S | P0 |
-| T400 | Qdrant vector DB setup | S | P0 |
-| T401 | FastAPI `/search` endpoint | M | P0 |
-| T403 | Query preprocessor (lang detect, spelling, vehicle extract) | M | P1 |
-| T404 | Fitment filter (soft boost, not hard filter) | M | P1 |
-| T405 | `/catalog/ingest` endpoint | M | P0 |
-| T406 | Zero-result analytics | M | P1 |
-| T407 | Reranker layer (Cohere Rerank or cross-encoder) | M | P2 |
-| T408 | Load testing (target p95 <200ms) | M | P1 |
-| T409 | Deploy to Railway/Render | M | P0 |
+| T402a | Tokenizer pipeline (IndicNLP + Sarvam fallback) — see ADR 010 | M | ✅ Done 2026-04-14 (`6227d4b` + `dac7dda`) — 26 tests green, 81% cross-script expansion via bridge |
+| T402b | Meilisearch index + BM25 baseline | M | ✅ Done 2026-04-14 (`c5e2c4b`) — 884 KG docs; MRR 0.297; typo+dual-script verified |
+| T402c | Hybrid fusion + query classifier | M | ✅ Done 2026-04-14 (`34fad4b`, **ADR 016**) — +46% part_number; class-weighted RRF |
+| T402d | Domain lemma map (~300 entries) | S | ✅ Absorbed into T402a — KG Hinglish bridge (2,463 terms) + Aksharantar (3,660) supersede the manual 300-entry plan |
+| T400 | Qdrant vector DB setup | S | Deferred — in-memory numpy embeddings give <10ms retrieval at 27K docs; Qdrant adds value at 100K+ scale or for horizontal scaling |
+| T401 | FastAPI `/search` endpoint | M | ✅ Done 2026-04-14 (`d541cea`) — Swagger + CORS + lifespan warm-up; 37-140ms warm latency |
+| T403 | Query preprocessor (lang detect, spelling, vehicle extract) | M | Partially done — query_classifier handles lang detect + vehicle hints; spell correction deferred (BM25 typo tolerance covers it for now) |
+| T404 | Fitment filter (soft boost, not hard filter) | M | P1 — unblocked by T405 metadata |
+| T405 | Catalog ingestion (25K scraped products) | M | ✅ Done 2026-04-14 (`14ddb82`) — 25,952 docs; part-number extraction regex; filterable attrs |
+| T406 | Zero-result analytics | M | P1 — needs logging layer first |
+| T407 | Reranker layer (Cohere Rerank or cross-encoder) | M | P2 — revisit after T305 external bench tells us if rerank is worth building |
+| T408 | Load testing (target p95 <200ms) | M | P1 — warm p50 ~60ms already; formal p95 test pending Hetzner deploy |
+| T409 | Deploy to Railway/Render | M | ✅ Partial — Cloudflare Tunnel (ephemeral) live. Named tunnel pending domain decision. Hetzner move deferred to first pilot. |
+| T410 | Multi-tenant `/demo/catalog` + per-session index | M | ✅ Done 2026-04-14 (`4174b5f`) — per-session Meilisearch index + v3 embeddings |
+| T411 | Async job flow for large catalogs (up to 500K SKUs) | M | ✅ Done 2026-04-14 (`ab4339f`) — start+batch+commit+URL ingest |
+| T412 | Concierge CLI (`prepare_demo.py`) + named slugs + /try HTML UI | L | ✅ Done 2026-04-14 (`1311a27`) — CSV/XLSX/JSON/folder/URL + pandas parsing + vanilla-JS UI |
+| T413 | Concierge guide + `/demo` Claude skill + `/demo` slash command | S | ✅ Done 2026-04-15 (`fadf077`) |
+| T414 | Per-session API key auth + `/catalog/try` public dashboard | M | ✅ Done 2026-04-15 (`f7c6e6d`) — `?key=` or X-API-Key header; Badho-Search-style faceted UI |
+| T305 | External benchmark (v3 vs OpenAI text-embedding-3-large + Cohere embed-multilingual-v3 + jina-v3) | M | **Surfaced by user's friend 2026-04-15.** Execute before LinkedIn post for credibility. ~$2 API cost + 2 hr. Propose ~8 metrics (not 30): graded nDCG@10, Recall@5, 6-type zero-rate, latency p50/p95, cost/1K. |
+| T-named-tunnel | Named Cloudflare tunnel on `search.whileyousleep.xyz` | S | P0 — 15 min, $0. Unblocks LinkedIn post. |
 
 ### Phase 6: Product + GTM
 
