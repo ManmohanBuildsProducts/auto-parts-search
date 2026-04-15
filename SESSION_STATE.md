@@ -120,7 +120,7 @@ Concierge flow (`scripts/prepare_demo.py`) handles any input format (CSV/Excel/J
 
 ## 🔷 Next up (ranked by leverage)
 
-1. **T305 — external embedding benchmark** — Friend's feedback: compare v3 vs OpenAI text-embedding-3-large + Cohere embed-multilingual-v3 + jina-v3 + multilingual-e5-large on joint-pool graded dev set. Cost ~$2, time ~2 hr. Honest counter on "25-30 metrics": 8-10 metrics suffice (graded nDCG@10, Recall@5, per-6-type breakdown, latency, p95, cost-per-1K); 30 metrics is noise. See open question below for the metric list I'd propose.
+1. **T305 — external embedding benchmark + HF publication package** — See **`docs/EVAL_PUBLICATION_PLAN.md`** for the full scope. Re-framed from "just benchmark vs OpenAI" to "publish an HF-based credibility package" after user clarified end goal is third-party-verifiable evidence for sales. Deliverables: (a) HF Dataset `auto-parts-search-benchmark`, (b) Model card eval table on `auto-parts-search-v3`, (c) reproducible `scripts/bench_external.py`, (d) `docs/EVAL_REPORT.md` writeup. Metrics: **MTEB-aligned 5 + domain-specific per-category 7 + operational latency/cost 3 = 15 total** (not 30). Cost ~$3, time ~8 hr. Bonus: MTEB leaderboard submission (~4 hr). **This is the highest-leverage next action before LinkedIn post.**
 2. **Named Cloudflare tunnel on `search.whileyousleep.xyz`** — 15 min, $0. Permanent URL for LinkedIn + outreach.
 3. **LinkedIn post** — Angle A draft is ready in chat; swap URL + screenshots + post.
 4. **T506 — free audits for Pikpart / AutoDukan / Parts Big Boss** — unchanged; highest-EV external action.
