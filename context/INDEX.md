@@ -46,6 +46,9 @@ Architectural + strategic decisions. Numbered; never edited after status = "Deci
 | 010 | [010-search-tokenizer.md](decisions/010-search-tokenizer.md) | IndicNLP + IndicTrans2 + lemma map pipeline |
 | 011 | [011-positioning-moat.md](decisions/011-positioning-moat.md) | Stay vertical; ONDC optionality; GTM unblocked |
 | 012 | [012-phase3-compute-infra.md](decisions/012-phase3-compute-infra.md) | Phase 3 runs on Colab Free + HF Hub; $0 v1 budget |
+| 015 | [015-phase-3-close-ship-v3.md](decisions/015-phase-3-close-ship-v3.md) | Phase 3 closed; v3 ships; augmentation saturated at +2.4% best |
+| 016 | [016-hybrid-search-production.md](decisions/016-hybrid-search-production.md) | Hybrid BM25+v3 RRF; class-weighted fusion |
+| 017 | [017-phase-3b-reopen-for-catalog-gap.md](decisions/017-phase-3b-reopen-for-catalog-gap.md) | Phase 3b reopens for catalog-aware gap (supersedes 015) |
 
 ---
 
@@ -57,7 +60,8 @@ Per-phase execution playbooks. Updated as scope evolves.
 |------|--------|
 | [plans/phase2-knowledge-graph.md](plans/phase2-knowledge-graph.md) | Original Phase 2 (mostly complete; see TASKS.md for status) |
 | [plans/phase2b-cleanup.md](plans/phase2b-cleanup.md) | SQLite migration + ITI re-extraction + reproducibility (4 parallel tracks) |
-| [plans/phase3-training-loop.md](plans/phase3-training-loop.md) | Unified training loop (replaces old Phase 3 + Phase 4) |
+| [plans/phase3-training-loop.md](plans/phase3-training-loop.md) | Unified training loop (Phase 3 original — closed per ADR 015) |
+| [plans/gamma-pair-mining-spec.md](plans/gamma-pair-mining-spec.md) | Phase 3b: ~7K catalog-aware pairs (brand-generic, vehicle-compat, PN aliases, hard negatives) |
 
 ---
 
@@ -70,6 +74,7 @@ Market intelligence + vendor research. Dated; treat older reports as snapshots.
 | [research/market-audit-2026-04-12.md](research/market-audit-2026-04-12.md) | 2026-04-12 | Horizontal commerce search vendor landscape (Constructor, Klevu/Athos, Vectara, Algolia Hindi gap, ONDC) |
 | [research/claude-code-workflows-2026-04-12.md](research/claude-code-workflows-2026-04-12.md) | 2026-04-12 | Best practices for long-running Claude Code projects |
 | [research/t505-prospects-2026-04-12.md](research/t505-prospects-2026-04-12.md) | 2026-04-12 | 5 mid-market Indian auto-parts pilot prospects (Pikpart, AutoDukan, Parts Big Boss top 3) |
+| [research/2026-04-15-base-model-survey.md](research/2026-04-15-base-model-survey.md) | 2026-04-15 | Post-BGE-m3 multilingual embedding candidates for γ'; picks `google/embeddinggemma-300m` |
 
 ## Scraping & prospect registry
 
@@ -104,6 +109,7 @@ Durable learnings and regression log, surfaced to every session start.
 |------|---------|
 | [../memory/learnings.md](../memory/learnings.md) | Things not obvious from code (market facts, tech gotchas, vocabulary notes) |
 | [../memory/regressions.md](../memory/regressions.md) | Incidents + their post-mortems + patterns to avoid |
+| [../memory/findings.md](../memory/findings.md) | **T305 bench+publication findings** (judge choice, rate limits, corpus-shape effects, tuning overfit, what moves the needle). Read before any eval or training work. |
 
 ---
 

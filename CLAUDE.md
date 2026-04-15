@@ -8,8 +8,9 @@ Project: Indian auto parts domain-specific embedding model + search API. Hindi/H
 2. **`context/INDEX.md`** — map of all docs (ADRs, plans, research, session logs).
 3. **`context/TASKS.md`** — single source of truth for the task board.
 4. **`memory/regressions.md`** — incidents to avoid repeating.
-5. Any ADR in `context/decisions/` relevant to the current task.
-6. The `architecture` skill — loads on demand when editing scrapers, KG, training, or the graph DB.
+5. **`memory/findings.md`** — distilled patterns from the bench+publication session (judge choice, rate limits, corpus-shape effects, tuning overfit, what actually moves the needle). Read before any eval or training work.
+6. Any ADR in `context/decisions/` relevant to the current task.
+7. The `architecture` skill — loads on demand when editing scrapers, KG, training, or the graph DB.
 
 Use `/start` to run this load automatically and get a 3-part briefing. Use `/wrap` at session end to update `SESSION_STATE.md` and commit.
 

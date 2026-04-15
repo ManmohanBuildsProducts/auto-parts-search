@@ -186,17 +186,62 @@ Replaces old Phase 3 + Phase 4 (ADR 006). Unit of work = `(pair_gen_strategy, mo
 
 ---
 
+## 🔷 Next up — bridging the v3 vs OpenAI gap (post-T305 publication)
+
+Source: round 2 benchmark exposed 4 categories where v3 loses to OpenAI (Hindi -8, brand -8, symptom -6, part_number -8). See `memory/findings.md` for the full diagnosis and `docs/EVAL_REPORT.md` for the numbers.
+
+Ranked by ROI (effort × expected impact):
+
+| ID | Task | Effort | Expected gain | Priority |
+|----|------|--------|---------------|----------|
+| **T601** | **LLM re-ranker on top-20** — classify query, route symptom/brand queries to a DeepSeek or Gemini re-ranking step. `auto_parts_search/rerank.py`. Stateless; adds ~200ms latency. | 1 day | +5-15pts on symptom/brand/Hindi | **P0 — highest ROI** |
+| T610 | **γ+γ' training** — catalog-aware pairs (spec at `plans/gamma-pair-mining-spec.md`) + new base model (`google/embeddinggemma-300m`, see `research/2026-04-15-base-model-survey.md`). ADR 017 governs. | 2 days + $5 GPU | +3-8pts overall | P1 |
+| T620 | **Query logging pipeline** — instrument `/demo/*` endpoints to log (query, hits, click-through). Use for future retraining once prospect traffic generates real data. | 1 day + 30-day accrual | +10-30pts over 6 months | P1 — long-term moat |
+| T630 | **Sealed-test validation** — re-run round 2 against the 46-query sealed test once training is complete and locked. Final publication number. | 1 hr | 0 improvement; confirms generalization | P2 — gated on T610 |
+| T640 | **Bootstrap confidence intervals** — CI bars around every reported nDCG/Recall. Needed when per-category gaps approach MoE. | 2 hr | 0 improvement; +credibility | P2 |
+| T650 | **Part-number exact-match route** — detect PN queries in classifier, skip embedding path, return BM25 top-3 directly. Separate code path. | 4 hr | +5-10pts on part_number category | P2 |
+| T670 | **Claude-judgment distillation (Phase 2 of T601)** — use Claude 4.5 Sonnet to judge (query, doc) relevance for 10K query × top-20 candidate pairs, train a cross-encoder on those judgments. Lives at `auto_parts_search/rerank_distilled.py`. ToS-clean replacement for the "distill from OpenAI" idea (OpenAI ToS forbids that; Anthropic ToS permits Claude distillation for commercial products). | 3 days | Same quality as T601, ~4× faster inference (50ms vs 200ms per query) | P1 (after T601 lands) |
+| T680 | **Cross-encoder re-ranker alternative** — if Claude-distilled cross-encoder (T670) is too slow or uncertain, fall back to fine-tuning `BAAI/bge-reranker-v2-m3` on our graded-pool labels directly. | 1 day | +3-8pts, no LLM dependency | P2 (fallback for T670) |
+| T690 | **LLM query expansion at query time** — rewrite "Mobil for Swift" → "Mobil engine oil for Maruti Swift" via tiny LLM (DeepSeek-Chat or Gemini-Flash) before embedding. | 0.5 day | +2-5pts on ambiguous queries, +150ms latency | P2 |
+| T700 | **Synthetic query generation** — feed each catalog doc into Claude, generate 10 realistic customer queries, pair with doc. Produces 250K pairs cheaply. Use as training data to regularize v3 on catalog-style text. | 1 day gen + 1 day train | Pairs γ+γ' nicely; +2-5pts | P2 (after γ+γ') |
+| T710 | **Matryoshka truncation** — fine-tune v3 (or γ+γ' successor) to produce good embeddings at 1024 / 512 / 256 dims. Prospects with tight storage/latency budgets pay less. | 1 day (on top of a training run) | 0 quality at full dim; lets us claim pareto-best at 512d | P3 |
+
+**First training-gate decision:** if T601 (re-ranker) alone closes overall nDCG gap vs OpenAI (i.e. lifts tuned hybrid 0.424 → ≥0.468), we defer T610 and ship. If not, we commit to T610. Then T670 distills the re-ranker for production speed. See ADR 017.
+
+**Why NO "distill from OpenAI" task:** OpenAI ToS §2(c) forbids training competing models on their outputs. Even if enforcement is rare, the HF deplatforming risk + prospect-CTO legal-review flag kills the option. T670 (Claude distillation) is the ToS-clean equivalent. Claude has stronger reasoning than OpenAI embedding anyway for the specific failure modes we're targeting (symptom, brand-as-generic, Hindi).
+
+---
+
 ## Critical path
 
 **Phase 2b (parallel tracks) → Phase 3 training loop → Phase 5 search API → Phase 6 GTM**
 
-GTM audit (T505/T506a) is **parallel** to Phase 2b+3 and should begin this sprint (ADR 011).
+Updated 2026-04-15 after T305 publication:
+- Phase 3 closed per ADR 015; Phase 3b reopens per ADR 017 for catalog-aware gap
+- Publication live on HF (benchmark dataset + v3 model card public, weights gated)
+- Critical path shifts to **T601 re-ranker (close the gap, 1 day)** then **T610 γ+γ' training (2 days)** then **prospect outreach + T620 query-logging instrumentation**
 
 ```
-Phase 2b Track A (SQLite) ─┐
-Phase 2b Track B (ITI)    ─┤
-Phase 2b Track C (repro)  ─┼──► Phase 3 (training loop) ──► Phase 5 (search API) ──► Phase 6 paid pilot
-Phase 2b Track D (clean)  ─┘
-                                         │
-T505 + T506a (notebook audit) ───────────┴─► T506 (free audits) ──► T507 (first paid customer)
+[SHIPPED]  Phase 2b → Phase 3 (v3) → Phase 5 hybrid → T305 publication (HF public)
+                                                              │
+                                                              ▼
+[NEXT]  T601 LLM re-ranker (1 day)  ──► Does tuned hybrid + re-ranker beat OpenAI?
+                                        │                            │
+                                   YES ─┘                            └─ NO
+                                        ▼                                ▼
+                            T670 distill reranker           T610 γ+γ' training (2 days)
+                            into cross-encoder                         │
+                            (3 days, ToS-clean)                        ▼
+                                        │                    T670 distill reranker
+                                        ▼                              │
+                            ship + LinkedIn post ◄───────────────────────┘
+                                        ▼
+                                  T506 prospect outreach (parallel with T670)
+                                        ▼
+                                  T620 query logging → compounds over 6 months
+
+[LATER / P2-P3]  T650 part-number exact-match route, T690 query expansion,
+                 T700 synthetic query gen, T710 Matryoshka, T680 bge-reranker fallback
+
+[REJECTED]       Distill from OpenAI (ToS violation; T670 Claude-distill is the replacement)
 ```
