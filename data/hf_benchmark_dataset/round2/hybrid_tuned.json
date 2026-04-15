@@ -1,0 +1,62 @@
+{
+  "baseline_weights": {
+    "part_number": [
+      0.8,
+      0.2
+    ],
+    "symptom": [
+      0.1,
+      0.9
+    ],
+    "brand_as_generic": [
+      0.3,
+      0.7
+    ],
+    "hindi_hinglish": [
+      0.2,
+      0.8
+    ],
+    "exact_english": [
+      0.5,
+      0.5
+    ]
+  },
+  "tuned_weights": {
+    "part_number": [
+      0.8,
+      0.2
+    ],
+    "symptom": [
+      0.0,
+      1.0
+    ],
+    "brand_as_generic": [
+      0.5,
+      0.5
+    ],
+    "hindi_hinglish": [
+      0.3,
+      0.7
+    ],
+    "exact_english": [
+      0.4,
+      0.6
+    ]
+  },
+  "baseline_ndcg@10": 0.4003393696801561,
+  "tuned_ndcg@10": 0.4321414677313749,
+  "baseline_by_class": {
+    "brand_as_generic": 0.25754616163916777,
+    "exact_english": 0.42547138709316656,
+    "hindi_hinglish": 0.5084793101419393,
+    "part_number": 0.0,
+    "symptom": 0.3910761521847562
+  },
+  "tuned_by_class": {
+    "brand_as_generic": 0.32475615181104117,
+    "exact_english": 0.4674951247862642,
+    "hindi_hinglish": 0.5105240977232901,
+    "part_number": 0.0,
+    "symptom": 0.39824498988971574
+  }
+}

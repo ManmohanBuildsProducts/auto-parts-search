@@ -1,0 +1,171 @@
+{
+  "n_queries": 149,
+  "n_folds": 3,
+  "seed": 42,
+  "baseline_weights": {
+    "part_number": [
+      0.8,
+      0.2
+    ],
+    "symptom": [
+      0.1,
+      0.9
+    ],
+    "brand_as_generic": [
+      0.3,
+      0.7
+    ],
+    "hindi_hinglish": [
+      0.2,
+      0.8
+    ],
+    "exact_english": [
+      0.5,
+      0.5
+    ]
+  },
+  "tuned_all_weights": {
+    "part_number": [
+      0.8,
+      0.2
+    ],
+    "symptom": [
+      0.0,
+      1.0
+    ],
+    "brand_as_generic": [
+      0.6,
+      0.4
+    ],
+    "hindi_hinglish": [
+      0.3,
+      0.7
+    ],
+    "exact_english": [
+      0.4,
+      0.6
+    ]
+  },
+  "tuned_all_ndcg@10_in_sample": 0.4313360067941365,
+  "baseline_ndcg@10_all": 0.40214116017384,
+  "generalization": {
+    "baseline_held_out_avg": 0.40314369026942004,
+    "tuned_held_out_avg": 0.42379496200945915,
+    "overfit_gap_ndcg@10": 0.00754104478467732
+  },
+  "per_fold": [
+    {
+      "fold": 0,
+      "n_train": 98,
+      "n_held": 51,
+      "train_baseline": 0.4463305547134022,
+      "train_tuned": 0.48290457883143817,
+      "held_baseline": 0.31722820596056345,
+      "held_tuned": 0.330663140149683,
+      "tuned_weights": {
+        "part_number": [
+          0.8,
+          0.2
+        ],
+        "symptom": [
+          0.0,
+          1.0
+        ],
+        "brand_as_generic": [
+          0.6,
+          0.4
+        ],
+        "hindi_hinglish": [
+          0.3,
+          0.7
+        ],
+        "exact_english": [
+          0.1,
+          0.9
+        ]
+      },
+      "held_ndcg_by_class": {
+        "exact_english": 0.4111678861665162,
+        "brand_as_generic": 0.2195768800789284,
+        "hindi_hinglish": 0.4041007740892699,
+        "part_number": 0.0,
+        "symptom": 0.0
+      }
+    },
+    {
+      "fold": 1,
+      "n_train": 99,
+      "n_held": 50,
+      "train_baseline": 0.3742688043969941,
+      "train_tuned": 0.4060531997247844,
+      "held_baseline": 0.4573284246119947,
+      "held_tuned": 0.4808224577750569,
+      "tuned_weights": {
+        "part_number": [
+          0.8,
+          0.2
+        ],
+        "symptom": [
+          0.1,
+          0.9
+        ],
+        "brand_as_generic": [
+          0.6,
+          0.4
+        ],
+        "hindi_hinglish": [
+          0.3,
+          0.7
+        ],
+        "exact_english": [
+          0.4,
+          0.6
+        ]
+      },
+      "held_ndcg_by_class": {
+        "exact_english": 0.4462006343394026,
+        "brand_as_generic": 0.3681719935483836,
+        "hindi_hinglish": 0.6338849642504527,
+        "symptom": 0.6306112892795712
+      }
+    },
+    {
+      "fold": 2,
+      "n_train": 101,
+      "n_held": 48,
+      "train_baseline": 0.38658474984741065,
+      "train_tuned": 0.4144660322680276,
+      "held_baseline": 0.4348744402357019,
+      "held_tuned": 0.4598992881036374,
+      "tuned_weights": {
+        "part_number": [
+          0.8,
+          0.2
+        ],
+        "symptom": [
+          0.0,
+          1.0
+        ],
+        "brand_as_generic": [
+          0.6,
+          0.4
+        ],
+        "hindi_hinglish": [
+          0.1,
+          0.9
+        ],
+        "exact_english": [
+          0.4,
+          0.6
+        ]
+      },
+      "held_ndcg_by_class": {
+        "brand_as_generic": 0.3660908916325792,
+        "hindi_hinglish": 0.49798176162485464,
+        "exact_english": 0.5188833359055774,
+        "part_number": 0.0,
+        "symptom": 0.3030820301798826
+      }
+    }
+  ]
+}
