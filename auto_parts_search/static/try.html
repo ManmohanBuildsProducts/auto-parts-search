@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Search Demo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    :root {
+      --bg:#0f172a; --card:#1e293b; --text:#e2e8f0; --muted:#94a3b8;
+      --accent:#38bdf8; --accent2:#818cf8; --good:#22c55e; --warn:#fbbf24;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text);
+                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 32px 20px 100px; }
+    header { margin-bottom: 28px; }
+    h1 { margin: 0 0 6px; font-size: 24px; font-weight: 600; }
+    .subtitle { color: var(--muted); font-size: 14px; }
+    .subtitle code { background: rgba(255,255,255,0.06); padding:2px 6px; border-radius:4px; font-size: 12px; }
+
+    .search-box { position: relative; margin: 24px 0 8px; }
+    .search-box input {
+      width: 100%; padding: 14px 18px; border-radius: 12px; border: 1px solid #334155;
+      background: var(--card); color: var(--text); font-size: 16px; outline: none;
+      transition: border-color .12s ease;
+    }
+    .search-box input:focus { border-color: var(--accent); }
+
+    .examples { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 22px; }
+    .examples button {
+      padding: 6px 12px; border-radius: 999px; border: 1px solid #334155;
+      background: transparent; color: var(--muted); font-size: 13px; cursor: pointer;
+      transition: all .1s ease;
+    }
+    .examples button:hover { color: var(--text); border-color: var(--accent); }
+
+    .meta { display: flex; justify-content: space-between; align-items: center;
+            font-size: 12px; color: var(--muted); margin: 8px 2px; }
+    .badge {
+      display: inline-block; padding: 2px 8px; border-radius: 6px;
+      background: rgba(56,189,248,0.1); color: var(--accent); font-size: 11px; font-weight: 500;
+    }
+    .badge.symptom { background: rgba(251,191,36,0.12); color: var(--warn); }
+    .badge.hindi { background: rgba(129,140,248,0.12); color: var(--accent2); }
+
+    .results { display: flex; flex-direction: column; gap: 10px; }
+    .hit {
+      background: var(--card); border: 1px solid #334155; border-radius: 10px;
+      padding: 14px 18px; transition: border-color .1s ease;
+    }
+    .hit:hover { border-color: var(--accent); }
+    .hit-name { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .hit-meta { display: flex; gap: 14px; color: var(--muted); font-size: 12px; flex-wrap: wrap; }
+    .hit-meta span strong { color: var(--text); font-weight: 500; }
+    .hit-rank { color: var(--muted); font-size: 11px; margin-top: 6px; font-family: ui-monospace, monospace; }
+
+    .empty { color: var(--muted); padding: 40px 0; text-align: center; font-size: 14px; }
+    .error { color: #f87171; padding: 12px; background: rgba(248,113,113,0.08); border-radius: 8px; }
+
+    footer { color: var(--muted); font-size: 12px; margin-top: 48px; text-align: center; }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="title">Search Demo</h1>
+    <div class="subtitle">
+      Session: <code id="session">loading…</code> &nbsp;·&nbsp;
+      <span id="n_products">—</span> products indexed
+    </div>
+  </header>
+
+  <div class="search-box">
+    <input id="q" placeholder="Try: &quot;patti badal do bhaiya&quot; or &quot;brake pad Swift&quot;…" autofocus/>
+  </div>
+
+  <div class="examples" id="examples"></div>
+
+  <div class="meta">
+    <div><span class="badge" id="class-badge" style="display:none"></span></div>
+    <div id="latency"></div>
+  </div>
+
+  <div class="results" id="results">
+    <div class="empty">Type a query to search this catalog. Supports Hindi / Hinglish / English / misspellings / part numbers.</div>
+  </div>
+
+  <footer>
+    Hybrid BM25 + fine-tuned <a href="https://huggingface.co/BAAI/bge-m3" target="_blank" rel="noreferrer">BGE-m3</a>
+    — <span id="class-info">query-class-adaptive ranking</span>
+  </footer>
+</div>
+
+<script>
+(() => {
+  // Session ID comes from URL path: /demo/{sid}/try
+  const match = window.location.pathname.match(/^\/demo\/([^\/]+)\/try/);
+  if (!match) { document.getElementById('results').innerHTML = '<div class="error">invalid URL</div>'; return; }
+  const sid = match[1];
+  document.getElementById('session').textContent = sid;
+
+  const qInput = document.getElementById('q');
+  const resultsEl = document.getElementById('results');
+  const latencyEl = document.getElementById('latency');
+  const classBadge = document.getElementById('class-badge');
+
+  const EXAMPLES = [
+    'patti badal do bhaiya', 'brake pad Swift', 'engine garam',
+    'ब्रेक पैड', 'O2 sensor', 'shocker for Activa'
+  ];
+  const examplesEl = document.getElementById('examples');
+  EXAMPLES.forEach(q => {
+    const b = document.createElement('button');
+    b.textContent = q;
+    b.onclick = () => { qInput.value = q; qInput.dispatchEvent(new Event('input')); };
+    examplesEl.appendChild(b);
+  });
+
+  // Load session metadata
+  fetch(`/demo/${sid}`).then(r => r.json()).then(d => {
+    if (d.detail) { document.getElementById('n_products').textContent = 'n/a'; return; }
+    document.getElementById('title').textContent = d.name ? `${d.name} — Search Demo` : 'Search Demo';
+    document.getElementById('n_products').textContent = (d.n_products || '—').toLocaleString();
+  }).catch(() => {});
+
+  let inflight = null;
+  const doSearch = async () => {
+    const q = qInput.value.trim();
+    if (!q) { resultsEl.innerHTML = '<div class="empty">Type a query above.</div>'; classBadge.style.display = 'none'; latencyEl.textContent = ''; return; }
+    if (inflight) inflight.abort();
+    inflight = new AbortController();
+    try {
+      const t0 = performance.now();
+      const r = await fetch(`/demo/${sid}/search?q=${encodeURIComponent(q)}&k=10`, { signal: inflight.signal });
+      const d = await r.json();
+      if (d.detail) throw new Error(d.detail);
+      const dt = (performance.now() - t0).toFixed(0);
+      classBadge.style.display = 'inline-block';
+      classBadge.textContent = d.query_class;
+      classBadge.className = 'badge ' + (d.query_class === 'symptom' ? 'symptom' : (d.query_class === 'hindi_hinglish' ? 'hindi' : ''));
+      latencyEl.textContent = `server ${d.latency_ms}ms · roundtrip ${dt}ms`;
+      if (!d.hits || !d.hits.length) {
+        resultsEl.innerHTML = '<div class="empty">No matches.</div>';
+        return;
+      }
+      resultsEl.innerHTML = d.hits.map((h, i) => `
+        <div class="hit">
+          <div class="hit-name">${i+1}. ${escapeHtml(h.name)}</div>
+          <div class="hit-meta">
+            ${h.brand ? `<span>Brand: <strong>${escapeHtml(h.brand)}</strong></span>` : ''}
+            ${(h.vehicle_make || h.vehicle_model) ? `<span>Vehicle: <strong>${escapeHtml([h.vehicle_make, h.vehicle_model].filter(Boolean).join(' '))}</strong></span>` : ''}
+            ${h.part_numbers && h.part_numbers.length ? `<span>Part#: <strong>${h.part_numbers.map(escapeHtml).join(', ')}</strong></span>` : ''}
+            ${h.part_id ? `<span>ID: <strong>${escapeHtml(h.part_id)}</strong></span>` : ''}
+          </div>
+          <div class="hit-rank">bm25=${h.bm25_rank ?? '-'} · emb=${h.embedding_rank ?? '-'} · fused=${h.fused_score.toFixed(4)}</div>
+        </div>
+      `).join('');
+    } catch (e) {
+      if (e.name === 'AbortError') return;
+      resultsEl.innerHTML = `<div class="error">${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  let t;
+  qInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(doSearch, 200); });
+})();
+</script>
+</body>
+</html>

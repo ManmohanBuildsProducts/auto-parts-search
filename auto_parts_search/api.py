@@ -23,6 +23,7 @@ from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 from auto_parts_search.query_classifier import classify
@@ -221,6 +222,7 @@ class CatalogUploadProduct(BaseModel):
 
 class CatalogUploadRequest(BaseModel):
     name: str | None = Field(None, max_length=100, description="Friendly session label (e.g. 'Pikpart test')")
+    slug: str | None = Field(None, max_length=60, description="Optional named slug for the demo URL, e.g. 'pikpart'")
     products: list[CatalogUploadProduct] = Field(..., min_length=1, max_length=10000)
 
 
@@ -234,6 +236,7 @@ def demo_upload(req: CatalogUploadRequest):
     try:
         result = demo_tenant.upload_catalog(
             name=req.name,
+            slug=req.slug,
             products=[p.model_dump(exclude_none=True) for p in req.products],
         )
         return result
@@ -268,6 +271,15 @@ def demo_search(
         raise HTTPException(status_code=500, detail=f"search failed: {e}")
 
 
+@app.get("/demo/{sid}/try", tags=["demo"], include_in_schema=False,
+         summary="Prospect-facing search UI (static HTML)")
+def demo_try_ui(sid: str):
+    html_path = Path(__file__).parent / "static" / "try.html"
+    if not html_path.exists():
+        raise HTTPException(status_code=500, detail="try.html missing")
+    return FileResponse(html_path, media_type="text/html")
+
+
 @app.delete("/demo/{sid}", tags=["demo"], summary="Explicitly delete a session")
 def demo_delete(sid: str):
     ok = demo_tenant.delete_session(sid)
@@ -280,6 +292,7 @@ def demo_delete(sid: str):
 
 class CatalogStartRequest(BaseModel):
     name: str | None = Field(None, max_length=100)
+    slug: str | None = Field(None, max_length=60)
 
 
 class CatalogBatchRequest(BaseModel):
@@ -288,6 +301,7 @@ class CatalogBatchRequest(BaseModel):
 
 class CatalogUrlIngestRequest(BaseModel):
     name: str | None = Field(None, max_length=100)
+    slug: str | None = Field(None, max_length=60)
     source_url: str = Field(..., description="HTTP(S) URL returning JSONL (one product per line)")
 
 
@@ -297,7 +311,7 @@ def demo_catalog_start(req: CatalogStartRequest):
     """Returns a job_id. Send products via /demo/catalog/{jid}/batch (up to 10K per
     call, up to 500K total per job), then POST /commit to trigger embedding.
     """
-    return demo_tenant.start_job(req.name)
+    return demo_tenant.start_job(req.name, slug=req.slug)
 
 
 @app.post("/demo/catalog/{jid}/batch", tags=["demo-async"],
@@ -328,7 +342,7 @@ def demo_catalog_commit(jid: str):
           summary="Ingest a JSONL catalog from a URL (server fetches + embeds)")
 def demo_catalog_url(req: CatalogUrlIngestRequest):
     try:
-        return demo_tenant.ingest_from_url(req.name, req.source_url)
+        return demo_tenant.ingest_from_url(req.name, req.source_url, slug=req.slug)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 

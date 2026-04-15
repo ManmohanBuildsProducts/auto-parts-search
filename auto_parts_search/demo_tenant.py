@@ -64,6 +64,12 @@ def _new_sid() -> str:
     return "d_" + secrets.token_hex(5)
 
 
+def _sanitize_slug(slug: str) -> str:
+    s = re.sub(r"[^a-zA-Z0-9_-]", "-", slug.strip().lower())
+    s = re.sub(r"-+", "-", s).strip("-_")
+    return s[:60] or _new_sid()
+
+
 # ---------- evict expired / LRU ----------
 
 def _now() -> datetime:
@@ -312,9 +318,12 @@ def _build_session(sid: str, name: str | None, products: list[dict],
     }
 
 
-def upload_catalog(name: str | None, products: list[dict]) -> dict[str, Any]:
+def upload_catalog(name: str | None, products: list[dict], slug: str | None = None) -> dict[str, Any]:
     """Single-shot upload. Caps at MAX_PRODUCTS_PER_UPLOAD (10K).
     For large catalogs use the async job flow (start -> batch -> commit).
+
+    slug: optional named session id (e.g. 'pikpart'). Overwrites any existing
+    session with that slug.
     """
     _validate_products(products)
     if len(products) > MAX_PRODUCTS_PER_UPLOAD:
@@ -325,7 +334,13 @@ def upload_catalog(name: str | None, products: list[dict]) -> dict[str, Any]:
     with _lock:
         _evict_expired()
         _evict_lru_if_full()
-    sid = _new_sid()
+    if slug:
+        sid = _sanitize_slug(slug)
+        # Drop any existing session with this slug (concierge flow: re-upload = overwrite)
+        if sid in _sessions:
+            _drop_session(sid)
+    else:
+        sid = _new_sid()
     return _build_session(sid, name, products)
 
 
@@ -347,13 +362,22 @@ def _evict_expired_jobs() -> None:
         _jobs.pop(jid, None)
 
 
-def start_job(name: str | None) -> dict:
+def start_job(name: str | None, slug: str | None = None) -> dict:
     with _jobs_lock:
         _evict_expired_jobs()
     with _lock:
         _evict_expired()
         _evict_lru_if_full()
-    jid = "j_" + secrets.token_hex(5)
+    if slug:
+        jid = _sanitize_slug(slug)
+        # concierge re-upload: drop any existing session/job with this slug
+        if jid in _sessions:
+            _drop_session(jid)
+        with _jobs_lock:
+            if jid in _jobs:
+                _jobs.pop(jid, None)
+    else:
+        jid = "j_" + secrets.token_hex(5)
     now = _now().isoformat()
     with _jobs_lock:
         _jobs[jid] = {
@@ -465,13 +489,21 @@ def _worker_embed_job(jid: str) -> None:
                 _jobs[jid]["updated_at"] = _now().isoformat()
 
 
-def ingest_from_url(name: str | None, source_url: str) -> dict:
+def ingest_from_url(name: str | None, source_url: str, slug: str | None = None) -> dict:
     """Kick off a job that streams JSONL from a URL."""
     if not source_url.startswith(("http://", "https://")):
         raise ValueError("source_url must be http(s)")
     with _jobs_lock:
         _evict_expired_jobs()
-    jid = "j_" + secrets.token_hex(5)
+    if slug:
+        jid = _sanitize_slug(slug)
+        if jid in _sessions:
+            _drop_session(jid)
+        with _jobs_lock:
+            if jid in _jobs:
+                _jobs.pop(jid, None)
+    else:
+        jid = "j_" + secrets.token_hex(5)
     now = _now().isoformat()
     with _jobs_lock:
         _jobs[jid] = {
