@@ -4,7 +4,7 @@
 
 **Goal:** Replace the saturated MNRL training signal with cross-encoder listwise distillation to push overall nDCG@10 from 0.430 toward 0.470+ and close the Hindi/brand_as_generic gap vs OpenAI.
 
-**Architecture:** Three-stage pipeline. (1) Generate 6 synthetic query types per catalog passage via Azure GPT-4o-mini, filter by hybrid search recall. (2) Score top-20 candidates per query with bge-reranker-v2-m3 as teacher. (3) Fine-tune BGE-m3 with a combined KL-divergence listwise loss + InfoNCE on A100 via HF Jobs. Upload all intermediate artefacts to HF Hub so training is reproducible without local files.
+**Architecture:** Three-stage pipeline. (1) Generate 6 synthetic query types per catalog passage via Azure GPT-4o-mini, using γ-strategy-biased doc sampling (oversample brand_as_generic + Hindi seed docs); filter using embedding-only search for hard categories (hindi/brand), hybrid search for others. (2) Score top-20 candidates per query with bge-reranker-v2-m3 as teacher. (3) Fine-tune **v3** (not BGE-m3 base — v3 has +35% domain adaptation already baked in) with a combined KL-divergence listwise loss + InfoNCE on A100 via HF Jobs; the InfoNCE component trains on golden-v2 (26,760 existing high-quality pairs) not new synthetic pairs. Upload all intermediate artefacts to HF Hub.
 
 **Tech Stack:** Python 3.11, openai (Azure), sentence-transformers, transformers, torch, datasets (HF), huggingface_hub, pytest. Training run on HF Jobs A100 (ml-intern credits). All API calls use keys already in `.env`.
 
@@ -257,24 +257,61 @@ def generate_queries_for_doc(client: AzureOpenAI, title: str) -> list[dict]:
         return []
 
 
-def search_top_k(query: str, k: int = 20) -> list[dict]:
-    """Hit the local /search endpoint and return top-k hits."""
+def search_top_k(query: str, k: int = 20, embedding_only: bool = False) -> list[dict]:
+    """Hit the local /search endpoint and return top-k hits.
+
+    embedding_only=True for hard categories (hindi/brand_as_generic) — hybrid search
+    uses BM25 which scores 0 on Hindi text, so the hybrid filter would drop valid pairs.
+    """
     try:
-        r = requests.get(f"{SEARCH_API}/search", params={"q": query, "top_k": k}, timeout=10)
+        params: dict = {"q": query, "top_k": k}
+        if embedding_only:
+            params["bm25_weight"] = 0.0  # force embedding-only path
+        r = requests.get(f"{SEARCH_API}/search", params=params, timeout=10)
         r.raise_for_status()
         return r.json().get("results", [])
     except Exception:
         return []
 
 
-def fetch_catalog_docs(limit: int = 10000) -> list[dict]:
-    """Pull catalog docs from Meilisearch."""
-    r = requests.post(
-        "http://127.0.0.1:7700/indexes/parts/search",
-        json={"q": "", "limit": limit, "filter": "doc_type = 'catalog'"},
-    )
-    r.raise_for_status()
-    return r.json()["hits"]
+# Query types where BM25 actively hurts recall — use embedding-only + looser top-50 filter
+HARD_QUERY_TYPES = {"hindi_natural", "hinglish", "romanized_hindi", "brand_generic_variant"}
+
+
+def fetch_catalog_docs_stratified(n_docs: int) -> list[dict]:
+    """γ-strategy-biased doc sampling.
+
+    Oversample sources that are hardest for v3:
+    - eauto (brand + vehicle — brand_as_generic seed): 2x weight
+    - spareshub (part numbers — PN-aliasing seed): 1x weight
+    - bikespares (vehicle-compatible): 1x weight
+    - carorbis + rest: 0.5x weight (low signal)
+
+    Target split of n_docs: ~40% eauto, ~35% spareshub, ~15% bikespares, ~10% rest.
+    """
+    meili = "http://127.0.0.1:7700/indexes/parts/search"
+
+    def fetch_source(source: str, limit: int) -> list[dict]:
+        r = requests.post(meili, json={"q": "", "limit": limit, "filter": f"source = '{source}' AND doc_type = 'catalog'"})
+        r.raise_for_status()
+        return r.json()["hits"]
+
+    random.seed(SEED)
+    eauto  = random.sample(fetch_source("eauto",      10000), min(int(n_docs * 0.40), 2000))
+    spareshub = random.sample(fetch_source("spareshub", 15000), min(int(n_docs * 0.35), 1750))
+    bikespares = random.sample(fetch_source("bikespares", 3000), min(int(n_docs * 0.15), 750))
+
+    # Remainder from any source
+    remainder_n = n_docs - len(eauto) - len(spareshub) - len(bikespares)
+    all_rest = requests.post(meili, json={"q": "", "limit": 5000, "filter": "doc_type = 'catalog'"}).json()["hits"]
+    sampled_ids = {str(d.get("id") or d.get("_id")) for d in eauto + spareshub + bikespares}
+    rest = [d for d in all_rest if str(d.get("id") or d.get("_id")) not in sampled_ids]
+    rest = random.sample(rest, min(remainder_n, len(rest)))
+
+    docs = eauto + spareshub + bikespares + rest
+    print(f"stratified sample: {len(eauto)} eauto + {len(spareshub)} spareshub + "
+          f"{len(bikespares)} bikespares + {len(rest)} rest = {len(docs)} total")
+    return docs
 
 
 def main() -> None:
@@ -286,11 +323,8 @@ def main() -> None:
     args.out.parent.mkdir(parents=True, exist_ok=True)
     client = make_azure_client()
 
-    print(f"fetching catalog docs from Meilisearch...")
-    all_docs = fetch_catalog_docs(limit=30000)
-    random.seed(SEED)
-    docs = random.sample(all_docs, min(args.n_docs, len(all_docs)))
-    print(f"sampled {len(docs)} docs")
+    print(f"fetching catalog docs from Meilisearch (γ-biased stratified sample)...")
+    docs = fetch_catalog_docs_stratified(args.n_docs)
 
     # Resume: track already-written gold doc IDs
     written_ids: set[str] = set()
@@ -314,15 +348,23 @@ def main() -> None:
             query_dicts = generate_queries_for_doc(client, title)
             for qd in query_dicts:
                 query = qd["query"]
-                # Stage 2 filter: gold doc must appear in top-20
-                hits = search_top_k(query, k=20)
+                query_type = qd["query_type"]
+
+                # Category-aware filter:
+                # Hard categories (Hindi, brand_as_generic): embedding-only + looser top-50
+                # Easy categories (English, symptom): hybrid top-20
+                is_hard = query_type in HARD_QUERY_TYPES
+                k = 50 if is_hard else 20
+                hits = search_top_k(query, k=k, embedding_only=is_hard)
                 hit_ids = [str(h.get("id") or h.get("_id") or "") for h in hits]
                 if doc_id not in hit_ids:
-                    continue  # filter out — our retriever can't find the gold doc
+                    continue  # filter: retriever must find gold doc
 
+                # Trim candidates to top-20 for consistency
+                hits = hits[:20]
                 record = {
                     "query": query,
-                    "query_type": qd["query_type"],
+                    "query_type": query_type,
                     "gold_doc_id": doc_id,
                     "gold_doc_title": title,
                     "candidates": [
@@ -810,10 +852,15 @@ This runs on HF Jobs (A100). It loads the dataset from HF Hub, fine-tunes BGE-m3
 ```python
 """CADeT listwise distillation training script — runs on HF Jobs A100.
 
-Loads: ManmohanBuildsProducts/auto-parts-listwise-v1 (private HF dataset)
-Base:  BAAI/bge-m3
-Loss:  ListwiseKLLoss (KL + InfoNCE, λ=0.6/0.4)
+Loads:
+  - ManmohanBuildsProducts/auto-parts-listwise-v1 → listwise KL loss (new signal)
+  - ManmohanBuildsProducts/auto-parts-search-pairs → golden-v2 InfoNCE (preserves domain adaptation)
+Base:  ManmohanBuildsProducts/auto-parts-search-v3  (v3 not BGE-m3 — keeps +35% domain adaptation)
+Loss:  Interleaved: listwise batches use ListwiseKLLoss (KL+InfoNCE λ=0.6/0.4);
+       golden-v2 batches use InfoNCE-only (teacher_scores synthesized from gold@0 position).
 Out:   ManmohanBuildsProducts/auto-parts-search-v4-cadet (private)
+
+Training ratio: 2 listwise batches : 1 golden-v2 batch (golden-v2 = 26,760 pairs, listwise ~20K).
 
 Usage on HF Jobs:
     Set env vars: HF_TOKEN
@@ -827,31 +874,32 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import random
+from itertools import cycle
 from pathlib import Path
 
 import torch
 from datasets import load_dataset
-from sentence_transformers import SentenceTransformer, InputExample
+from sentence_transformers import SentenceTransformer
 from torch.utils.data import DataLoader, Dataset as TorchDataset
 
 from training.listwise_loss import ListwiseKLLoss
 
 HF_TOKEN = os.environ.get("HF_TOKEN", "")
-TRAIN_DATASET = "ManmohanBuildsProducts/auto-parts-listwise-v1"
-BASE_MODEL = "BAAI/bge-m3"
+LISTWISE_DATASET = "ManmohanBuildsProducts/auto-parts-listwise-v1"
+GOLDEN_DATASET = "ManmohanBuildsProducts/auto-parts-search-pairs"
+BASE_MODEL = "ManmohanBuildsProducts/auto-parts-search-v3"
 OUTPUT_REPO = "ManmohanBuildsProducts/auto-parts-search-v4-cadet"
 EPOCHS = 3
 BATCH_SIZE = 16
 LR = 2e-5
 MAX_SEQ_LEN = 128
-WARMUP_RATIO = 0.1
+GOLDEN_INTERLEAVE_RATIO = 2  # 1 golden-v2 batch per N listwise batches
 
 
 class ListwiseDataset(TorchDataset):
-    def __init__(self, hf_dataset, model: SentenceTransformer, max_seq_len: int):
+    def __init__(self, hf_dataset):
         self.records = list(hf_dataset)
-        self.model = model
-        self.max_seq_len = max_seq_len
 
     def __len__(self) -> int:
         return len(self.records)
@@ -863,7 +911,7 @@ class ListwiseDataset(TorchDataset):
         teacher_scores = json.loads(rec["teacher_scores"])
         gold_title = rec["gold_doc_title"]
 
-        # Gold doc always at index 0 for InfoNCE
+        # Gold doc always at index 0 for InfoNCE component
         if gold_title in cand_titles:
             gold_idx = cand_titles.index(gold_title)
             cand_titles.insert(0, cand_titles.pop(gold_idx))
@@ -879,23 +927,55 @@ class ListwiseDataset(TorchDataset):
         }
 
 
+class GoldenV2Dataset(TorchDataset):
+    """Golden-v2 pair dataset for InfoNCE-only training.
+
+    Each record is a (query, positive) pair from the 26,760 golden pairs.
+    We build a small in-batch negatives set by grouping BATCH_SIZE pairs together.
+    """
+    def __init__(self, hf_dataset):
+        self.records = [
+            {"query": r["query"], "positive": r["positive"]}
+            for r in hf_dataset
+            if r.get("query") and r.get("positive")
+        ]
+
+    def __len__(self) -> int:
+        return len(self.records)
+
+    def __getitem__(self, idx):
+        return self.records[idx]
+
+
+def encode(model: SentenceTransformer, texts: list[str]) -> torch.Tensor:
+    return model.encode(texts, convert_to_tensor=True, normalize_embeddings=True)
+
+
 def train(smoke_test: bool = False) -> None:
-    print(f"loading dataset {TRAIN_DATASET}...")
-    ds = load_dataset(TRAIN_DATASET, split="train", token=HF_TOKEN)
+    print(f"base model: {BASE_MODEL}")
+    print(f"loading listwise dataset {LISTWISE_DATASET}...")
+    listwise_ds = load_dataset(LISTWISE_DATASET, split="train", token=HF_TOKEN)
+    print(f"loading golden-v2 dataset {GOLDEN_DATASET}...")
+    golden_ds = load_dataset(GOLDEN_DATASET, split="train", token=HF_TOKEN)
+
     if smoke_test:
-        ds = ds.select(range(min(200, len(ds))))
-    print(f"  {len(ds)} training examples")
+        listwise_ds = listwise_ds.select(range(min(200, len(listwise_ds))))
+        golden_ds = golden_ds.select(range(min(100, len(golden_ds))))
 
-    model = SentenceTransformer(BASE_MODEL, trust_remote_code=True)
+    print(f"  listwise: {len(listwise_ds)} | golden-v2: {len(golden_ds)}")
+
+    model = SentenceTransformer(BASE_MODEL, trust_remote_code=True, token=HF_TOKEN)
     model.max_seq_length = MAX_SEQ_LEN
-
-    if torch.cuda.is_available():
-        model = model.to("cuda")
-        print("using CUDA")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = model.to(device)
+    print(f"using {device.upper()}")
 
     criterion = ListwiseKLLoss(lambda_listwise=0.6, lambda_infonce=0.4)
     optimizer = torch.optim.AdamW(model.parameters(), lr=LR)
-    n_steps = (len(ds) // BATCH_SIZE) * EPOCHS
+    # Steps = listwise steps + golden-v2 steps per epoch
+    listwise_steps_per_epoch = len(listwise_ds) // BATCH_SIZE
+    golden_steps_per_epoch = listwise_steps_per_epoch // GOLDEN_INTERLEAVE_RATIO
+    n_steps = (listwise_steps_per_epoch + golden_steps_per_epoch) * EPOCHS
     scheduler = torch.optim.lr_scheduler.LinearLR(
         optimizer, start_factor=1.0, end_factor=0.0, total_iters=n_steps
     )
@@ -909,24 +989,24 @@ def train(smoke_test: bool = False) -> None:
         epoch_loss = 0.0
         n_batches = 0
 
-        dataset = ListwiseDataset(ds, model, MAX_SEQ_LEN)
-        loader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, collate_fn=lambda x: x)
+        listwise_loader = DataLoader(
+            ListwiseDataset(listwise_ds), batch_size=BATCH_SIZE, shuffle=True, collate_fn=lambda x: x
+        )
+        golden_loader = cycle(DataLoader(
+            GoldenV2Dataset(golden_ds), batch_size=BATCH_SIZE, shuffle=True, collate_fn=lambda x: x
+        ))
 
-        for batch in loader:
-            queries = [item["query"] for item in batch]
-            all_candidates = [item["candidates"] for item in batch]
-            all_teacher = torch.stack([item["teacher_scores"] for item in batch])  # [B, K]
+        for step, listwise_batch in enumerate(listwise_loader):
+            # --- Listwise batch (KL + InfoNCE combined loss) ---
+            queries = [item["query"] for item in listwise_batch]
+            all_candidates = [item["candidates"] for item in listwise_batch]
+            all_teacher = torch.stack([item["teacher_scores"] for item in listwise_batch]).to(device)
 
-            # Encode all texts
-            q_emb = model.encode(queries, convert_to_tensor=True, normalize_embeddings=True)  # [B, D]
-            # Encode candidates — flatten, encode, reshape
+            q_emb = encode(model, queries)
             flat_cands = [c for cands in all_candidates for c in cands]
-            flat_emb = model.encode(flat_cands, convert_to_tensor=True, normalize_embeddings=True)
+            flat_emb = encode(model, flat_cands)
             k = len(all_candidates[0])
-            doc_embs = flat_emb.view(len(batch), k, -1)  # [B, K, D]
-
-            if torch.cuda.is_available():
-                all_teacher = all_teacher.to("cuda")
+            doc_embs = flat_emb.view(len(listwise_batch), k, -1)
 
             loss = criterion(q_emb, doc_embs, all_teacher)
             optimizer.zero_grad()
@@ -934,9 +1014,29 @@ def train(smoke_test: bool = False) -> None:
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
             scheduler.step()
-
             epoch_loss += loss.item()
             n_batches += 1
+
+            # --- Golden-v2 interleave batch (InfoNCE-only, every GOLDEN_INTERLEAVE_RATIO steps) ---
+            if step % GOLDEN_INTERLEAVE_RATIO == 0:
+                gold_batch = next(golden_loader)
+                g_queries = [item["query"] for item in gold_batch]
+                g_positives = [item["positive"] for item in gold_batch]
+
+                g_q_emb = encode(model, g_queries)    # [B, D]
+                g_p_emb = encode(model, g_positives)  # [B, D]
+                # In-batch NCE: [B, B] score matrix, diagonal = positive pair
+                import torch.nn.functional as F
+                scores = torch.mm(g_q_emb, g_p_emb.t()) / 0.05  # [B, B]
+                targets = torch.arange(len(gold_batch), device=device)
+                g_loss = F.cross_entropy(scores, targets)
+                optimizer.zero_grad()
+                g_loss.backward()
+                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                optimizer.step()
+                scheduler.step()
+                epoch_loss += g_loss.item()
+                n_batches += 1
 
         avg_loss = epoch_loss / max(n_batches, 1)
         print(f"epoch {epoch+1}/{EPOCHS} — avg loss: {avg_loss:.4f}")
