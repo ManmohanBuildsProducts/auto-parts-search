@@ -141,12 +141,17 @@ def fetch_catalog_docs_stratified(n_docs: int) -> list[dict]:
         return r.json()["hits"]
 
     random.seed(SEED)
-    eauto = random.sample(fetch_source("eauto", 10000), min(int(n_docs * 0.40), 2000))
-    spareshub = random.sample(fetch_source("spareshub", 15000), min(int(n_docs * 0.35), 1750))
-    bikespares = random.sample(fetch_source("bikespares", 3000), min(int(n_docs * 0.15), 750))
+
+    def _sample(source: str, limit: int, want: int) -> list[dict]:
+        docs = fetch_source(source, limit)
+        return random.sample(docs, min(want, len(docs)))
+
+    eauto = _sample("eauto", 1000, min(int(n_docs * 0.40), 2000))
+    spareshub = _sample("spareshub", 1000, min(int(n_docs * 0.35), 1750))
+    bikespares = _sample("bikespares", 1000, min(int(n_docs * 0.15), 750))
 
     remainder_n = n_docs - len(eauto) - len(spareshub) - len(bikespares)
-    all_rest = requests.post(meili, json={"q": "", "limit": 5000, "filter": "doc_type = 'catalog'"}, headers=headers).json()["hits"]
+    all_rest = requests.post(meili, json={"q": "", "limit": 1000, "filter": "doc_type = 'catalog'"}, headers=headers).json()["hits"]
     sampled_ids = {str(d.get("id") or d.get("_id")) for d in eauto + spareshub + bikespares}
     rest = [d for d in all_rest if str(d.get("id") or d.get("_id")) not in sampled_ids]
     rest = random.sample(rest, min(remainder_n, len(rest)))
