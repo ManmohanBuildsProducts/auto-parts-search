@@ -25,6 +25,8 @@ from openai import AzureOpenAI
 AZURE_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT", "")
 AZURE_KEY = os.environ.get("AZURE_OPENAI_API_KEY", "")
 SEARCH_API = "http://127.0.0.1:8000"
+MEILI_URL = os.environ.get("MEILI_URL", "http://127.0.0.1:7700")
+MEILI_KEY = os.environ.get("MEILI_KEY", "aps_local_dev_key_do_not_use_in_prod")
 SEED = 42
 
 QUERY_PROMPT_TEMPLATE = """You are a customer on an Indian auto-parts e-commerce site.
@@ -113,16 +115,14 @@ def generate_queries_for_doc(client: AzureOpenAI, title: str) -> list[dict]:
 def search_top_k(query: str, k: int = 20, embedding_only: bool = False) -> list[dict]:
     """Hit the local /search endpoint and return top-k hits.
 
-    embedding_only=True for hard categories (hindi/brand_as_generic) — hybrid search
-    uses BM25 which scores 0 on Hindi text, so the hybrid filter would drop valid pairs.
+    embedding_only is unused — the API auto-classifies queries and applies appropriate
+    BM25/embedding weights (Hindi queries already get embedding-heavy routing).
+    k capped at 50 (API max).
     """
     try:
-        params: dict = {"q": query, "top_k": k}
-        if embedding_only:
-            params["bm25_weight"] = 0.0
-        r = requests.get(f"{SEARCH_API}/search", params=params, timeout=10)
+        r = requests.get(f"{SEARCH_API}/search", params={"q": query, "k": min(k, 50)}, timeout=10)
         r.raise_for_status()
-        return r.json().get("results", [])
+        return r.json().get("hits", [])
     except Exception:
         return []
 
@@ -132,10 +132,11 @@ def fetch_catalog_docs_stratified(n_docs: int) -> list[dict]:
 
     Target split: ~40% eauto, ~35% spareshub, ~15% bikespares, ~10% rest.
     """
-    meili = "http://127.0.0.1:7700/indexes/parts/search"
+    meili = f"{MEILI_URL}/indexes/parts/search"
+    headers = {"Authorization": f"Bearer {MEILI_KEY}", "Content-Type": "application/json"}
 
     def fetch_source(source: str, limit: int) -> list[dict]:
-        r = requests.post(meili, json={"q": "", "limit": limit, "filter": f"source = '{source}' AND doc_type = 'catalog'"})
+        r = requests.post(meili, json={"q": "", "limit": limit, "filter": f"source = '{source}' AND doc_type = 'catalog'"}, headers=headers)
         r.raise_for_status()
         return r.json()["hits"]
 
@@ -145,7 +146,7 @@ def fetch_catalog_docs_stratified(n_docs: int) -> list[dict]:
     bikespares = random.sample(fetch_source("bikespares", 3000), min(int(n_docs * 0.15), 750))
 
     remainder_n = n_docs - len(eauto) - len(spareshub) - len(bikespares)
-    all_rest = requests.post(meili, json={"q": "", "limit": 5000, "filter": "doc_type = 'catalog'"}).json()["hits"]
+    all_rest = requests.post(meili, json={"q": "", "limit": 5000, "filter": "doc_type = 'catalog'"}, headers=headers).json()["hits"]
     sampled_ids = {str(d.get("id") or d.get("_id")) for d in eauto + spareshub + bikespares}
     rest = [d for d in all_rest if str(d.get("id") or d.get("_id")) not in sampled_ids]
     rest = random.sample(rest, min(remainder_n, len(rest)))
@@ -251,7 +252,7 @@ def main() -> None:
             doc_id = str(doc.get("id") or doc.get("_id") or i)
             if doc_id in written_ids:
                 continue
-            title = doc.get("title") or doc.get("name") or ""
+            title = doc.get("name") or doc.get("title") or ""
             if not title.strip():
                 continue
 
@@ -263,7 +264,8 @@ def main() -> None:
                 is_hard = query_type in HARD_QUERY_TYPES
                 k = 50 if is_hard else 20
                 hits = search_top_k(query, k=k, embedding_only=is_hard)
-                hit_ids = [str(h.get("id") or h.get("_id") or "") for h in hits]
+                # API returns part_id as the doc identifier
+                hit_ids = [str(h.get("part_id") or h.get("id") or "") for h in hits]
                 if doc_id not in hit_ids:
                     continue
 
@@ -275,8 +277,8 @@ def main() -> None:
                     "gold_doc_title": title,
                     "candidates": [
                         {
-                            "doc_id": str(h.get("id") or h.get("_id") or ""),
-                            "doc_title": h.get("title") or h.get("name") or "",
+                            "doc_id": str(h.get("part_id") or h.get("id") or ""),
+                            "doc_title": h.get("name") or "",
                             "teacher_score": None,
                         }
                         for h in hits
