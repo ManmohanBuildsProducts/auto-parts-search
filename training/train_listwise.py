@@ -78,14 +78,15 @@ class ListwiseDataset(TorchDataset):
 class GoldenV2Dataset(TorchDataset):
     """Golden-v2 pair dataset for InfoNCE-only training.
 
-    Each record is a (query, positive) pair from the 26,760 golden pairs.
+    Columns: text_a, text_b, label (1.0 = same-intent, 0.5 = co-occurrence).
+    Only label==1.0 pairs are safe as InfoNCE positives.
     In-batch negatives are formed by grouping BATCH_SIZE pairs together.
     """
     def __init__(self, hf_dataset):
         self.records = [
-            {"query": r["query"], "positive": r["positive"]}
+            {"query": r["text_a"], "positive": r["text_b"]}
             for r in hf_dataset
-            if r.get("query") and r.get("positive")
+            if r.get("text_a") and r.get("text_b") and r.get("label") == 1.0
         ]
 
     def __len__(self) -> int:
@@ -96,7 +97,12 @@ class GoldenV2Dataset(TorchDataset):
 
 
 def encode(model: SentenceTransformer, texts: list[str], device: str) -> torch.Tensor:
-    return model.encode(texts, convert_to_tensor=True, normalize_embeddings=True, device=device)
+    """Encode texts with gradient support for training."""
+    features = model.tokenize(texts)
+    features = {k: v.to(device) for k, v in features.items()}
+    out = model(features)
+    emb = out["sentence_embedding"]
+    return torch.nn.functional.normalize(emb, p=2, dim=-1)
 
 
 def train(smoke_test: bool = False) -> None:
