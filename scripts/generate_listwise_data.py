@@ -18,9 +18,13 @@ import os
 import random
 import time
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import requests
 from openai import AzureOpenAI
+
+if TYPE_CHECKING:
+    import torch
 
 AZURE_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT", "")
 AZURE_KEY = os.environ.get("AZURE_OPENAI_API_KEY", "")
@@ -164,9 +168,6 @@ def fetch_catalog_docs_stratified(n_docs: int) -> list[dict]:
 
 # --- Teacher scoring ---
 
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
-import torch
-
 _TEACHER_MODEL = None
 _TEACHER_TOKENIZER = None
 TEACHER_MODEL_NAME = "BAAI/bge-reranker-v2-m3"
@@ -175,6 +176,8 @@ TEACHER_MODEL_NAME = "BAAI/bge-reranker-v2-m3"
 def _load_teacher():
     global _TEACHER_MODEL, _TEACHER_TOKENIZER
     if _TEACHER_MODEL is None:
+        from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
         print(f"loading teacher {TEACHER_MODEL_NAME}...")
         _TEACHER_TOKENIZER = AutoTokenizer.from_pretrained(TEACHER_MODEL_NAME)
         _TEACHER_MODEL = AutoModelForSequenceClassification.from_pretrained(TEACHER_MODEL_NAME)
@@ -192,6 +195,8 @@ def normalize_teacher_scores(scores: list[float]) -> list[float]:
 
 def score_candidates_with_teacher(query: str, candidates: list[dict]) -> list[float]:
     """Returns min-max normalized teacher scores, one per candidate."""
+    import torch
+
     model, tokenizer = _load_teacher()
     pairs = [[query, c["doc_title"]] for c in candidates]
     with torch.no_grad():

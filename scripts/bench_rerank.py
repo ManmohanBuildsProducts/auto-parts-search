@@ -30,11 +30,12 @@ ROUND_DIR = Path("data/training/experiments/2026-04-15-bench-production")
 CORPUS_PATH = ROUND_DIR / "round2_corpus.json"
 GRADED_PATH = ROUND_DIR / "round2_graded.jsonl"
 BENCHMARK_PATH = Path("data/training/golden/benchmark_dev.json")
-TUNED_RANKS_PATH = ROUND_DIR / "round2_hybrid_rankings_tuned.json"
-
-RERANK_JSONL = ROUND_DIR / "round2_rerank_rankings.jsonl"
-RERANK_JSON = ROUND_DIR / "round2_rerank_rankings.json"
-RERANK_SCORES = ROUND_DIR / "rerank_scores.json"
+import os
+TUNED_RANKS_PATH = Path(os.environ.get("RERANK_SOURCE", str(ROUND_DIR / "round2_hybrid_rankings_tuned.json")))
+_suffix = os.environ.get("RERANK_SUFFIX", "")
+RERANK_JSONL = ROUND_DIR / f"round2_rerank_rankings{_suffix}.jsonl"
+RERANK_JSON = ROUND_DIR / f"round2_rerank_rankings{_suffix}.json"
+RERANK_SCORES = ROUND_DIR / f"rerank_scores{_suffix}.json"
 
 
 def dcg(rels): return sum(r / math.log2(i + 2) for i, r in enumerate(rels))

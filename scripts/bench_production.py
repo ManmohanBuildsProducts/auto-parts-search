@@ -287,8 +287,8 @@ def _hybrid_rank(weights_override: dict | None = None) -> dict:
 
     tok = IndicTokenizer()
     K_RRF = 60
-    K_CAND = 30
-    TOP = 20
+    K_CAND = int(os.environ.get("HYBRID_K_CAND", "30"))
+    TOP = int(os.environ.get("HYBRID_TOP", "20"))
 
     rankings = []
     classes = []

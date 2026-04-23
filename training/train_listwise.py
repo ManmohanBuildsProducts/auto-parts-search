@@ -31,7 +31,14 @@ from datasets import load_dataset
 from sentence_transformers import SentenceTransformer
 from torch.utils.data import DataLoader, Dataset as TorchDataset
 
-from training.listwise_loss import ListwiseKLLoss
+try:
+    from training.listwise_loss import ListwiseKLLoss
+except ModuleNotFoundError:  # Support `python training/train_listwise.py`
+    import sys
+    from pathlib import Path
+
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from training.listwise_loss import ListwiseKLLoss
 
 HF_TOKEN = os.environ.get("HF_TOKEN", "")
 LISTWISE_DATASET = "ManmohanBuildsProducts/auto-parts-listwise-v1"
