@@ -43,3 +43,77 @@ All three incidents above share a structure: the builder moved work to "done" ba
 > **Done is not an artifact. Done is a verified outcome.**
 
 If you can't point to a number, a commit hash, or a provenance trail, it's not done — it's a work-in-progress that someone forgot to finish.
+
+---
+
+## 2026-04-22: T610 / CADeT execution — four engineering-discipline regressions (caught by codex handoff)
+
+During the CADeT listwise training plan execution (commits `0faed40` → `4c4d083`), four operational mistakes burned roughly a full session of cleanup before training could even be attempted. Codex picked up the handoff (session `019db5a2-9de0-7b01-8ade-e7e6cba1dcf8`) and had to repair the environment before it could resume work. All four are repeatable patterns and deserve named rules.
+
+### Regression A — blind `pip install -U` of a shared ML-library dep
+
+**What happened.** To check whether `huggingface-cli jobs` was available, ran `pip install -U "huggingface_hub[cli]"`. Global site-packages upgraded to `huggingface_hub==1.11.0`, which is incompatible with the installed `transformers==4.48.3` (needs `huggingface_hub<1.0`). Every test that imported `transformers` (a lot of them) started failing at import time. Codex had to diagnose and downgrade before any training work could continue.
+
+**Why it matters.** The ML ecosystem (`huggingface_hub`, `transformers`, `sentence-transformers`, `datasets`, `torch`) has monthly breaking upgrades across library boundaries. A global upgrade of any one silently breaks the others.
+
+**How to avoid.**
+1. Pin all four libraries in `requirements.txt` at project bootstrap, not after breakage. Upper bound on major version (`<1.0.0`, `<5.0.0`), lower bound on required features.
+2. Probe new features in a throwaway venv (`uv run --with pkg==X`) or use `pip install --dry-run` first.
+3. Never run `pip install -U` on a shared ML dep mid-task just to check something.
+
+### Regression B — heavy imports at module top level break tests
+
+**What happened.** `scripts/generate_listwise_data.py` had `from transformers import AutoModelForSequenceClassification, AutoTokenizer` and `import torch` at module scope. Two effects:
+1. Unit tests that only exercised lightweight helpers (`build_query_prompt`, `parse_query_response`) still paid the transformers import cost.
+2. When `transformers` import broke (see Regression A), those same unit tests crashed at collection time instead of running cleanly.
+
+**How to avoid.** At module top, only import: stdlib, types used in signatures, and things needed on every call path. Heavy ML deps (`transformers`, `torch`, `sentence_transformers`) go inside the function that actually uses them. Use `if TYPE_CHECKING:` for type-only imports.
+
+```python
+# wrong — heavy import at top
+from transformers import AutoTokenizer
+def score(...): ...
+
+# right — lazy inside the function
+def score(...):
+    from transformers import AutoTokenizer
+    ...
+```
+
+### Regression C — script works as `-m` but not as direct execution
+
+**What happened.** `training/train_listwise.py` had `from training.listwise_loss import ListwiseKLLoss`. The plan's smoke-test step said `python training/train_listwise.py --smoke-test`, which fails with `ModuleNotFoundError: No module named 'training'` because the `training/` parent isn't on `sys.path` for direct execution. Only `python -m training.train_listwise` works.
+
+**How to avoid.** For any script with intra-repo imports that will be invoked directly:
+
+```python
+try:
+    from training.listwise_loss import ListwiseKLLoss
+except ModuleNotFoundError:
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from training.listwise_loss import ListwiseKLLoss
+```
+
+Or enforce `python -m ...` consistently in every plan, command, and README — but the path shim is safer because users copy-paste from anywhere.
+
+### Regression D — `model.encode()` returns no-grad tensors; can't train on its output
+
+**What happened.** Smoke test crashed with `RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn`. Root cause: `sentence_transformers.SentenceTransformer.encode()` runs under `torch.no_grad()` internally for inference speed. Calling it inside a training loop gives you a dead-end tensor — `loss.backward()` fails because the graph has no grad edges.
+
+**How to avoid.** When fine-tuning a SentenceTransformer, never use `model.encode()` in the training step. Use the forward pass directly:
+
+```python
+def encode_with_grad(model, texts, device):
+    features = model.tokenize(texts)
+    features = {k: v.to(device) for k, v in features.items()}
+    out = model(features)
+    return F.normalize(out["sentence_embedding"], p=2, dim=-1)
+```
+
+Alternative: `encode(..., convert_to_tensor=True)` is also `no_grad` — don't be fooled by the "tensor" return type. Only `model(features)` preserves grads.
+
+### Meta-pattern across A–D
+
+All four are *environmental/plumbing* errors, not ML-modeling errors. Each cost ~15–30 minutes to diagnose. They share a pattern: **a known-good reference implementation (the plan, the unit test, the paper recipe) was copied without verifying the runtime context matches**. The fix for each is explicit: pin environments, lazy-import heavy deps, add path shims, read the library's internals before assuming a function is gradient-safe. These belong in every new ML-engineering plan's pre-flight checklist.

@@ -81,3 +81,7 @@ Things we discovered during research and building that weren't obvious upfront.
 - **All 5 ml-intern-cited papers verified on arxiv (2026-04-22).** arxiv IDs 2604.05684, 2604.05821, 2505.19274, 2502.19712, 2409.17326 all exist with matching titles. The "2604.xxxxx" IDs are April 2026 papers — very fresh; the research direction is current.
 
 - **Recommended implementation order:** Technique 1 (listwise distillation) → Technique 2 (CLEAR alignment, reuses parallel data from T1) → Technique 3 (EBRM entity-aware, can be fused at inference). Combined estimated gain: 0.430 → 0.485-0.520 nDCG@10, beating OpenAI 0.468.
+
+## Phase 3b engineering-discipline mistakes (2026-04-22, T610 execution)
+
+Four operational regressions burned a session of cleanup during CADeT listwise execution: (A) `pip install -U` on a shared ML dep broke transformers, (B) top-level heavy imports crashed tests at collection, (C) scripts worked as `-m` but not direct, (D) `model.encode()` returns no-grad tensors and silently breaks training loops. Full post-mortem in `memory/regressions.md` § "T610 / CADeT execution". Pre-flight checklist for any new ML-engineering plan: pin HF versions in requirements.txt at bootstrap, lazy-import `transformers`/`torch` inside functions, add sys.path fallback to scripts, never call `.encode()` inside training — use `model(features)` directly.
